@@ -106,22 +106,28 @@ public abstract class Jugador extends Personaje{
         this.ataqueBase = ataqueBase;
     }
     //Metodos
-    public void cambiarArma(Arma arma){ //Falta devolver arma al inventario
+    public void cambiarArma(Arma arma){ 
+        Arma armaAntigua = this.getArma();
         if (arma.getRequisitoCategoria().contains(this.getNombre()) &&
                 arma.getRequisitoNivel() <= this.getNivel()){
             this.arma=arma;
             this.setAtaque(this.getAtaqueBase() + arma.getDanyo());
             this.setHabCritico(arma.getCritico());
+            this.inventario.getItems().remove(arma);
+            this.inventario.getItems().add(armaAntigua);
             System.out.println("Arma cambiada correctamente");
         }
         else
             System.out.println("No puedes equiparte este arma");
     }
     public void cambiarArmadura(Armadura armadura){
+        Armadura armaduraAntigua = this.getArmadura();
         if (armadura.getRequisitoCategoria().contains(this.getNombre()) &&
                 armadura.getRequisitoNivel() <= this.getNivel()){
             this.armadura=armadura;
             this.setDefensa(this.getDefensaBase() + armadura.getDefensa());
+            this.inventario.getItems().remove(armadura);
+            this.inventario.getItems().add(armaduraAntigua);
             System.out.println("Armadura cambiada correctamente");
         }
         else

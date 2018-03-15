@@ -8,26 +8,17 @@ public class Consumible extends Item{
     private int pm;
     private int numero;
     private int capacidad;
-    private boolean resucitar;
 
     //Constructor
-    public Consumible(int ph, int pm, int numero, boolean resucitar, String nombre, String descripcion, ArrayList<String> requisitoCategoria, int requisitoNivel, int precioCompra, int precioVenta) {
+    public Consumible(int ph, int pm, int numero, String nombre, String descripcion, ArrayList<String> requisitoCategoria, int requisitoNivel, int precioCompra, int precioVenta) {
         super(nombre, descripcion, requisitoCategoria, requisitoNivel, precioCompra, precioVenta);
         this.ph = ph;
         this.pm = pm;
         this.numero = numero;
         //El numero maximo del mismo consumible sera 10 por ejemplo
         this.capacidad = 10;
-        this.resucitar=resucitar;
     }
-
     //Getters and Setters
-    public boolean isResucitar() {
-        return resucitar;
-    }
-    public void setResucitar(boolean resucitar) {
-        this.resucitar = resucitar;
-    }
     public int getPh() {
         return ph;
     }

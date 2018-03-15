@@ -10,13 +10,31 @@ public class Inventario {
     private ArrayList<Item> items;
     private int dinero;
     private int capacidadInv;
+    private Consumible pocionVida;
+    private Consumible pocionMana;
+    private Consumible pocionRes;
+    private ArrayList<String> requisitoCategoria;
     //Meter consumibles iniciales
 
     //Constructor
-    public Inventario(ArrayList<Item> items) {
-        this.items = items;
+    public Inventario() {
+        this.items = new ArrayList<Item>();
         this.dinero = 50;
         this.capacidadInv = 10;
+        this.requisitoCategoria = new ArrayList<String>();
+        requisitoCategoria.add("Mordeim");
+        requisitoCategoria.add("Kibito");
+        requisitoCategoria.add("Horacia");
+        this.pocionVida = new Consumible(20, 0, 5, "PocionVida", "Pocion que sirve para curar tu vida",
+            requisitoCategoria, 1, 0, 0);
+        this.pocionMana = new Consumible(0, 20, 5, "PocionMana", "Pocion que sirve para curar tu mana",
+            requisitoCategoria, 1, 0, 0);
+        this.pocionMana = new Consumible(50, 0, 2, "PocionResucitar", "Pocion que sirve para resucitar un jugador",
+            requisitoCategoria, 1, 0, 0);
+        items.add(pocionVida);
+        items.add(pocionMana);
+        items.add(pocionRes);
+        
     }    
 
     //Getters and Setters
@@ -58,21 +76,42 @@ public class Inventario {
     public void tirarObjeto(Item i){
         borrarItem(i);
     }
-    /*public void usarConsumible(Consumible c, Jugador jug){
-        if (items.contains(c) && c.getNumero() > 0){
-            //Hacer la diferencia de si llenara mas vida de la que se tiene
-            if (!c.isResucitar()) {
-                jug.setHpActual(jug.getHpActual() + (int)((jug.getHp()*(c.getPh()))/100));
-                if ((jug.getHpActual() + c.getPh()) > jug.getHp()) {
-                    
-                    
-                }
-                
-                
-            }
-            jug.setHpActual(jug.getHpActual() + (int)((jug.getHp()*(c.getPh()))/100));
-            jug.setMpActual(c.getPm());
-            c.setNumero(c.getNumero()-1);
+    public void usarPocionVida(Jugador jug){
+        Consumible pocion = (Consumible) items.get(0);
+        int curar;
+        if(pocion.getNumero()>0){
+            curar = (int)((jug.getHp()*(pocion.getPh()))/100);
+            if (jug.getHpActual() + curar > jug.getHp())
+                jug.setHpActual(jug.getHp());
+            else
+                jug.setHpActual(jug.getHpActual() + curar);
+            pocion.setNumero(pocion.getNumero()-1);
         }
-    }*/
+        else
+            System.out.println("No puedes curar porque no teines suficientes pociones de vida");
+    }
+    public void usarPocionMana(Jugador jug){
+        Consumible pocion = (Consumible) items.get(1);
+        int curar;
+        if(pocion.getNumero()>0){
+            curar = (int)((jug.getMp()*(pocion.getPm()))/100);
+            if (jug.getMpActual() + curar > jug.getMp())
+                jug.setMpActual(jug.getMp());
+            else
+                jug.setMpActual(jug.getMpActual() + curar);
+            pocion.setNumero(pocion.getNumero()-1);
+        }
+        else
+            System.out.println("No puedes curar porque no teines suficientes pociones de mana");
+    }
+    public void usarPocionRes(Jugador jug){
+        Consumible pocion = (Consumible) items.get(2);
+        if(pocion.getNumero()>0){
+            jug.setHpActual((int)((jug.getHp()*(pocion.getPh()))/100));
+            pocion.setNumero(pocion.getNumero()-1);
+        }
+        else
+            System.out.println("No puedes resucitar porque no tienes suficientes pociones de resucitar");
+    }
+    
 }
