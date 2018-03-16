@@ -106,12 +106,12 @@ public class Inventario {
     }
     public void usarPocionRes(Jugador jug){
         Consumible pocion = (Consumible) items.get(2);
-        if(pocion.getNumero()>0){
+        if(pocion.getNumero()>0 && !jug.estaVivo()){
             jug.setHpActual((int)((jug.getHp()*(pocion.getPh()))/100));
             pocion.setNumero(pocion.getNumero()-1);
         }
         else
-            System.out.println("No puedes resucitar porque no tienes suficientes pociones de resucitar");
+            System.out.println("No puedes resucitar a este personaje");
     }
     
 }
