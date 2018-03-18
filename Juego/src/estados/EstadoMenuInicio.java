@@ -1,7 +1,6 @@
 
 package estados;
 
-import iceadventure.IceAdventure;
 import java.awt.Font;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -38,7 +37,7 @@ public class EstadoMenuInicio extends BasicGameState {
 
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-        imagen = new Image("d.jpg");
+
         letraMenu = new Font("Verdana", Font.BOLD, 30);
         letraEquipo = new Font("Verdana", Font.PLAIN, 20);
         letraTitulo = new Font("Verdana", Font.BOLD, 40);
