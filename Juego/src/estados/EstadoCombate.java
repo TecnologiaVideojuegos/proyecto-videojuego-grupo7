@@ -73,7 +73,7 @@ public class EstadoCombate extends BasicGameState{
                     //sbg.enterState(IceAdventure.GAMEPLAYSTATE);
                     break;
                 case CONSUMIBLE:
-                    sbg.enterState(VenganzaBelial.STARTMENUSTATE);
+                    sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);
                     break;
             }
         }

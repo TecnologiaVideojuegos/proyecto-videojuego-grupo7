@@ -1,6 +1,8 @@
 package personajes;
 
-public class Personaje { //Hacer abstracta por metodo combatir
+import java.io.Serializable;
+
+public class Personaje implements Serializable{ //Hacer abstracta por metodo combatir
     //Atributos
     private String nombre;
     private int nivel;
@@ -9,6 +11,8 @@ public class Personaje { //Hacer abstracta por metodo combatir
     private int ataque;
     private int defensa;
     private int velocidad;
+    
+    private static final long serialVersionUID = 3L;
     
     //Constructor
     public Personaje(String nombre, int nivel, int hp, int hpActual, int ataque, int defensa, int velocidad) {

@@ -7,12 +7,31 @@ import personajes.Jugador;
 import personajes.Kibito;
 import personajes.Mordeim;
 import java.util.ArrayList;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStreamWriter;
+import personajes.Personaje;
 
 public class NewMain {
+    static ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
     
-    private static ArrayList<String> pjs = null;
     public static void main(String[] args) {
-        ArrayList<String> pjs = new ArrayList<String>();
+        
+        //Horacia horacia = new Horacia();
+        //jugadores.add(horacia);
+        //System.out.println(jugadores.get(0).getNombre());
+        //guardarJugadores();
+        cargarJugadores();
+        System.out.println(jugadores.get(0).getNombre());
+        System.out.println(jugadores.get(0).getHpActual());
+        
+        
+        
+        /*ArrayList<String> pjs = new ArrayList<String>();
         pjs.add("hasas");
         pjs.add("Mordeim");
         Arma arma = new Arma(10,10,"aRMITA","desc", pjs, 1, 100000, 100000);
@@ -36,5 +55,37 @@ public class NewMain {
         m.cambiarArma(armaBuena);
         System.out.println(m.toString());
         System.out.println(m.getArma().getNombre());*/
+    }
+    public static void cargarJugadores() {
+        try {
+            FileInputStream istreamPer = new FileInputStream("jugadores.dat");
+            ObjectInputStream oisPer = new ObjectInputStream(istreamPer);            
+            jugadores = (ArrayList<Jugador>) oisPer.readObject();
+            istreamPer.close();
+        } catch (IOException ioe) {
+            System.out.println("Error de IO: " + ioe.getMessage());
+        } catch (ClassNotFoundException cnfe) {
+            System.out.println("Error de clase no encontrada: " + cnfe.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    public static void guardarJugadores() {
+        try {
+            if (!jugadores.isEmpty()) {
+                FileOutputStream ostreamPer = new FileOutputStream("jugadores.dat");
+                ObjectOutputStream oosPer = new ObjectOutputStream(ostreamPer);
+                oosPer.writeObject(jugadores);
+                ostreamPer.close();
+            } else {
+                System.out.println("Error: No hay datos...");
+            }
+
+        } catch (IOException ioe) {
+            System.out.println("Error de IO: " + ioe.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
     }
 }
