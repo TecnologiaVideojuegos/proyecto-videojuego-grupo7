@@ -34,12 +34,15 @@ public class EstadoCombate extends BasicGameState{
     private Image Avatar1;
     private Image Avatar2;
     private Image Avatar3;
-    private ArrayList<Image> Enemigos;
+    private ArrayList<Image> avatarEnemigo;
     private TrueTypeFont HP1, HP2, HP3;
-    private Font TipoLetra  =new Font("Verdana", Font.PLAIN, 10);    
+    private TrueTypeFont MP1, MP2, MP3;
+    private Font TipoLetra  =new Font("Verdana", Font.PLAIN, 20);    
     private Color rojo = new Color (256,0,0);
     private Color verde = new Color (0,256,0);
     private Color azul = new Color (0,0,256);
+ 
+    
     
     public EstadoCombate(int id) {
         idEstado = id;
@@ -72,6 +75,10 @@ public class EstadoCombate extends BasicGameState{
         {
             /*Init de turnos*/
             /*Añadir Imagenes en funcion del enemigo*/
+            avatarEnemigo = new ArrayList<Image>();
+            avatarEnemigo.add(new Image("Imagenes/Monstruos/Rata.png"));
+            avatarEnemigo.add(new Image("Imagenes/Monstruos/Rata.png"));
+            avatarEnemigo.add(new Image("Imagenes/Monstruos/Rata.png"));
             NuevoCombate = false;
         }
         else
@@ -131,24 +138,38 @@ public class EstadoCombate extends BasicGameState{
             Avatar2 =  new Image("Imagenes/Personajes/Mordeim.jpg");
             Avatar3 =  new Image("Imagenes/Personajes/Kibito.jpg");
             Fondo.draw(0, 0, 1366, 768);
-            Rectangle rect1 = new Rectangle(10,10, 200,100);
-            Rectangle rect2 = new Rectangle(10,110, 200, 100);
-            Rectangle rect3 = new Rectangle(10,210, 200, 100);
+            Rectangle rect1 = new Rectangle(0,10, 230,100);
+            Rectangle rect2 = new Rectangle(0,110, 230, 100);
+            Rectangle rect3 = new Rectangle(0,210, 230, 100);
             g.draw(rect1);
             g.draw(rect2);
             g.draw(rect3);
             g.fill(rect1);
             g.fill(rect2);
             g.fill(rect3);
-            Avatar1.draw(10, 10, 100, 100);
-            Avatar2.draw(10, 110, 100, 100);
-            Avatar3.draw(10, 210, 100, 100);
+            Avatar1.draw(0, 10, 100, 100);
+            Avatar2.draw(0, 110, 100, 100);
+            Avatar3.draw(0, 210, 100, 100);
+            /*Horacia status update*/
             HP1 = new TrueTypeFont(TipoLetra, true);
-            HP1.drawString(120, 20, "HP"+VenganzaBelial.horacia.getHpActual()+ "/"+VenganzaBelial.horacia.getHp(),rojo);
+            HP1.drawString(110, 30, "HP"+VenganzaBelial.horacia.getHpActual()+ "/"+VenganzaBelial.horacia.getHp(),rojo);
+            MP1 = new TrueTypeFont(TipoLetra, true);
+            MP1.drawString(110, 60, "MP "+VenganzaBelial.horacia.getMpActual()+ "/"+VenganzaBelial.horacia.getMp(),azul);
+            /*Mordeim Status Update*/
             HP2 = new TrueTypeFont(TipoLetra, true);
-            HP2.drawString(120, 120, "HP"+VenganzaBelial.mordeim.getHpActual()+ "/"+VenganzaBelial.mordeim.getHp(),rojo);
+            HP2.drawString(110, 130, "HP "+VenganzaBelial.mordeim.getHpActual()+ "/"+VenganzaBelial.mordeim.getHp(),rojo);
+            MP2 = new TrueTypeFont(TipoLetra, true);
+            MP2.drawString(110, 160, "MP "+VenganzaBelial.mordeim.getMpActual()+ "/"+VenganzaBelial.mordeim.getMp(),azul);
+            /*Kibito Status update*/
             HP3 = new TrueTypeFont(TipoLetra, true);
-            HP3.drawString(120, 220, "HP"+VenganzaBelial.kibito.getHpActual()+ "/"+VenganzaBelial.kibito.getHp(),rojo);
+            HP3.drawString(110, 230, "HP "+VenganzaBelial.kibito.getHpActual()+ "/"+VenganzaBelial.kibito.getHp(),rojo);
+            MP3 = new TrueTypeFont(TipoLetra, true);
+            MP3.drawString(110, 260, "MP "+VenganzaBelial.kibito.getMpActual()+ "/"+VenganzaBelial.kibito.getMp(),azul);
+            /*Render Enemigos*/
+            
+            avatarEnemigo.get(0).draw(550, 500, 100, 100);
+            avatarEnemigo.get(1).draw(650, 500, 100, 100);
+            avatarEnemigo.get(2).draw(750, 500, 100, 100);
     }
             
 }
