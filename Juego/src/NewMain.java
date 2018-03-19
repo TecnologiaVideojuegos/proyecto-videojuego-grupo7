@@ -25,7 +25,7 @@ public class NewMain {
         //jugadores.add(horacia);
         //System.out.println(jugadores.get(0).getNombre());
         //guardarJugadores();
-        cargarJugadores();
+        //cargarJugadores();
         System.out.println(jugadores.get(0).getNombre());
         System.out.println(jugadores.get(0).getHpActual());
         
@@ -56,36 +56,5 @@ public class NewMain {
         System.out.println(m.toString());
         System.out.println(m.getArma().getNombre());*/
     }
-    public static void cargarJugadores() {
-        try {
-            FileInputStream istreamPer = new FileInputStream("jugadores.dat");
-            ObjectInputStream oisPer = new ObjectInputStream(istreamPer);            
-            jugadores = (ArrayList<Jugador>) oisPer.readObject();
-            istreamPer.close();
-        } catch (IOException ioe) {
-            System.out.println("Error de IO: " + ioe.getMessage());
-        } catch (ClassNotFoundException cnfe) {
-            System.out.println("Error de clase no encontrada: " + cnfe.getMessage());
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-    }
-
-    public static void guardarJugadores() {
-        try {
-            if (!jugadores.isEmpty()) {
-                FileOutputStream ostreamPer = new FileOutputStream("jugadores.dat");
-                ObjectOutputStream oosPer = new ObjectOutputStream(ostreamPer);
-                oosPer.writeObject(jugadores);
-                ostreamPer.close();
-            } else {
-                System.out.println("Error: No hay datos...");
-            }
-
-        } catch (IOException ioe) {
-            System.out.println("Error de IO: " + ioe.getMessage());
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-    }
+    
 }

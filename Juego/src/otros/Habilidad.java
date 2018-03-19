@@ -9,14 +9,18 @@ public class Habilidad {
     private int danyo;
     private int costeMP; //Aumenta 5 en cada habilidad por nivel
     private String descripcion;
+    private boolean cura;
+    private boolean resucita;
     
     //Constructor
-    public Habilidad(String nombre, int nivel, int danyo, int costeMP, String descripcion) {
+    public Habilidad(String nombre, int nivel, int danyo, int costeMP, String descripcion, boolean cura, boolean resucita) {
         this.nombre = nombre;
         this.nivel = nivel;
         this.danyo = danyo;
         this.costeMP = costeMP;
         this.descripcion = descripcion;
+        this.cura = cura;
+        this.resucita = resucita;
     }
     
     //Getters and Setters
@@ -50,20 +54,16 @@ public class Habilidad {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    
-    //Metodos
-    private void curar(Jugador jugador){
-        //Danyo es multiplicador de ataque base
-        jugador.setHp(jugador.getHp()+this.danyo);
-        //Gastar mp
-        jugador.setMpActual(jugador.getMpActual() - (costeMP + (jugador.getNivel() * 2)));
+    public boolean isCura() {
+        return cura;
     }
-    
-    private void resucitar(Jugador jugador){
-        if (!jugador.estaVivo()) {
-            jugador.setHp((int)(jugador.getHp()*0.30));
-            jugador.setMpActual(jugador.getMpActual() - (costeMP + (jugador.getNivel() * 2)));
-        }
-        else    System.out.println("Ya esta vivo");
+    public void setCura(boolean cura) {
+        this.cura = cura;
+    }
+    public boolean isResucita() {
+        return resucita;
+    }
+    public void setResucita(boolean resucita) {
+        this.resucita = resucita;
     }
 }
