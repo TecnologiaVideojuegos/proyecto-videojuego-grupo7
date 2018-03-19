@@ -1,11 +1,12 @@
 package personajes;
 import items.Arma;
 import items.Armadura;
+import java.io.Serializable;
 import otros.Habilidad;
 import otros.Inventario;
 import java.util.ArrayList;
 
-public abstract class Jugador extends Personaje{
+public abstract class Jugador extends Personaje implements Serializable{
     //Atributos
     private int mp;
     private int mpActual;
@@ -18,6 +19,8 @@ public abstract class Jugador extends Personaje{
     private Inventario inventario;
     private int defensaBase;
     private int ataqueBase;
+    
+    private static final long serialVersionUID = 3L;
     
     //Constructor
     public Jugador(int mp, int mpActual, int habCritico, Arma arma, Armadura armadura, ArrayList<Habilidad> habilidades, int exp, int expProxNivel, Inventario inventario, int defensaBase, int ataqueBase, String nombre, int nivel, int hp, int hpActual, int ataque, int defensa, int velocidad) {
@@ -40,6 +43,8 @@ public abstract class Jugador extends Personaje{
         this.armadura = armadura;
         this.habilidades = habilidades;
         this.inventario = inventario;
+    }
+    public Jugador(){        
     }
     //Getters and setters
     public int getMpActual() {

@@ -1,5 +1,6 @@
 package estados;
 
+import static estados.VenganzaBelial.ESTADOMENUINICIO;
 import java.awt.Font;
 import java.util.ArrayList;
 import org.newdawn.slick.Color;
@@ -53,7 +54,8 @@ public class EstadoCombate extends BasicGameState{
     }
 
     @Override
-    public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
+    public void init(GameContainer gc, StateBasedGame sbg) throws SlickException 
+    {
         letraMenu = new Font("Verdana", Font.ROMAN_BASELINE, 25);
         opcionesJugadorTTF = new TrueTypeFont(letraMenu, true);
         opciones[0] = "Atacar";
@@ -64,13 +66,15 @@ public class EstadoCombate extends BasicGameState{
     }
 
     @Override
-    public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
+    public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException 
+    {
         renderAvatars(g);
         renderOpcionesJugador();
     }
 
     @Override
-    public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
+    public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException 
+    {
         if(NuevoCombate==true)//Ejecutar Con Cada nuevo combate
         {
             /*Init de turnos*/
@@ -84,25 +88,31 @@ public class EstadoCombate extends BasicGameState{
         else
         {
             /*Print Gráfico del combate*/
-            
             /*Selector de Acciones de Usuario*/
             Input input = gc.getInput();
-            if (input.isKeyPressed(Input.KEY_DOWN)) {
-                if (eleccionJugador == (NUMOPCIONES - 1)) {
+            if (input.isKeyPressed(Input.KEY_DOWN)) 
+            {
+                if (eleccionJugador == (NUMOPCIONES - 1)) 
+                {
                     eleccionJugador = 0;
-                } else {
+                } 
+                else 
+                {
                     eleccionJugador++;
                 }
             }
-            if (input.isKeyPressed(Input.KEY_UP)) {
+            if (input.isKeyPressed(Input.KEY_UP)) 
+            {
                 if (eleccionJugador == 0) {
                     eleccionJugador = NUMOPCIONES - 1;
                 } else {
                     eleccionJugador--;
                 }
-            }
-            if (input.isKeyPressed(Input.KEY_ENTER)) {
-                switch (eleccionJugador) {
+            }           
+            if (input.isKeyPressed(Input.KEY_ENTER))
+            {
+                switch (eleccionJugador) 
+                {
                     case ATACAR:
                         //sbg.enterState(IceAdventure.GAMEPLAYSTATE);
                         break;
@@ -112,14 +122,15 @@ public class EstadoCombate extends BasicGameState{
                         //sbg.enterState(IceAdventure.GAMEPLAYSTATE);
                         break;
                     case CONSUMIBLE:
-                        sbg.enterState(VenganzaBelial.STARTMENUSTATE);
+                        sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);
                         break;
                 }
             }
         }
     }
     
-    private void renderOpcionesJugador() {
+    private void renderOpcionesJugador()
+    {
         for (int i = 0; i < NUMOPCIONES; i++) {
             if (eleccionJugador == i) {
                 opcionesJugadorTTF.drawString(10, i * 20 + 400, opciones[i]);
@@ -128,6 +139,7 @@ public class EstadoCombate extends BasicGameState{
             }
         }
     }
+    
     private void renderAvatars(Graphics g) throws SlickException
     {
          /*Update Grafico*/

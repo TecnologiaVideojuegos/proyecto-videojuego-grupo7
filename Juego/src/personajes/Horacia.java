@@ -12,7 +12,11 @@ public final class Horacia extends Jugador{
     public Horacia(Arma arma, Armadura armadura, ArrayList<Habilidad> habilidades, Inventario inventario) {
         super(arma, armadura, habilidades, inventario);
         inicializarPersonaje();
-    }   
+    }       
+    public Horacia()
+    {
+        this.setNombre("Horacia");
+    }
     //Metodo que iniciliaza las estadisticas del Personaje Horacia 
     @Override
     public void inicializarPersonaje(){
