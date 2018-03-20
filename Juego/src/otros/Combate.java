@@ -7,17 +7,23 @@ public final class Combate {
     //Atributos
     private ArrayList<Personaje> ordenPersonajes = new ArrayList<Personaje>();
     private int nParticipantes; //N de participantes en el combate
-    private int nEnemigos;
-    private int nPJ;
-
+    private ArrayList<Personaje> Enemigos;
+    private int EnemigosRestantes;
+    private int AliadosRestantes;
+    
     //Constructor
-    public Combate(ArrayList<Personaje> participantes, int numeroEnemigos, int numeroPJs) 
+    public Combate(ArrayList<Personaje> Party, int Mapa) 
     {
-        setnParticipantes(participantes.size());//numero de participante en combate
-        setnEnemigos(numeroEnemigos);//numero de enemigos a abatir
-        setnPJ(numeroPJs);//numero de PJ vivos restantes
-        OrdenaTurnos(participantes);//Funcion que asigna turnos
-        
+        int aux=0;//Variable auxuliar para rellenar
+        ArrayList<Personaje> participantes = Party;//Añadimos "party" a lista de participantes
+        Enemigos = GeneraArrayEnemigos(Mapa);//Generamos Array de enemigos en funcion del mapa
+        for(aux=0;aux<Enemigos.size();aux++)//Añadimos enemigos a lista de participantes
+        {
+            participantes.add(Enemigos.get(aux));
+        }/*for*/
+        EnemigosRestantes=Enemigos.size();
+        AliadosRestantes=Party.size();//EDIT: Posible cambio en funcion de si estan vivos
+        OrdenaTurnos(participantes);//Reordenamos a los participantes en funcion de iniciativa
     }/*public Combate(Personaje[] participantes) END*/
     
     //Funcion que ordena los pjs por turno en un array
@@ -57,38 +63,44 @@ public final class Combate {
         }/* while(auxCount<nParticipantes) END*/
     }/* private void OrdenaTurnos(Personaje[] participantes)END*/
     
-    //Desarrollo del combate completo
-    public void DesarrollaCombate()
+    private ArrayList<Personaje> GeneraArrayEnemigos (int Mapa)
     {
-        int indiceTurno=0;
-        //Bucle de turnos mientras queden enemigos O aliados
-        while(this.nEnemigos!=0 || this.nPJ!=0)
+        ArrayList<Personaje> GeneraEnemigos;
+        /*Swtch casa aleatorio en funcion del mapa para generar grupos de enemigos*/
+        GeneraEnemigos= new ArrayList<Personaje>();
+        switch (Mapa)
         {
-            //Comprueba que el el personaje esta vivo
-            if(ordenPersonajes.get(indiceTurno).estaVivo())
-            {
-                    //Metodo "Combatir"
-
-                    //Manual para jugador
-
-                    //Automatico para enemigo
-                indiceTurno++; //Siguiente personaje/enemigo en cola
-            }/*if(ordenPersonajes[indiceTurno].estaVivo()) END*/
-            else
-            {
-                ordenPersonajes.remove(ordenPersonajes.get(indiceTurno));
-                nParticipantes--;
-            }
-            
-            if (indiceTurno>this.nParticipantes)
-            {
-                indiceTurno=0;//Bucle turnos
-            }/*if (indiceTurno>this.nParticipantes) END*/
-        }/*while(nEnemigos!=0 || nPJ!=0) */
-    }/*public void DesarrollaCombate() END*/
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+        }/*switch (Mapa)*/
+        return GeneraEnemigos;
+    }
     
-    //Getter and setter
-        public int getnParticipantes() {
+    public void Atacar(Personaje Atacante, Personaje Defensor)
+    {
+        /*Calculo de daño*/
+        int DañoCausado=Atacante.getAtaque()-Defensor.getDefensa();
+        if (DañoCausado>0)
+        {
+          Defensor.setHp(Defensor.getHp()- DañoCausado);
+        }/*if (DañoCausado>0)*/        
+    }/*private void Atacar*/
+    
+    
+    //Getter y Setter
+    public ArrayList<Personaje> getOrdenPersonajes() {
+        return ordenPersonajes;
+    }
+
+    public void setOrdenPersonajes(ArrayList<Personaje> ordenPersonajes) {
+        this.ordenPersonajes = ordenPersonajes;
+    }
+
+    public int getnParticipantes() {
         return nParticipantes;
     }
 
@@ -96,19 +108,29 @@ public final class Combate {
         this.nParticipantes = nParticipantes;
     }
 
-    public int getnEnemigos() {
-        return nEnemigos;
+    public ArrayList<Personaje> getEnemigos() {
+        return Enemigos;
     }
 
-    public void setnEnemigos(int nEnemigos) {
-        this.nEnemigos = nEnemigos;
+    public void setEnemigos(ArrayList<Personaje> Enemigos) {
+        this.Enemigos = Enemigos;
     }
 
-    public int getnPJ() {
-        return nPJ;
+    public int getEnemigosRestantes() {
+        return EnemigosRestantes;
     }
 
-    public void setnPJ(int nPJ) {
-        this.nPJ = nPJ;
+    public void setEnemigosRestantes(int EnemigosRestantes) {
+        this.EnemigosRestantes = EnemigosRestantes;
     }
+
+    public int getAliadosRestantes() {
+        return AliadosRestantes;
+    }
+
+    public void setAliadosRestantes(int AliadosRestantes) {
+        this.AliadosRestantes = AliadosRestantes;
+    }
+    
+    
 }

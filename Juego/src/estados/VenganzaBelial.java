@@ -29,6 +29,8 @@ public class VenganzaBelial extends StateBasedGame {
     public static Horacia horacia = new Horacia( arma,  armadura,  habilidades,  inventario);
     public static Mordeim mordeim = new Mordeim( arma,  armadura,  habilidades,  inventario);
     public static Kibito kibito = new Kibito( arma,  armadura,  habilidades,  inventario);
+    public static ArrayList<Personaje> Party= new ArrayList<Personaje>();
+    public static int MapaActual=0;
     /*Atributos de pruebas END*/
     public VenganzaBelial() {
         super("La Venganza de Belial");
@@ -46,6 +48,11 @@ public class VenganzaBelial extends StateBasedGame {
     }
 
     public static void main(String[] args) throws SlickException {
+        /*ATRIBUTOS DE PRUEBA*/
+        Party.add(horacia);
+        Party.add(mordeim);
+        Party.add(kibito);
+        /*ATRIBUTOS DE PRUEBA FIN*/
         AppGameContainer app = new AppGameContainer(new VenganzaBelial());
         app.setDisplayMode(WIDTH, HEIGHT, FULLSCREEN);
         app.start();

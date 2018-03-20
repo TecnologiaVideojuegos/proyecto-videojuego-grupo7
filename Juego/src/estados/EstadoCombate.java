@@ -17,20 +17,43 @@ import personajes.*;
 import otros.Combate;
 
 public class EstadoCombate extends BasicGameState{
-    private static final int NUMOPCIONES = 4;
+    /*Estados Inercombate*/
+    private Input input;
+    private int Estado=0;
+    private static final int NESTADOS=9;
+    private static final int OPCIONESBASE=0;//Opciones base del pj
+    private static final int ATACANDO=1;//Seleccion del enemigo al que atacar
+    private static final int SELHABILIDAD=2;//Seleccion de habilidad en funcion del pj
+    private static final int SELCONSUMIBLE=3;//Seleccion de consumible a usar
+    private static final int HUYENDO=4;//Intento de huida
+    private static final int TURNOENEMIGO=5;//Turno automatico del enemigo
+    private static final int SELOBJETIVO=6;//Selesccion de enemigo al que tirar habilidad
+    private static final int SELALIADO=7;//Seleccion de pj al que tirar consumible
+    private static final int FINTURNO=8;
+    /*Opciones OPCIONESBASE*/
+    private static final int NUMOPCIONESBASE = 4;
     private static final int ATACAR = 0;
     private static final int HABILIDAD = 1;
     private static final int CONSUMIBLE = 2;
     private static final int HUIR = 3;
-    private String[] opciones = new String[NUMOPCIONES];
+    /*Opciones ATACANDO*/
+    private int SelEnemigo;
+    /*opciones SELHABILIDAD*/
+    private static final int NHABILIDADES=5;
+    /*opciones SELCONSUMIBLE*/
+    private static final int NCONSUMIBLES=3;
+    /*Arrays Control*/
+    /*Tipos de letra y Mensajes*/
+    private String[] opciones = new String[NUMOPCIONESBASE];
     private Font letraMenu;
     private TrueTypeFont opcionesJugadorTTF;
     private int eleccionJugador, idEstado;
     private Color notChosen = new Color(153, 204, 255);
     private boolean NuevoCombate = true;
     /*Control de Combate*/
-    private ArrayList<Personaje> ordenPersonajes = new ArrayList<Personaje>();
-    /*Avatar Control*/
+    //private ArrayList<Personaje> ordenPersonajes = new ArrayList<Personaje>();7
+    private Combate NewCombate;
+    /*Avatar Image Control*/
     private Image Fondo;
     private Image Avatar1;
     private Image Avatar2;
@@ -41,9 +64,7 @@ public class EstadoCombate extends BasicGameState{
     private Font TipoLetra  =new Font("Verdana", Font.PLAIN, 20);    
     private Color rojo = new Color (256,0,0);
     private Color verde = new Color (0,256,0);
-    private Color azul = new Color (0,0,256);
- 
-    
+    private Color azul = new Color (0,0,256);    
     
     public EstadoCombate(int id) {
         idEstado = id;
@@ -56,6 +77,9 @@ public class EstadoCombate extends BasicGameState{
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException 
     {
+        /*Input*/
+        Input input = gc.getInput();
+        /**/
         letraMenu = new Font("Verdana", Font.ROMAN_BASELINE, 25);
         opcionesJugadorTTF = new TrueTypeFont(letraMenu, true);
         opciones[0] = "Atacar";
@@ -69,6 +93,7 @@ public class EstadoCombate extends BasicGameState{
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException 
     {
         renderAvatars(g);
+        /*Switch Case para visualizar opciones en funcion del estado*/
         renderOpcionesJugador();
     }
 
@@ -77,7 +102,8 @@ public class EstadoCombate extends BasicGameState{
     {
         if(NuevoCombate==true)//Ejecutar Con Cada nuevo combate
         {
-            /*Init de turnos*/
+            /*Genera Nuevo Combate*/
+            NewCombate= new Combate(VenganzaBelial.Party, VenganzaBelial.MapaActual);//
             /*Añadir Imagenes en funcion del enemigo*/
             avatarEnemigo = new ArrayList<Image>();
             avatarEnemigo.add(new Image("Imagenes/Monstruos/Rata.png"));
@@ -87,12 +113,54 @@ public class EstadoCombate extends BasicGameState{
         }
         else
         {
-            /*Print Gráfico del combate*/
-            /*Selector de Acciones de Usuario*/
-            Input input = gc.getInput();
+            
+            switch (Estado)
+            {
+                case  OPCIONESBASE://Opciones base del pj
+                    OpcionControl(NUMOPCIONESBASE);
+                    //Opciones Base Enter Control
+                    OpcionBase();
+                    break;
+                case  ATACANDO://Opciones base del pj
+                    OpcionControl(NewCombate.getEnemigos().size());
+                    //Opcion de Enemigo al que atacar
+                    Atacando();
+                    break;
+                case  SELHABILIDAD://Seleccion de habilidad a usar
+                    OpcionControl(NHABILIDADES);
+                    //Opcion Uso Habilidad
+                    break;
+                case  SELCONSUMIBLE://Seleccion Consumible a utilizar
+                    OpcionControl(NCONSUMIBLES);
+                    //Opcion Uso Consumible
+                    break;
+                case  HUYENDO://Opciones base del pj
+                    Huir();
+                    break;
+                case  TURNOENEMIGO://Turno automatico Enemigo
+                    break;
+                case  SELOBJETIVO://Uso de habilidad/consumible sobre objetivo Enemigo
+                    OpcionControl(NewCombate.getEnemigos().size());
+                    //Uso final de Consumible
+                    break;
+                case  SELALIADO://Uso de habilidad/Consumible sobre objetivo Aliado
+                    OpcionControl(VenganzaBelial.Party.size());
+                    //Uso final de Consumible
+                    break;
+                case FINTURNO:
+                    break;
+            }
+            /*Escape vuelve al estado inicial*/
+            ReiniciarSeleccion();
+        }
+    }
+    
+    private void OpcionControl(int NumeroOpciones)
+    {
+        /*Selector de Acciones de Usuario*/
             if (input.isKeyPressed(Input.KEY_DOWN)) 
             {
-                if (eleccionJugador == (NUMOPCIONES - 1)) 
+                if (eleccionJugador == (NumeroOpciones - 1)) 
                 {
                     eleccionJugador = 0;
                 } 
@@ -104,34 +172,77 @@ public class EstadoCombate extends BasicGameState{
             if (input.isKeyPressed(Input.KEY_UP)) 
             {
                 if (eleccionJugador == 0) {
-                    eleccionJugador = NUMOPCIONES - 1;
+                    eleccionJugador = NumeroOpciones - 1;
                 } else {
                     eleccionJugador--;
                 }
-            }           
-            if (input.isKeyPressed(Input.KEY_ENTER))
+            }                       
+    }/*private void OpcionesBase()*/
+    
+    //Anula la seleccion y retorna al estado incial*/
+    private void ReiniciarSeleccion()
+    {
+        if(input.isKeyPressed(Input.KEY_ESCAPE))
+        {
+            Estado=OPCIONESBASE;
+        }/**/
+    }
+    
+    private void OpcionBase()
+    {
+        if (input.isKeyPressed(Input.KEY_ENTER))
+        {
+            /*EDIT: elecciónJugador=0?*/
+            eleccionJugador=0;//Resetea el indice de seleccion de opciones para el nuevo estado*/
+            switch (eleccionJugador) 
             {
-                switch (eleccionJugador) 
-                {
-                    case ATACAR:
-                        //sbg.enterState(IceAdventure.GAMEPLAYSTATE);
-                        break;
-                    case HABILIDAD:
-                        //heropos = fileio.loadSave();
-                        //((GamePlayState)sbg.getState(IceAdventure.GAMEPLAYSTATE)).setHeroPosition(heropos);
-                        //sbg.enterState(IceAdventure.GAMEPLAYSTATE);
-                        break;
-                    case CONSUMIBLE:
-                        sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);
-                        break;
-                }
-            }
+                case ATACAR:
+                    Estado=ATACANDO;//Cambio de estado
+                    break;
+                case HABILIDAD:
+                    Estado=SELHABILIDAD;
+                    break;
+                case CONSUMIBLE:
+                    Estado=SELCONSUMIBLE;
+                    break;
+                case HUIR:
+                    Estado=HUYENDO;
+                    break;
+            }/*switch (eleccionJugador) */
+        }/*if (input.isKeyPressed(Input.KEY_ENTER))*/
+    }/*private void OpcionBase()*/
+    
+    private void Atacando()
+    {
+        /*EDIT: elecciónJugador=0?*/
+        eleccionJugador=0;//Resetea el indice de seleccion de opciones para el nuevo estado*/
+        if(input.isKeyPressed(Input.KEY_ENTER))
+        {            
+            //NewCombate.Atacar(NewCombate.getOrdenPersonajes().get(IndiceTurno), NewCombate.getEnemigos().get(eleccionJugador));           
+        }/**/
+        /*Cambio de estado a turno final*/
+        Estado=FINTURNO;      
+    }/*private void Atacando()*/
+    
+    private void Huir()
+    {
+        double TasaHuida = Math.random();
+        if(TasaHuida<0.6)
+        {
+            //Objetivo no huye y pierde turno
+            Estado=FINTURNO;
+        }
+        else
+        {
+            //Objetivo Huye y se finaliza el combate
+            
         }
     }
     
     private void renderOpcionesJugador()
     {
-        for (int i = 0; i < NUMOPCIONES; i++) {
+        for (int i = 0; i < NUMOPCIONESBASE; i++) 
+        {
             if (eleccionJugador == i) {
                 opcionesJugadorTTF.drawString(10, i * 20 + 400, opciones[i]);
             } else {
@@ -139,6 +250,8 @@ public class EstadoCombate extends BasicGameState{
             }
         }
     }
+    
+    
     
     private void renderAvatars(Graphics g) throws SlickException
     {
@@ -177,8 +290,7 @@ public class EstadoCombate extends BasicGameState{
             HP3.drawString(110, 230, "HP "+VenganzaBelial.kibito.getHpActual()+ "/"+VenganzaBelial.kibito.getHp(),rojo);
             MP3 = new TrueTypeFont(TipoLetra, true);
             MP3.drawString(110, 260, "MP "+VenganzaBelial.kibito.getMpActual()+ "/"+VenganzaBelial.kibito.getMp(),azul);
-            /*Render Enemigos*/
-            
+            /*Render Enemigos si no estan muertos*/        
             avatarEnemigo.get(0).draw(550, 500, 100, 100);
             avatarEnemigo.get(1).draw(650, 500, 100, 100);
             avatarEnemigo.get(2).draw(750, 500, 100, 100);
