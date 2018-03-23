@@ -9,6 +9,7 @@ import otros.Inventario;
 import items.Arma;
 import items.Armadura;
 import java.util.ArrayList;
+import otros.Combate;
 /*Pruebas*/
 import personajes.*;
 
@@ -31,6 +32,7 @@ public class VenganzaBelial extends StateBasedGame {
     public static Kibito kibito = new Kibito( arma,  armadura,  habilidades,  inventario);
     public static ArrayList<Personaje> Party= new ArrayList<Personaje>();
     public static int MapaActual=0;
+    public static Mordeim horaciaenemiga =new Mordeim( arma,  armadura,  habilidades,  inventario);
     /*Atributos de pruebas END*/
     public VenganzaBelial() {
         super("La Venganza de Belial");
@@ -52,6 +54,12 @@ public class VenganzaBelial extends StateBasedGame {
         Party.add(horacia);
         Party.add(mordeim);
         Party.add(kibito);
+        horacia.setPJ(true);
+        mordeim.setPJ(true);
+        kibito.setPJ(true);
+        horaciaenemiga.setPJ(false);
+        //Combate com = new Combate(VenganzaBelial.Party, VenganzaBelial.MapaActual);
+        //com.Atacar(VenganzaBelial.horaciaenemiga, com.getEnemigos().get(0));
         /*ATRIBUTOS DE PRUEBA FIN*/
         AppGameContainer app = new AppGameContainer(new VenganzaBelial());
         app.setDisplayMode(WIDTH, HEIGHT, FULLSCREEN);

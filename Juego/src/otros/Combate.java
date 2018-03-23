@@ -2,6 +2,8 @@ package otros;
 
 import personajes.Personaje;
 import java.util.ArrayList;
+/*EDIT: Eliminar Import VenganzaBelial*/
+import estados.VenganzaBelial;
 
 public final class Combate {
     //Atributos
@@ -10,7 +12,7 @@ public final class Combate {
     private ArrayList<Personaje> Enemigos;
     private int EnemigosRestantes;
     private int AliadosRestantes;
-    
+    private int Turno=0;
     //Constructor
     public Combate(ArrayList<Personaje> Party, int Mapa) 
     {
@@ -23,7 +25,9 @@ public final class Combate {
         }/*for*/
         EnemigosRestantes=Enemigos.size();
         AliadosRestantes=Party.size();//EDIT: Posible cambio en funcion de si estan vivos
+        nParticipantes=participantes.size();//Indica los participantes iniciales
         OrdenaTurnos(participantes);//Reordenamos a los participantes en funcion de iniciativa
+        Turno=0;//Indice para guiar los turnos y saber a quien le toca jugar
     }/*public Combate(Personaje[] participantes) END*/
     
     //Funcion que ordena los pjs por turno en un array
@@ -71,6 +75,8 @@ public final class Combate {
         switch (Mapa)
         {
             case 0:
+                //EDIT: Eliminar
+                GeneraEnemigos.add(VenganzaBelial.horaciaenemiga);
                 break;
             case 1:
                 break;
@@ -78,18 +84,75 @@ public final class Combate {
                 break;
         }/*switch (Mapa)*/
         return GeneraEnemigos;
-    }
-    
+    }    
     public void Atacar(Personaje Atacante, Personaje Defensor)
     {
         /*Calculo de daño*/
         int DañoCausado=Atacante.getAtaque()-Defensor.getDefensa();
         if (DañoCausado>0)
         {
-          Defensor.setHp(Defensor.getHp()- DañoCausado);
+          Defensor.setHpActual(Defensor.getHpActual()- DañoCausado);
         }/*if (DañoCausado>0)*/        
     }/*private void Atacar*/
     
+    public void GestionaMuertes()
+    {
+        int aux;
+        for(aux=0;aux<this.nParticipantes;aux++)
+        {
+            if(!this.ordenPersonajes.get(aux).estaVivo())
+            {
+                /*EDIT:COMPROBAR SI ES PJ O ENEMIGO para disminuir el contador de unos u otro*/
+                //this.AliadosRestantes--;
+                //this.EnemigosRestantes--;
+                /*Remover de la lista de turnos*/
+                this.ordenPersonajes.remove(aux);
+            }/*if(!this.ordenPersonajes.get(aux).estaVivo())*/
+        }/*for(aux=0;aux<this.nParticipantes;aux++)*/
+    }/*public void GestionaMuertes()*/
+    
+    public boolean CombateAcabado()
+    {
+        if(AliadosRestantes==0 || EnemigosRestantes==0)
+        {
+            return true;
+        }
+        else
+        {   
+            return false;
+        }
+    }/*FinCombate()*/
+    
+    public boolean CombateGanado()
+    {
+       if(AliadosRestantes!=0 && EnemigosRestantes ==0)
+       {
+           return true;
+       }
+       else
+       {
+           return false;
+       }
+    }/*public boolean CombateGanado()*/
+    
+    public boolean GestionaSiguienteTurno()
+    {
+       Turno++;
+       this.nParticipantes=this.ordenPersonajes.size();
+       if(Turno==this.nParticipantes)
+       {
+           Turno=0;
+       }/*if(Turno>this.nParticipantes)*/
+       /*EDIT:Comprobar si el siguiente turno pertenece a un jugador o es automatico*/
+       if(ordenPersonajes.get(Turno).isPJ())
+       {
+           return true;
+       }
+       else{
+           return false;  
+       }
+     //  return true;
+    }
     
     //Getter y Setter
     public ArrayList<Personaje> getOrdenPersonajes() {
@@ -130,7 +193,13 @@ public final class Combate {
 
     public void setAliadosRestantes(int AliadosRestantes) {
         this.AliadosRestantes = AliadosRestantes;
+    }    
+    
+     public int getTurno() {
+        return Turno;
     }
-    
-    
+
+    public void setTurno(int Turno) {
+        this.Turno = Turno;
+    }
 }

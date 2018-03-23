@@ -151,43 +151,44 @@ public abstract class Jugador extends Personaje implements Serializable{
         this.setExpProxNivel((int)(this.expProxNivel*1.20));
         
     }
-    public void usarHabilidad(Habilidad hab, Enemigo enemigo){
-        if (!hab.isResucita() && enemigo.estaVivo() && this.getNivel() >= hab.getNivel() && this.mpActual >= hab.getCosteMP()){
-            enemigo.setHpActual(enemigo.getHpActual() - hab.getDanyo());
-            this.mpActual = this.mpActual - hab.getCosteMP();
-        }
-        else
-            System.out.println("No puedes usar la habilidad");
-    }
-    public void usarHabilidadMasiva(Habilidad hab, ArrayList<Enemigo> enemigos){
-        if (!hab.isResucita() && this.getNivel() >= hab.getNivel() && this.mpActual >= hab.getCosteMP()){
-            for (int i = 0; i < enemigos.size(); i++) {
-                if (enemigos.get(i).estaVivo())
-                    enemigos.get(i).setHpActual(enemigos.get(i).getHpActual() - hab.getDanyo());     
-            }
-            this.mpActual = this.mpActual - hab.getCosteMP();
-        }
-        else
-            System.out.println("No puedes usar la habilidad");
-    }
-    public void usarHabilidad(Habilidad hab, Jugador jugador){
-        if (this.getNivel() >= hab.getNivel() && this.mpActual >= hab.getCosteMP()){
-            if(hab.isCura() && jugador.estaVivo()){
-                if ((hab.getDanyo() + jugador.getHpActual()) <= jugador.getHp())
-                    jugador.setHpActual(hab.getDanyo());
-                else
-                    jugador.setHpActual(jugador.getHp());
-                this.mpActual = this.mpActual - hab.getCosteMP();
-            }
-            else if(hab.isResucita() && !jugador.estaVivo()){
-                jugador.setHpActual((int)((jugador.getHp()*(jugador.getHp()))/100));
-                this.mpActual = this.mpActual - hab.getCosteMP();
-            }
-            else
-                System.out.println("No puedes usar esta habilidad en un compañero");
-                
-        }
-    }
+    
+//    public void usarHabilidad(Habilidad hab, Enemigo enemigo){
+//        if (!hab.isResucita() && enemigo.estaVivo() && this.getNivel() >= hab.getNivel() && this.mpActual >= hab.getCosteMP()){
+//            enemigo.setHpActual(enemigo.getHpActual() - hab.getDanyo());
+//            this.mpActual = this.mpActual - hab.getCosteMP();
+//        }
+//        else
+//            System.out.println("No puedes usar la habilidad");
+//    }
+//    public void usarHabilidadMasiva(Habilidad hab, ArrayList<Enemigo> enemigos){
+//        if (!hab.isResucita() && this.getNivel() >= hab.getNivel() && this.mpActual >= hab.getCosteMP()){
+//            for (int i = 0; i < enemigos.size(); i++) {
+//                if (enemigos.get(i).estaVivo())
+//                    enemigos.get(i).setHpActual(enemigos.get(i).getHpActual() - hab.getDanyo());     
+//            }
+//            this.mpActual = this.mpActual - hab.getCosteMP();
+//        }
+//        else
+//            System.out.println("No puedes usar la habilidad");
+//    }
+//    public void usarHabilidad(Habilidad hab, Jugador jugador){
+//        if (this.getNivel() >= hab.getNivel() && this.mpActual >= hab.getCosteMP()){
+//            if(hab.isCura() && jugador.estaVivo()){
+//                if ((hab.getDanyo() + jugador.getHpActual()) <= jugador.getHp())
+//                    jugador.setHpActual(hab.getDanyo());
+//                else
+//                    jugador.setHpActual(jugador.getHp());
+//                this.mpActual = this.mpActual - hab.getCosteMP();
+//            }
+//            else if(hab.isResucita() && !jugador.estaVivo()){
+//                jugador.setHpActual((int)((jugador.getHp()*(jugador.getHp()))/100));
+//                this.mpActual = this.mpActual - hab.getCosteMP();
+//            }
+//            else
+//                System.out.println("No puedes usar esta habilidad en un compañero");
+//                
+//        }
+//    }
     //Metodo abstracto
     public abstract void inicializarPersonaje();
     public abstract void subirNivelEstadisticas();
