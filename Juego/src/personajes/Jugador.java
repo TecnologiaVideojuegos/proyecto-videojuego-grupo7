@@ -152,6 +152,114 @@ public abstract class Jugador extends Personaje implements Serializable{
         
     }
     
+    public boolean esUsableHabilidad(Habilidad hab)
+    {
+         return comprobarLVL(hab)&& this.comprobarMp(hab);
+    }/*public boolean habilidadUsable(Jugador usuario)*/
+    
+    
+    private boolean comprobarLVL(Habilidad hab)
+    {
+        return this.getNivel() >= hab.getNivel();
+    }/*public boolean comprobarLVL(Jugador usuario)*/
+    
+    private boolean comprobarMp(Habilidad hab)
+    {
+         return this.getMpActual() >= hab.getCosteMP();
+    }/*public boolean comprobarMp(Jugador usuario)*/
+    
+    public void usarHabilidad(Habilidad hab, Personaje objetivo)
+    {
+        switch(hab.getTipoHabilidad())
+        {
+            case 0:
+                curar(hab, objetivo);
+                break;
+            case 1:
+                resucitar(hab, objetivo);
+                break;
+            case 2:
+                atacar(hab, objetivo);
+                break;
+            case 3:
+                drenar(hab, objetivo);
+                break;
+            default:
+                System.out.println("Elige alguna opcion válida");
+        }
+               
+    }
+    //Masiva
+    public void usarHabilidad(Habilidad hab, ArrayList<Personaje> objetivos)
+    {
+        int ataqueHabilidad= this.getAtaque() * hab.getDanyo();
+        int danyo = 0;
+        for(int i = 0; i < objetivos.size(); i++)
+        {
+            danyo = ataqueHabilidad - objetivos.get(i).getDefensa();
+            if(danyo > 0)
+            {
+                objetivos.get(i).setHpActual(objetivos.get(i).getHpActual() - danyo);
+            }
+        }
+        this.setMp(this.getMpActual() - hab.getCosteMP());
+    }
+    
+    private void atacar(Habilidad hab, Personaje objetivo)
+    {
+        int danyo = this.getAtaque() * hab.getDanyo() - objetivo.getDefensa();
+        if (danyo>0)
+        {
+          objetivo.setHpActual(objetivo.getHpActual()- danyo);
+          this.setMp(this.getMpActual() - hab.getCosteMP());
+        }
+    }
+    
+    private void drenar(Habilidad hab, Personaje objetivo)
+    {
+        int danyo = this.getAtaque() * hab.getDanyo() - objetivo.getDefensa();
+        int recupera = 0;
+        if (danyo > 0)
+        {
+            recupera = (int)(danyo*0.3);
+            objetivo.setHpActual(objetivo.getHpActual() - danyo);
+        }
+        else
+        {
+            recupera = 1;
+            objetivo.setHpActual(objetivo.getHpActual()- 1);
+        }
+        this.setHpActual(this.getHpActual() + recupera);
+        this.setMp(this.getMpActual() - hab.getCosteMP());
+    }
+    
+    private void curar(Habilidad hab, Personaje objetivo)
+    {
+        int puntosCura = 0, vidaTrasCura = 0;
+        if(objetivo.estaVivo())
+        {
+            puntosCura= (int)(objetivo.getHp()* hab.getDanyo()) / 100;
+            vidaTrasCura = puntosCura + objetivo.getHpActual();
+            if(vidaTrasCura>objetivo.getHp())
+                objetivo.setHpActual(objetivo.getHp());
+            else
+                objetivo.setHpActual(vidaTrasCura);
+            this.setMpActual(this.getMpActual() - hab.getCosteMP());
+        }
+        else    
+            System.out.println("No puedes curar al objetivo");
+    }
+    
+    private void resucitar(Habilidad hab, Personaje objetivo)
+    {
+        if(!objetivo.estaVivo()){
+            objetivo.setHpActual((int)(objetivo.getHp() * 0.5));
+            this.setMpActual(this.getMpActual() - hab.getCosteMP());
+        }
+        else
+            System.out.println("No puedes resucitar porque ya esta vivo");
+    }
+    
 //    public void usarHabilidad(Habilidad hab, Enemigo enemigo){
 //        if (!hab.isResucita() && enemigo.estaVivo() && this.getNivel() >= hab.getNivel() && this.mpActual >= hab.getCosteMP()){
 //            enemigo.setHpActual(enemigo.getHpActual() - hab.getDanyo());

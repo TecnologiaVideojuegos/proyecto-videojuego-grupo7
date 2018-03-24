@@ -250,18 +250,23 @@ public class EstadoCombate extends BasicGameState{
     {
         int tipo;
         int IndiceTurno=NewCombate.getTurno();
-        Jugador PJ= (Jugador)NewCombate.getOrdenPersonajes().get(IndiceTurno);
+        Jugador pj= (Jugador)NewCombate.getOrdenPersonajes().get(IndiceTurno);
         if(input.isKeyPressed(Input.KEY_ENTER))
         {   
             //Comprobar que se puede usar la habilidad
-            if(PJ.getHabilidades().get(eleccionJugador).habilidadUsable(PJ))
+            if(pj.esUsableHabilidad(pj.getHabilidades().get(eleccionJugador)))
             {
                 //Guarda la habilidad seleccionada a utilizar
                 habilidadSeleccionada=eleccionJugador;
                 //Comprueba el tipo de habilidad para decidir contra quien usarla
-                tipo=PJ.getHabilidades().get(eleccionJugador).getTipoHabilidad();
+                tipo=pj.getHabilidades().get(eleccionJugador).getTipoHabilidad();
                 //Cambia de estado en función del tipo de habilidad
-                switch (tipo)
+                if (tipo == 4)
+                    pj.usarHabilidad(pj.getHabilidades().get(habilidadSeleccionada), NewCombate.getEnemigos());
+                else
+                    pj.usarHabilidad(pj.getHabilidades().get(habilidadSeleccionada), NewCombate.getEnemigos().get(SELOBJETIVO));
+                
+                /*switch (tipo)
                 {
                     case Habilidad.TIPOCURAR:
                         Estado=SELALIADO;
@@ -277,10 +282,10 @@ public class EstadoCombate extends BasicGameState{
                         break;
                     case Habilidad.TIPOAOE:
                         //Ejecuta Habilidad contra todos los enemigos y pasa al siguiente turno
-                        PJ.getHabilidades().get(habilidadSeleccionada).usarHabilidad(PJ, NewCombate.getEnemigos());
+                        pj.getHabilidades().get(habilidadSeleccionada).usarHabilidad(pj, NewCombate.getEnemigos());
                         Estado=FINTURNO;
                         break;
-                }
+                }*/
                 eleccionJugador=0;
             }
             else{
@@ -295,8 +300,8 @@ public class EstadoCombate extends BasicGameState{
         { 
             int IndiceTurno=NewCombate.getTurno();
             Jugador PJ= (Jugador)NewCombate.getOrdenPersonajes().get(IndiceTurno);
-            //Ejecutar habilidad con el PJ correcpondiente sobre el Objetivo designado
-            PJ.getHabilidades().get(this.habilidadSeleccionada).usarHabilidad(PJ, NewCombate.getEnemigos().get(this.eleccionJugador));
+            //Ejecutar habilidad con el pj correcpondiente sobre el Objetivo designado
+            PJ.usarHabilidad(PJ.getHabilidades().get(this.habilidadSeleccionada), NewCombate.getEnemigos().get(this.eleccionJugador));
             eleccionJugador=0;
             Estado=FINTURNO;
         }
@@ -308,8 +313,12 @@ public class EstadoCombate extends BasicGameState{
         { 
             int IndiceTurno=NewCombate.getTurno();
             Jugador PJ= (Jugador)NewCombate.getOrdenPersonajes().get(IndiceTurno);
-            //Ejecutar habilidad con el PJ correcpondiente sobre el Aliado designado y comprobar que se puede
+            //Ejecutar habilidad con el pj correcpondiente sobre el Aliado designado y comprobar que se puede
             //Si se puede se ejecutará y devolvera true
+            
+            //La comprobacion ahora cambia pero es parecida, tienes que llamar a algo asi
+            // como aliado.getHP>0 o algo asi. Te lo dejo comentado que si no esta rojo
+            /*
             if(PJ.getHabilidades().get(this.habilidadSeleccionada).usarHabilidad(PJ, NewCombate.getEnemigos().get(this.eleccionJugador)))
             {
                 eleccionJugador=0;
@@ -318,7 +327,7 @@ public class EstadoCombate extends BasicGameState{
             else{
                 //Si o se puede no se ejecutara y devolvera false
             }
-            
+            */
         } 
     }/*private void selAliado()*/
     
