@@ -111,6 +111,7 @@ public abstract class Jugador extends Personaje implements Serializable{
     public void setAtaqueBase(int ataqueBase) {
         this.ataqueBase = ataqueBase;
     }
+    
     //Metodos
     public void cambiarArma(Arma arma){ 
         Arma armaAntigua = this.getArma();
@@ -150,6 +151,18 @@ public abstract class Jugador extends Personaje implements Serializable{
         this.setExp(this.exp - this.expProxNivel);
         this.setExpProxNivel((int)(this.expProxNivel*1.20));
         
+    }
+    
+    public void usarHabilidad(int nHabilidad, Personaje enemigo)
+    {
+        /*Comprobar que se puede usar habilidad*/
+        /*Usar habilidad*/
+        
+    }
+    
+    public void usarHabilidad(int nHabilidad, ArrayList<Personaje> enememigos)
+    {
+        /*Comprobar que se puede usar habilidad*/
     }
     
 //    public void usarHabilidad(Habilidad hab, Enemigo enemigo){

@@ -17,7 +17,12 @@ public final class Combate {
     public Combate(ArrayList<Personaje> Party, int Mapa) 
     {
         int aux=0;//Variable auxuliar para rellenar
-        ArrayList<Personaje> participantes = Party;//Añadimos "party" a lista de participantes
+        //ArrayList<Personaje> participantes = Party;//Añadimos "party" a lista de participantes
+        ArrayList<Personaje> participantes =new ArrayList<Personaje>();
+        for(aux=0;aux<Party.size();aux++)
+        {
+            participantes.add(Party.get(aux));
+        }
         Enemigos = GeneraArrayEnemigos(Mapa);//Generamos Array de enemigos en funcion del mapa
         for(aux=0;aux<Enemigos.size();aux++)//Añadimos enemigos a lista de participantes
         {
@@ -76,7 +81,9 @@ public final class Combate {
         {
             case 0:
                 //EDIT: Eliminar
-                GeneraEnemigos.add(VenganzaBelial.horaciaenemiga);
+                GeneraEnemigos.add(VenganzaBelial.hori);
+                GeneraEnemigos.add(VenganzaBelial.mordi);
+                GeneraEnemigos.add(VenganzaBelial.kibi);
                 break;
             case 1:
                 break;
@@ -152,7 +159,7 @@ public final class Combate {
            return false;  
        }
      //  return true;
-    }
+    }/*public boolean GestionaSiguienteTurno()*/
     
     //Getter y Setter
     public ArrayList<Personaje> getOrdenPersonajes() {

@@ -71,23 +71,23 @@ public class Habilidad {
     }/*public boolean comprobarMp(Jugador usuario)*/
     
     
-    public boolean usarHabilidad(Jugador usuario, Personaje Objetivo)
+    public boolean usarHabilidad(Jugador usuario, Personaje objetivo)
     {
         boolean usable=false;
         switch(this.tipoHabilidad)
         {
             case TIPOCURAR:
-                usable=this.tipoCura(Objetivo);
+                usable=this.tipoCura(objetivo);
                 break;
             case TIPORESUCITAR:
-                usable=this.tipoResucitar(Objetivo);
+                usable=this.tipoResucitar(objetivo);
                 break;
             case TIPOATACAR:
-                this.tipoAtaque(usuario, Objetivo);
+                this.tipoAtaque(usuario, objetivo);
                 usable=true;
                 break;
             case TIPODRENARVIDA:
-                this.tipoDrenar(usuario, Objetivo);
+                this.tipoDrenar(usuario, objetivo);
                 usable=true;
                 break;
             default:
@@ -100,74 +100,77 @@ public class Habilidad {
         return usable;
     }/*usarHabilidad(Jugador usuario, Personaje Objetivo)*/
     
-    public boolean usarHabilidad(Jugador usuario, ArrayList<Personaje> Objetivos)
+    public boolean usarHabilidad(Jugador usuario, ArrayList<Personaje> objetivos)
     {
-        this.tipoAOE(usuario, Objetivos);
+        this.tipoAOE(usuario, objetivos);
         this.descontarMP(usuario);
         return true;
     }/*public boolean usarHabilidad(Jugador usuario, ArrayList<Personaje> Objetivos)*/
     
-    private void tipoAtaque(Jugador usuario, Personaje Objetivo)
+    private void tipoAtaque(Jugador usuario, Personaje objetivo)
     {
         /*Calculo de daño*/
-        int DañoCausado=usuario.getAtaque()*danyo-Objetivo.getDefensa();
-        if (DañoCausado>0)
+        int DanyoCausado=usuario.getAtaque()*danyo-objetivo.getDefensa();
+        if (DanyoCausado>0)
         {
-          Objetivo.setHpActual(Objetivo.getHpActual()- DañoCausado);
+          objetivo.setHpActual(objetivo.getHpActual()- DanyoCausado);
         }/*if (DañoCausado>0)*/   
-    }
+        else{
+            objetivo.setHpActual(objetivo.getHpActual()- 1);
+        }
+    }/*private void tipoAtaque(Jugador usuario, Personaje objetivo)*/
     
-    private void tipoDrenar(Jugador usuario,Personaje Objetivo)
+    private void tipoDrenar(Jugador usuario,Personaje objetivo)
     {
         /*Calculo de daño*/
-        int DañoCausado=usuario.getAtaque()*danyo-Objetivo.getDefensa();
+        int DanyoCausado=usuario.getAtaque()*danyo-objetivo.getDefensa();
         int Recupera=0;
-        if (DañoCausado>0)
+        if (DanyoCausado>0)
         {
-          Recupera=(int)(DañoCausado*0.3f);
-          Objetivo.setHpActual(Objetivo.getHpActual()- DañoCausado);
+          Recupera=(int)(DanyoCausado*0.2f);
+          objetivo.setHpActual(objetivo.getHpActual()- DanyoCausado);
           usuario.setHpActual(usuario.getHpActual()+Recupera);
         }/*if (DañoCausado>0)*/ 
         else
         {
             Recupera=1;
-           Objetivo.setHpActual(Objetivo.getHpActual()- 1);
+           objetivo.setHpActual(objetivo.getHpActual()- 1);
            usuario.setHpActual(usuario.getHpActual()+Recupera);
         }
     }/* public void tipoDrenar(Jugador usuario,Personaje Objetivo)*/
     
-    private void tipoAOE(Jugador usuario, ArrayList<Personaje> Objetivos)
+    private void tipoAOE(Jugador usuario, ArrayList<Personaje> objetivos)
     {
         int ataqueHabilidad= usuario.getAtaque()*danyo;
         int i;
-        for(i=0; i<Objetivos.size();i++)
+        for(i=0; i<objetivos.size();i++)
         {
-            int DañoCausado=ataqueHabilidad-Objetivos.get(i).getDefensa();
-            if(DañoCausado>0)
+            int DanyoCausado=ataqueHabilidad-objetivos.get(i).getDefensa();
+            if(DanyoCausado>0)
             {
-                Objetivos.get(i).setHpActual(Objetivos.get(i).getHpActual()-DañoCausado);
+                objetivos.get(i).setHpActual(objetivos.get(i).getHpActual()-DanyoCausado);
             }
             else
             {
-                Objetivos.get(i).setHpActual(Objetivos.get(i).getHpActual()-1);
+                objetivos.get(i).setHpActual(objetivos.get(i).getHpActual()-1);
             }
         }
     }/* public void usarAOE(Personaje usuario, ArrayList<Personaje> Objetivos)*/
     
-    private boolean tipoCura(Personaje Objetivo)
+    private boolean tipoCura(Personaje objetivo)
     {
         //Curar solo si el objetivo esta vivo
-        if(Objetivo.estaVivo())
+        if(objetivo.estaVivo())
         {
-            int PuntosCura= (int)Objetivo.getHp()*danyo/100;
-            int VidaTrasCura=PuntosCura+Objetivo.getHpActual();
-            if(VidaTrasCura>Objetivo.getHp())
+            int PuntosCura= (int)(objetivo.getHp()*0.3f);
+            int VidaTrasCura=PuntosCura+objetivo.getHpActual();
+            if(VidaTrasCura>objetivo.getHp())
             {
-                Objetivo.setHpActual(Objetivo.getHp());
+                objetivo.setHpActual(objetivo.getHp());
             }
             else
             {
-                Objetivo.setHpActual(VidaTrasCura);
+                objetivo.setHpActual(VidaTrasCura);
             }
             return true;
         }
@@ -177,16 +180,16 @@ public class Habilidad {
         }
     }/*public void usarCura(Personaje Objetivo)*/
     
-    private boolean tipoResucitar(Personaje Objetivo)
+    private boolean tipoResucitar(Personaje objetivo)
     {
-        if(Objetivo.estaVivo())
+        if(objetivo.estaVivo())
         {
             //No se puede resucitar porque el objetivo esta vivo
             return false;
         }/*if(Objetivo.estaVivo())*/
         else
         {
-          Objetivo.setHpActual(1);
+          objetivo.setHpActual(1);
           return true;  
         }
     }/*public boolean tipoResucitar(Jugador Objetivo)*/

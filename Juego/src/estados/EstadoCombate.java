@@ -1,6 +1,9 @@
 package estados;
 
 import static estados.VenganzaBelial.ESTADOMENUINICIO;
+import static estados.VenganzaBelial.hori;
+import static estados.VenganzaBelial.kibi;
+import static estados.VenganzaBelial.mordi;
 import java.awt.Font;
 import java.util.ArrayList;
 import org.newdawn.slick.Color;
@@ -42,6 +45,7 @@ public class EstadoCombate extends BasicGameState{
     private static final int HUIR = 3;
     /*opciones SELHABILIDAD*/
     private static final int NHABILIDADES=5;
+    private String[] listaHabilidades= new String[NHABILIDADES];
     /*opciones SELCONSUMIBLE*/
     private static final int NCONSUMIBLES=3;
     /*Tipos de letra y Mensajes*/
@@ -57,13 +61,13 @@ public class EstadoCombate extends BasicGameState{
     /*Avatar Image Control*/
     private Image Fondo;
     private Image Avatar1, Avatar2, Avatar3;
-    private ArrayList<Image> avatarEnemigo;
     private TrueTypeFont HMP;
     private Font TipoLetra  =new Font("Verdana", Font.PLAIN, 20);    
     private Color rojo = new Color (256,0,0);
     private Color verde = new Color (0,256,0);
     private Color azul = new Color (0,0,256);    
     private Music OST;
+    
     public EstadoCombate(int id) {
         idEstado = id;
     }
@@ -86,15 +90,33 @@ public class EstadoCombate extends BasicGameState{
         opciones[1] = "Habilidad";
         opciones[2] = "Consumible";
         opciones[3]= "Huir";
-        
+        /**/
     }
 
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException 
     {
         renderAvatars(g);
+        renderEnemigos();
         /*Switch Case para visualizar opciones en funcion del estado*/
-        renderOpcionesJugador();
+        switch (Estado)
+        {
+            case OPCIONESBASE:
+                renderOpcionesJugador();
+                break;
+            case SELHABILIDAD:
+                renderHabilidades();
+                break;
+            case SELOBJETIVO :
+                renderSelObjetivo();
+                break;
+            case ATACANDO:
+                renderSelObjetivo();
+                break;
+            case SELALIADO:
+                renderSelAliados();
+                break;
+        }    
     }
 
     @Override
@@ -104,13 +126,12 @@ public class EstadoCombate extends BasicGameState{
         {
             /*Genera Nuevo Combate*/
             NewCombate= new Combate(VenganzaBelial.Party, VenganzaBelial.MapaActual);//
-            /*Añadir Imagenes en funcion del enemigo*/
-            avatarEnemigo = new ArrayList<Image>();
-            avatarEnemigo.add(new Image("Imagenes/Monstruos/Rata.png"));
-            avatarEnemigo.add(new Image("Imagenes/Monstruos/Rata.png"));
-            avatarEnemigo.add(new Image("Imagenes/Monstruos/Rata.png"));
+            /*EDIT: Mirar donde añadir imagenes al los enemigos*/
+            VenganzaBelial.hori.setImagen("Imagenes/Monstruos/Test1.png");
+            VenganzaBelial.mordi.setImagen("Imagenes/Monstruos/Test2.png");
+            VenganzaBelial.kibi.setImagen("Imagenes/Monstruos/Test3.png");
             NuevoCombate = false;
-            OST.loop();
+            //OST.loop();
         }
         else
         {
@@ -141,7 +162,7 @@ public class EstadoCombate extends BasicGameState{
                     break;
                 case  TURNOENEMIGO://Turno automatico Enemigo
                     //EDIT: Eliminar
-                    NewCombate.Atacar(VenganzaBelial.horaciaenemiga, VenganzaBelial.horacia);
+                    //NewCombate.Atacar(VenganzaBelial.horaciaenemiga, VenganzaBelial.horacia);
                     //VenganzaBelial.horacia.setHpActual(50);
                     Estado=FINTURNO;
                     break;
@@ -260,6 +281,7 @@ public class EstadoCombate extends BasicGameState{
                 habilidadSeleccionada=eleccionJugador;
                 //Comprueba el tipo de habilidad para decidir contra quien usarla
                 tipo=PJ.getHabilidades().get(eleccionJugador).getTipoHabilidad();
+                eleccionJugador=0;
                 //Cambia de estado en función del tipo de habilidad
                 switch (tipo)
                 {
@@ -281,7 +303,7 @@ public class EstadoCombate extends BasicGameState{
                         Estado=FINTURNO;
                         break;
                 }
-                eleccionJugador=0;
+                
             }
             else{
                 //La habilidad no se puede usar por falta de nivel o falta de Mp
@@ -310,13 +332,13 @@ public class EstadoCombate extends BasicGameState{
             Jugador PJ= (Jugador)NewCombate.getOrdenPersonajes().get(IndiceTurno);
             //Ejecutar habilidad con el PJ correcpondiente sobre el Aliado designado y comprobar que se puede
             //Si se puede se ejecutará y devolvera true
-            if(PJ.getHabilidades().get(this.habilidadSeleccionada).usarHabilidad(PJ, NewCombate.getEnemigos().get(this.eleccionJugador)))
+            if(PJ.getHabilidades().get(this.habilidadSeleccionada).usarHabilidad(PJ, VenganzaBelial.Party.get(this.eleccionJugador)))
             {
                 eleccionJugador=0;
                 Estado=FINTURNO;
             }
             else{
-                //Si o se puede no se ejecutara y devolvera false
+                //Si no se puede no se ejecutara y devolvera false
             }
             
         } 
@@ -390,15 +412,46 @@ public class EstadoCombate extends BasicGameState{
     
     private void renderHabilidades()
     {
-        int IndiceTurno=NewCombate.getTurno();
-        //String HabName=NewCombate.getOrdenPersonajes().get(IndiceTurno).getHabilidades().getNombre;
+        Jugador PJ= (Jugador)NewCombate.getOrdenPersonajes().get(NewCombate.getTurno());
+        listaHabilidades[0]=PJ.getHabilidades().get(0).getNombre();
+        listaHabilidades[1]=PJ.getHabilidades().get(1).getNombre();
+        listaHabilidades[2]=PJ.getHabilidades().get(2).getNombre();
+        listaHabilidades[3]=PJ.getHabilidades().get(3).getNombre();
+        listaHabilidades[4]=PJ.getHabilidades().get(4).getNombre();
         for (int i=0;i<NHABILIDADES;i++)
         {
             if(eleccionJugador==i)
             {
-                //opcionesJugadorTTF.drawString(10,i*20+400, )
+               opcionesJugadorTTF.drawString(10,i*20+400,listaHabilidades[i]);
+            }
+            else{
+                opcionesJugadorTTF.drawString(10, i * 20 + 400, listaHabilidades[i], notChosen);
             }
         }
+    }/* private void renderHabilidades()*/
+    
+    private void renderSelAliados()
+    {
+        opcionesJugadorTTF.drawString(10,20+400, VenganzaBelial.Party.get(this.eleccionJugador).getNombre());
+    }
+    private void renderSelObjetivo()
+    {
+        opcionesJugadorTTF.drawString(10,20+400, NewCombate.getEnemigos().get(this.eleccionJugador).getNombre());
+    }
+    
+    private void renderEnemigos() throws SlickException
+    {
+       /*Render Enemigos si no estan muertos*/
+        int aux;
+        int nEnemigos= NewCombate.getEnemigosRestantes();
+        for(aux=0;aux<nEnemigos;aux++)
+        {
+            NewCombate.getEnemigos().get(aux).getImagen().draw(aux*300+200, 200, 350, 400);
+        }
+       /*Debug prints*/
+        HMP.drawString(1000, 50, "HP D.Horacia "+VenganzaBelial.hori.getHpActual()+ "/"+VenganzaBelial.hori.getHp());
+        HMP.drawString(1000, 100, "HP D. Mordeim "+VenganzaBelial.mordi.getHpActual()+ "/"+VenganzaBelial.mordi.getHp());
+        HMP.drawString(1000, 150, "HP D. Kibito "+VenganzaBelial.kibi.getHpActual()+ "/"+VenganzaBelial.kibi.getHp()); 
     }
     
     private void renderAvatars(Graphics g) throws SlickException
@@ -411,46 +464,37 @@ public class EstadoCombate extends BasicGameState{
             Avatar2 =  new Image("Imagenes/Personajes/Mordeim.jpg");
             Avatar3 =  new Image("Imagenes/Personajes/Kibito.jpg");
             Fondo.draw(0, 0, 1366, 768);
-            Rectangle rect1 = new Rectangle(0,10, 230,100);
-            Rectangle rect2 = new Rectangle(0,110, 230, 100);
-            Rectangle rect3 = new Rectangle(0,210, 230, 100);
+            Rectangle rect1 = new Rectangle(0,0, 230,100);
+            Rectangle rect2 = new Rectangle(0,100, 230, 100);
+            Rectangle rect3 = new Rectangle(0,200, 230, 100);
             g.draw(rect1);
             g.draw(rect2);
             g.draw(rect3);
             g.fill(rect1);
             g.fill(rect2);
             g.fill(rect3);
-            Avatar1.draw(0, 10, 100, 100);
-            Avatar2.draw(0, 110, 100, 100);
-            Avatar3.draw(0, 210, 100, 100);
+            Avatar1.draw(0, 0, 100, 100);
+            Avatar2.draw(0, 100, 100, 100);
+            Avatar3.draw(0, 200, 100, 100);
             /*Horacia status update*/
             HMP = new TrueTypeFont(TipoLetra, true);
-            HMP.drawString(110, 30, "HP"+VenganzaBelial.horacia.getHpActual()+ "/"+VenganzaBelial.horacia.getHp(),rojo);
+            HMP.drawString(110, 20, "HP"+VenganzaBelial.horacia.getHpActual()+ "/"+VenganzaBelial.horacia.getHp(),rojo);
             HMP = new TrueTypeFont(TipoLetra, true);
-            HMP.drawString(110, 60, "MP "+VenganzaBelial.horacia.getMpActual()+ "/"+VenganzaBelial.horacia.getMp(),azul);
+            HMP.drawString(110, 50, "MP "+VenganzaBelial.horacia.getMpActual()+ "/"+VenganzaBelial.horacia.getMp(),azul);
             /*Mordeim Status Update*/
-            HMP.drawString(110, 130, "HP "+VenganzaBelial.mordeim.getHpActual()+ "/"+VenganzaBelial.mordeim.getHp(),rojo);
-            HMP.drawString(110, 160, "MP "+VenganzaBelial.mordeim.getMpActual()+ "/"+VenganzaBelial.mordeim.getMp(),azul);
+            HMP.drawString(110, 120, "HP "+VenganzaBelial.mordeim.getHpActual()+ "/"+VenganzaBelial.mordeim.getHp(),rojo);
+            HMP.drawString(110, 150, "MP "+VenganzaBelial.mordeim.getMpActual()+ "/"+VenganzaBelial.mordeim.getMp(),azul);
             /*Kibito Status update*/
-            HMP.drawString(110, 230, "HP "+VenganzaBelial.kibito.getHpActual()+ "/"+VenganzaBelial.kibito.getHp(),rojo);
-            HMP.drawString(110, 260, "MP "+VenganzaBelial.kibito.getMpActual()+ "/"+VenganzaBelial.kibito.getMp(),azul);
-            /*Render 
-            Enemigos si no estan muertos*/        
-            avatarEnemigo.get(0).draw(550, 500, 100, 100);
-            avatarEnemigo.get(1).draw(650, 500, 100, 100);
-            avatarEnemigo.get(2).draw(750, 500, 100, 100);  
-            HMP.drawString(250, 250, "HPe "+VenganzaBelial.horaciaenemiga.getHpActual()+ "/"+VenganzaBelial.horaciaenemiga.getHp());
-            /*Debug*/
-            HMP.drawString(500, 400, "Estado: "+Estado);
-            HMP.drawString(500, 350, "EleccionJugador: "+eleccionJugador);
-            HMP.drawString(500, 300, "Nparticipantes"+ NewCombate.getOrdenPersonajes().size());
-            HMP.drawString(500, 250, "Turno: " + NewCombate.getTurno());
-    }/*private void renderAvatars(Graphics g)*/  
-  
-    private void Sound()
-    {
-        //private Sound sound;
-        //private Music music;
-        
-    }
+            HMP.drawString(110, 220, "HP "+VenganzaBelial.kibito.getHpActual()+ "/"+VenganzaBelial.kibito.getHp(),rojo);
+            HMP.drawString(110, 250, "MP "+VenganzaBelial.kibito.getMpActual()+ "/"+VenganzaBelial.kibito.getMp(),azul);
+                        
+            /*Debug prints*/
+            HMP.drawString(1100, 400, "Estado: "+Estado);
+            HMP.drawString(1100, 350, "EleccionJugador: "+eleccionJugador);
+            HMP.drawString(1100, 300, "Nparticipantes"+ NewCombate.getOrdenPersonajes().size());            
+            HMP.drawString(1100, 250, "Turno: " + NewCombate.getTurno());
+            HMP.drawString(1100, 450, "Party"+ VenganzaBelial.Party.size());
+            /**/
+            HMP.drawString(500, 20, "Turno de:" + NewCombate.getOrdenPersonajes().get(NewCombate.getTurno()).getNombre());
+    }/*private void renderAvatars(Graphics g)*/    
 }

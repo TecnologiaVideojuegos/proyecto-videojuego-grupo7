@@ -1,6 +1,8 @@
 package personajes;
 
 import java.io.Serializable;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 
 public class Personaje implements Serializable{ //Hacer abstracta por metodo combatir
     //Atributos
@@ -11,7 +13,8 @@ public class Personaje implements Serializable{ //Hacer abstracta por metodo com
     private int ataque;
     private int defensa;
     private int velocidad;
-
+    private Image imagen ;
+    
     //EDIT: Flag de pruebas combate
     private boolean PJ;    
     public boolean isPJ() {
@@ -79,6 +82,17 @@ public class Personaje implements Serializable{ //Hacer abstracta por metodo com
     public void setVelocidad(int velocidad) {
         this.velocidad = velocidad;
     }
+
+    public Image getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String ruta) throws SlickException{
+        this.imagen = new Image(ruta);
+        //this.imagen = imagen;
+    }
+    
+    
     //Metodos
     public boolean estaVivo(){
         return this.hp > 0;
