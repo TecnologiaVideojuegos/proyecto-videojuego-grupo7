@@ -6,11 +6,11 @@ import personajes.Personaje;
 
 public class Habilidad {
     //Constantes
-     public static final int TIPOCURAR=0;
-     public static final int TIPORESUCITAR=1;
-     public static final int TIPOATACAR=2;
-     public static final int TIPODRENARVIDA=3;
-     public static final int TIPOAOE=4;
+    public static final int TIPOCURAR = 0;
+    public static final int TIPORESUCITAR = 1;
+    public static final int TIPOATACAR = 2;
+    public static final int TIPODRENARVIDA = 3;
+    public static final int TIPOAOE = 4;
     //Atributos
     private String nombre;
     private int nivel;
@@ -31,46 +31,48 @@ public class Habilidad {
         this.descripcion = descripcion;
         this.tipoHabilidad= tipo;
     }
+    //Getters and Setters
+    public String getNombre() {
+        return nombre;
+    }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    public int getNivel() {
+        return nivel;
+    }
+    public void setNivel(int nivel) {
+        this.nivel = nivel;
+    }
+    public int getDanyo() {
+        return danyo;
+    }
+    public void setDanyo(int danyo) {
+        this.danyo = danyo;
+    }
+    public int getCosteMP() {
+        return costeMP;
+    }
+    public void setCosteMP(int costeMP) {
+        this.costeMP = costeMP;
+    }
+    public String getDescripcion() {
+        return descripcion;
+    }
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public int getTipoHabilidad() {
+        return tipoHabilidad;
+    }
+
+    public void setTipoHabilidad(int tipoHabilidad) {
+        this.tipoHabilidad = tipoHabilidad;
+    }
+    
     /*EDIT: METODOS BAJO PRUEBAS*/
-  
-    public boolean habilidadUsable(Jugador usuario)
-    {
-        if(this.comprobarLVL(usuario)&& this.comprobarMp(usuario))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }/*public boolean habilidadUsable(Jugador usuario)*/
-    
-    
-    private boolean comprobarLVL(Jugador usuario)
-    {
-        if(usuario.getNivel()<this.nivel)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-    }/*public boolean comprobarLVL(Jugador usuario)*/
-    
-    private boolean comprobarMp(Jugador usuario)
-    {
-        if(usuario.getMpActual()<this.costeMP)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-    }/*public boolean comprobarMp(Jugador usuario)*/
-    
-    
+            
     public boolean usarHabilidad(Jugador usuario, Personaje objetivo)
     {
         boolean usable=false;
@@ -93,18 +95,17 @@ public class Habilidad {
             default:
                 usable=false;    
         }
-        if(usable==true)
+        if(usable)
         {
             this.descontarMP(usuario);
         }
         return usable;
     }/*usarHabilidad(Jugador usuario, Personaje Objetivo)*/
     
-    public boolean usarHabilidad(Jugador usuario, ArrayList<Personaje> objetivos)
+    public void usarHabilidad(Jugador usuario, ArrayList<Personaje> objetivos)
     {
         this.tipoAOE(usuario, objetivos);
         this.descontarMP(usuario);
-        return true;
     }/*public boolean usarHabilidad(Jugador usuario, ArrayList<Personaje> Objetivos)*/
     
     private void tipoAtaque(Jugador usuario, Personaje objetivo)
@@ -122,7 +123,6 @@ public class Habilidad {
     
     private void tipoDrenar(Jugador usuario,Personaje objetivo)
     {
-        /*Calculo de daño*/
         int DanyoCausado=usuario.getAtaque()*danyo-objetivo.getDefensa();
         int Recupera=0;
         if (DanyoCausado>0)
@@ -130,10 +130,12 @@ public class Habilidad {
           Recupera=(int)(DanyoCausado*0.2f);
           objetivo.setHpActual(objetivo.getHpActual()- DanyoCausado);
           usuario.setHpActual(usuario.getHpActual()+Recupera);
-        }/*if (DañoCausado>0)*/ 
+        }
         else
         {
             Recupera=1;
+           objetivo.setHpActual(objetivo.getHpActual()- 1);
+           Recupera=1;
            objetivo.setHpActual(objetivo.getHpActual()- 1);
            usuario.setHpActual(usuario.getHpActual()+Recupera);
         }
@@ -186,7 +188,7 @@ public class Habilidad {
         {
             //No se puede resucitar porque el objetivo esta vivo
             return false;
-        }/*if(Objetivo.estaVivo())*/
+        }
         else
         {
           objetivo.setHpActual(1);
@@ -194,51 +196,13 @@ public class Habilidad {
         }
     }/*public boolean tipoResucitar(Jugador Objetivo)*/
     
-    /*EDIT: METODOS BAJO PRUEBAS END*/
     private void descontarMP(Jugador usuario)
     {
         usuario.setMpActual(usuario.getMpActual()-this.getCosteMP());
     }
     
     
-    //Getters and Setters
-    public String getNombre() {
-        return nombre;
-    }
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-    public int getNivel() {
-        return nivel;
-    }
-    public void setNivel(int nivel) {
-        this.nivel = nivel;
-    }
-    public int getDanyo() {
-        return danyo;
-    }
-    public void setDanyo(int danyo) {
-        this.danyo = danyo;
-    }
-    public int getCosteMP() {
-        return costeMP;
-    }
-    public void setCosteMP(int costeMP) {
-        this.costeMP = costeMP;
-    }
-    public String getDescripcion() {
-        return descripcion;
-    }
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public int getTipoHabilidad() {
-        return tipoHabilidad;
-    }
-
-    public void setTipoHabilidad(int tipoHabilidad) {
-        this.tipoHabilidad = tipoHabilidad;
-    }
+    
+    
     
 }

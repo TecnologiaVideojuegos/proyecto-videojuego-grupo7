@@ -4,6 +4,7 @@ import personajes.Personaje;
 import java.util.ArrayList;
 /*EDIT: Eliminar Import VenganzaBelial*/
 import estados.VenganzaBelial;
+import items.Item;
 
 public final class Combate {
     //Atributos
@@ -13,6 +14,9 @@ public final class Combate {
     private int EnemigosRestantes;
     private int AliadosRestantes;
     private int Turno=0;
+    private int expCombate=0;
+    /*EDIT: posible conversion de dropItem a ArrayList*/
+    private Item dropItem;
     //Constructor
     public Combate(ArrayList<Personaje> Party, int Mapa) 
     {
@@ -84,6 +88,7 @@ public final class Combate {
                 GeneraEnemigos.add(VenganzaBelial.hori);
                 GeneraEnemigos.add(VenganzaBelial.mordi);
                 GeneraEnemigos.add(VenganzaBelial.kibi);
+                this.setExpCombate(15);;
                 break;
             case 1:
                 break;
@@ -92,31 +97,50 @@ public final class Combate {
         }/*switch (Mapa)*/
         return GeneraEnemigos;
     }    
-    public void Atacar(Personaje Atacante, Personaje Defensor)
+    
+    public String Atacar(Personaje Atacante, Personaje Defensor)
     {
+        String mensaje;
         /*Calculo de daño*/
-        int DañoCausado=Atacante.getAtaque()-Defensor.getDefensa();
-        if (DañoCausado>0)
+        int danyoCausado=Atacante.getAtaque()-Defensor.getDefensa();
+        if (danyoCausado>0)
         {
-          Defensor.setHpActual(Defensor.getHpActual()- DañoCausado);
-        }/*if (DañoCausado>0)*/        
+          Defensor.setHpActual(Defensor.getHpActual()- danyoCausado);
+        }/*if (DañoCausado>0)*/
+        else{
+            danyoCausado=1;
+            Defensor.setHpActual(Defensor.getHpActual()- danyoCausado);
+        }
+        mensaje=Atacante.getNombre()+" a atacado a "+Defensor.getNombre()+" causando "+danyoCausado+" de daño";
+        return mensaje;
     }/*private void Atacar*/
     
     public void GestionaMuertes()
     {
-        int aux;
+        int aux=0;
         for(aux=0;aux<this.nParticipantes;aux++)
         {
-            if(!this.ordenPersonajes.get(aux).estaVivo())
+            if(this.ordenPersonajes.get(aux).estaVivo()==false)
             {
                 /*EDIT:COMPROBAR SI ES PJ O ENEMIGO para disminuir el contador de unos u otro*/
-                //this.AliadosRestantes--;
-                //this.EnemigosRestantes--;
-                /*Remover de la lista de turnos*/
+                if(this.ordenPersonajes.get(aux).isPJ())
+                {
+                    this.AliadosRestantes--;
+                }
+                else{
+                    this.EnemigosRestantes--;
+                    /*Remover de la lista de turnos*/
+                    this.Enemigos.remove(this.ordenPersonajes.get(aux));
+                }
                 this.ordenPersonajes.remove(aux);
+                this.nParticipantes=this.ordenPersonajes.size(); 
             }/*if(!this.ordenPersonajes.get(aux).estaVivo())*/
         }/*for(aux=0;aux<this.nParticipantes;aux++)*/
     }/*public void GestionaMuertes()*/
+    
+    public void GestionaResurrecion()
+    {        
+    }/*public void GestionaResurrecion()*/
     
     public boolean CombateAcabado()
     {
@@ -146,7 +170,7 @@ public final class Combate {
     {
        Turno++;
        this.nParticipantes=this.ordenPersonajes.size();
-       if(Turno==this.nParticipantes)
+       if(Turno>=this.nParticipantes)
        {
            Turno=0;
        }/*if(Turno>this.nParticipantes)*/
@@ -161,6 +185,10 @@ public final class Combate {
      //  return true;
     }/*public boolean GestionaSiguienteTurno()*/
     
+    public void expCombate()
+    {
+        
+    }
     //Getter y Setter
     public ArrayList<Personaje> getOrdenPersonajes() {
         return ordenPersonajes;
@@ -209,4 +237,22 @@ public final class Combate {
     public void setTurno(int Turno) {
         this.Turno = Turno;
     }
+
+    public int getExpCombate() {
+        return expCombate;
+    }
+
+    public void setExpCombate(int expCombate) {
+        this.expCombate = expCombate;
+    }
+
+    public Item getDropItems() {
+        return dropItem;
+    }
+
+    public void setDropItems(Item dropItems) {
+        this.dropItem = dropItems;
+    }
+    
+    
 }

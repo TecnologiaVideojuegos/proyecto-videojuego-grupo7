@@ -95,7 +95,7 @@ public class Personaje implements Serializable{ //Hacer abstracta por metodo com
     
     //Metodos
     public boolean estaVivo(){
-        return this.hp > 0;
+        return this.hpActual > 0;
     }
     
     //toString

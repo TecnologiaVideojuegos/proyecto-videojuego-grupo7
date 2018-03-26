@@ -6,6 +6,10 @@ import java.io.Serializable;
 import otros.Habilidad;
 import otros.Inventario;
 import java.util.ArrayList;
+import static otros.Habilidad.TIPOATACAR;
+import static otros.Habilidad.TIPOCURAR;
+import static otros.Habilidad.TIPODRENARVIDA;
+import static otros.Habilidad.TIPORESUCITAR;
 
 public abstract class Jugador extends Personaje implements Serializable{
     //Atributos
@@ -153,55 +157,33 @@ public abstract class Jugador extends Personaje implements Serializable{
         
     }
     
-    public void usarHabilidad(int nHabilidad, Personaje enemigo)
+    /*Metodos de Comprobacion de habilidades*/
+    public boolean habilidadUsable(int nHabilidad)
     {
-        /*Comprobar que se puede usar habilidad*/
-        /*Usar habilidad*/
-        
-    }
-    
-    public void usarHabilidad(int nHabilidad, ArrayList<Personaje> enememigos)
+        return this.comprobarLVL(nHabilidad)&& this.comprobarMp(nHabilidad);
+    }/*public boolean habilidadUsable()*/
+    private boolean comprobarLVL(int nHabilidad)
     {
-        /*Comprobar que se puede usar habilidad*/
-    }
+        return this.getNivel() >= this.getHabilidades().get(nHabilidad).getNivel();
+    }/*public boolean comprobarLVL(Jugador usuario)*/
+    private boolean comprobarMp(int nHabilidad)
+    {
+        return this.getMpActual() >= this.getHabilidades().get(nHabilidad).getCosteMP();
+    }/*public boolean comprobarMp(Jugador usuario)*/
+    /*Metodos de uso de habilidades*/
+    public boolean usarHabilidad(int nHabilidad, Personaje objetivo)
+    {
+       boolean usable=false;
+        usable=this.habilidades.get(nHabilidad).usarHabilidad(this, objetivo);
+        return usable; 
+    }/*public boolean usarHabilidad(int nHabilidad, Personaje objetivo)*/
     
-//    public void usarHabilidad(Habilidad hab, Enemigo enemigo){
-//        if (!hab.isResucita() && enemigo.estaVivo() && this.getNivel() >= hab.getNivel() && this.mpActual >= hab.getCosteMP()){
-//            enemigo.setHpActual(enemigo.getHpActual() - hab.getDanyo());
-//            this.mpActual = this.mpActual - hab.getCosteMP();
-//        }
-//        else
-//            System.out.println("No puedes usar la habilidad");
-//    }
-//    public void usarHabilidadMasiva(Habilidad hab, ArrayList<Enemigo> enemigos){
-//        if (!hab.isResucita() && this.getNivel() >= hab.getNivel() && this.mpActual >= hab.getCosteMP()){
-//            for (int i = 0; i < enemigos.size(); i++) {
-//                if (enemigos.get(i).estaVivo())
-//                    enemigos.get(i).setHpActual(enemigos.get(i).getHpActual() - hab.getDanyo());     
-//            }
-//            this.mpActual = this.mpActual - hab.getCosteMP();
-//        }
-//        else
-//            System.out.println("No puedes usar la habilidad");
-//    }
-//    public void usarHabilidad(Habilidad hab, Jugador jugador){
-//        if (this.getNivel() >= hab.getNivel() && this.mpActual >= hab.getCosteMP()){
-//            if(hab.isCura() && jugador.estaVivo()){
-//                if ((hab.getDanyo() + jugador.getHpActual()) <= jugador.getHp())
-//                    jugador.setHpActual(hab.getDanyo());
-//                else
-//                    jugador.setHpActual(jugador.getHp());
-//                this.mpActual = this.mpActual - hab.getCosteMP();
-//            }
-//            else if(hab.isResucita() && !jugador.estaVivo()){
-//                jugador.setHpActual((int)((jugador.getHp()*(jugador.getHp()))/100));
-//                this.mpActual = this.mpActual - hab.getCosteMP();
-//            }
-//            else
-//                System.out.println("No puedes usar esta habilidad en un compañero");
-//                
-//        }
-//    }
+    public boolean usarHabilidad(int nHabilidad, ArrayList<Personaje> objetivos)
+    {
+        this.habilidades.get(nHabilidad).usarHabilidad(this, objetivos);
+        return true;
+    }/*public boolean usarHabilidad(int nHabilidad, ArrayList<Personaje> objetivos)*/
+    
     //Metodo abstracto
     public abstract void inicializarPersonaje();
     public abstract void subirNivelEstadisticas();

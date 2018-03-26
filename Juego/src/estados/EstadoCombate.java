@@ -6,6 +6,7 @@ import static estados.VenganzaBelial.kibi;
 import static estados.VenganzaBelial.mordi;
 import java.awt.Font;
 import java.util.ArrayList;
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -17,6 +18,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Music;
 import org.newdawn.slick.Sound;
+import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.*;
 import personajes.*;
 import otros.Combate;
@@ -67,7 +69,13 @@ public class EstadoCombate extends BasicGameState{
     private Color verde = new Color (0,256,0);
     private Color azul = new Color (0,0,256);    
     private Music OST;
-    
+    private Sound sonidoAtaque;
+    private Sound sonidoMuerto;
+    private String mensajeSistema= new String("AAAAA");
+    //private SpriteSheet sprite;
+    //private Animation animacion;
+    /*EDIT*/
+    private int flagPruebas=0;
     public EstadoCombate(int id) {
         idEstado = id;
     }
@@ -81,6 +89,8 @@ public class EstadoCombate extends BasicGameState{
     {
         /*ost*/
         OST= new Music("Musica/BSO/Ablaze.wav");
+        sonidoAtaque= new Sound("Musica/Efectos/Sword4.wav");
+        sonidoMuerto= new Sound("Musica/Efectos/Cry2.wav");
         /*Input*/
         this.input = gc.getInput();
         /**/
@@ -90,7 +100,9 @@ public class EstadoCombate extends BasicGameState{
         opciones[1] = "Habilidad";
         opciones[2] = "Consumible";
         opciones[3]= "Huir";
-        /**/
+        /*EDIT:Test*/
+        //this.sprite= new SpriteSheet("Imagenes/Animaciones/ataque.png",200,200);
+        //this.animacion= new Animation(sprite, 200);
     }
 
     @Override
@@ -112,9 +124,16 @@ public class EstadoCombate extends BasicGameState{
                 break;
             case ATACANDO:
                 renderSelObjetivo();
+                //this.animacion.draw(750, 200, 200, 200);
                 break;
             case SELALIADO:
                 renderSelAliados();
+                break;
+            case FINTURNO:
+                renderMensajeSistema();
+                break;
+            case FINCOMBATE:
+                renderMensajeSistema();
                 break;
         }    
     }
@@ -131,11 +150,10 @@ public class EstadoCombate extends BasicGameState{
             VenganzaBelial.mordi.setImagen("Imagenes/Monstruos/Test2.png");
             VenganzaBelial.kibi.setImagen("Imagenes/Monstruos/Test3.png");
             NuevoCombate = false;
-            //OST.loop();
+            OST.loop(1, 0.1f);
         }
         else
         {
-            
             switch (Estado)
             {
                 case  OPCIONESBASE://Opciones base del pj
@@ -162,7 +180,23 @@ public class EstadoCombate extends BasicGameState{
                     break;
                 case  TURNOENEMIGO://Turno automatico Enemigo
                     //EDIT: Eliminar
-                    //NewCombate.Atacar(VenganzaBelial.horaciaenemiga, VenganzaBelial.horacia);
+                    if(this.flagPruebas==0)
+                    {
+                        this.mensajeSistema=NewCombate.Atacar(NewCombate.getOrdenPersonajes().get(NewCombate.getTurno()), VenganzaBelial.kibito);
+                    }
+                    else if(this.flagPruebas==1)
+                    {
+                        this.mensajeSistema=NewCombate.Atacar(NewCombate.getOrdenPersonajes().get(NewCombate.getTurno()), VenganzaBelial.kibito);
+                    }
+                    else if(this.flagPruebas==2)
+                    {
+                        this.mensajeSistema=NewCombate.Atacar(NewCombate.getOrdenPersonajes().get(NewCombate.getTurno()), VenganzaBelial.kibito);
+                    }
+                    this.flagPruebas++;
+                    if(this.flagPruebas>3)
+                    {
+                       this.flagPruebas=0; 
+                    }
                     //VenganzaBelial.horacia.setHpActual(50);
                     Estado=FINTURNO;
                     break;
@@ -181,8 +215,8 @@ public class EstadoCombate extends BasicGameState{
                     FinTurno();
                     break;
                 case FINCOMBATE:
-                    //FinCombate();
-                    sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);//EDIT:Eliminar
+                    FinCombate(gc);
+                    //sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);//EDIT:Eliminar
                     OST.stop();
                     break;
             }
@@ -259,7 +293,12 @@ public class EstadoCombate extends BasicGameState{
         {   
             IndiceTurno=NewCombate.getTurno();
             //
-           NewCombate.Atacar(NewCombate.getOrdenPersonajes().get(IndiceTurno), NewCombate.getEnemigos().get(eleccionJugador)); 
+            this.sonidoAtaque.play();
+            this.mensajeSistema=NewCombate.Atacar(NewCombate.getOrdenPersonajes().get(IndiceTurno), NewCombate.getEnemigos().get(eleccionJugador)); 
+            if(!NewCombate.getEnemigos().get(eleccionJugador).estaVivo())
+            {
+                this.sonidoMuerto.play();
+            }
             /*Cambio de estado a turno final*/
             eleccionJugador=0;//Resetea el indice de seleccion de opciones para el nuevo estado*/
             Estado=FINTURNO; 
@@ -271,18 +310,16 @@ public class EstadoCombate extends BasicGameState{
     {
         int tipo;
         int IndiceTurno=NewCombate.getTurno();
-        Jugador PJ= (Jugador)NewCombate.getOrdenPersonajes().get(IndiceTurno);
+        Jugador pj= (Jugador)NewCombate.getOrdenPersonajes().get(IndiceTurno);
         if(input.isKeyPressed(Input.KEY_ENTER))
-        {   
-            //Comprobar que se puede usar la habilidad
-            if(PJ.getHabilidades().get(eleccionJugador).habilidadUsable(PJ))
+        {
+            if(pj.habilidadUsable(this.eleccionJugador))
             {
-                //Guarda la habilidad seleccionada a utilizar
+               //Guarda la habilidad seleccionada a utilizar
                 habilidadSeleccionada=eleccionJugador;
-                //Comprueba el tipo de habilidad para decidir contra quien usarla
-                tipo=PJ.getHabilidades().get(eleccionJugador).getTipoHabilidad();
+                tipo=pj.getHabilidades().get(eleccionJugador).getTipoHabilidad();
                 eleccionJugador=0;
-                //Cambia de estado en función del tipo de habilidad
+                //Comprueba el tipo de habilidad para decidir contra quien usarla
                 switch (tipo)
                 {
                     case Habilidad.TIPOCURAR:
@@ -299,14 +336,14 @@ public class EstadoCombate extends BasicGameState{
                         break;
                     case Habilidad.TIPOAOE:
                         //Ejecuta Habilidad contra todos los enemigos y pasa al siguiente turno
-                        PJ.getHabilidades().get(habilidadSeleccionada).usarHabilidad(PJ, NewCombate.getEnemigos());
+                        pj.usarHabilidad(habilidadSeleccionada, NewCombate.getEnemigos());
+                        //pj.getHabilidades().get(habilidadSeleccionada).usarHabilidad(pj, NewCombate.getEnemigos());
                         Estado=FINTURNO;
                         break;
                 }
-                
             }
             else{
-                //La habilidad no se puede usar por falta de nivel o falta de Mp
+                /*Habilidad no usable*/
             }
         }/**/
     }/*private void Habilidades()*/
@@ -315,10 +352,13 @@ public class EstadoCombate extends BasicGameState{
     {
         if(input.isKeyPressed(Input.KEY_ENTER))
         { 
+            /*EDIT: Cambiar Mensaje Sistema*/
+            this.mensajeSistema="Se ha usado una habilidad";
             int IndiceTurno=NewCombate.getTurno();
-            Jugador PJ= (Jugador)NewCombate.getOrdenPersonajes().get(IndiceTurno);
-            //Ejecutar habilidad con el PJ correcpondiente sobre el Objetivo designado
-            PJ.getHabilidades().get(this.habilidadSeleccionada).usarHabilidad(PJ, NewCombate.getEnemigos().get(this.eleccionJugador));
+            Jugador pj= (Jugador)NewCombate.getOrdenPersonajes().get(IndiceTurno);
+            //Ejecutar habilidad con el pj correcpondiente sobre el Objetivo designado
+            pj.usarHabilidad(this.habilidadSeleccionada, NewCombate.getEnemigos().get(eleccionJugador));
+            //pj.getHabilidades().get(this.habilidadSeleccionada).usarHabilidad(pj, NewCombate.getEnemigos().get(eleccionJugador));
             eleccionJugador=0;
             Estado=FINTURNO;
         }
@@ -328,11 +368,15 @@ public class EstadoCombate extends BasicGameState{
     {
        if(input.isKeyPressed(Input.KEY_ENTER))
         { 
+            /*EDIT: Cambiar Mensaje Sistema*/
+            this.mensajeSistema="Se ha usado una habilidad";
             int IndiceTurno=NewCombate.getTurno();
-            Jugador PJ= (Jugador)NewCombate.getOrdenPersonajes().get(IndiceTurno);
-            //Ejecutar habilidad con el PJ correcpondiente sobre el Aliado designado y comprobar que se puede
+            Jugador pj= (Jugador)NewCombate.getOrdenPersonajes().get(IndiceTurno);
+            //Ejecutar habilidad con el pj correcpondiente sobre el Aliado designado y comprobar que se puede
             //Si se puede se ejecutará y devolvera true
-            if(PJ.getHabilidades().get(this.habilidadSeleccionada).usarHabilidad(PJ, VenganzaBelial.Party.get(this.eleccionJugador)))
+            
+            //if(pj.getHabilidades().get(this.habilidadSeleccionada).usarHabilidad(pj, VenganzaBelial.Party.get(eleccionJugador)))
+            if(pj.usarHabilidad(this.habilidadSeleccionada, VenganzaBelial.Party.get(eleccionJugador)))
             {
                 eleccionJugador=0;
                 Estado=FINTURNO;
@@ -343,14 +387,14 @@ public class EstadoCombate extends BasicGameState{
             
         } 
     }/*private void selAliado()*/
-    
-    
+        
     private void Huir()
     {
         double TasaHuida = Math.random();
         if(TasaHuida<1)
         {
             //Objetivo no huye y pierde turno
+            this.mensajeSistema="No se ha conseguido huir";
             Estado=FINTURNO;
         }
         else
@@ -363,37 +407,69 @@ public class EstadoCombate extends BasicGameState{
     
     private void FinTurno()
     {
-        /*Gestiona muertes del ultimo turno*/
-        NewCombate.GestionaMuertes();
-        /*Comprueba que el combate no se haya acabado*/
-        //if(NewCombate.CombateAcabado())
-        //{
-        //    Estado=FINCOMBATE;
-        //}/*if(NewCombate.CombateAcabado())*/
-        //else
-        //{
-            if(NewCombate.GestionaSiguienteTurno())//Si el siguiente turno es de jugador
+        if(input.isKeyPressed(Input.KEY_ENTER))
+        {
+            /*Gestiona muertes del ultimo turno*/
+            NewCombate.GestionaMuertes();
+            /*Comprueba que el combate no se haya acabado*/
+            if(NewCombate.CombateAcabado())
             {
-                Estado=OPCIONESBASE;
-            }
-            else{
-                Estado=TURNOENEMIGO;
-            }
-        //}/*else*/
+                Estado=FINCOMBATE;
+            }/*if(NewCombate.CombateAcabado())*/
+            else
+            {
+                if(NewCombate.GestionaSiguienteTurno())//Si el siguiente turno es de jugador
+                {
+                    Estado=OPCIONESBASE;
+                }
+                else{
+                    Estado=TURNOENEMIGO;
+                }
+            }/*else*/
+        }/*if(input.isKeyPressed(Input.KEY_ENTER))*/
     }/*private void FinTurno()*/
     
-    private void FinCombate()
+    private void FinCombate(GameContainer gc)
     {
-        NuevoCombate=true;
         /*Comprobar quien ha ganado el combate y actuar concorde*/
         if(NewCombate.CombateGanado())
         {
-            //Eliminar objeto combate
-           //Si el combate ha sido ganado-> EXP+Drop+Devolver al mapa 
-        }
+            //Si el combate ha sido ganado-> EXP+Drop+Devolver al mapa 
+            this.mensajeSistema="YOU WIN\n EXP Recibida: "+NewCombate.getExpCombate()+"\n Items:";
+            //this.mensajeSistema="YOU WIN";
+            if(input.isKeyPressed(Input.KEY_ENTER))
+            {
+                int aux=0;
+                int exp=NewCombate.getExpCombate();
+                for(aux=0;aux<VenganzaBelial.Party.size();aux++)
+                {
+                    Jugador pj=(Jugador)VenganzaBelial.Party.get(aux);
+                    //Recibe la experiencia solo si no esta muerto al final del combate
+                    if(pj.estaVivo())
+                    {
+                        pj.setExp(pj.getExp()+exp);
+                        if(pj.puedeSubir())
+                        {
+                            pj.subirNivel();
+                        }/*if(pj.puedeSubir())*/
+                    }/* if(pj.estaVivo())*/
+                }/*for(aux=0;aux<VenganzaBelial.Party.size();aux++)*/
+                //Reactiva Flag para la proxima vez que se genera un combate
+                NuevoCombate=true;
+                //EDIT:ELIMINAR OBJETO COMBATE O VACIAR
+                gc.exit();  
+            }/*if(input.isKeyPressed(Input.KEY_ENTER))*/
+        }/*if(NewCombate.CombateGanado())*/
         else
         {
+            /*EDIT:cambiar mensaje de GAME OVER*/
+            this.mensajeSistema="GAME OVER";
             //Eliminar objeto combate
+            if(input.isKeyPressed(Input.KEY_ENTER))
+            {
+             NuevoCombate=true;
+              gc.exit();  
+            }
             //Si se ha perdido el combate recargar datos del ultimo punto de control
         }
     }/*private void FinComabte()*/
@@ -433,26 +509,30 @@ public class EstadoCombate extends BasicGameState{
     private void renderSelAliados()
     {
         opcionesJugadorTTF.drawString(10,20+400, VenganzaBelial.Party.get(this.eleccionJugador).getNombre());
-    }
+    }/*private void renderSelAliados()*/
+    
     private void renderSelObjetivo()
     {
         opcionesJugadorTTF.drawString(10,20+400, NewCombate.getEnemigos().get(this.eleccionJugador).getNombre());
-    }
+    }/*private void renderSelObjetivo()*/
     
     private void renderEnemigos() throws SlickException
     {
        /*Render Enemigos si no estan muertos*/
         int aux;
-        int nEnemigos= NewCombate.getEnemigosRestantes();
+        int nEnemigos= NewCombate.getEnemigos().size();
         for(aux=0;aux<nEnemigos;aux++)
         {
-            NewCombate.getEnemigos().get(aux).getImagen().draw(aux*300+200, 200, 350, 400);
+            if(NewCombate.getEnemigos().get(aux).estaVivo())
+            {
+                NewCombate.getEnemigos().get(aux).getImagen().draw(aux*300+200, 200, 350, 400);
+            }
         }
        /*Debug prints*/
         HMP.drawString(1000, 50, "HP D.Horacia "+VenganzaBelial.hori.getHpActual()+ "/"+VenganzaBelial.hori.getHp());
         HMP.drawString(1000, 100, "HP D. Mordeim "+VenganzaBelial.mordi.getHpActual()+ "/"+VenganzaBelial.mordi.getHp());
         HMP.drawString(1000, 150, "HP D. Kibito "+VenganzaBelial.kibi.getHpActual()+ "/"+VenganzaBelial.kibi.getHp()); 
-    }
+    }/*private void renderEnemigos() throws SlickException*/
     
     private void renderAvatars(Graphics g) throws SlickException
     {
@@ -488,13 +568,20 @@ public class EstadoCombate extends BasicGameState{
             HMP.drawString(110, 220, "HP "+VenganzaBelial.kibito.getHpActual()+ "/"+VenganzaBelial.kibito.getHp(),rojo);
             HMP.drawString(110, 250, "MP "+VenganzaBelial.kibito.getMpActual()+ "/"+VenganzaBelial.kibito.getMp(),azul);
                         
-            /*Debug prints*/
+            /*EDIT:Debug prints*/
             HMP.drawString(1100, 400, "Estado: "+Estado);
             HMP.drawString(1100, 350, "EleccionJugador: "+eleccionJugador);
-            HMP.drawString(1100, 300, "Nparticipantes"+ NewCombate.getOrdenPersonajes().size());            
-            HMP.drawString(1100, 250, "Turno: " + NewCombate.getTurno());
-            HMP.drawString(1100, 450, "Party"+ VenganzaBelial.Party.size());
+            HMP.drawString(1100, 300, "Nparticipantes"+ NewCombate.getOrdenPersonajes().size());
+            HMP.drawString(1100, 250, "Party"+ NewCombate.getAliadosRestantes());   
+            HMP.drawString(1100, 200, "Enemigos"+ NewCombate.getEnemigosRestantes());   
+            HMP.drawString(1100, 450, "Turno: " + NewCombate.getTurno());
+            HMP.drawString(1100, 500, "Party"+ VenganzaBelial.Party.size());
             /**/
             HMP.drawString(500, 20, "Turno de:" + NewCombate.getOrdenPersonajes().get(NewCombate.getTurno()).getNombre());
-    }/*private void renderAvatars(Graphics g)*/    
+    }/*private void renderAvatars(Graphics g)*/  
+    
+    private void renderMensajeSistema()
+    {
+        opcionesJugadorTTF.drawString(10,600, this.mensajeSistema);
+    }
 }
