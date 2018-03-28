@@ -17,8 +17,8 @@ import personajes.*;
 public class VenganzaBelial extends StateBasedGame {
     public static final int ESTADOMENUINICIO = 0;
     public static final int ESTADOCOMBATE = 1;
-    public static final int MENUSTATE = 2;
     public static final int ESTADOMENU = 2;
+    public static final int ESTADOESCENAPROTOTIPO = 3;//EDIT
     public static final int WIDTH = 1366;
     public static final int HEIGHT = 768;
     public static final boolean FULLSCREEN = false;
@@ -47,6 +47,8 @@ public class VenganzaBelial extends StateBasedGame {
         addState(new EstadoMenuInicio(ESTADOMENUINICIO));
         addState(new EstadoCombate(ESTADOCOMBATE));
         addState(new EstadoMenu(ESTADOMENU));
+        //EDIT
+        addState(new EscenaPrototipo(ESTADOESCENAPROTOTIPO));
         this.enterState(ESTADOMENUINICIO);
     }
 
@@ -55,6 +57,7 @@ public class VenganzaBelial extends StateBasedGame {
         getState(ESTADOMENUINICIO).init(gc, this);
         getState(ESTADOCOMBATE).init(gc, this);
         getState(ESTADOMENU).init(gc, this);
+        getState(ESTADOESCENAPROTOTIPO).init(gc, this);
     }
 
     public static void main(String[] args) throws SlickException {

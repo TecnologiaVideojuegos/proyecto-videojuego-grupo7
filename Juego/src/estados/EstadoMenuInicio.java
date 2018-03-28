@@ -81,6 +81,7 @@ public class EstadoMenuInicio extends BasicGameState {
                     break;
                 case CARGAR:
                     //heropos = fileio.loadSave();
+                    sbg.enterState(VenganzaBelial.ESTADOESCENAPROTOTIPO);//EDIT
                     //((GamePlayState)sbg.getState(IceAdventure.GAMEPLAYSTATE)).setHeroPosition(heropos);
                     //sbg.enterState(IceAdventure.GAMEPLAYSTATE);
                     break;
