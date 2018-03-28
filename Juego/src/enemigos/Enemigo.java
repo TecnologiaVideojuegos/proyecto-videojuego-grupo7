@@ -37,4 +37,5 @@ public class Enemigo extends Personaje{
     public void setHabilidad(ArrayList<Habilidad> habilidad) {
         this.habilidad = habilidad;
     }
+    
 }

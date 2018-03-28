@@ -6,6 +6,7 @@ import static estados.VenganzaBelial.kibi;
 import static estados.VenganzaBelial.mordi;
 import java.awt.Font;
 import java.util.ArrayList;
+import java.util.Random;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -71,7 +72,7 @@ public class EstadoCombate extends BasicGameState{
     private Music OST;
     private Sound sonidoAtaque;
     private Sound sonidoMuerto;
-    private String mensajeSistema= new String("AAAAA");
+    private String mensajeSistema= "";
     //private SpriteSheet sprite;
     //private Animation animacion;
     /*EDIT*/
@@ -141,7 +142,7 @@ public class EstadoCombate extends BasicGameState{
     @Override
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException 
     {
-        if(NuevoCombate==true)//Ejecutar Con Cada nuevo combate
+        if(NuevoCombate)//Ejecutar Con Cada nuevo combate
         {
             /*Genera Nuevo Combate*/
             NewCombate= new Combate(VenganzaBelial.Party, VenganzaBelial.MapaActual);//
@@ -182,11 +183,11 @@ public class EstadoCombate extends BasicGameState{
                     //EDIT: Eliminar
                     if(this.flagPruebas==0)
                     {
-                        this.mensajeSistema=NewCombate.Atacar(NewCombate.getOrdenPersonajes().get(NewCombate.getTurno()), VenganzaBelial.kibito);
+                        this.mensajeSistema=NewCombate.Atacar(NewCombate.getOrdenPersonajes().get(NewCombate.getTurno()), VenganzaBelial.mordeim);
                     }
                     else if(this.flagPruebas==1)
                     {
-                        this.mensajeSistema=NewCombate.Atacar(NewCombate.getOrdenPersonajes().get(NewCombate.getTurno()), VenganzaBelial.kibito);
+                        this.mensajeSistema=NewCombate.Atacar(NewCombate.getOrdenPersonajes().get(NewCombate.getTurno()), VenganzaBelial.horacia);
                     }
                     else if(this.flagPruebas==2)
                     {
@@ -390,8 +391,9 @@ public class EstadoCombate extends BasicGameState{
         
     private void Huir()
     {
-        double TasaHuida = Math.random();
-        if(TasaHuida<1)
+        Random rand= new Random();
+        float tasaHuida=rand.nextFloat();
+        if(tasaHuida<1)/*EDIT:0.9*/
         {
             //Objetivo no huye y pierde turno
             this.mensajeSistema="No se ha conseguido huir";
@@ -400,8 +402,7 @@ public class EstadoCombate extends BasicGameState{
         else
         {
             //Objetivo Huye y se finaliza el combate 
-            Estado=FINCOMBATE;
-            
+            Estado=FINCOMBATE;          
         }
     }/*private void Huir()*/
     
@@ -489,19 +490,14 @@ public class EstadoCombate extends BasicGameState{
     private void renderHabilidades()
     {
         Jugador PJ= (Jugador)NewCombate.getOrdenPersonajes().get(NewCombate.getTurno());
-        listaHabilidades[0]=PJ.getHabilidades().get(0).getNombre();
-        listaHabilidades[1]=PJ.getHabilidades().get(1).getNombre();
-        listaHabilidades[2]=PJ.getHabilidades().get(2).getNombre();
-        listaHabilidades[3]=PJ.getHabilidades().get(3).getNombre();
-        listaHabilidades[4]=PJ.getHabilidades().get(4).getNombre();
         for (int i=0;i<NHABILIDADES;i++)
         {
             if(eleccionJugador==i)
             {
-               opcionesJugadorTTF.drawString(10,i*20+400,listaHabilidades[i]);
+               opcionesJugadorTTF.drawString(10,i*20+400,PJ.getHabilidades().get(i).getNombre());
             }
             else{
-                opcionesJugadorTTF.drawString(10, i * 20 + 400, listaHabilidades[i], notChosen);
+                opcionesJugadorTTF.drawString(10, i * 20 + 400, PJ.getHabilidades().get(i).getNombre(), notChosen);
             }
         }
     }/* private void renderHabilidades()*/

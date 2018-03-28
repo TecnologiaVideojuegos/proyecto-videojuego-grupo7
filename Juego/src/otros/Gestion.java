@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import personajes.Jugador;
 
 public class Gestion {
+    
     public ArrayList<Jugador> cargarJugadores() {
         ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
         try {

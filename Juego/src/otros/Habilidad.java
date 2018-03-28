@@ -102,10 +102,11 @@ public class Habilidad {
         return usable;
     }/*usarHabilidad(Jugador usuario, Personaje Objetivo)*/
     
-    public void usarHabilidad(Jugador usuario, ArrayList<Personaje> objetivos)
+    public boolean usarHabilidad(Jugador usuario, ArrayList<Personaje> objetivos)
     {
         this.tipoAOE(usuario, objetivos);
         this.descontarMP(usuario);
+        return true;
     }/*public boolean usarHabilidad(Jugador usuario, ArrayList<Personaje> Objetivos)*/
     
     private void tipoAtaque(Jugador usuario, Personaje objetivo)
@@ -133,7 +134,7 @@ public class Habilidad {
         }
         else
         {
-            Recupera=1;
+           Recupera=1;
            objetivo.setHpActual(objetivo.getHpActual()- 1);
            Recupera=1;
            objetivo.setHpActual(objetivo.getHpActual()- 1);
@@ -162,6 +163,7 @@ public class Habilidad {
     private boolean tipoCura(Personaje objetivo)
     {
         //Curar solo si el objetivo esta vivo
+        boolean condicion=false;
         if(objetivo.estaVivo())
         {
             int PuntosCura= (int)(objetivo.getHp()*0.3f);
@@ -174,26 +176,21 @@ public class Habilidad {
             {
                 objetivo.setHpActual(VidaTrasCura);
             }
-            return true;
+            condicion=true;
         }
-        else
-        {
-            return false;
-        }
+        return condicion;
     }/*public void usarCura(Personaje Objetivo)*/
     
     private boolean tipoResucitar(Personaje objetivo)
     {
-        if(objetivo.estaVivo())
+        boolean condicion=false;
+        if(!objetivo.estaVivo())
         {
             //No se puede resucitar porque el objetivo esta vivo
-            return false;
+            condicion=true;
+            objetivo.setHpActual(1);
         }
-        else
-        {
-          objetivo.setHpActual(1);
-          return true;  
-        }
+        return condicion;
     }/*public boolean tipoResucitar(Jugador Objetivo)*/
     
     private void descontarMP(Jugador usuario)

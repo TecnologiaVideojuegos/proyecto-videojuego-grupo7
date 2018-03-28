@@ -5,6 +5,7 @@ import java.util.ArrayList;
 /*EDIT: Eliminar Import VenganzaBelial*/
 import estados.VenganzaBelial;
 import items.Item;
+import java.util.Random;
 
 public final class Combate {
     //Atributos
@@ -13,8 +14,8 @@ public final class Combate {
     private ArrayList<Personaje> Enemigos;
     private int EnemigosRestantes;
     private int AliadosRestantes;
-    private int Turno=0;
-    private int expCombate=0;
+    private int Turno;
+    private int expCombate;
     /*EDIT: posible conversion de dropItem a ArrayList*/
     private Item dropItem;
     //Constructor
@@ -43,7 +44,8 @@ public final class Combate {
     private void OrdenaTurnos(ArrayList<Personaje> participantes)
     {
         int[] Iniciativas= new int[nParticipantes];
-        float Modificador= 0.5f;
+        Random rand=new Random();
+        float Modificador;
         /*Variables Auxiliares*/
         int auxIndex;
         int auxCount;
@@ -53,6 +55,7 @@ public final class Combate {
         for(auxIndex=0;auxIndex<this.nParticipantes;auxIndex++)
         {
             /*Randomizar Modificador entre 0.5 y 1*/
+            Modificador=(float)(rand.nextFloat()/2+0.5);
             Iniciativas[auxIndex]=(int)(participantes.get(auxIndex).getVelocidad()*Modificador);       
         }/*for(auxIndex=0;auxIndex<nParticipantes;auxIndex++) END*/
         /*Bucle de ordenamiento de personajes en el combate*/
@@ -144,26 +147,12 @@ public final class Combate {
     
     public boolean CombateAcabado()
     {
-        if(AliadosRestantes==0 || EnemigosRestantes==0)
-        {
-            return true;
-        }
-        else
-        {   
-            return false;
-        }
+        return (AliadosRestantes==0 || EnemigosRestantes==0);
     }/*FinCombate()*/
     
     public boolean CombateGanado()
     {
-       if(AliadosRestantes!=0 && EnemigosRestantes ==0)
-       {
-           return true;
-       }
-       else
-       {
-           return false;
-       }
+        return (AliadosRestantes!=0 && EnemigosRestantes ==0);
     }/*public boolean CombateGanado()*/
     
     public boolean GestionaSiguienteTurno()
