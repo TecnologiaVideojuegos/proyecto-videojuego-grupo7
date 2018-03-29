@@ -29,7 +29,7 @@ public class Inventario {
             requisitoCategoria, 1, 0, 0);
         this.pocionMana = new Consumible(0, 20, 5, "PocionMana", "Pocion que sirve para curar tu mana",
             requisitoCategoria, 1, 0, 0);
-        this.pocionMana = new Consumible(50, 0, 2, "PocionResucitar", "Pocion que sirve para resucitar un jugador",
+        this.pocionRes = new Consumible(50, 0, 2, "PocionResucitar", "Pocion que sirve para resucitar un jugador",
             requisitoCategoria, 1, 0, 0);
         items.add(pocionVida);
         items.add(pocionMana);
@@ -76,9 +76,11 @@ public class Inventario {
     public void tirarObjeto(Item i){
         borrarItem(i);
     }
-    public void usarPocionVida(Jugador jug){
+    
+    public boolean usarPocionVida(Jugador jug){
         Consumible pocion = (Consumible) items.get(0);
         int curar;
+        boolean condicion=false;
         if(pocion.getNumero()>0){
             curar = (int)((jug.getHp()*(pocion.getPh()))/100);
             if (jug.getHpActual() + curar > jug.getHp())
@@ -86,13 +88,15 @@ public class Inventario {
             else
                 jug.setHpActual(jug.getHpActual() + curar);
             pocion.setNumero(pocion.getNumero()-1);
+            condicion=true;
         }
-        else
-            System.out.println("No puedes curar porque no teines suficientes pociones de vida");
-    }
-    public void usarPocionMana(Jugador jug){
+        return condicion;//System.out.println("No puedes curar porque no teines suficientes pociones de vida"); 
+    }/*public boolean usarPocionVida(Jugador jug)*/
+    
+    public boolean usarPocionMana(Jugador jug){
         Consumible pocion = (Consumible) items.get(1);
         int curar;
+        boolean condicion=false;
         if(pocion.getNumero()>0){
             curar = (int)((jug.getMp()*(pocion.getPm()))/100);
             if (jug.getMpActual() + curar > jug.getMp())
@@ -100,18 +104,20 @@ public class Inventario {
             else
                 jug.setMpActual(jug.getMpActual() + curar);
             pocion.setNumero(pocion.getNumero()-1);
+            condicion=true;
         }
-        else
-            System.out.println("No puedes curar porque no teines suficientes pociones de mana");
-    }
-    public void usarPocionRes(Jugador jug){
+        return condicion;//System.out.println("No puedes curar porque no teines suficientes pociones de vida"); 
+    }/*public boolean usarPocionMana(Jugador jug)*/
+    
+    public boolean usarPocionRes(Jugador jug){
         Consumible pocion = (Consumible) items.get(2);
+        boolean condicion=false;
         if(pocion.getNumero()>0 && !jug.estaVivo()){
             jug.setHpActual((int)((jug.getHp()*(pocion.getPh()))/100));
             pocion.setNumero(pocion.getNumero()-1);
+            condicion=true;
         }
-        else
-            System.out.println("No puedes resucitar a este personaje");
-    }
+        return condicion;
+    }/*public boolean usarPocionRes(Jugador jug)*/
     
 }

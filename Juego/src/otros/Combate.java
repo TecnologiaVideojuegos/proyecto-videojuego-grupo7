@@ -120,29 +120,33 @@ public final class Combate {
     
     public void GestionaMuertes()
     {
-        int aux=0;
-        for(aux=0;aux<this.nParticipantes;aux++)
+       int aux=0;
+        while(aux<this.nParticipantes)
         {
-            if(this.ordenPersonajes.get(aux).estaVivo()==false)
+            if(!this.ordenPersonajes.get(aux).estaVivo())
             {
-                /*EDIT:COMPROBAR SI ES PJ O ENEMIGO para disminuir el contador de unos u otro*/
-                if(this.ordenPersonajes.get(aux).isPJ())
-                {
+                if(this.ordenPersonajes.get(aux).isPJ()){
                     this.AliadosRestantes--;
                 }
                 else{
                     this.EnemigosRestantes--;
-                    /*Remover de la lista de turnos*/
                     this.Enemigos.remove(this.ordenPersonajes.get(aux));
                 }
                 this.ordenPersonajes.remove(aux);
-                this.nParticipantes=this.ordenPersonajes.size(); 
+                this.nParticipantes=this.ordenPersonajes.size();
             }/*if(!this.ordenPersonajes.get(aux).estaVivo())*/
-        }/*for(aux=0;aux<this.nParticipantes;aux++)*/
+            else{
+                aux++;
+            }/*else*/
+        }/*while(aux<this.nParticipantes)*/
     }/*public void GestionaMuertes()*/
     
-    public void GestionaResurrecion()
-    {        
+    public void GestionaResurrecion(Personaje jugadorResucitado)
+    {  
+        /*EDIT:Bajor pruebas de funcionamiento*/
+        this.AliadosRestantes++;
+        this.ordenPersonajes.add(jugadorResucitado);
+        this.nParticipantes=ordenPersonajes.size();
     }/*public void GestionaResurrecion()*/
     
     public boolean CombateAcabado()
