@@ -36,6 +36,12 @@ public class Personaje implements Serializable{ //Hacer abstracta por metodo com
         this.defensa = defensa;
         this.velocidad = velocidad;
     }
+    public Personaje(int nivel, int hp, int ataque, int defensa){
+        this.nivel = nivel;
+        this.hp = hp;
+        this.ataque = ataque;
+        this.defensa = defensa;
+    }
     public Personaje() {
     }
     //Getter and setter

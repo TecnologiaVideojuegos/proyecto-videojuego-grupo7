@@ -1,10 +1,11 @@
 package otros;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import personajes.Jugador;
 import personajes.Personaje;
 
-public class Habilidad {
+public class Habilidad implements Serializable{
     //Constantes
     public static final int TIPOCURAR = 0;
     public static final int TIPORESUCITAR = 1;
@@ -18,6 +19,8 @@ public class Habilidad {
     private int costeMP; //Aumenta 5 en cada habilidad por nivel
     private String descripcion;
     private int tipoHabilidad;
+    
+    private static final long serialVersionUID = 3L;
     //private boolean cura;
     //private boolean resucita;
     //private boolean AOE;//Ataque en Area( Area Of Effect)
