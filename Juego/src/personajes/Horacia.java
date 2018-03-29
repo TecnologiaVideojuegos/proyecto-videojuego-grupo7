@@ -17,10 +17,19 @@ public final class Horacia extends Jugador{
     {
         this.setNombre("Horacia");
     }
+    public Horacia(Armadura armadura, Inventario inventario) {
+        super(armadura, inventario);
+        inicializarPersonaje();
+        setearHabilidades();
+    }       
     //Metodo que iniciliaza las estadisticas del Personaje Horacia 
     @Override
     public void inicializarPersonaje(){
+        ArrayList<String> requisitos = new ArrayList<>();
+        requisitos.add("Horacia");
+        Arma armaInicio = new Arma(10, 1, "Garrote", "Garrote para aporrear gente", requisitos, 1, 0, 10);
         this.setNombre("Horacia");
+        this.setArma(armaInicio);
         this.setHp(100);
         this.setHpActual(this.getHp());
         this.setMp(30);
@@ -34,6 +43,19 @@ public final class Horacia extends Jugador{
         this.setNivel(1);
         this.setExp(0);
         this.setExpProxNivel(100);
+        this.setPJ(true);
+    }
+    
+    @Override
+    public void setearHabilidades(){
+        Habilidad[] habs = new Habilidad[4];
+        habs[0] = new Habilidad("Embestida", 1, 20, 5, "Embestida potente contra un objetivo", 2);
+        habs[1] = new Habilidad("Apalear", 5, 30, 7, "Apalea a un bjetivo", 2);
+        habs[2] = new Habilidad("Ira salvaje", 10, 5, 5, "Habilidad multiobjetivo", 4);
+        habs[3] = new Habilidad("Torbellino", 5, 15, 7, "Hace un torbellino en torno a todos los objetivos", 4);
+        for (int i = 0; i < habs.length; i++) {
+            this.anadirHabilidad(habs[i]);
+        }
     }
     //Metodo que cambia las estadicticas basicas del Personaje al subir nivel
     @Override

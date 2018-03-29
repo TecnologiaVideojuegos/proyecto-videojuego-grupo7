@@ -13,10 +13,19 @@ public final class Mordeim extends Jugador{
         super(arma, armadura, habilidades, inventario);
         inicializarPersonaje();
     }
+    public Mordeim(Armadura armadura, Inventario inventario) {
+        super(armadura, inventario);
+        inicializarPersonaje();
+        setearHabilidades();
+    }
     //Metodo que iniciliaza las estadisticas del Personaje Horacia 
     @Override
     public void inicializarPersonaje(){
+        ArrayList<String> requisitos = new ArrayList<>();
+        requisitos.add("Mordeim");
+        Arma armaInicio = new Arma(10, 1, "Lapiz", "Podrás pintar a los enemigos", requisitos, 1, 0, 10);
         this.setNombre("Mordeim");
+        this.setArma(armaInicio);
         this.setHp(90);
         this.setHpActual(this.getHp());
         this.setMp(50);
@@ -30,6 +39,21 @@ public final class Mordeim extends Jugador{
         this.setNivel(1);
         this.setExp(0);
         this.setExpProxNivel(100);
+        this.setPJ(true);    
+        this.setArma(armaInicio);
+    }
+    
+    @Override
+    public void setearHabilidades(){
+        Habilidad[] habs = new Habilidad[5];
+        habs[0] = new Habilidad("Puñalada trapera", 1, 20, 3, "Apuñala al objetivo por la espalda", 2);
+        habs[1] = new Habilidad("Saqueo", 5, 30, 7, "Roba al objetivo", 5);
+        habs[2] = new Habilidad("Lo tuyo es mio", 10, 30, 6, "Roba vida al enemigo", 3);
+        habs[3] = new Habilidad("Pirotecnia", 15, 20, 10, "Lanza fuegos artifiales contra los enemigos", 4);
+        habs[4] = new Habilidad("Asesinato", 20, 50, 10, "Quita mucha salud a tu rival", 2);
+        for (int i = 0; i < habs.length; i++) {
+            this.anadirHabilidad(habs[i]);
+        }
     }
     //Metodo que cambia las estadicticas basicas del Personaje al subir nivel
     @Override

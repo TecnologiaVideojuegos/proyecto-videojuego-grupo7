@@ -1,13 +1,15 @@
 package items;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Consumible extends Item{
+public class Consumible extends Item implements Serializable{
     //Atributos
     private int ph;  
     private int pm;
     private int numero;
     private int capacidad;
+    private static final long serialVersionUID = 3L;
 
     //Constructor
     public Consumible(int ph, int pm, int numero, String nombre, String descripcion, ArrayList<String> requisitoCategoria, int requisitoNivel, int precioCompra, int precioVenta) {

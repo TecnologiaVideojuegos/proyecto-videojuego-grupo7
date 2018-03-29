@@ -1,8 +1,9 @@
 package items;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Item {
+public class Item implements Serializable{
     //Atributos
     private String nombre;
     private String descripcion;
@@ -10,7 +11,8 @@ public class Item {
     private int requisitoNivel;
     private int precioCompra;
     private int precioVenta;
-
+    private static final long serialVersionUID = 3L;
+    
     //Constructor
     public Item(String nombre, String descripcion, ArrayList<String> requisitoCategoria, int requisitoNivel, int precioCompra, int precioVenta) {
         this.nombre = nombre;

@@ -1,15 +1,10 @@
 package personajes;
-import enemigos.Enemigo;
 import items.Arma;
 import items.Armadura;
 import java.io.Serializable;
 import otros.Habilidad;
 import otros.Inventario;
 import java.util.ArrayList;
-import static otros.Habilidad.TIPOATACAR;
-import static otros.Habilidad.TIPOCURAR;
-import static otros.Habilidad.TIPODRENARVIDA;
-import static otros.Habilidad.TIPORESUCITAR;
 
 public abstract class Jugador extends Personaje implements Serializable{
     //Atributos
@@ -49,7 +44,13 @@ public abstract class Jugador extends Personaje implements Serializable{
         this.habilidades = habilidades;
         this.inventario = inventario;
     }
-    public Jugador(){        
+    public Jugador(Armadura armadura, Inventario inventario) {
+        this.armadura = armadura;
+        this.inventario = inventario;
+        this.habilidades = new ArrayList<>();
+    }
+    
+    public Jugador(){   
     }
     //Getters and setters
     public int getMpActual() {
@@ -187,6 +188,7 @@ public abstract class Jugador extends Personaje implements Serializable{
     //Metodo abstracto
     public abstract void inicializarPersonaje();
     public abstract void subirNivelEstadisticas();
+    public abstract void setearHabilidades();
     //toString
     @Override
     public String toString() {

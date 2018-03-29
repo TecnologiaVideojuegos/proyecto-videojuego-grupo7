@@ -12,6 +12,10 @@ public class Archienemigo extends Jugador{
         super(arma, armadura, habilidades, inventario);
         inicializarPersonaje();
     }
+    public Archienemigo(Armadura armadura, Inventario inventario) {
+        super(armadura, inventario);
+        inicializarPersonaje();
+    }
     //Metodo que iniciliaza las estadisticas del Personaje Archienemigo 
     @Override
     public void inicializarPersonaje(){
@@ -29,6 +33,10 @@ public class Archienemigo extends Jugador{
         this.setExp(0);
         this.setExpProxNivel(100);
     }
+    @Override
+    public void setearHabilidades() {
+    }
+
     //Metodo que cambia las estadicticas basicas del Personaje al subir nivel
     @Override
     public void subirNivelEstadisticas(){
@@ -49,4 +57,4 @@ public class Archienemigo extends Jugador{
                 this.getArma() + ", armadura=" + this.getArmadura() + ", habilidades=" + this.getHabilidades() +
                 ", exp=" + this.getExp() + ", expProxNivel=" + this.getExpProxNivel() + ", inventario=" + this.getInventario() +'}';
     }
-}
+}  

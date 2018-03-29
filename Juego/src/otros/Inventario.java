@@ -2,10 +2,11 @@ package otros;
 
 import items.Consumible;
 import items.Item;
+import java.io.Serializable;
 import personajes.Jugador;
 import java.util.ArrayList;
 
-public class Inventario {
+public class Inventario implements Serializable {
     //Atributos
     private ArrayList<Item> items;
     private int dinero;
@@ -14,6 +15,7 @@ public class Inventario {
     private Consumible pocionMana;
     private Consumible pocionRes;
     private ArrayList<String> requisitoCategoria;
+    private static final long serialVersionUID = 3L;
     //Meter consumibles iniciales
 
     //Constructor

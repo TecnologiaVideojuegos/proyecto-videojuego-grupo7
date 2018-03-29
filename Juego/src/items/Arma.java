@@ -1,11 +1,13 @@
 package items;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Arma extends Item{
+public class Arma extends Item implements Serializable{
     //Atributos
     private int danyo;
     private int critico;
+    private static final long serialVersionUID = 3L;
 
     //Constructor
     public Arma(int danyo, int critico, String nombre, String descripcion, ArrayList<String> requisitoCategoria, int requisitoNivel, int precioCompra, int precioVenta) {
