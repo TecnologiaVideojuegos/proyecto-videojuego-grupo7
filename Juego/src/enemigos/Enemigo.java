@@ -1,15 +1,19 @@
 package enemigos;
 
 import items.Item;
+import java.io.Serializable;
 import otros.Habilidad;
 import personajes.Personaje;
 import java.util.ArrayList;
+import org.newdawn.slick.SlickException;
+import personajes.Jugador;
 
-public class Enemigo extends Personaje{
+public abstract class Enemigo extends Personaje implements Serializable{
     //Atributos
     private int expAportada;
     private int oro;
     private ArrayList<Habilidad> habilidad;
+    private static final long serialVersionUID = 3L;
     
     //Constructor
     public Enemigo(int expAportada, int oro, Item drop, ArrayList<Habilidad> habilidad, String nombre, int nivel, int hp, int hpActual, int ataque, int defensa, int velocidad) {
@@ -18,6 +22,12 @@ public class Enemigo extends Personaje{
         this.oro = oro;
         this.habilidad = habilidad;
     }    
+    public Enemigo(int nivel, int hp, int ataque, int defensa){
+        super(nivel, hp, ataque, defensa);
+    }
+    
+    public Enemigo(){
+    }
     //Getters and Setters
     public int getExpAportada() {
         return expAportada;
@@ -38,4 +48,7 @@ public class Enemigo extends Personaje{
         this.habilidad = habilidad;
     }
     
+    
+    public abstract void estrategiaAtacar(ArrayList<Jugador> jugadores);
+    public abstract void inicializarEnemigo() throws SlickException;
 }
