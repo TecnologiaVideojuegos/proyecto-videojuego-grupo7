@@ -64,9 +64,9 @@ public class EstadoCombate extends BasicGameState{
     private Combate NewCombate;
     /*Avatar Image Control*/
     private Image fondo;
-    private Image Avatar1, Avatar2, Avatar3;
+    private Image contenedor,hp, mp,avatarVivo, avatarMuerto,avatarSeleccionado,marco,marcoL, Avatar1, Avatar2, Avatar3;
     private TrueTypeFont mensajePantalla;
-    private Font TipoLetra  =new Font("Verdana", Font.PLAIN, 20);    
+    private Font TipoLetra  =new Font("Verdana", Font.PLAIN, 12);    
     private Color rojo = new Color (256,0,0);
     private Color verde = new Color (0,256,0);
     private Color azul = new Color (0,0,256);    
@@ -97,12 +97,22 @@ public class EstadoCombate extends BasicGameState{
         /*Input*/
         this.input = gc.getInput();
         /**/
+        mensajePantalla = new TrueTypeFont(TipoLetra, true);
         letraMenu = new Font("Verdana", Font.ROMAN_BASELINE, 25);
         opcionesJugadorTTF = new TrueTypeFont(letraMenu, true);
         opciones[0] = "Atacar";
         opciones[1] = "Habilidad";
         opciones[2] = "Consumible";
         opciones[3]= "Huir";
+        /**/
+        marco= new Image("Imagenes/Avatar/marco.png");
+        marcoL=new Image("Imagenes/Avatar/marcoD.png");
+        contenedor=new Image("Imagenes/Avatar/Contenedor.png");
+        hp=new Image("Imagenes/Avatar/Hp.png");
+        mp=new Image("Imagenes/Avatar/Mp.png");
+        avatarVivo=new Image("Imagenes/Avatar/fondoVivo.png");
+        avatarMuerto=new Image("Imagenes/Avatar/fondoMuerto.png");
+        avatarSeleccionado=new Image("Imagenes/Avatar/fondoSeleccion.png");
         /*EDIT:Test*/
         //this.sprite= new SpriteSheet("Imagenes/Animaciones/ataque.png",200,200);
         //this.animacion= new Animation(sprite, 200);
@@ -111,7 +121,7 @@ public class EstadoCombate extends BasicGameState{
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException 
     {
-        renderAvatars(g);
+        renderAvatars();
         renderEnemigos();
         /*Switch Case para visualizar opciones en funcion del estado*/
         switch (Estado)
@@ -151,6 +161,13 @@ public class EstadoCombate extends BasicGameState{
         {
             /*Genera Nuevo Combate*/
             NewCombate= new Combate(VenganzaBelial.Party, VenganzaBelial.MapaActual);//
+            if(NewCombate.GestionaPrimerTurno())
+            {
+                Estado=OPCIONESBASE;
+            }
+            else{
+                Estado=TURNOENEMIGO;
+            }
             /*EDIT: Mirar donde añadir imagenes al los enemigos*/
             VenganzaBelial.hori.setImagen("Imagenes/Monstruos/Test1.png");
             VenganzaBelial.mordi.setImagen("Imagenes/Monstruos/Test2.png");
@@ -564,15 +581,15 @@ public class EstadoCombate extends BasicGameState{
     
     private void renderObjetos()
     {
-        Jugador PJ= (Jugador)NewCombate.getOrdenPersonajes().get(NewCombate.getTurno());
         for (int i=0;i<NCONSUMIBLES;i++)
         {
+            Consumible consumible=(Consumible)VenganzaBelial.inventario.getItems().get(i);
             if(eleccionJugador==i)
             {
-               opcionesJugadorTTF.drawString(10,i*20+400,PJ.getInventario().getItems().get(i).getNombre());
+               opcionesJugadorTTF.drawString(10,i*20+400,consumible.getNombre()+" "+consumible.getNumero()+"/10");
             }
             else{
-                opcionesJugadorTTF.drawString(10, i * 20 + 400, PJ.getInventario().getItems().get(i).getNombre(), notChosen);
+                opcionesJugadorTTF.drawString(10, i * 20 + 400, consumible.getNombre()+" "+consumible.getNumero()+"/10", notChosen);
             }
         }
     }
@@ -605,75 +622,121 @@ public class EstadoCombate extends BasicGameState{
         mensajePantalla.drawString(1000, 150, "HP D. Kibito "+VenganzaBelial.kibi.getHpActual()+ "/"+VenganzaBelial.kibi.getHp()); 
     }/*private void renderEnemigos() throws SlickException*/
     
-    private void renderAvatars(Graphics g) throws SlickException
+    private void renderAvatars() throws SlickException
     {
          /*Update Grafico*/
+        float porcentajeBarra=1;//Auxuliar de calculo
         /*Imagenes del fondo*/
             fondo = new Image("Imagenes/BackBattle/Bosque.jpg");
+            
             /*EDIT:Imagenes de los personajes*/
-            Avatar1 =  new Image("Imagenes/Personajes/Horacia.jpg");
-            Avatar2 =  new Image("Imagenes/Personajes/Mordeim.jpg");
-            Avatar3 =  new Image("Imagenes/Personajes/Kibito.jpg");
+            Avatar1 =  new Image("Imagenes/Personajes/Horacia.png");
+            Avatar2 =  new Image("Imagenes/Personajes/Mordeim.png");
+            Avatar3 =  new Image("Imagenes/Personajes/Kibito.png");
             fondo.draw(0, 0, 1366, 768);
-            Rectangle rect1 = new Rectangle(0,0, 230,100);
-            Rectangle rect2 = new Rectangle(0,100, 230, 100);
-            Rectangle rect3 = new Rectangle(0,200, 230, 100);
-            g.draw(rect1);
-            g.draw(rect2);
-            g.draw(rect3);
-            g.fill(rect1);
-            g.fill(rect2);
-            g.fill(rect3);
-            Avatar1.draw(0, 0, 100, 100);
-            Avatar2.draw(0, 100, 100, 100);
-            Avatar3.draw(0, 200, 100, 100);
             /*EDIT END*/
             /*Horacia status update*/
-            mensajePantalla = new TrueTypeFont(TipoLetra, true);
             if(VenganzaBelial.horacia.estaVivo()){
-                mensajePantalla.drawString(110, 20, "HP"+VenganzaBelial.horacia.getHpActual()+ "/"+VenganzaBelial.horacia.getHp(),rojo);
+                if(NewCombate.getOrdenPersonajes().get(NewCombate.getTurno())==VenganzaBelial.horacia)
+                {
+                   this.avatarSeleccionado.draw(0, 618, 300, 150);
+                }
+                else{
+                    this.avatarVivo.draw(0, 618, 300, 150);
+                }                
+                mensajePantalla.drawString(110, 658, "HP"+VenganzaBelial.horacia.getHpActual()+ "/"+VenganzaBelial.horacia.getHp(),rojo);
             }
             else{
-                mensajePantalla.drawString(110, 20, "HP"+0+ "/"+VenganzaBelial.horacia.getHp(),rojo);
+                this.avatarMuerto.draw(0, 618, 300, 150);
+                mensajePantalla.drawString(110, 658, "HP"+0+ "/"+VenganzaBelial.horacia.getHp(),rojo);
             }
-            mensajePantalla.drawString(110, 50, "MP "+VenganzaBelial.horacia.getMpActual()+ "/"+VenganzaBelial.horacia.getMp(),azul);
-            /*Mordeim Status Update*/
+            this.contenedor.draw(110, 638, 100, 20);
+            porcentajeBarra=(float)VenganzaBelial.horacia.getHpActual()/(float)VenganzaBelial.horacia.getHp();
+            porcentajeBarra=compruebaPorcentajeBarra(porcentajeBarra);
+            this.hp.draw(111, 643, 97*porcentajeBarra, 10);
+            this.contenedor.draw(110, 688, 100, 20);
+            porcentajeBarra=(float)VenganzaBelial.horacia.getMpActual()/(float)VenganzaBelial.horacia.getMp();
+            porcentajeBarra=compruebaPorcentajeBarra(porcentajeBarra);
+            this.mp.draw(111, 693, 97*porcentajeBarra, 10);
+            mensajePantalla.drawString(110, 708, "MP "+VenganzaBelial.horacia.getMpActual()+ "/"+VenganzaBelial.horacia.getMp(),azul);
+            Avatar1.draw(0, 618, 100, 150);        
+            /*MORDEIM STATUS UPDATE*/
             if(VenganzaBelial.mordeim.estaVivo()){
-               mensajePantalla.drawString(110, 120, "HP "+VenganzaBelial.mordeim.getHpActual()+ "/"+VenganzaBelial.mordeim.getHp(),rojo); 
+                if(NewCombate.getOrdenPersonajes().get(NewCombate.getTurno())==VenganzaBelial.mordeim)
+                {
+                   this.avatarSeleccionado.draw(300, 618, 300, 150);
+                }
+                else{
+                    this.avatarVivo.draw(300, 618, 300, 150);
+                }                
+                mensajePantalla.drawString(410, 658, "HP"+VenganzaBelial.mordeim.getHpActual()+ "/"+VenganzaBelial.mordeim.getHp(),rojo);
             }
             else{
-               mensajePantalla.drawString(110, 120, "HP "+0+ "/"+VenganzaBelial.mordeim.getHp(),rojo); 
+                this.avatarMuerto.draw(300, 618, 300, 150);
+                mensajePantalla.drawString(410, 658, "HP"+0+ "/"+VenganzaBelial.mordeim.getHp(),rojo);
             }
-            mensajePantalla.drawString(110, 150, "MP "+VenganzaBelial.mordeim.getMpActual()+ "/"+VenganzaBelial.mordeim.getMp(),azul);
+            this.contenedor.draw(410, 638, 100, 20);
+            porcentajeBarra=(float)VenganzaBelial.mordeim.getHpActual()/(float)VenganzaBelial.mordeim.getHp();
+            porcentajeBarra=compruebaPorcentajeBarra(porcentajeBarra);
+            this.hp.draw(411, 643, 97*porcentajeBarra, 10);
+            this.contenedor.draw(410, 688, 100, 20);
+            porcentajeBarra=(float)VenganzaBelial.mordeim.getMpActual()/(float)VenganzaBelial.mordeim.getMp();
+            porcentajeBarra=compruebaPorcentajeBarra(porcentajeBarra);
+            this.mp.draw(411, 693, 97*porcentajeBarra, 10);
+            mensajePantalla.drawString(410, 708, "MP "+VenganzaBelial.mordeim.getMpActual()+ "/"+VenganzaBelial.mordeim.getMp(),azul);
+            Avatar2.draw(300, 618, 100, 150);
             /*Kibito Status update*/
             if(VenganzaBelial.kibito.estaVivo()){
-                mensajePantalla.drawString(110, 220, "HP "+VenganzaBelial.kibito.getHpActual()+ "/"+VenganzaBelial.kibito.getHp(),rojo);
+                if(NewCombate.getOrdenPersonajes().get(NewCombate.getTurno())==VenganzaBelial.kibito)
+                {
+                   this.avatarSeleccionado.draw(600, 618, 300, 150);
+                }
+                else{
+                    this.avatarVivo.draw(600, 618, 300, 150);
+                }                
+                mensajePantalla.drawString(710, 658, "HP"+VenganzaBelial.kibito.getHpActual()+ "/"+VenganzaBelial.kibito.getHp(),rojo);
             }
             else{
-                mensajePantalla.drawString(110, 220, "HP "+0+ "/"+VenganzaBelial.kibito.getHp(),rojo);
+                this.avatarMuerto.draw(600, 618, 300, 150);
+                mensajePantalla.drawString(710, 658, "HP"+0+ "/"+VenganzaBelial.kibito.getHp(),rojo);
             }
-            mensajePantalla.drawString(110, 250, "MP "+VenganzaBelial.kibito.getMpActual()+ "/"+VenganzaBelial.kibito.getMp(),azul);
-                        
+            this.contenedor.draw(710, 638, 100, 20);
+            porcentajeBarra=(float)VenganzaBelial.kibito.getHpActual()/(float)VenganzaBelial.kibito.getHp();
+            porcentajeBarra=compruebaPorcentajeBarra(porcentajeBarra);
+            this.hp.draw(711, 643, 97*porcentajeBarra, 10);
+            this.contenedor.draw(710, 688, 100, 20);
+            porcentajeBarra=(float)VenganzaBelial.kibito.getMpActual()/(float)VenganzaBelial.kibito.getMp();
+            porcentajeBarra=compruebaPorcentajeBarra(porcentajeBarra);
+            this.mp.draw(711, 693, 97*porcentajeBarra, 10);
+            mensajePantalla.drawString(710, 708, "MP "+VenganzaBelial.kibito.getMpActual()+ "/"+VenganzaBelial.kibito.getMp(),azul);        
+            Avatar3.draw(600, 618, 100, 150);
+            marco.draw(0,605,920,15);
+            marcoL.draw(900, 613, 20, 160);
             /*EDIT:Debug prints*/
-            mensajePantalla.drawString(1100, 400, "Estado: "+Estado);
-            mensajePantalla.drawString(1100, 350, "EleccionJugador: "+eleccionJugador);
-            mensajePantalla.drawString(1100, 300, "Nparticipantes"+ NewCombate.getOrdenPersonajes().size());
-            mensajePantalla.drawString(1100, 250, "Party"+ NewCombate.getAliadosRestantes());   
-            mensajePantalla.drawString(1100, 200, "Enemigos"+ NewCombate.getEnemigosRestantes());   
-            mensajePantalla.drawString(1100, 450, "Turno: " + NewCombate.getTurno());
-            mensajePantalla.drawString(1100, 500, "Party"+ VenganzaBelial.Party.size());
-            Consumible consumible=(Consumible)VenganzaBelial.inventario.getItems().get(0);
-            mensajePantalla.drawString(1100, 550, "PotisVida"+consumible.getNumero());
-            consumible=(Consumible)VenganzaBelial.inventario.getItems().get(1);
-            mensajePantalla.drawString(1100, 600, "PotisMana"+consumible.getNumero());
-            consumible=(Consumible)VenganzaBelial.inventario.getItems().get(2);
-            mensajePantalla.drawString(1100, 650, "PotisRes"+consumible.getNumero());
+//            mensajePantalla.drawString(1100, 400, "Estado: "+Estado);
+//            mensajePantalla.drawString(1100, 350, "EleccionJugador: "+eleccionJugador);
+//            mensajePantalla.drawString(1100, 300, "Nparticipantes"+ NewCombate.getOrdenPersonajes().size());
+//            mensajePantalla.drawString(1100, 250, "Party"+ NewCombate.getAliadosRestantes());   
+//            mensajePantalla.drawString(1100, 200, "Enemigos"+ NewCombate.getEnemigosRestantes());   
+//            mensajePantalla.drawString(1100, 450, "Turno: " + NewCombate.getTurno());
+//            mensajePantalla.drawString(1100, 500, "Party"+ VenganzaBelial.Party.size());
+//            Consumible consumible=(Consumible)VenganzaBelial.inventario.getItems().get(0);
+//            mensajePantalla.drawString(1100, 550, "PotisVida"+consumible.getNumero());
+//            consumible=(Consumible)VenganzaBelial.inventario.getItems().get(1);
+//            mensajePantalla.drawString(1100, 600, "PotisMana"+consumible.getNumero());
+//            consumible=(Consumible)VenganzaBelial.inventario.getItems().get(2);
+//            mensajePantalla.drawString(1100, 650, "PotisRes"+consumible.getNumero());
             /**/
-            mensajePantalla.drawString(500, 20, "Turno de:" + NewCombate.getOrdenPersonajes().get(NewCombate.getTurno()).getNombre());
+            mensajePantalla.drawString(10, 560, "Turno de:" + NewCombate.getOrdenPersonajes().get(NewCombate.getTurno()).getNombre());
     }/*private void renderAvatars(Graphics g)*/  
-    
+    private float compruebaPorcentajeBarra(float porcentajeBarra)
+    {
+        if(porcentajeBarra<0)
+            porcentajeBarra=0;
+        return porcentajeBarra;
+    }
     private void renderMensajeSistema()
     {
-        opcionesJugadorTTF.drawString(10,600, this.mensajeSistema);
+        opcionesJugadorTTF.drawString(10,20, this.mensajeSistema);
     }
 }

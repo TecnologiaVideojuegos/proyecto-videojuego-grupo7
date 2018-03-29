@@ -178,6 +178,11 @@ public final class Combate {
      //  return true;
     }/*public boolean GestionaSiguienteTurno()*/
     
+    public boolean GestionaPrimerTurno()
+    {
+        return this.ordenPersonajes.get(0).isPJ();
+    }
+    
     public void expCombate()
     {
         

@@ -21,7 +21,7 @@ public class VenganzaBelial extends StateBasedGame {
     public static final int ESTADOESCENAPROTOTIPO = 3;//EDIT
     public static final int WIDTH = 1366;
     public static final int HEIGHT = 768;
-    public static final boolean FULLSCREEN = false;
+    public static final boolean FULLSCREEN = true;
     /*Atributos de pruebas*/
     public static ArrayList<String> St = new ArrayList<String>();
     public static Arma arma = new Arma(5, 0, "Arma1","Descripcion" , St, 1, 1, 1);
