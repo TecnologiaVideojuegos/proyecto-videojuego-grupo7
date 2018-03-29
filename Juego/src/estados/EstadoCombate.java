@@ -4,6 +4,7 @@ import static estados.VenganzaBelial.ESTADOMENUINICIO;
 import static estados.VenganzaBelial.hori;
 import static estados.VenganzaBelial.kibi;
 import static estados.VenganzaBelial.mordi;
+import items.Consumible;
 import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Random;
@@ -128,6 +129,9 @@ public class EstadoCombate extends BasicGameState{
                 renderSelObjetivo();
                 //this.animacion.draw(750, 200, 200, 200);
                 break;
+            case SELCONSUMIBLE:
+                renderObjetos();
+                break;
             case SELALIADO:
                 renderSelAliados();
                 break;
@@ -176,6 +180,7 @@ public class EstadoCombate extends BasicGameState{
                 case  SELCONSUMIBLE://Seleccion Consumible a utilizar
                     OpcionControl(NCONSUMIBLES);
                     //Opcion Seleccion de Consumible
+                    selConsumible();
                     break;
                 case  HUYENDO://Opciones base del pj
                     Huir();
@@ -344,7 +349,7 @@ public class EstadoCombate extends BasicGameState{
                     case Habilidad.TIPOAOE:
                         //Ejecuta Habilidad contra todos los enemigos y pasa al siguiente turno
                         pj.usarHabilidad(habilidadSeleccionada, NewCombate.getEnemigos());
-                        //pj.getHabilidades().get(habilidadSeleccionada).usarHabilidad(pj, NewCombate.getEnemigos());
+                        this.mensajeSistema=(pj.getNombre()+" ha usado "+pj.getHabilidades().get(habilidadSeleccionada).getNombre());
                         Estado=FINTURNO;
                         break;
                 }
@@ -368,11 +373,11 @@ public class EstadoCombate extends BasicGameState{
     private void selObjetivo()
     {
         if(input.isKeyPressed(Input.KEY_ENTER))
-        { 
-            /*EDIT: Cambiar Mensaje Sistema*/
-            this.mensajeSistema="Se ha usado una habilidad";
+        {  
             int IndiceTurno=NewCombate.getTurno();
             Jugador pj= (Jugador)NewCombate.getOrdenPersonajes().get(IndiceTurno);
+            /*EDIT: Cambiar Mensaje Sistema*/
+            this.mensajeSistema=(pj.getNombre()+" ha utilizado "+pj.getHabilidades().get(habilidadSeleccionada).getNombre());
             //Ejecutar habilidad con el pj correcpondiente sobre el Objetivo designado
             pj.usarHabilidad(this.habilidadSeleccionada, NewCombate.getEnemigos().get(eleccionJugador));
             //pj.getHabilidades().get(this.habilidadSeleccionada).usarHabilidad(pj, NewCombate.getEnemigos().get(eleccionJugador));
@@ -391,13 +396,13 @@ public class EstadoCombate extends BasicGameState{
             switch (estadoAnterior)
             {
                 case SELHABILIDAD:
-                    /*EDIT: Cambiar Mensaje Sistema*/
-                    this.mensajeSistema="Se ha usado una habilidad";
+                    
                     //Ejecutar habilidad con el pj correcpondiente sobre el Aliado designado y comprobar que se puede
                     //Si se puede se ejecutará y devolvera true
-                    //if(pj.getHabilidades().get(this.habilidadSeleccionada).usarHabilidad(pj, VenganzaBelial.Party.get(eleccionJugador)))
                     if(pj.usarHabilidad(this.habilidadSeleccionada, VenganzaBelial.Party.get(eleccionJugador)))
                     {
+                        /*EDIT: Cambiar Mensaje Sistema*/
+                        this.mensajeSistema=(pj.getNombre()+" ha utilizado "+pj.getHabilidades().get(habilidadSeleccionada).getNombre()+" sobre "+VenganzaBelial.Party.get(eleccionJugador).getNombre());
                         if(pj.getHabilidades().get(habilidadSeleccionada).getTipoHabilidad()==Habilidad.TIPORESUCITAR){
                             NewCombate.GestionaResurrecion(VenganzaBelial.Party.get(eleccionJugador));
                         }
@@ -407,25 +412,30 @@ public class EstadoCombate extends BasicGameState{
                     }
                     else{
                         //EDIT:Posible mensaje de sistema informando de que no se puede usar la habilidad
+                        this.mensajeSistema="Imposible utilizar esta habilidad en esta situación";
                     }
                     break;
                 case SELCONSUMIBLE:
+                    this.mensajeSistema=("Imposible utilizar objeto en esta situación");
                     switch (consumibleSeleccionado)
                     {
                         case 0:
                             if(pj.getInventario().usarPocionVida((Jugador)VenganzaBelial.Party.get(eleccionJugador))){
+                                this.mensajeSistema=("Utilizada "+pj.getInventario().getItems().get(consumibleSeleccionado).getNombre());
                                 estadoAnterior=SELALIADO;//EDIT:Buscar forma optima de cambiar de estado
                                 Estado=FINTURNO;
                             }
                             break;
                         case 1:
                             if(pj.getInventario().usarPocionMana((Jugador)VenganzaBelial.Party.get(eleccionJugador))){
+                                this.mensajeSistema=("Utilizada "+pj.getInventario().getItems().get(consumibleSeleccionado).getNombre());
                                 estadoAnterior=SELALIADO;//EDIT:Buscar forma optima de cambiar de estado
                                 Estado=FINTURNO;
                             }
                             break;
                         case 2:
                             if(pj.getInventario().usarPocionRes((Jugador)VenganzaBelial.Party.get(eleccionJugador))){
+                                this.mensajeSistema=("Utilizada "+pj.getInventario().getItems().get(consumibleSeleccionado).getNombre());
                                 NewCombate.GestionaResurrecion(VenganzaBelial.Party.get(eleccionJugador));
                                 estadoAnterior=SELALIADO;//EDIT:Buscar forma optima de cambiar de estado
                                 Estado=FINTURNO;
@@ -552,6 +562,21 @@ public class EstadoCombate extends BasicGameState{
         }
     }/* private void renderHabilidades()*/
     
+    private void renderObjetos()
+    {
+        Jugador PJ= (Jugador)NewCombate.getOrdenPersonajes().get(NewCombate.getTurno());
+        for (int i=0;i<NCONSUMIBLES;i++)
+        {
+            if(eleccionJugador==i)
+            {
+               opcionesJugadorTTF.drawString(10,i*20+400,PJ.getInventario().getItems().get(i).getNombre());
+            }
+            else{
+                opcionesJugadorTTF.drawString(10, i * 20 + 400, PJ.getInventario().getItems().get(i).getNombre(), notChosen);
+            }
+        }
+    }
+    
     private void renderSelAliados()
     {
         opcionesJugadorTTF.drawString(10,20+400, VenganzaBelial.Party.get(this.eleccionJugador).getNombre());
@@ -585,7 +610,7 @@ public class EstadoCombate extends BasicGameState{
          /*Update Grafico*/
         /*Imagenes del fondo*/
             fondo = new Image("Imagenes/BackBattle/Bosque.jpg");
-            /*Imagenes de los personajes*/
+            /*EDIT:Imagenes de los personajes*/
             Avatar1 =  new Image("Imagenes/Personajes/Horacia.jpg");
             Avatar2 =  new Image("Imagenes/Personajes/Mordeim.jpg");
             Avatar3 =  new Image("Imagenes/Personajes/Kibito.jpg");
@@ -602,16 +627,31 @@ public class EstadoCombate extends BasicGameState{
             Avatar1.draw(0, 0, 100, 100);
             Avatar2.draw(0, 100, 100, 100);
             Avatar3.draw(0, 200, 100, 100);
+            /*EDIT END*/
             /*Horacia status update*/
             mensajePantalla = new TrueTypeFont(TipoLetra, true);
-            mensajePantalla.drawString(110, 20, "HP"+VenganzaBelial.horacia.getHpActual()+ "/"+VenganzaBelial.horacia.getHp(),rojo);
-            mensajePantalla = new TrueTypeFont(TipoLetra, true);
+            if(VenganzaBelial.horacia.estaVivo()){
+                mensajePantalla.drawString(110, 20, "HP"+VenganzaBelial.horacia.getHpActual()+ "/"+VenganzaBelial.horacia.getHp(),rojo);
+            }
+            else{
+                mensajePantalla.drawString(110, 20, "HP"+0+ "/"+VenganzaBelial.horacia.getHp(),rojo);
+            }
             mensajePantalla.drawString(110, 50, "MP "+VenganzaBelial.horacia.getMpActual()+ "/"+VenganzaBelial.horacia.getMp(),azul);
             /*Mordeim Status Update*/
-            mensajePantalla.drawString(110, 120, "HP "+VenganzaBelial.mordeim.getHpActual()+ "/"+VenganzaBelial.mordeim.getHp(),rojo);
+            if(VenganzaBelial.mordeim.estaVivo()){
+               mensajePantalla.drawString(110, 120, "HP "+VenganzaBelial.mordeim.getHpActual()+ "/"+VenganzaBelial.mordeim.getHp(),rojo); 
+            }
+            else{
+               mensajePantalla.drawString(110, 120, "HP "+0+ "/"+VenganzaBelial.mordeim.getHp(),rojo); 
+            }
             mensajePantalla.drawString(110, 150, "MP "+VenganzaBelial.mordeim.getMpActual()+ "/"+VenganzaBelial.mordeim.getMp(),azul);
             /*Kibito Status update*/
-            mensajePantalla.drawString(110, 220, "HP "+VenganzaBelial.kibito.getHpActual()+ "/"+VenganzaBelial.kibito.getHp(),rojo);
+            if(VenganzaBelial.kibito.estaVivo()){
+                mensajePantalla.drawString(110, 220, "HP "+VenganzaBelial.kibito.getHpActual()+ "/"+VenganzaBelial.kibito.getHp(),rojo);
+            }
+            else{
+                mensajePantalla.drawString(110, 220, "HP "+0+ "/"+VenganzaBelial.kibito.getHp(),rojo);
+            }
             mensajePantalla.drawString(110, 250, "MP "+VenganzaBelial.kibito.getMpActual()+ "/"+VenganzaBelial.kibito.getMp(),azul);
                         
             /*EDIT:Debug prints*/
@@ -622,6 +662,12 @@ public class EstadoCombate extends BasicGameState{
             mensajePantalla.drawString(1100, 200, "Enemigos"+ NewCombate.getEnemigosRestantes());   
             mensajePantalla.drawString(1100, 450, "Turno: " + NewCombate.getTurno());
             mensajePantalla.drawString(1100, 500, "Party"+ VenganzaBelial.Party.size());
+            Consumible consumible=(Consumible)VenganzaBelial.inventario.getItems().get(0);
+            mensajePantalla.drawString(1100, 550, "PotisVida"+consumible.getNumero());
+            consumible=(Consumible)VenganzaBelial.inventario.getItems().get(1);
+            mensajePantalla.drawString(1100, 600, "PotisMana"+consumible.getNumero());
+            consumible=(Consumible)VenganzaBelial.inventario.getItems().get(2);
+            mensajePantalla.drawString(1100, 650, "PotisRes"+consumible.getNumero());
             /**/
             mensajePantalla.drawString(500, 20, "Turno de:" + NewCombate.getOrdenPersonajes().get(NewCombate.getTurno()).getNombre());
     }/*private void renderAvatars(Graphics g)*/  

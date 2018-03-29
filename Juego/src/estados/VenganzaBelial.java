@@ -17,8 +17,8 @@ import personajes.*;
 public class VenganzaBelial extends StateBasedGame {
     public static final int ESTADOMENUINICIO = 0;
     public static final int ESTADOCOMBATE = 1;
-    public static final int MENUSTATE = 2;
     public static final int ESTADOMENU = 2;
+    public static final int ESTADOESCENAPROTOTIPO = 3;//EDIT
     public static final int WIDTH = 1366;
     public static final int HEIGHT = 768;
     public static final boolean FULLSCREEN = false;
@@ -47,6 +47,8 @@ public class VenganzaBelial extends StateBasedGame {
         addState(new EstadoMenuInicio(ESTADOMENUINICIO));
         addState(new EstadoCombate(ESTADOCOMBATE));
         addState(new EstadoMenu(ESTADOMENU));
+        //EDIT
+        addState(new EscenaPrototipo(ESTADOESCENAPROTOTIPO));
         this.enterState(ESTADOMENUINICIO);
     }
 
@@ -55,6 +57,7 @@ public class VenganzaBelial extends StateBasedGame {
         getState(ESTADOMENUINICIO).init(gc, this);
         getState(ESTADOCOMBATE).init(gc, this);
         getState(ESTADOMENU).init(gc, this);
+        getState(ESTADOESCENAPROTOTIPO).init(gc, this);
     }
 
     public static void main(String[] args) throws SlickException {
@@ -78,11 +81,35 @@ public class VenganzaBelial extends StateBasedGame {
         kibi.setPJ(false);
         kibi.setNombre("Kibito(Dark)");
         //Combate com = new Combate(VenganzaBelial.Party, VenganzaBelial.MapaActual);
-        //com.finalize();
-        //com.Atacar(VenganzaBelial.horaciaenemiga, com.getEnemigos().get(0));
         /*ATRIBUTOS DE PRUEBA FIN*/
         AppGameContainer app = new AppGameContainer(new VenganzaBelial());
         app.setDisplayMode(WIDTH, HEIGHT, FULLSCREEN);
         app.start();
     }
 }
+
+/*EDIT: Mensaje para Alberto: Habilidades y Armas a implmentar:
+Horacia:
+    Habilidades:
+        -Embestida(Uniobjetivo)
+        -Apalea(Uniobjetivo)
+        -Ira salvaje(Multiobjetivo Random.> De 2-4 ataques random hacia los enemigos)
+        -Torbellino(Multiobjetivo a todos)
+    Armas en orden de nivel: Garrote/Espada de bronce/Maza de Hierro/Hacha de Luz/ Espada de diamante/Espadón Matademonios
+Kibito:
+    Habilidades:
+        -Bola de fuego(Multiobjetivo)
+        -"Milagro sanitario" (Cura uniobjetivo)
+        -Lanza de rayos(Uniobjetivo)
+        -"Levantate gandul"(Resurrección uniobjetivo)
+        -O. Arcano (Uniobjetivo)
+    Armas:Palo/Vara de olivo/Bastón del Abuelo1/Bastón del Arcangel/"Sin definir"/Bastón del mago herrante
+Mordiem:
+    Habilidades:
+        -Puñalada trapera(Uniobjetivo)
+        -Saqueo(Aumenta el drop rate O consigue un item al azar,la que mas te guste)
+        -"Lo tuyo es mio"(Robavida uniobjetivo)
+        -Pirotecnia(Multiobjetivo)
+        -Asesinato
+    Armas:Lapiz,Navaja,Cuchillo jamonero, Puñal metalSlime, "Dardo", "Sin definir"
+    */
