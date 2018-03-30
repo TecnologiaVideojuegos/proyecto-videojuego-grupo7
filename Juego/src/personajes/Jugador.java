@@ -152,6 +152,7 @@ public abstract class Jugador extends Personaje implements Serializable{
         return this.exp >= this.expProxNivel;
     }
     public void subirNivel(){
+        this.setNivel(this.getNivel()+1);
         this.subirNivelEstadisticas();
         this.setExp(this.exp - this.expProxNivel);
         this.setExpProxNivel((int)(this.expProxNivel*1.20));

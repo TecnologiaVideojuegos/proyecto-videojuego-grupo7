@@ -91,7 +91,7 @@ public final class Combate {
                 GeneraEnemigos.add(VenganzaBelial.hori);
                 GeneraEnemigos.add(VenganzaBelial.mordi);
                 GeneraEnemigos.add(VenganzaBelial.kibi);
-                this.setExpCombate(15);;
+                this.setExpCombate(105);;
                 break;
             case 1:
                 break;
