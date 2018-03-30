@@ -17,8 +17,8 @@ public final class Horacia extends Jugador{
     {
         this.setNombre("Horacia");
     }
-    public Horacia(Armadura armadura, Inventario inventario) {
-        super(armadura, inventario);
+    public Horacia(Inventario inventario) {
+        super(inventario);
         inicializarPersonaje();
         setearHabilidades();
     }       
@@ -28,8 +28,10 @@ public final class Horacia extends Jugador{
         ArrayList<String> requisitos = new ArrayList<>();
         requisitos.add("Horacia");
         Arma armaInicio = new Arma(10, 1, "Garrote", "Garrote para aporrear gente", requisitos, 1, 0, 10);
+        Armadura armaduraInicio = new Armadura(10, "Ropa de pobre", "Ropa robada a un mendigo", requisitos, 1, 0, 10);
         this.setNombre("Horacia");
         this.setArma(armaInicio);
+        this.setArmadura(armaduraInicio);
         this.setHp(100);
         this.setHpActual(this.getHp());
         this.setMp(30);

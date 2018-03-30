@@ -12,8 +12,8 @@ public class Archienemigo extends Jugador{
         super(arma, armadura, habilidades, inventario);
         inicializarPersonaje();
     }
-    public Archienemigo(Armadura armadura, Inventario inventario) {
-        super(armadura, inventario);
+    public Archienemigo(Inventario inventario) {
+        super(inventario);
         inicializarPersonaje();
     }
     //Metodo que iniciliaza las estadisticas del Personaje Archienemigo 

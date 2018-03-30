@@ -12,6 +12,7 @@ import personajes.Jugador;
 public class Gestion {
     public ArrayList<Jugador> jugs;
     public ArrayList<ArrayList<Enemigo>> enem;
+    public Inventario inv = new Inventario();
     
     public Gestion(){
         jugs = new ArrayList<>();
@@ -24,6 +25,7 @@ public class Gestion {
             FileInputStream istreamPer = new FileInputStream("BaseDatos/jugadores.dat");
             ObjectInputStream oisPer = new ObjectInputStream(istreamPer);            
             jugadores = (ArrayList<Jugador>) oisPer.readObject();
+            inv = jugadores.get(0).getInventario();
             istreamPer.close();
         } catch (IOException ioe) {
             System.out.println("Error de IO: " + ioe.getMessage());

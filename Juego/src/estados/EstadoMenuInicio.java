@@ -10,6 +10,10 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import otros.Gestion;
+import personajes.Horacia;
+import personajes.Kibito;
+import personajes.Mordeim;
 
 public class EstadoMenuInicio extends BasicGameState {
     private static final int NUMOPCIONES = 3;
@@ -76,12 +80,21 @@ public class EstadoMenuInicio extends BasicGameState {
         if (input.isKeyPressed(Input.KEY_ENTER)) {
             switch (eleccionJugador) {
                 case EMPEZAR:
-                    //sbg.enterState(IceAdventure.GAMEPLAYSTATE);
-                    sbg.enterState(VenganzaBelial.ESTADOCOMBATE);
+                    Gestion ges = new Gestion();
+                    Horacia horacia = new Horacia(ges.inv);
+                    Kibito kibito = new Kibito(ges.inv);
+                    Mordeim mordeim = new Mordeim(ges.inv);
+                    ges.jugs.add(horacia);
+                    ges.jugs.add(kibito);
+                    ges.jugs.add(mordeim);
+                    ges.guardarJugadores(ges.jugs);
+                    sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
+                    //sbg.enterState(VenganzaBelial.ESTADOCOMBATE);
                     break;
                 case CARGAR:
                     //heropos = fileio.loadSave();
-                    sbg.enterState(VenganzaBelial.ESTADOESCENAPROTOTIPO);//EDIT
+                    sbg.enterState(VenganzaBelial.ESTADOCOMBATE);
+                    //sbg.enterState(VenganzaBelial.ESTADOESCENAPROTOTIPO);//EDIT
                     //((GamePlayState)sbg.getState(IceAdventure.GAMEPLAYSTATE)).setHeroPosition(heropos);
                     //sbg.enterState(IceAdventure.GAMEPLAYSTATE);
                     break;

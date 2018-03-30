@@ -13,8 +13,8 @@ public final class Mordeim extends Jugador{
         super(arma, armadura, habilidades, inventario);
         inicializarPersonaje();
     }
-    public Mordeim(Armadura armadura, Inventario inventario) {
-        super(armadura, inventario);
+    public Mordeim(Inventario inventario) {
+        super(inventario);
         inicializarPersonaje();
         setearHabilidades();
     }
@@ -24,8 +24,10 @@ public final class Mordeim extends Jugador{
         ArrayList<String> requisitos = new ArrayList<>();
         requisitos.add("Mordeim");
         Arma armaInicio = new Arma(10, 1, "Lapiz", "Podrás pintar a los enemigos", requisitos, 1, 0, 10);
+        Armadura armaduraInicio = new Armadura(10, "Túnica arapienta", "Túnica rota", requisitos, 1, 0, 10);
         this.setNombre("Mordeim");
         this.setArma(armaInicio);
+        this.setArmadura(armaduraInicio);
         this.setHp(90);
         this.setHpActual(this.getHp());
         this.setMp(50);

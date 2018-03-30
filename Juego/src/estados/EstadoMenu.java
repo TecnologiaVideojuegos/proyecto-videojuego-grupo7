@@ -11,7 +11,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class EstadoMenu extends BasicGameState{
-     private static final int NUMOPCIONES = 4;
+    private static final int NUMOPCIONES = 4;
     private static final int CONTINUAR = 0;
     private static final int GUARDAR = 1;
     private static final int CARGAR = 2;
@@ -69,6 +69,7 @@ public class EstadoMenu extends BasicGameState{
         if (input.isKeyPressed(Input.KEY_ENTER)) {
             switch (eleccionJugador) {
                 case CONTINUAR:
+                    sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
                     break;
                 case GUARDAR:
                     

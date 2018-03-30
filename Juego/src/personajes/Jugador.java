@@ -44,8 +44,7 @@ public abstract class Jugador extends Personaje implements Serializable{
         this.habilidades = habilidades;
         this.inventario = inventario;
     }
-    public Jugador(Armadura armadura, Inventario inventario) {
-        this.armadura = armadura;
+    public Jugador(Inventario inventario) {
         this.inventario = inventario;
         this.habilidades = new ArrayList<>();
     }
