@@ -88,7 +88,8 @@ public class EstadoMenuInicio extends BasicGameState {
                     ges.jugs.add(kibito);
                     ges.jugs.add(mordeim);
                     ges.guardarJugadores(ges.jugs);
-                    sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
+                    sbg.enterState(VenganzaBelial.ESTADOESCENAPROTOTIPO);//EDIT
+                    //sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO); //EDIT
                     //sbg.enterState(VenganzaBelial.ESTADOCOMBATE);
                     break;
                 case CARGAR:
