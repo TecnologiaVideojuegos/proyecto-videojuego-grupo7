@@ -5,10 +5,14 @@
         <group>
             <file>file:/C:/Users/David/Desktop/proyecto-videojuego-grupo7/Juego/src/personajes/Personaje.java</file>
             <file>file:/C:/Users/David/Desktop/proyecto-videojuego-grupo7/Juego/src/personajes/Horacia.java</file>
+            <file>file:/C:/Users/David/Desktop/proyecto-videojuego-grupo7/Juego/src/estados/EstadoMenu.java</file>
             <file>file:/C:/Users/David/Desktop/proyecto-videojuego-grupo7/Juego/src/otros/Combate.java</file>
+            <file>file:/C:/Users/David/Desktop/proyecto-videojuego-grupo7/Juego/src/estados/EstadoMenuInicio.java</file>
             <file>file:/C:/Users/David/Desktop/proyecto-videojuego-grupo7/Juego/src/personajes/Jugador.java</file>
             <file>file:/C:/Users/David/Desktop/proyecto-videojuego-grupo7/Juego/src/estados/VenganzaBelial.java</file>
             <file>file:/C:/Users/David/Desktop/proyecto-videojuego-grupo7/Juego/src/estados/EstadoCombate.java</file>
+            <file>file:/C:/Users/David/Desktop/proyecto-videojuego-grupo7/Juego/src/estados/EstadoMapaJuego.java</file>
+            <file>file:/C:/Users/David/Desktop/proyecto-videojuego-grupo7/Juego/src/otros/Gestion.java</file>
         </group>
     </open-files>
 </project-private>
