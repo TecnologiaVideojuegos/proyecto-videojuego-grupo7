@@ -20,6 +20,7 @@ public class VenganzaBelial extends StateBasedGame {
     public static final int ESTADOMENU = 2;
     public static final int ESTADOESCENAPROTOTIPO = 3;//EDIT
     public static final int ESTADOMAPAJUEGO = 4;
+    public static final int ESTADOCOMBATETUT=5;
     public static final int WIDTH = 1366;
     public static final int HEIGHT = 768;
     public static final boolean FULLSCREEN = false;
@@ -51,6 +52,8 @@ public class VenganzaBelial extends StateBasedGame {
         //EDIT
         addState(new EscenaPrototipo(ESTADOESCENAPROTOTIPO));
         addState(new EstadoMapaJuego(ESTADOMAPAJUEGO));
+        addState(new EstadoCombateTutorial(ESTADOCOMBATETUT));
+        //
         this.enterState(ESTADOMENUINICIO);
     }
 
@@ -59,8 +62,10 @@ public class VenganzaBelial extends StateBasedGame {
         getState(ESTADOMENUINICIO).init(gc, this);
         getState(ESTADOCOMBATE).init(gc, this);
         getState(ESTADOMENU).init(gc, this);
+        //
         getState(ESTADOESCENAPROTOTIPO).init(gc, this);
         getState(ESTADOMAPAJUEGO).init(gc, this);
+        getState(ESTADOCOMBATETUT).init(gc, this);
     }
 
     public static void main(String[] args) throws SlickException {
@@ -81,6 +86,7 @@ public class VenganzaBelial extends StateBasedGame {
         hori.setNombre("Horacia(Dark)");
         mordi.setPJ(false);
         mordi.setNombre("Mordeim(Dark)");
+        mordi.setVelocidad(80);//que vaya primero siempre
         kibi.setPJ(false);
         kibi.setNombre("Kibito(Dark)");
         //Combate com = new Combate(VenganzaBelial.Party, VenganzaBelial.MapaActual);

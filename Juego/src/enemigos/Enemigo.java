@@ -21,9 +21,11 @@ public abstract class Enemigo extends Personaje implements Serializable{
         this.expAportada = expAportada;
         this.oro = oro;
         this.habilidad = habilidad;
+        this.setPJ(false);//Establece que no es PJ
     }    
     public Enemigo(int nivel, int hp, int ataque, int defensa){
         super(nivel, hp, ataque, defensa);
+        this.setPJ(false);
     }
     
     public Enemigo(){

@@ -26,11 +26,12 @@ import personajes.*;
 import otros.Combate;
 import otros.Habilidad;
 
-public class EstadoCombate extends BasicGameState{
+public class EstadoCombateTutorial extends BasicGameState{
     /*Estados Inercombate*/
     private Input input;
     private int Estado=0;
-    private static final int NESTADOS=10;
+    private int estadoDialogo=0;
+    private static final int NESTADOS=11;
     private static final int OPCIONESBASE=0;//Opciones base del pj
     private static final int ATACANDO=1;//Seleccion del enemigo al que atacar
     private static final int SELHABILIDAD=2;//Seleccion de habilidad en funcion del pj
@@ -41,6 +42,7 @@ public class EstadoCombate extends BasicGameState{
     private static final int SELALIADO=7;//Seleccion de pj al que tirar habilidad
     private static final int FINTURNO=8;
     private static final int FINCOMBATE=9;
+    private static final int DIALOGO=10;
     /*Opciones OPCIONESBASE*/
     private static final int NUMOPCIONESBASE = 4;
     private static final int ATACAR = 0;
@@ -64,21 +66,21 @@ public class EstadoCombate extends BasicGameState{
     private Combate NewCombate;
     /*Avatar Image Control*/
     private Image fondo;
-    private Image contenedor,hp, mp,avatarVivo, avatarMuerto,avatarSeleccionado,marco,marcoL, Avatar1, Avatar2, Avatar3;
+    private Image contenedor,hp, mp,avatarVivo, avatarMuerto,avatarSeleccionado,marco,marcoL,ventanaDialogo, Avatar1, Avatar2, Avatar3;
     private TrueTypeFont mensajePantalla;
-    private Font TipoLetra  =new Font("Verdana", Font.PLAIN, 12);    
+    private Font TipoLetra  =new Font("Verdana", Font.PLAIN, 15);    
     private Color rojo = new Color (256,0,0);
     private Color verde = new Color (0,256,0);
     private Color azul = new Color (0,0,256);    
     private Music OST;
-    private Sound sonidoAtaque,sonidoSelect, sonidoError, sonidoMuerto;
+    private Sound sonidoAtaque,sonidoMuerto,sonidoSelect, sonidoError;
     private String mensajeSistema= "";
     //private SpriteSheet sprite;
     //private Animation animacion;
     /*EDIT*/
     private int flagPruebas=0;
     
-    public EstadoCombate(int id) {
+    public EstadoCombateTutorial(int id) {
         idEstado = id;
     }
     @Override
@@ -114,6 +116,7 @@ public class EstadoCombate extends BasicGameState{
         avatarVivo=new Image("Imagenes/Avatar/fondoVivo.png");
         avatarMuerto=new Image("Imagenes/Avatar/fondoMuerto.png");
         avatarSeleccionado=new Image("Imagenes/Avatar/fondoSeleccion.png");
+        ventanaDialogo= new Image("Imagenes/Avatar/cajaMensaje.png");
         /*EDIT:Test*/
         //this.sprite= new SpriteSheet("Imagenes/Animaciones/ataque.png",200,200);
         //this.animacion= new Animation(sprite, 200);
@@ -122,37 +125,45 @@ public class EstadoCombate extends BasicGameState{
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException 
     {
-        renderAvatars();
+        /*Imagenes del fondo*/
+        fondo.draw(0, 0, 1366, 768);
         renderEnemigos();
+        mensajePantalla.drawString(500, 500, "estadoDialogo"+this.estadoDialogo);
         /*Switch Case para visualizar opciones en funcion del estado*/
-        switch (Estado)
-        {
-            case OPCIONESBASE:
-                renderOpcionesJugador();
-                break;
-            case SELHABILIDAD:
-                renderHabilidades();
-                break;
-            case SELOBJETIVO :
-                renderSelObjetivo();
-                break;
-            case ATACANDO:
-                renderSelObjetivo();
-                //this.animacion.draw(750, 200, 200, 200);
-                break;
-            case SELCONSUMIBLE:
-                renderObjetos();
-                break;
-            case SELALIADO:
-                renderSelAliados();
-                break;
-            case FINTURNO:
-                renderMensajeSistema();
-                break;
-            case FINCOMBATE:
-                renderMensajeSistema();
-                break;
-        }    
+        if(Estado==DIALOGO){
+            renderDialogos();
+        }
+        else{
+            renderAvatars();
+            switch (Estado)
+            {
+                case OPCIONESBASE:
+                    renderOpcionesJugador();
+                    break;
+                case SELHABILIDAD:
+                    renderHabilidades();
+                    break;
+                case SELOBJETIVO :
+                    renderSelObjetivo();
+                    break;
+                case ATACANDO:
+                    renderSelObjetivo();
+                    //this.animacion.draw(750, 200, 200, 200);
+                    break;
+                case SELCONSUMIBLE:
+                    renderObjetos();
+                    break;
+                case SELALIADO:
+                    renderSelAliados();
+                    break;
+                case FINTURNO:
+                    renderMensajeSistema();
+                    break;
+                case FINCOMBATE:
+                    renderMensajeSistema();
+                    break;
+            }    
+        }/*else*/
     }
 
     @Override
@@ -162,13 +173,13 @@ public class EstadoCombate extends BasicGameState{
         {
             /*Genera Nuevo Combate*/
             NewCombate= new Combate(VenganzaBelial.Party, VenganzaBelial.MapaActual);//
-            if(NewCombate.GestionaPrimerTurno())
-            {
-                Estado=OPCIONESBASE;
-            }
-            else{
-                Estado=TURNOENEMIGO;
-            }
+            fondo = new Image("Imagenes/BackBattle/Bosque.jpg");
+            /*EDIT:Imagenes de los personajes*/
+            Avatar1 =  new Image("Imagenes/Personajes/HoraciaA.png");
+            Avatar2 =  new Image("Imagenes/Personajes/MordeimA.png");
+            Avatar3 =  new Image("Imagenes/Personajes/KibitoA.png");
+            //
+            Estado=DIALOGO;
             /*EDIT: Mirar donde añadir imagenes al los enemigos*/
             VenganzaBelial.hori.setImagen("Imagenes/Monstruos/Test1.png");
             VenganzaBelial.mordi.setImagen("Imagenes/Monstruos/Test2.png");
@@ -178,74 +189,81 @@ public class EstadoCombate extends BasicGameState{
         }
         else
         {
-            switch (Estado)
+            if(Estado==DIALOGO)
             {
-                case  OPCIONESBASE://Opciones base del pj
-                    OpcionControl(NUMOPCIONESBASE);
-                    //Opciones Base Enter Control
-                    OpcionBase();
-                    break;
-                case  ATACANDO://Opciones base del pj
-                    OpcionControl(NewCombate.getEnemigos().size());
-                    //Opcion de Enemigo al que atacar
-                    Atacando();
-                    break;
-                case  SELHABILIDAD://Seleccion de habilidad a usar
-                    OpcionControl(NHABILIDADES);
-                    //Opcion de Seleccion de Habilidades
-                    selHabilidades();
-                    break;
-                case  SELCONSUMIBLE://Seleccion Consumible a utilizar
-                    OpcionControl(NCONSUMIBLES);
-                    //Opcion Seleccion de Consumible
-                    selConsumible();
-                    break;
-                case  HUYENDO://Opciones base del pj
-                    Huir();
-                    break;
-                case  TURNOENEMIGO://Turno automatico Enemigo
-                    //EDIT: Eliminar
-                    if(this.flagPruebas==0)
-                    {
-                        this.mensajeSistema=NewCombate.Atacar(NewCombate.getOrdenPersonajes().get(NewCombate.getTurno()), VenganzaBelial.mordeim);
-                    }
-                    else if(this.flagPruebas==1)
-                    {
-                        this.mensajeSistema=NewCombate.Atacar(NewCombate.getOrdenPersonajes().get(NewCombate.getTurno()), VenganzaBelial.horacia);
-                    }
-                    else if(this.flagPruebas==2)
-                    {
-                        this.mensajeSistema=NewCombate.Atacar(NewCombate.getOrdenPersonajes().get(NewCombate.getTurno()), VenganzaBelial.kibito);
-                    }
-                    this.flagPruebas++;
-                    if(this.flagPruebas>3)
-                    {
-                       this.flagPruebas=0; 
-                    }
-                    //VenganzaBelial.horacia.setHpActual(50);
-                    estadoAnterior=TURNOENEMIGO;
-                    Estado=FINTURNO;
-                    break;
-                case  SELOBJETIVO://Uso de habilidad/consumible sobre objetivo Enemigo
-                    OpcionControl(NewCombate.getEnemigos().size());
-                    //Seleccion de objetivo al que lanzar Habilidad
-                    selObjetivo();
-                    break;
-                case  SELALIADO://Uso de habilidad/Consumible sobre objetivo Aliado
-                    OpcionControl(VenganzaBelial.Party.size());
-                    //Seleccion de aliado al que lanzar Habilidad
-                    selAliado();
-                    break;
-                case FINTURNO:
-                    /*Gestiona el final del turno, comprobando si el combate esta acabado o no*/
-                    FinTurno();
-                    break;
-                case FINCOMBATE:
-                    FinCombate(gc);
-                    //sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);//EDIT:Eliminar
-                    OST.stop();
-                    break;
+                dialogoTutorial();
             }
+            else
+            {
+                switch (Estado)
+                {
+                    case  OPCIONESBASE://Opciones base del pj
+                        OpcionControl(NUMOPCIONESBASE);
+                        //Opciones Base Enter Control
+                        OpcionBase();
+                        break;
+                    case  ATACANDO://Opciones base del pj
+                        OpcionControl(NewCombate.getEnemigos().size());
+                        //Opcion de Enemigo al que atacar
+                        Atacando();
+                        break;
+                    case  SELHABILIDAD://Seleccion de habilidad a usar
+                        OpcionControl(NHABILIDADES);
+                        //Opcion de Seleccion de Habilidades
+                        selHabilidades();
+                        break;
+                    case  SELCONSUMIBLE://Seleccion Consumible a utilizar
+                        OpcionControl(NCONSUMIBLES);
+                        //Opcion Seleccion de Consumible
+                        selConsumible();
+                        break;
+                    case  HUYENDO://Opciones base del pj
+                        Huir();
+                        break;
+                    case  TURNOENEMIGO://Turno automatico Enemigo
+                        //EDIT: Eliminar
+                        if(this.flagPruebas==0)
+                        {
+                            this.mensajeSistema=NewCombate.Atacar(NewCombate.getOrdenPersonajes().get(NewCombate.getTurno()), VenganzaBelial.horacia);
+                        }
+                        else if(this.flagPruebas==1)
+                        {
+                            this.mensajeSistema=NewCombate.Atacar(NewCombate.getOrdenPersonajes().get(NewCombate.getTurno()), VenganzaBelial.mordeim);
+                        }
+                        else if(this.flagPruebas==2)
+                        {
+                            this.mensajeSistema=NewCombate.Atacar(NewCombate.getOrdenPersonajes().get(NewCombate.getTurno()), VenganzaBelial.kibito);
+                        }
+                        this.flagPruebas++;
+                        if(this.flagPruebas>3)
+                        {
+                           this.flagPruebas=0; 
+                        }
+                        //VenganzaBelial.horacia.setHpActual(50);
+                        estadoAnterior=TURNOENEMIGO;
+                        Estado=FINTURNO;
+                        break;
+                    case  SELOBJETIVO://Uso de habilidad/consumible sobre objetivo Enemigo
+                        OpcionControl(NewCombate.getEnemigos().size());
+                        //Seleccion de objetivo al que lanzar Habilidad
+                        selObjetivo();
+                        break;
+                    case  SELALIADO://Uso de habilidad/Consumible sobre objetivo Aliado
+                        OpcionControl(VenganzaBelial.Party.size());
+                        //Seleccion de aliado al que lanzar Habilidad
+                        selAliado();
+                        break;
+                    case FINTURNO:
+                        /*Gestiona el final del turno, comprobando si el combate esta acabado o no*/
+                        FinTurno();
+                        break;
+                    case FINCOMBATE:
+                        FinCombate(gc);
+                        //sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);//EDIT:Eliminar
+                        OST.stop();
+                        break;
+                }
+            }/*else dialogo*/
             /*Escape vuelve al estado inicial*/
             ReiniciarSeleccion();
         }
@@ -402,7 +420,6 @@ public class EstadoCombate extends BasicGameState{
             this.mensajeSistema=(pj.getNombre()+" ha utilizado "+pj.getHabilidades().get(habilidadSeleccionada).getNombre());
             //Ejecutar habilidad con el pj correcpondiente sobre el Objetivo designado
             pj.usarHabilidad(this.habilidadSeleccionada, NewCombate.getEnemigos().get(eleccionJugador));
-            //pj.getHabilidades().get(this.habilidadSeleccionada).usarHabilidad(pj, NewCombate.getEnemigos().get(eleccionJugador));
             eleccionJugador=0;
             estadoAnterior=SELOBJETIVO;
             Estado=FINTURNO;
@@ -418,7 +435,6 @@ public class EstadoCombate extends BasicGameState{
             switch (estadoAnterior)
             {
                 case SELHABILIDAD:
-                    
                     //Ejecutar habilidad con el pj correcpondiente sobre el Aliado designado y comprobar que se puede
                     //Si se puede se ejecutará y devolvera true
                     if(pj.usarHabilidad(this.habilidadSeleccionada, VenganzaBelial.Party.get(eleccionJugador)))
@@ -499,6 +515,10 @@ public class EstadoCombate extends BasicGameState{
     
     private void FinTurno()
     {
+        if(estadoDialogo==1){
+            estadoDialogo=2;
+            Estado=DIALOGO;
+        }
         if(input.isKeyPressed(Input.KEY_ENTER))
         {
             estadoAnterior=FINTURNO;
@@ -513,7 +533,7 @@ public class EstadoCombate extends BasicGameState{
             {
                 if(NewCombate.GestionaSiguienteTurno())//Si el siguiente turno es de jugador
                 {
-                    Estado=OPCIONESBASE;
+                        Estado=OPCIONESBASE;
                 }
                 else{
                     Estado=TURNOENEMIGO;
@@ -641,14 +661,6 @@ public class EstadoCombate extends BasicGameState{
     {
          /*Update Grafico*/
         float porcentajeBarra=1;//Auxuliar de calculo
-        /*Imagenes del fondo*/
-            fondo = new Image("Imagenes/BackBattle/Bosque.jpg");
-            
-            /*EDIT:Imagenes de los personajes*/
-            Avatar1 =  new Image("Imagenes/Personajes/HoraciaA.png");
-            Avatar2 =  new Image("Imagenes/Personajes/MordeimA.png");
-            Avatar3 =  new Image("Imagenes/Personajes/KibitoA.png");
-            fondo.draw(0, 0, 1366, 768);
             /*EDIT END*/
             /*Horacia status update*/
             if(VenganzaBelial.horacia.estaVivo()){
@@ -753,5 +765,266 @@ public class EstadoCombate extends BasicGameState{
     private void renderMensajeSistema()
     {
         opcionesJugadorTTF.drawString(10,20, this.mensajeSistema);
+    }
+    
+    private void dialogoTutorial()
+    {
+        if(input.isKeyPressed(Input.KEY_ENTER))
+        {
+            estadoDialogo++;
+            sonidoSelect.play(1, 0.2f);
+        }  
+        switch (estadoDialogo)
+        {
+            case 1:
+                if(NewCombate.GestionaPrimerTurno())
+                {
+                    Estado=OPCIONESBASE;
+                }
+                else{
+                    Estado=TURNOENEMIGO;
+                }
+                break;
+            case 29:
+                Estado=FINTURNO;
+                break;
+        }
+    }/*private void dialogoTutorial()*/
+    
+    private void renderDialogos() throws SlickException
+    {
+        switch (estadoDialogo)
+        {
+            case 0:
+                Avatar1.draw(30, 610, 115, 125);
+                this.ventanaDialogo.draw(0, 600, 1);
+                mensajePantalla.drawString(160, 625, "¡MONSTRUOS, TODOS PREPARA- ~~~ AAHHG!");
+                break;
+            case 2:
+                renderMensajeSistema();
+                Image flecha= new Image("Imagenes/Avatar/flecha.png");
+                flecha.draw(120, 450, 100, 150);
+                flecha.rotate(180);
+                flecha.draw(50, 60, 200, 150);
+                renderAvatars();
+                break;
+            case 3:
+                this.renderOpcionesJugador();
+                Avatar1.draw(30, 610, 115, 125);
+                this.ventanaDialogo.draw(0, 600, 1);
+                mensajePantalla.drawString(160, 625, "Son muy rápidos, rápido utilicemos el comando `Defensa`");
+                mensajePantalla.drawString(160, 640, " para reducir los daños y luego... ");
+                break;
+            case 4:
+                this.renderOpcionesJugador();
+                Avatar1.draw(30, 610, 115, 125);
+                this.ventanaDialogo.draw(0, 600, 1);
+                mensajePantalla.drawString(160, 625, "¿¡Donde esta el comando para defenderse!?");
+                break;
+            case 5:
+                this.renderOpcionesJugador();
+                Avatar2.draw(30, 610, 115, 125);
+                this.ventanaDialogo.draw(0, 600, 1);
+                mensajePantalla.drawString(160, 625, "Ah eso, hable con los diseñadores y les dije que no ");
+                mensajePantalla.drawString(160, 645, "hacia falta programar esa acción. ");
+                break;
+            case 6:
+                this.renderOpcionesJugador();
+                Avatar1.draw(30, 610, 115, 125);
+                this.ventanaDialogo.draw(0, 600, 1);
+                mensajePantalla.drawString(160, 625, "¿¡Que hiciste que!?");
+                break;
+            case 7:
+                this.renderOpcionesJugador();
+                Avatar2.draw(30, 610, 115, 125);
+                this.ventanaDialogo.draw(0, 600, 1);
+                mensajePantalla.drawString(160, 625, "La mejor defensa es un buen ataque, y me tienes a mi, no");
+                mensajePantalla.drawString(160, 640, "hay monstruo que no pueda derrotar con un par de golpes.");
+                break;
+            case 8:
+                this.renderOpcionesJugador();
+                Avatar2.draw(30, 610, 115, 125);
+                this.ventanaDialogo.draw(0, 600, 1);
+                mensajePantalla.drawString(160, 625, "Además, de acuerdo a una encuesta realizada a 20 ");
+                mensajePantalla.drawString(160, 640, "personas solo 3 usan el comando defender por lo que no  ");
+                mensajePantalla.drawString(160, 655, "importa mucho si nos tomamos la libertad de no meterlo.");
+                break;
+            case 9:
+                this.renderOpcionesJugador();
+                Avatar3.draw(30, 610, 115, 125);
+                this.ventanaDialogo.draw(0, 600, 1);
+                mensajePantalla.drawString(160, 625, "Veo que tampoco te importa mucho saltarte la cuarta pared,");
+                mensajePantalla.drawString(160, 640, "pensar que habíamos llegado hasta aquí sin hacerlo...");
+                break;
+            case 10:
+                this.renderOpcionesJugador();
+                Avatar3.draw(30, 610, 115, 125);
+                this.ventanaDialogo.draw(0, 600, 1);
+                mensajePantalla.drawString(160, 625, "Como sea, supongo que podemos aprovecharnos de ello..");
+                mensajePantalla.drawString(160, 640, "Mientras mis compañeros discuten paremos el tiempo y así");
+                mensajePantalla.drawString(160, 655, "explico tranquilamente el sistema de combate.");
+                break;
+            case 11:
+                this.renderOpcionesJugador();
+                Avatar3.draw(30, 610, 115, 125);
+                this.ventanaDialogo.draw(0, 600, 1);
+                mensajePantalla.drawString(160, 625, "Como habeís podido apreciar mi compañera Horacia ha ");
+                mensajePantalla.drawString(160, 640, "sufrido un ataque nada más empezar.");
+                break;
+            case 12:
+                renderMensajeSistema();
+                Image flecha2= new Image("Imagenes/Avatar/flecha.png");
+                flecha2.draw(120, 450, 100, 150);
+                flecha2.rotate(180);
+                flecha2.draw(50, 60, 200, 150);
+                renderAvatars();
+                break;
+            case 13:
+                this.renderOpcionesJugador();
+                Avatar3.draw(30, 610, 115, 125);
+                this.ventanaDialogo.draw(0, 600, 1);
+                mensajePantalla.drawString(160, 625, "La mecánica para enfrentar enemigos en ");
+                mensajePantalla.drawString(160, 640, "``LA VENGANZA DE BELIAL´´ consiste en un combate");
+                mensajePantalla.drawString(160, 655, "guiado por un sistema de turnos.");
+                break;
+            case 14:
+                this.renderOpcionesJugador();
+                Avatar3.draw(30, 610, 115, 125);
+                this.ventanaDialogo.draw(0, 600, 1);
+                mensajePantalla.drawString(160, 625, "Al comenzar el combate los participantes se dispondrán");
+                mensajePantalla.drawString(160, 640, "en orden según su ``Iniciativa´´.");
+                break;
+            case 15:
+                this.renderOpcionesJugador();
+                Avatar3.draw(30, 610, 115, 125);
+                this.ventanaDialogo.draw(0, 600, 1);
+                mensajePantalla.drawString(160, 625, "La iniciativa depende en gran medida de la velocidad pero");
+                mensajePantalla.drawString(160, 640, "puede variar en función de factores aleatorios, como el");
+                mensajePantalla.drawString(160, 655, "clima, estar recien comido o no tener ganas de pelear ese");
+                mensajePantalla.drawString(160, 670, "día, como yo y mis ganas de trabajar los lunes.");
+                break;   
+            case 16:
+                this.renderOpcionesJugador();
+                Avatar3.draw(30, 610, 115, 125);
+                this.ventanaDialogo.draw(0, 600, 1);
+                mensajePantalla.drawString(160, 625, "En este caso el enemigo estaba muy emocionado y ha sido ");
+                mensajePantalla.drawString(160, 640, "más rápido, por lo que nada más empezar el combate  ");
+                mensajePantalla.drawString(160, 655, "Horacia se ha llevado un buen golpe,por suerte para  ");
+                mensajePantalla.drawString(160, 670, "nosotros, tiene bastante vitalidad.");
+                break;
+            case 17:
+                this.renderOpcionesJugador();
+                Avatar3.draw(30, 610, 115, 125);
+                this.ventanaDialogo.draw(0, 600, 1);
+                mensajePantalla.drawString(160, 625, "Cuando sea el turno de alguno de nosotros se dispondrá  ");
+                mensajePantalla.drawString(160, 640, "de un menú de opciones para elegir la acción a desarrollar:");
+                break;
+            case 18:
+                this.renderOpcionesJugador();
+                Avatar3.draw(30, 610, 115, 125);
+                Image flechah1= new Image("Imagenes/Avatar/flecha.png");
+                flechah1.rotate(90);
+                flechah1.draw(120, 360, 100, 150);
+                this.ventanaDialogo.draw(0, 600, 1);
+                mensajePantalla.drawString(160, 625, "``Atacar´´, como su nombre indica permitirá golpear ");
+                mensajePantalla.drawString(160, 640, "a UNO de los enemigos presentes, por suerte para mi ");
+                mensajePantalla.drawString(160, 655, "el fuego amigo se ha tenido en cuenta y no ha sido ");
+                mensajePantalla.drawString(160, 670, "implementado.");
+                break;
+            case 19:
+                this.renderOpcionesJugador();
+                Avatar3.draw(30, 610, 115, 125);
+                Image flechah2= new Image("Imagenes/Avatar/flecha.png");
+                flechah2.rotate(90);
+                flechah2.draw(150, 380, 100, 150);
+                this.ventanaDialogo.draw(0, 600, 1);
+                mensajePantalla.drawString(160, 625, "``Habilidad´´ nos permitirá acceder a las diferentes ");
+                mensajePantalla.drawString(160, 640, "acciones especiales de cada personaje a cambio de un gasto");
+                mensajePantalla.drawString(160, 655, " de MP. Hay varias habilidades pero se pueden agrupar en ");
+                mensajePantalla.drawString(160, 670, "3 grandes grupos:Ataque unico, ataque en area y cura.");
+                break;
+            case 20:
+                this.renderOpcionesJugador();
+                Avatar3.draw(30, 610, 115, 125);
+                this.ventanaDialogo.draw(0, 600, 1);
+                mensajePantalla.drawString(160, 625, "Las habilidades se desbloquean a medida que se sube de ");
+                mensajePantalla.drawString(160, 640, "nivel,al mismo tiempo el consumo y la potencia varian a ");
+                mensajePantalla.drawString(160, 655, "medida que se avanza, ¿fácil verdad?");
+                break;
+            case 21:
+                this.renderOpcionesJugador();
+                Avatar3.draw(30, 610, 115, 125);
+                Image flechah3= new Image("Imagenes/Avatar/flecha.png");
+                flechah3.rotate(90);
+                flechah3.draw(180, 400, 100, 150);
+                this.ventanaDialogo.draw(0, 600, 1);
+                mensajePantalla.drawString(160, 625, "``Consumibles´´ da acceso al uso de los 3 tipos de items");
+                mensajePantalla.drawString(160, 640, " especiales: Pociones de Vida, de Mana y Resurrección. ");
+                mensajePantalla.drawString(160, 655, "Al igual que con ``Ataque´´ se han preocupado de no poder ");
+                mensajePantalla.drawString(160, 670, "curar a los enemigos asique no te preocupes mucho");
+                break;
+            case 22:
+                this.renderOpcionesJugador();
+                Avatar3.draw(30, 610, 115, 125);
+                this.ventanaDialogo.draw(0, 600, 1);
+                mensajePantalla.drawString(160, 625, "Ah, pero un detalle importante, no podrás curar aliado ");
+                mensajePantalla.drawString(160, 640, "muertos y los aliado podrán consumir pociones incluso ");
+                mensajePantalla.drawString(160, 655, "estando en perfecto estado, puesto que son limitadas vigila ");
+                mensajePantalla.drawString(160, 670, "bien quien se las toma.");
+                break;
+            case 23:
+                this.renderOpcionesJugador();
+                Avatar3.draw(30, 610, 115, 125);
+                Image flechah4= new Image("Imagenes/Avatar/flecha.png");
+                flechah4.rotate(90);
+                flechah4.draw(100, 420, 100, 150);
+                this.ventanaDialogo.draw(0, 600, 1);
+                mensajePantalla.drawString(160, 625, "Por último el comando ``Huir´´nos permitirá realizar una ");
+                mensajePantalla.drawString(160, 640, "retirada estratégica, siempre que el enemigo este lo ");
+                mensajePantalla.drawString(160, 655, "bastante despistado. Mordeim nunca usaría esta opción, por ");
+                mensajePantalla.drawString(160, 670, "suerte él no da las ordenes.");
+                break;
+            case 24:
+                this.renderOpcionesJugador();
+                Avatar3.draw(30, 610, 115, 125);
+                this.ventanaDialogo.draw(0, 600, 1);
+                mensajePantalla.drawString(160, 625, "Cuando sea el turno de uno de tus personajes el recuadro ");
+                mensajePantalla.drawString(160, 640, "se mostrará verde, mientras que si esta muerto sera rojo  ");
+                mensajePantalla.drawString(160, 655, "y si no es su turno pero esta vivo su fondo será azul, ");
+                mensajePantalla.drawString(160, 670, "bastante intuitivo la verdad.");
+                break;
+            case 25:
+                this.renderOpcionesJugador();
+                Avatar3.draw(30, 610, 115, 125);
+                this.ventanaDialogo.draw(0, 600, 1);
+                mensajePantalla.drawString(160, 625, "No creo que haga falta decirlo pero abajo se muetsra la ");
+                mensajePantalla.drawString(160, 640, "vida(HP) y el maná(MP) de tus aliados.");
+                break;
+            case 26:
+                this.renderOpcionesJugador();
+                renderMensajeSistema();
+                Image flecha3= new Image("Imagenes/Avatar/flecha.png");
+                flecha3.draw(120, 450, 100, 150);
+                renderAvatars();
+                break;
+            case 27:
+                this.renderOpcionesJugador();
+                Avatar3.draw(30, 610, 115, 125);
+                this.ventanaDialogo.draw(0, 600, 1);
+                mensajePantalla.drawString(160, 625, "Por ultimo, al terminar el combate solo aquellos esten ");
+                mensajePantalla.drawString(160, 640, "con vida recibirán experiencia por el combate, recuerda,");
+                mensajePantalla.drawString(160, 655, "los muertos no aprenden.");
+                break;
+                
+            case 28:
+                this.renderOpcionesJugador();
+                Avatar3.draw(30, 610, 115, 125);
+                this.ventanaDialogo.draw(0, 600, 1);
+                mensajePantalla.drawString(160, 625, "Sin mucho más que decir...Intenta no matarme demasiado.");
+                break;
+                
+        }
+        //this.ventanaDialogo.draw(0, 600, 1700, 150);
+        
     }
 }

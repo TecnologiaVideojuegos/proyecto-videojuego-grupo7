@@ -29,6 +29,7 @@ public class EscenaPrototipo extends BasicGameState{
     private Input input;
     private int estado;
     private Image fondo;
+    private Image fondoHestia;//EDIT
     private TrueTypeFont texto;
     private Font letraMenu  =new Font("Verdana", Font.PLAIN, 20);    
     private Color rojo = new Color (256,0,0);
@@ -49,7 +50,8 @@ public class EscenaPrototipo extends BasicGameState{
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
         estado=0;
         this.input = gc.getInput();
-        fondo= new Image("Imagenes/BackBattle/Bosque.jpg");
+        fondo= new Image("Imagenes/Fondos/FondoIntro.jpg");
+        fondoHestia= new Image("Imagenes/Fondos/FondoHestia.jpg");//EDIT
         texto= new TrueTypeFont(letraMenu, true);
         this.hestia= new SpriteSheet("Imagenes/Animaciones/Sprites/Hestia.png",20,20);
         this.animacionHestia = new Animation(hestia,200);
@@ -61,16 +63,39 @@ public class EscenaPrototipo extends BasicGameState{
     //Muestra por pantalla
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException {
         fondo.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
-        animacionHestia.draw(450, 300, 130, 192);
+        //animacionHestia.draw(450, 300, 130, 192);
         
         switch (estado){
             case 0:
-                texto.drawString(300, 300, "Hola Jugador");
+                texto.drawString(300, 300, "El mundo de nuestros protegonistas se llama Reynos.");
                 break;
             case 1:
-                texto.drawString(300, 300, "Adios Jugador");
+                texto.drawString(300, 300, "Hace muchos años había un demonio, Belial, que engaño a la");
+                texto.drawString(300, 350, "mitad de la población con otorgarles lo que quisieran a cambio");
+                texto.drawString(300, 400, "de abrir las puertas del Infierno.");
                 break;
             case 2:
+                texto.drawString(300, 300, "De esa forma Reynos se sumió en la Guerra Demoniaca.");
+                break;
+            case 3:
+                texto.drawString(300, 300, "A medida que avanzaba la guerra las puertas del Infierno parecían");
+                texto.drawString(300, 350, "abrirse, como si el derramamiento de sangre fuera la llave.");
+                break;
+            case 4:
+                texto.drawString(300, 300, "Cuando las puertas se iban a abrir y Belial iba a entrar a nuestro mundo");
+                texto.drawString(300, 350, "aparecio una organización para preservar la paz, Cardinal.");
+                break;
+            case 5:
+                texto.drawString(300, 300, "Cardinal sello las puertas del Infierno con un ritual y los sellos");
+                texto.drawString(300, 350, "se exparcierón por todo el mundo de Reynos.");
+                break;
+            case 6:
+                texto.drawString(300, 300, "Con el paso de los siglos los sellos se han debilitado y los");
+                texto.drawString(300, 350, "movimientos sospechosos de Cardinal han aumentado considerablemente.");
+                break;
+            case 7:
+                fondoHestia.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);//EDIT
+                texto.drawString(300, 300, "Sala de Hestia");
                 break;
         }
     }
@@ -78,25 +103,52 @@ public class EscenaPrototipo extends BasicGameState{
     @Override
     //Muestra la actualización
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
-        
+        musicaIntro.play();
         switch (estado){
             case 0:
                 if (input.isKeyPressed(Input.KEY_ENTER)){
                     estado=1;
-                    musicaIntro.play();
+                    //musicaIntro.play();
                     
                 }
                 break;
             case 1:
                 if (input.isKeyPressed(Input.KEY_ENTER)){
                     estado=2;
-                    this.efecto.play();
+                    //this.efecto.play();
                 }                
                 break;
             case 2:
                 if (input.isKeyPressed(Input.KEY_ENTER)){
-                    estado=0;
-                    sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);
+                    estado=3;
+                    //sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);
+                }                
+                break;
+            case 3:
+                if (input.isKeyPressed(Input.KEY_ENTER)){
+                    estado=4;
+                }                
+                break;
+            case 4:
+                if (input.isKeyPressed(Input.KEY_ENTER)){
+                    estado=5;
+                }                
+                break;
+            case 5:
+                if (input.isKeyPressed(Input.KEY_ENTER)){
+                    estado=6;
+                }                
+                break;
+            case 6:
+                if (input.isKeyPressed(Input.KEY_ENTER)){
+                    estado=7;
+                }                
+                break;
+            case 7:
+                if (input.isKeyPressed(Input.KEY_ENTER)){
+                    musicaIntro.stop();
+                    //estado=1;
+                    sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
                 }                
                 break;
         }

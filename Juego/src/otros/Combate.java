@@ -1,11 +1,13 @@
 package otros;
 
+import enemigos.*;
 import personajes.Personaje;
 import java.util.ArrayList;
 /*EDIT: Eliminar Import VenganzaBelial*/
 import estados.VenganzaBelial;
 import items.Item;
 import java.util.Random;
+import org.newdawn.slick.SlickException;
 
 public final class Combate {
     //Atributos
@@ -86,7 +88,7 @@ public final class Combate {
         GeneraEnemigos= new ArrayList<Personaje>();
         switch (Mapa)
         {
-            case 0:
+            case 0://Caso tutorial, poner enemigos muy rapidos  
                 //EDIT: Eliminar
                 GeneraEnemigos.add(VenganzaBelial.hori);
                 GeneraEnemigos.add(VenganzaBelial.mordi);

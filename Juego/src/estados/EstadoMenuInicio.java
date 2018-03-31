@@ -16,10 +16,17 @@ import personajes.Kibito;
 import personajes.Mordeim;
 
 public class EstadoMenuInicio extends BasicGameState {
-    private static final int NUMOPCIONES = 3;
+    private static final int NUMOPCIONES = 8;//EDIT:Deben ser 3
     private static final int EMPEZAR = 0;
     private static final int CARGAR = 1;
     private static final int SALIR = 2;
+    /*EDIT:Eliminar pruebas*/
+    private static final int PRUEBASALBERT0=3;
+    private static final int PRUEBASHISAM=4;
+    private static final int PRUEBASDAVID=5;
+    private static final int PRUEBASANGEL=6;
+    private static final int PRUEBASPABLO=7;
+    /*EDIT END*/
     private String[] opciones = new String[NUMOPCIONES];
     private Font letraMenu, letraEquipo, letraTitulo;
     private TrueTypeFont opcionesJugadorTTF, equipoTTF, tituloTTF;
@@ -49,7 +56,12 @@ public class EstadoMenuInicio extends BasicGameState {
         opciones[0] = "Empezar una nueva partida";
         opciones[1] = "Cargar partida";
         opciones[2] = "Salir";
-        
+        /*EDIT*/
+        opciones[3] = "Pruebas de Alberto";
+        opciones[4] = "Pruebas de Hisam";
+        opciones[5] = "Pruebas de David";
+        opciones[6] = "Pruebas de Angel";
+        opciones[7] = "Pruebas de Pablo";
     }
 
     @Override
@@ -88,12 +100,9 @@ public class EstadoMenuInicio extends BasicGameState {
                     ges.jugs.add(kibito);
                     ges.jugs.add(mordeim);
                     ges.guardarJugadores(ges.jugs);
-                    sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
-                    //sbg.enterState(VenganzaBelial.ESTADOCOMBATE);
                     break;
                 case CARGAR:
                     //heropos = fileio.loadSave();
-                    sbg.enterState(VenganzaBelial.ESTADOCOMBATE);
                     //sbg.enterState(VenganzaBelial.ESTADOESCENAPROTOTIPO);//EDIT
                     //((GamePlayState)sbg.getState(IceAdventure.GAMEPLAYSTATE)).setHeroPosition(heropos);
                     //sbg.enterState(IceAdventure.GAMEPLAYSTATE);
@@ -101,6 +110,21 @@ public class EstadoMenuInicio extends BasicGameState {
                 case SALIR:
                     gc.exit();
                     break;
+                case PRUEBASALBERT0:
+                    sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO); //EDIT
+                    break;
+                case PRUEBASHISAM:
+                    sbg.enterState(VenganzaBelial.ESTADOESCENAPROTOTIPO);//EDIT 
+                    break;
+                case PRUEBASDAVID:
+                    //sbg.enterState(VenganzaBelial.ESTADOCOMBATE);//EDIT
+                    sbg.enterState(VenganzaBelial.ESTADOCOMBATETUT);//EDIT
+                    break;
+                case PRUEBASANGEL:
+                    break;
+                case PRUEBASPABLO:
+                    break;
+                    
             }
         }
         
@@ -118,7 +142,7 @@ public class EstadoMenuInicio extends BasicGameState {
     
     private void renderEquipo() {
         for (int i = 0; i < equipo.length; i++) {
-            equipoTTF.drawString(100, i * 20 + 520, equipo[i]);
+            equipoTTF.drawString(800, i * 20 + 520, equipo[i]);
         }
     }
     
