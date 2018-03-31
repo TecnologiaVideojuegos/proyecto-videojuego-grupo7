@@ -67,36 +67,31 @@ public class EscenaPrototipo extends BasicGameState{
         
         switch (estado){
             case 0:
-                texto.drawString(300, 300, "El mundo de nuestros protegonistas se llama Reynos.");
+                texto.drawString(450, 300, "El mundo de nuestros protegonistas se llama Reynos.");
+                texto.drawString(450, 350, "Hace muchos años había un demonio, Belial, que engaño a la");
+                texto.drawString(450, 400, "mitad de la población con otorgarles lo que quisieran a cambio");
+                texto.drawString(450, 450, "de abrir las puertas del Infierno.");
                 break;
             case 1:
-                texto.drawString(300, 300, "Hace muchos años había un demonio, Belial, que engaño a la");
-                texto.drawString(300, 350, "mitad de la población con otorgarles lo que quisieran a cambio");
-                texto.drawString(300, 400, "de abrir las puertas del Infierno.");
+                texto.drawString(450, 300, "De esa forma Reynos se sumió en la Guerra Demoniaca.");
+                texto.drawString(450, 350, "A medida que avanzaba la guerra las puertas del Infierno parecían");
+                texto.drawString(450, 400, "abrirse, como si el derramamiento de sangre fuera la llave.");
                 break;
             case 2:
-                texto.drawString(300, 300, "De esa forma Reynos se sumió en la Guerra Demoniaca.");
+                texto.drawString(450, 300, "Cuando las puertas se iban a abrir y Belial iba a entrar a nuestro mundo");
+                texto.drawString(450, 350, "aparecio una organización para preservar la paz, Cardinal.");
+                texto.drawString(450, 400, "Cardinal sello las puertas del Infierno con un ritual y los sellos");
+                texto.drawString(450, 450, "se exparcierón por todo el mundo de Reynos.");
                 break;
             case 3:
-                texto.drawString(300, 300, "A medida que avanzaba la guerra las puertas del Infierno parecían");
-                texto.drawString(300, 350, "abrirse, como si el derramamiento de sangre fuera la llave.");
+                texto.drawString(450, 300, "Con el paso de los siglos los sellos se han debilitado y los");
+                texto.drawString(450, 350, "movimientos sospechosos de Cardinal han aumentado considerablemente.");
                 break;
             case 4:
-                texto.drawString(300, 300, "Cuando las puertas se iban a abrir y Belial iba a entrar a nuestro mundo");
-                texto.drawString(300, 350, "aparecio una organización para preservar la paz, Cardinal.");
-                break;
-            case 5:
-                texto.drawString(300, 300, "Cardinal sello las puertas del Infierno con un ritual y los sellos");
-                texto.drawString(300, 350, "se exparcierón por todo el mundo de Reynos.");
-                break;
-            case 6:
-                texto.drawString(300, 300, "Con el paso de los siglos los sellos se han debilitado y los");
-                texto.drawString(300, 350, "movimientos sospechosos de Cardinal han aumentado considerablemente.");
-                break;
-            case 7:
                 fondoHestia.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);//EDIT
-                texto.drawString(300, 300, "Sala de Hestia");
+                texto.drawString(1050, 0, "Sala de Hestia");
                 break;
+            
         }
     }
 
@@ -131,26 +126,11 @@ public class EscenaPrototipo extends BasicGameState{
                 break;
             case 4:
                 if (input.isKeyPressed(Input.KEY_ENTER)){
-                    estado=5;
-                }                
-                break;
-            case 5:
-                if (input.isKeyPressed(Input.KEY_ENTER)){
-                    estado=6;
-                }                
-                break;
-            case 6:
-                if (input.isKeyPressed(Input.KEY_ENTER)){
-                    estado=7;
-                }                
-                break;
-            case 7:
-                if (input.isKeyPressed(Input.KEY_ENTER)){
                     musicaIntro.stop();
-                    //estado=1;
                     sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
                 }                
                 break;
+            
         }
     }
     
