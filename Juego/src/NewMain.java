@@ -14,22 +14,30 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
+import org.newdawn.slick.SlickException;
 import personajes.Personaje;
 
 public class NewMain {
     static ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SlickException {
         
         //Horacia horacia = new Horacia();
         //jugadores.add(horacia);
         //System.out.println(jugadores.get(0).getNombre());
         //guardarJugadores();
         //cargarJugadores();
-        System.out.println(jugadores.get(0).getNombre());
-        System.out.println(jugadores.get(0).getHpActual());
+        //System.out.println(jugadores.get(0).getNombre());
+        //System.out.println(jugadores.get(0).getHpActual());
         
-        
+        BaseDatosEnemigos bd = new BaseDatosEnemigos();
+        for (int i = 0; i < bd.getEnem().size(); i++) {
+            System.out.println(bd.getEnem().get(i).size());
+            for (int j = 0; j < bd.getEnem().get(i).size(); j++) {
+                System.out.println(bd.getEnem().get(i).get(j).toString());
+            }
+        }
+        //System.out.println(bd.getEnem().get(0).get(0).getNombre());
         
         /*ArrayList<String> pjs = new ArrayList<String>();
         pjs.add("hasas");
