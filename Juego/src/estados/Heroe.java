@@ -16,14 +16,14 @@ public class Heroe {
     private int w, h;
 
     public Heroe(float x, float y) throws SlickException {
-        Image[] animationUp = {new Image("Imagenes/HeroeMundo/hero20.png"), new Image("Imagenes/HeroeMundo/hero22.png")};
-        Image[] animationDown = {new Image("Imagenes/HeroeMundo/hero00.png"), new Image("Imagenes/HeroeMundo/hero02.png")};
-        Image[] animationLeft = {new Image("Imagenes/HeroeMundo/hero30.png"), new Image("Imagenes/HeroeMundo/hero32.png")};
-        Image[] animationRight = {new Image("Imagenes/HeroeMundo/hero10.png"), new Image("Imagenes/HeroeMundo/hero12.png")};
-        Image[] up = {new Image("Imagenes/HeroeMundo/hero21.png")};
-        Image[] down = {new Image("Imagenes/HeroeMundo/hero01.png")};
-        Image[] left = {new Image("Imagenes/HeroeMundo/hero31.png")};
-        Image[] right = {new Image("Imagenes/HeroeMundo/hero11.png")};
+        Image[] animationUp = {new Image("Imagenes/HeroeMundo/her20.png"), new Image("Imagenes/HeroeMundo/her22.png")};
+        Image[] animationDown = {new Image("Imagenes/HeroeMundo/her00.png"), new Image("Imagenes/HeroeMundo/her02.png")};
+        Image[] animationLeft = {new Image("Imagenes/HeroeMundo/her30.png"), new Image("Imagenes/HeroeMundo/her32.png")};
+        Image[] animationRight = {new Image("Imagenes/HeroeMundo/her10.png"), new Image("Imagenes/HeroeMundo/her12.png")};
+        Image[] up = {new Image("Imagenes/HeroeMundo/her21.png")};
+        Image[] down = {new Image("Imagenes/HeroeMundo/her01.png")};
+        Image[] left = {new Image("Imagenes/HeroeMundo/her31.png")};
+        Image[] right = {new Image("Imagenes/HeroeMundo/her11.png")};
 
         w = down[0].getWidth();
         h = down[0].getHeight();
