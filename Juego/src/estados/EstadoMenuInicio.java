@@ -6,6 +6,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.BasicGameState;
@@ -27,6 +28,7 @@ public class EstadoMenuInicio extends BasicGameState {
     private static final int PRUEBASANGEL=6;
     private static final int PRUEBASPABLO=7;
     /*EDIT END*/
+    private Image fondo;
     private String[] opciones = new String[NUMOPCIONES];
     private Font letraMenu, letraEquipo, letraTitulo;
     private TrueTypeFont opcionesJugadorTTF, equipoTTF, tituloTTF;
@@ -34,7 +36,7 @@ public class EstadoMenuInicio extends BasicGameState {
     private Color notChosen = new Color(153, 204, 255);
     private static final String titulo = "La Venganza de Belial";
     private static final String[] equipo = {"David Ibañez (Jefe Proyecto)", "Alberto Murillo", 
-        "Angel Oroquieta", "Hisam Moreno", "David Contreras"};
+        "Angel Oroquieta", "Hisam Moreno", "Pablo Contreras"};
     
     public EstadoMenuInicio(int id) {
         idEstado = id;
@@ -46,7 +48,8 @@ public class EstadoMenuInicio extends BasicGameState {
 
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-
+        
+        fondo= new Image("Imagenes/Fondos/Fondo.jpg");
         letraMenu = new Font("Verdana", Font.BOLD, 30);
         letraEquipo = new Font("Verdana", Font.PLAIN, 20);
         letraTitulo = new Font("Verdana", Font.BOLD, 40);
@@ -66,6 +69,7 @@ public class EstadoMenuInicio extends BasicGameState {
 
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
+        fondo.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
         renderOpcionesJugador();
         renderEquipo();
         renderTitulo();
