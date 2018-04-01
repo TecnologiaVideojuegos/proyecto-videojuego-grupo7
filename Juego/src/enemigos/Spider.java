@@ -24,7 +24,7 @@ public final class Spider extends Enemigo{
         this.setExpAportada(this.getNivel() * 4);
         this.setVelocidad(14);
         this.setHpActual(this.getHp());    
-        this.setImagen("Imagenes/Monstruos/Bosque/Spider.png");
+        //this.setImagen("Imagenes/Monstruos/Bosque/Spider.png");
     }
 
     @Override

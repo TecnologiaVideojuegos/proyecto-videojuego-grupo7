@@ -48,15 +48,16 @@ public class Heroe {
 
         if (input.isKeyDown(Input.KEY_UP)) {
             if (!gps.isBlocked(pos.x + w -4, pos.y - delta * SPEED) && !gps.isBlocked(pos.x + 4, pos.y - delta * SPEED)) {
-            pos.y -= delta * SPEED;
+                pos.y -= delta * SPEED;
             }
             hero = movementUp;
             hero.update(delta);
             ultimaDireccion = 'u';
         } else if (input.isKeyDown(Input.KEY_DOWN)) {
             if (!gps.isBlocked(pos.x + w - 4, pos.y + h + delta * SPEED) && !gps.isBlocked(pos.x + 4, pos.y + h + delta * SPEED)) {
-            pos.y += delta * SPEED;
-            }hero = movementDown;
+                pos.y += delta * SPEED;
+            }
+            hero = movementDown;
             hero.update(delta);
             ultimaDireccion = 'd';
         } else if (input.isKeyDown(Input.KEY_LEFT)) {
