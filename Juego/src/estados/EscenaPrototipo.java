@@ -132,6 +132,15 @@ public class EscenaPrototipo extends BasicGameState{
                 break;
             
         }
+        /* METODO PARA HISAM
+        if (input.isKeyPressed(Input.KEY_ENTER)){
+            if(estado==4){
+                musicaIntro.stop();
+                sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
+            }
+            estado++;
+        }
+        */
     }
     
 }
