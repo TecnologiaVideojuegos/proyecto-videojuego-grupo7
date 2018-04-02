@@ -21,6 +21,7 @@ public class VenganzaBelial extends StateBasedGame {
     public static final int ESTADOESCENAPROTOTIPO = 3;//EDIT
     public static final int ESTADOMAPAJUEGO = 4;
     public static final int ESTADOCOMBATETUT=5;
+    public static final int ESCENACARRETA=6;
     public static final int WIDTH = 1366;
     public static final int HEIGHT = 768;
     public static final boolean FULLSCREEN = false;
@@ -53,6 +54,7 @@ public class VenganzaBelial extends StateBasedGame {
         addState(new EscenaPrototipo(ESTADOESCENAPROTOTIPO));
         addState(new EstadoMapaJuego(ESTADOMAPAJUEGO));
         addState(new EstadoCombateTutorial(ESTADOCOMBATETUT));
+        addState(new EscenaCarreta(ESCENACARRETA));
         //
         this.enterState(ESTADOMENUINICIO);
     }
@@ -62,7 +64,8 @@ public class VenganzaBelial extends StateBasedGame {
         getState(ESTADOMENUINICIO).init(gc, this);
         getState(ESTADOCOMBATE).init(gc, this);
         getState(ESTADOMENU).init(gc, this);
-        //
+        //ESCENACARRETA
+        getState(ESCENACARRETA).init(gc, this);
         getState(ESTADOESCENAPROTOTIPO).init(gc, this);
         getState(ESTADOMAPAJUEGO).init(gc, this);
         getState(ESTADOCOMBATETUT).init(gc, this);
