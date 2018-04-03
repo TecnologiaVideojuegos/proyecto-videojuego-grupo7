@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.1.3" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="32" tileheight="32" infinite="0" nextobjectid="1">
+ <tileset firstgid="1" source="World_A2.tsx"/>
+ <layer name="Capa de Patrones 1" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFQwWIQjGtzKSW+aJomJpmEWMeNrXYzEFWo0TAPGLMIcV9uNxLKsZmHiVm4nIjupmeeDCh8MdlHrlhS6lf8QFqmzfcAAAV+Quw
+  </data>
+ </layer>
+ <layer name="Bloqueos" width="20" height="20">
+  <properties>
+   <property name="blocked" type="bool" value="true"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApIBwAGQAAB
+  </data>
+ </layer>
+</map>
