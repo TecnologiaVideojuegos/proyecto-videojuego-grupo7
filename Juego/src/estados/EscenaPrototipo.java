@@ -99,40 +99,6 @@ public class EscenaPrototipo extends BasicGameState{
     //Muestra la actualización
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
         musicaIntro.play();
-        switch (estado){
-            case 0:
-                if (input.isKeyPressed(Input.KEY_ENTER)){
-                    estado=1;
-                    //musicaIntro.play();
-                    
-                }
-                break;
-            case 1:
-                if (input.isKeyPressed(Input.KEY_ENTER)){
-                    estado=2;
-                    //this.efecto.play();
-                }                
-                break;
-            case 2:
-                if (input.isKeyPressed(Input.KEY_ENTER)){
-                    estado=3;
-                    //sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);
-                }                
-                break;
-            case 3:
-                if (input.isKeyPressed(Input.KEY_ENTER)){
-                    estado=4;
-                }                
-                break;
-            case 4:
-                if (input.isKeyPressed(Input.KEY_ENTER)){
-                    musicaIntro.stop();
-                    sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
-                }                
-                break;
-            
-        }
-        /* METODO PARA HISAM
         if (input.isKeyPressed(Input.KEY_ENTER)){
             if(estado==4){
                 musicaIntro.stop();
@@ -140,7 +106,7 @@ public class EscenaPrototipo extends BasicGameState{
             }
             estado++;
         }
-        */
+        
     }
     
 }
