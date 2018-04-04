@@ -6,6 +6,7 @@
 package estados;
 
 import java.awt.Font;
+import java.util.Vector;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -17,6 +18,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.TrueTypeFont;
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -28,6 +30,11 @@ import org.newdawn.slick.tiled.TiledMap;
  */
 public class EscenaCarreta extends BasicGameState{
     private int idEstado;
+    private static final int POSICIONAVATARX = 30;
+    private static final int POSICIONAVATARY = 620;
+    private static final int TAMANYOAVATARX = 115;
+    private static final int TAMANYOAVATARY = 115;
+    //avatarDialogo.draw(30, 610, 115, 125);
     /*Texto*/
     private TrueTypeFont mensajePantalla;
     private Font tipoLetra  =new Font("Verdana", Font.PLAIN, 15);
@@ -45,12 +52,18 @@ public class EscenaCarreta extends BasicGameState{
     private static final int esquinaXMapa=550;
     private static final int esquinaYMapa=300;
     /*Animaciones*/
-    private Animation hero, movementUp, movementDown, movementLeft, movementRight, stillUp, stillDown, stillLeft, stillRight;
+    private Animation hero,stillDown;
     private Animation fondo;
+    private Animation explosion;
+    private Animation bandit, banditR, banditD;
     /*Imagenes*/
-    private Image ventanaDialogo,avatarDialogo, avatarH,avatarM, avatarK;
+    private Image ventanaDialogo,avatarDialogo, avatarH,avatarM, avatarK, avatarB;
+    private Image carretera;
+    private Image carro;
+    private Image salidaEscena;
     /*Sonido*/
     private Sound sonidoSelect;
+    private Sound sonidoExplosion;
     private Music ost;
     int time;//EDIT
     
@@ -64,48 +77,77 @@ public class EscenaCarreta extends BasicGameState{
 
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-        Image[] animationUp = {new Image("Imagenes/HeroeMundo/her20.png"), new Image("Imagenes/HeroeMundo/her22.png")};
-        Image[] animationDown = {new Image("Imagenes/HeroeMundo/her00.png"), new Image("Imagenes/HeroeMundo/her02.png")};
-        Image[] animationLeft = {new Image("Imagenes/HeroeMundo/her30.png"), new Image("Imagenes/HeroeMundo/her32.png")};
-        Image[] animationRight = {new Image("Imagenes/HeroeMundo/her10.png"), new Image("Imagenes/HeroeMundo/her12.png")};
-        Image[] up = {new Image("Imagenes/HeroeMundo/her21.png")};
         Image[] down = {new Image("Imagenes/HeroeMundo/her01.png")};
-        Image[] left = {new Image("Imagenes/HeroeMundo/her31.png")};
-        Image[] right = {new Image("Imagenes/HeroeMundo/her11.png")};
-        Image[] animationfondo ={new Image("Imagenes/Escenacarro/Carreta0.png"),new Image("Imagenes/Escenacarro/Carreta0.png"),new Image("Imagenes/Escenacarro/Carreta7.png"),new Image("Imagenes/Escenacarro/Carreta6.png"),new Image("Imagenes/Escenacarro/Carreta5.png"),new Image("Imagenes/Escenacarro/Carreta4.png"),new Image("Imagenes/Escenacarro/Carreta3.png"),new Image("Imagenes/Escenacarro/Carreta2.png"),new Image("Imagenes/Escenacarro/Carreta1.png"),new Image("Imagenes/Escenacarro/Carreta0.png"),};
-        stillUp = new Animation(up, 500);
+        Image[] animationfondo ={new Image("Imagenes/Escenacarro/Carreta0.png"),new Image("Imagenes/Escenacarro/Carreta0.png"),new Image("Imagenes/Escenacarro/Carreta7.png"),new Image("Imagenes/Escenacarro/Carreta6.png"),new Image("Imagenes/Escenacarro/Carreta5.png"),new Image("Imagenes/Escenacarro/Carreta4.png"),new Image("Imagenes/Escenacarro/Carreta3.png"),new Image("Imagenes/Escenacarro/Carreta2.png"),new Image("Imagenes/Escenacarro/Carreta1.png"),new Image("Imagenes/Escenacarro/Carreta0.png")};
         stillDown = new Animation(down, 500);
-        stillLeft = new Animation(left, 500);
-        stillRight = new Animation(right, 500);
-        movementUp = new Animation(animationUp, 500);
-        movementDown = new Animation(animationDown, 500);
-        movementLeft = new Animation(animationLeft, 500);
-        movementRight = new Animation(animationRight, 500);
         fondo= new Animation(animationfondo,500);
         hero=stillDown;
+        Image[] explo ={new Image("Imagenes/Escenacarro/ex1.png"),new Image("Imagenes/Escenacarro/ex2.png"),new Image("Imagenes/Escenacarro/ex3.png"),new Image("Imagenes/Escenacarro/ex4.png"),new Image("Imagenes/Escenacarro/ex5.png"),new Image("Imagenes/Escenacarro/ex6.png"),new Image("Imagenes/Escenacarro/ex7.png"),new Image("Imagenes/Escenacarro/ex8.png"),new Image("Imagenes/Escenacarro/ex9.png")};
+        explosion = new Animation(explo,200);
+        Image[] banRight={new Image("Imagenes/Escenacarro/ban2.png"),new Image("Imagenes/Escenacarro/ban3.png"),new Image("Imagenes/Escenacarro/ban4.png")};
+        Image[] banDown={new Image("Imagenes/Escenacarro/ban1.png")};
+        banditR= new Animation(banRight,200);
+        banditD=new Animation(banDown,200);
+        bandit=banditR;
+        carretera= new Image("Imagenes/Escenacarro/carretera.png");
+        carro= new Image("Imagenes/Escenacarro/carro.png");
+        salidaEscena= new Image("Imagenes/Escenacarro/salidaEscena1.png");
         /**/
         estado=0;
         this.input = gc.getInput();
         mensajePantalla= new TrueTypeFont(tipoLetra, true);
-        map = new TiledMap("Imagenes/Escenapruebas/Carreta.tmx");
+        map = new TiledMap("Imagenes/Escenacarro/Carreta.tmx");
         posicion = new Vector2f(esquinaXMapa+map.getTileWidth()*2,esquinaYMapa+map.getTileHeight()*2);
         ventanaDialogo= new Image("Imagenes/Avatar/cajaMensaje.png");
         avatarH =  new Image("Imagenes/Personajes/HoraciaA.png");
         avatarM =  new Image("Imagenes/Personajes/MordeimA.png");
         avatarK =  new Image("Imagenes/Personajes/KibitoA.png");
+        avatarB = new Image("Imagenes/Escenacarro/banditFace.png");
         avatarDialogo = avatarH;
         sonidoSelect=new Sound("Musica/Efectos/select.wav");
-        ost= new Music("Musica/BSO/caminoMoria.wav");
+        sonidoExplosion=new Sound("Musica/Efectos/Explosion5.wav");
+        //EDIT//ost= new Music("Musica/BSO/caminoMoria.wav");
+        /**/
+        
     }
 
     @Override
     //Muestra por pantalla
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException { 
-                //map.render(esquinaXMapa, esquinaYMapa);
-                fondo.draw(esquinaXMapa, esquinaYMapa);
-                hero.draw(posicion.x, posicion.y);
+        
+        if(estado<19){
+            fondo.draw(esquinaXMapa, esquinaYMapa);
+            hero.draw(posicion.x, posicion.y);
+            renderDialogo();
+        }      
+        else if(estado>18 && estado<23){
+            carretera.draw(0, 0,VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
+            if(estado<21)
+                carro.draw(400, 300);
+        
+            if(estado==19){
+            explosion.draw(300, 200);
+            explosion.draw(500, 200);
+            explosion.draw(500, 400);
+            explosion.draw(300, 400);   
+            }
+            if(estado==20){
+                Rectangle rectan=new Rectangle(0,0,VenganzaBelial.WIDTH,VenganzaBelial.HEIGHT);
+                grphcs.draw(rectan);
+                grphcs.fill(rectan);
+            }
+            if(estado>20){
+                bandit.draw(posicion.x, posicion.y);
+                bandit.draw(posicion.x+20, posicion.y+50);
+            }
+            if(estado>21){
                 renderDialogo();
-                mensajePantalla.drawString(200, 200, ""+time/1000);
+            }
+        }
+        else if(estado==24){
+            salidaEscena.draw(posicion.x, posicion.y);
+        }
+        //edit//mensajePantalla.drawString(800, 30,"ESTADO= "+estado );
     }
 
     @Override
@@ -115,13 +157,17 @@ public class EscenaCarreta extends BasicGameState{
         fondo.update(i);
         time+=i;
         if(input.isKeyPressed(Input.KEY_ENTER)){
-            sonidoSelect.play(1, 0.2f);
-            estado++;
+            if(estado!=20)
+            {
+                sonidoSelect.play(1, 0.2f);
+                estado++;
+            }
+            
         }
         switch (estado)
         {
             case 0:
-                ost.loop(1, 0.05f);
+                //ost.loop(1, 0.05f);
                 estado++;
                 break;
             case 1:
@@ -160,52 +206,163 @@ public class EscenaCarreta extends BasicGameState{
                 avatarDialogo=this.avatarK;
                 //////="////////////////////////////////////////////////////////";
                 linea1="Ignoremos por un segundo lo echa polvo que esta la ";
-                linea2="carreta, centremonos en la ruta a seguir";
+                linea2="carreta, centremonos en la ruta a seguir.";
                 linea3="";
                 linea4="";
                 break;
             case 6:
                 avatarDialogo=this.avatarH;
                 //////="////////////////////////////////////////////////////////";
-                linea1="";
-                linea2="";
-                linea3="";
+                linea1="Ssí,esto...veamos...utilizaremos la carretera secundaria";
+                linea2="para dirigirnos a Tamberl, se supone que en sus cercanias";
+                linea3="encontraremos el primer objetivo...";
                 linea4="";
                 break;
             case 7:
+                avatarDialogo=this.avatarK;
                 //////="////////////////////////////////////////////////////////";
-                linea1="";
-                linea2="";
-                linea3="";
-                linea4="";
+                linea1="La carretera secundaria...esa que circula por encima de ";
+                linea2="un barranco, ese barranco en cuyo fondo se encuentra el";
+                linea3="conocido bosque de Tanberl, ese bosque donde, según las";
+                linea4="leyendas, nadie que haya entrado en los ultimos 50 años";
                 break;
             case 8:
                 //////="////////////////////////////////////////////////////////";
-                linea1="";
+                linea1="ha regresado para contarlo, ¿Esa carretera secundaria?";
                 linea2="";
                 linea3="";
                 linea4="";
                 break;
             case 9:
+                avatarDialogo=this.avatarH;
                 //////="////////////////////////////////////////////////////////";
-                linea1="";
+                linea1="Ssí";
                 linea2="";
                 linea3="";
                 linea4="";
                 break;
             case 10:
+                avatarDialogo=this.avatarK;
                 //////="////////////////////////////////////////////////////////";
-                linea1="";
+                linea1="Quiero bajarme.";
                 linea2="";
                 linea3="";
                 linea4="";
+                break;
+                
+            case 11:
+                avatarDialogo=this.avatarH;
+                //////="////////////////////////////////////////////////////////";
+                linea1="Lady Hestia preparó el transporte para nosotros, estoy";
+                linea2="segura de que a pesar de como se vea es perfectamente ";
+                linea3="segura...creo..tal vez...¿con un poco de suerte?";
+                linea4="";
+                break;
+            case 12:
+                avatarDialogo=this.avatarK;
+                //////="////////////////////////////////////////////////////////";
+                linea1="...";
+                linea2="Se que lo digo en todas nuestras misiones pero, en esta";
+                linea3="estoy seguro de que vamos a morir.";
+                linea4="";
+                break;
+            case 13:
+                //Explosión y movimiento de la carreta
+                if(!sonidoExplosion.playing())
+                {
+                    sonidoExplosion.play();
+                }
+                break;
+            case 14:
+                avatarDialogo=this.avatarH;
+                //////="////////////////////////////////////////////////////////";
+                linea1="¡Eeek! ¡Mordeim, prometiste que no habría explosivos!";
+                linea2="";
+                linea3="";
+                linea4="";
+                break;
+            case 15:
+                avatarDialogo=this.avatarM;
+                //////="////////////////////////////////////////////////////////";
+                linea1="Esta vez yo no he sido";
+                linea2="";
+                linea3="";
+                linea4="";
+                break;
+            case 16:
+                avatarDialogo=this.avatarH;
+                //////="////////////////////////////////////////////////////////";
+                linea1="¿Kibito?";
+                linea2="";
+                linea3="";
+                linea4="";
+                break;
+            case 17:
+                avatarDialogo=this.avatarK;
+                //////="////////////////////////////////////////////////////////";
+                linea1="Claaaro, como soy el ¨Mago Negro¨ tengo que ir explotando";
+                linea2="cosas..Eso es discriminación y pienso quejarme a Recursos";
+                linea3="humanos.";
+                linea4="";
+                break;
+            case 18:
+                //Explosión
+                if(!sonidoExplosion.playing())
+                {
+                    sonidoExplosion.play();
+                }
+                time=0;
+                break;
+            case 19://Temporización de animacion de explosiones
+                time+=i;
+                if(time/1000>3)//3 segundos de ejecución
+                {
+                    estado++;
+                    time=0;
+                }
+                break;
+            case 20://Temporizacion de pantalla en blanco
+                time+=i;
+                if(time/1000>3)//3 segundos de ejecución
+                {
+                    estado++;
+                    time=0;
+                    this.posicion.x=0;
+                    this.posicion.y=300;
+                }
+                break;
+            case 21:
+                posicion.x+=0.1f*i;
+                if(posicion.x>=400){
+                    estado++;
+                }
+                break;
+            case 22:
+                this.bandit=this.banditD;
+                avatarDialogo=this.avatarB;
+                //////="////////////////////////////////////////////////////////";
+                linea1="Para un jodido carro que podemos atracar en este truño";
+                linea2="de carretera y vas,y lo despeñas soltandole encima todos";
+                linea3="los explosivos que teniamos...el jefe se va a cabrear.";
+                linea4="";
+                break;
+            case 23:
+                posicion.x=0;
+                posicion.y=0;
+                estado++;
+                break;
+            case 24:
+                posicion.y+=0.4f*i;
+                if(posicion.y>=700){
+                    sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);//EDIT:Cambio de escena
+                }
                 break;
         }
     }
     
     private void renderDialogo()
     {
-        avatarDialogo.draw(30, 610, 115, 125);
+        avatarDialogo.draw(POSICIONAVATARX, POSICIONAVATARY, TAMANYOAVATARX, TAMANYOAVATARY);
         this.ventanaDialogo.draw(0, 600, 1);
         ///////////////////////////////////,"////////////////////////////////////////////////////////"/;
         mensajePantalla.drawString(160, 625,linea1 );

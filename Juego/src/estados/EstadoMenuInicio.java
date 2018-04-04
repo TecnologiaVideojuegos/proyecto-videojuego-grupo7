@@ -128,6 +128,7 @@ public class EstadoMenuInicio extends BasicGameState {
                 case PRUEBASANGEL:
                     break;
                 case PRUEBASPABLO:
+                    //sbg.enterState(VenganzaBelial.ESCENATUTORIAL);
                     break;
                     
             }
