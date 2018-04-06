@@ -124,6 +124,7 @@ public class EstadoMenuInicio extends BasicGameState {
                     //sbg.enterState(VenganzaBelial.ESTADOCOMBATE);//EDIT
                     //sbg.enterState(VenganzaBelial.ESTADOCOMBATETUT);//EDIT
                     sbg.enterState(VenganzaBelial.ESCENACARRETA);//EDIT
+                    //sbg.enterState(VenganzaBelial.ESCENABOSQUE1);//EDIT
                     break;
                 case PRUEBASANGEL:
                     break;

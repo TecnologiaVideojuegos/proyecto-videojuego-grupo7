@@ -35,6 +35,7 @@ public class EscenaCarreta extends BasicGameState{
     private static final int TAMANYOAVATARX = 115;
     private static final int TAMANYOAVATARY = 115;
     //avatarDialogo.draw(30, 610, 115, 125);
+    private static final int TILESIZE = 32;
     /*Texto*/
     private TrueTypeFont mensajePantalla;
     private Font tipoLetra  =new Font("Verdana", Font.PLAIN, 15);
@@ -47,12 +48,11 @@ public class EscenaCarreta extends BasicGameState{
     private Input input;
     private int estado;
     /*Mapa*/
-    TiledMap map;
     private Vector2f posicion;
     private static final int esquinaXMapa=550;
     private static final int esquinaYMapa=300;
     /*Animaciones*/
-    private Animation hero,stillDown;
+    private Image hero1, hero2, hero3;
     private Animation fondo;
     private Animation explosion;
     private Animation bandit, banditR, banditD;
@@ -77,32 +77,30 @@ public class EscenaCarreta extends BasicGameState{
 
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-        Image[] down = {new Image("Imagenes/HeroeMundo/her01.png")};
-        Image[] animationfondo ={new Image("Imagenes/Escenacarro/Carreta0.png"),new Image("Imagenes/Escenacarro/Carreta0.png"),new Image("Imagenes/Escenacarro/Carreta7.png"),new Image("Imagenes/Escenacarro/Carreta6.png"),new Image("Imagenes/Escenacarro/Carreta5.png"),new Image("Imagenes/Escenacarro/Carreta4.png"),new Image("Imagenes/Escenacarro/Carreta3.png"),new Image("Imagenes/Escenacarro/Carreta2.png"),new Image("Imagenes/Escenacarro/Carreta1.png"),new Image("Imagenes/Escenacarro/Carreta0.png")};
-        stillDown = new Animation(down, 500);
+        Image[] animationfondo ={new Image("Imagenes/Escenas/EscenaCarreta1/Carreta0.png"),new Image("Imagenes/Escenas/EscenaCarreta1/Carreta0.png"),new Image("Imagenes/Escenas/EscenaCarreta1/Carreta7.png"),new Image("Imagenes/Escenas/EscenaCarreta1/Carreta6.png"),new Image("Imagenes/Escenas/EscenaCarreta1/Carreta5.png"),new Image("Imagenes/Escenas/EscenaCarreta1/Carreta4.png"),new Image("Imagenes/Escenas/EscenaCarreta1/Carreta3.png"),new Image("Imagenes/Escenas/EscenaCarreta1/Carreta2.png"),new Image("Imagenes/Escenas/EscenaCarreta1/Carreta1.png"),new Image("Imagenes/Escenas/EscenaCarreta1/Carreta0.png")};
         fondo= new Animation(animationfondo,500);
-        hero=stillDown;
-        Image[] explo ={new Image("Imagenes/Escenacarro/ex1.png"),new Image("Imagenes/Escenacarro/ex2.png"),new Image("Imagenes/Escenacarro/ex3.png"),new Image("Imagenes/Escenacarro/ex4.png"),new Image("Imagenes/Escenacarro/ex5.png"),new Image("Imagenes/Escenacarro/ex6.png"),new Image("Imagenes/Escenacarro/ex7.png"),new Image("Imagenes/Escenacarro/ex8.png"),new Image("Imagenes/Escenacarro/ex9.png")};
+        hero1=new Image("Imagenes/HeroeMundo/her01.png");
+        hero2=new Image("Imagenes/Animaciones/Sprites/kib2.png");
+        Image[] explo ={new Image("Imagenes/Animaciones/Combate/ex1.png"),new Image("Imagenes/Animaciones/Combate/ex2.png"),new Image("Imagenes/Animaciones/Combate/ex3.png"),new Image("Imagenes/Animaciones/Combate/ex4.png"),new Image("Imagenes/Animaciones/Combate/ex5.png"),new Image("Imagenes/Animaciones/Combate/ex6.png"),new Image("Imagenes/Animaciones/Combate/ex7.png"),new Image("Imagenes/Animaciones/Combate/ex8.png"),new Image("Imagenes/Animaciones/Combate/ex9.png")};
         explosion = new Animation(explo,200);
-        Image[] banRight={new Image("Imagenes/Escenacarro/ban2.png"),new Image("Imagenes/Escenacarro/ban3.png"),new Image("Imagenes/Escenacarro/ban4.png")};
-        Image[] banDown={new Image("Imagenes/Escenacarro/ban1.png")};
+        Image[] banRight={new Image("Imagenes/Animaciones/Sprites/ban2.png"),new Image("Imagenes/Animaciones/Sprites/ban3.png"),new Image("Imagenes/Animaciones/Sprites/ban4.png")};
+        Image[] banDown={new Image("Imagenes/Animaciones/Sprites/ban1.png")};
         banditR= new Animation(banRight,200);
         banditD=new Animation(banDown,200);
         bandit=banditR;
-        carretera= new Image("Imagenes/Escenacarro/carretera.png");
-        carro= new Image("Imagenes/Escenacarro/carro.png");
-        salidaEscena= new Image("Imagenes/Escenacarro/salidaEscena1.png");
+        carretera= new Image("Imagenes/Escenas/EscenaCarreta1/carretera.png");
+        carro= new Image("Imagenes/Escenas/EscenaCarreta1/carro.png");
+        salidaEscena= new Image("Imagenes/Escenas/EscenaCarreta1/salidaEscena1.png");
         /**/
         estado=0;
         this.input = gc.getInput();
         mensajePantalla= new TrueTypeFont(tipoLetra, true);
-        map = new TiledMap("Imagenes/Escenacarro/Carreta.tmx");
-        posicion = new Vector2f(esquinaXMapa+map.getTileWidth()*2,esquinaYMapa+map.getTileHeight()*2);
+        posicion = new Vector2f(esquinaXMapa+TILESIZE*2,esquinaYMapa+TILESIZE*2);
         ventanaDialogo= new Image("Imagenes/Avatar/cajaMensaje.png");
         avatarH =  new Image("Imagenes/Personajes/HoraciaA.png");
         avatarM =  new Image("Imagenes/Personajes/MordeimA.png");
         avatarK =  new Image("Imagenes/Personajes/KibitoA.png");
-        avatarB = new Image("Imagenes/Escenacarro/banditFace.png");
+        avatarB = new Image("Imagenes/Avatar/Caras/banditFace.png");
         avatarDialogo = avatarH;
         sonidoSelect=new Sound("Musica/Efectos/select.wav");
         sonidoExplosion=new Sound("Musica/Efectos/Explosion5.wav");
@@ -117,7 +115,8 @@ public class EscenaCarreta extends BasicGameState{
         
         if(estado<19){
             fondo.draw(esquinaXMapa, esquinaYMapa);
-            hero.draw(posicion.x, posicion.y);
+            hero1.draw(posicion.x+34, posicion.y);
+            hero2.draw(posicion.x-34, posicion.y);
             renderDialogo();
         }      
         else if(estado>18 && estado<23){
@@ -153,7 +152,7 @@ public class EscenaCarreta extends BasicGameState{
     @Override
     //Muestra la actualización
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
-        hero.update(i);
+
         fondo.update(i);
         time+=i;
         if(input.isKeyPressed(Input.KEY_ENTER)){
