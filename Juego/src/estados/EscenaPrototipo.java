@@ -38,10 +38,13 @@ public class EscenaPrototipo extends BasicGameState{
     private String linea3="";
     private String linea4="";
     private String linea5="";
+    private String linea6="";
+    private String linea7="";
+    private String linea8="";
     private static final int esquinaXMapa=550;
     private static final int esquinaYMapa=300;
     private Image hero1, hero2, hero3;
-    private Image ventanaDialogo,avatarDialogo, avatarH,avatarM, avatarK, avatarHestia;
+    private Image ventanaDialogo,avatarDialogo, avatarH,avatarM, avatarK, avatarHestia,avatarE;
     private Input input;
     private int estado;
     private Image fondo;
@@ -69,13 +72,14 @@ public class EscenaPrototipo extends BasicGameState{
         estado=0;
         this.input = gc.getInput();
         fondo= new Image("Imagenes/Fondos/FondoIntro.jpg");
-        fondoHestia= new Image("Imagenes/Fondos/FondoHestia.jpg");//EDIT
+        fondoHestia= new Image("Imagenes/Escenas/SalaInicial/SalaHestia.png");//EDIT
         ventanaDialogo= new Image("Imagenes/Avatar/cajaMensaje.png");
         hero1=new Image("Imagenes/HeroeMundo/her01.png");
         avatarH =  new Image("Imagenes/Personajes/HoraciaA.png");
         avatarM =  new Image("Imagenes/Personajes/MordeimA.png");
         avatarK =  new Image("Imagenes/Personajes/KibitoA.png");
         avatarHestia = new Image("Imagenes/Personajes/HestiaA.png");//EDIT
+        avatarE = new Image ("Imagenes/Personajes/EncapuchadoA.png");
         texto= new TrueTypeFont(letraMenu, true);
         posicion = new Vector2f(esquinaXMapa+TILESIZE*2,esquinaYMapa+TILESIZE*2);
         this.hestia= new SpriteSheet("Imagenes/Animaciones/Sprites/Hestia.png",20,20);
@@ -88,42 +92,25 @@ public class EscenaPrototipo extends BasicGameState{
     @Override
     //Muestra por pantalla
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException {
-        fondo.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
         //animacionHestia.draw(450, 300, 130, 192);
-        
+        if(estado<4){
+            fondo.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
+            renderDialogo1();
+        }
         switch (estado){
-            case 0:
-                texto.drawString(450, 300, "El mundo de nuestros protegonistas se llama Reynos.",rojo);
-                texto.drawString(450, 350, "Hace muchos años había un demonio, Belial, que engaño a la");
-                texto.drawString(450, 400, "mitad de la población con otorgarles lo que quisieran a cambio");
-                texto.drawString(450, 450, "de abrir las puertas del Infierno.");
-                break;
-            case 1:
-                texto.drawString(450, 300, "De esa forma Reynos se sumió en la Guerra Demoniaca.");
-                texto.drawString(450, 350, "A medida que avanzaba la guerra las puertas del Infierno parecían");
-                texto.drawString(450, 400, "abrirse, como si el derramamiento de sangre fuera la llave.");
-                break;
-            case 2:
-                texto.drawString(450, 300, "Cuando las puertas se iban a abrir y Belial iba a entrar a nuestro mundo");
-                texto.drawString(450, 350, "aparecio una organización para preservar la paz, Cardinal.");
-                texto.drawString(450, 400, "Cardinal sello las puertas del Infierno con un ritual y los sellos");
-                texto.drawString(450, 450, "se exparcierón por todo el mundo de Reynos.");
-                break;
-            case 3:
-                texto.drawString(450, 300, "Con el paso de los siglos los sellos se han debilitado y los");
-                texto.drawString(450, 350, "movimientos sospechosos de Cardinal han aumentado considerablemente.");
-                break;
             case 4:
-                fondoHestia.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);//EDIT
+                fondoHestia.draw(esquinaXMapa, esquinaYMapa);//EDIT
                 texto.drawString(1050, 0, "Sala de Hestia");
-                hero1.draw(posicion.x+34, posicion.y);
+                hero1.draw(posicion.x+40, posicion.y);
                 break;
             case 5:
-                fondoHestia.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);//EDIT
+                fondoHestia.draw(esquinaXMapa, esquinaYMapa);//EDIT
+                hero1.draw(posicion.x+40, posicion.y);
                 renderDialogo();
                 break;
             case 6:
-                fondoHestia.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);//EDIT
+                fondoHestia.draw(esquinaXMapa, esquinaYMapa);//EDIT
+                hero1.draw(posicion.x+40, posicion.y);
                 renderDialogo();
                 break;
             
@@ -135,17 +122,45 @@ public class EscenaPrototipo extends BasicGameState{
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
         musicaIntro.play();
         if (input.isKeyPressed(Input.KEY_ENTER)){
-            if(estado==6){
+            if(estado==4){
                 musicaIntro.stop();
+            }
+            if(estado==6){
                 sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
             }
             estado++;
         }
         switch (estado)
         {
-            case 4:
-                
+            case 0:
+                avatarDialogo=this.avatarE;
+                linea5 = "El mundo de nuestros protegonistas se llama Reynos.";
+                linea6 = "Hace muchos años había un demonio, Belial, que engaño";
+                linea7 = "a la mitad de la población con otorgarles lo que";
+                linea8 = "quisieran a cambio de abrir las puertas del Infierno.";
                 break;
+            case 1:
+                avatarDialogo=this.avatarE;
+                linea5 = "De esa forma Reynos se sumió en la Guerra Demoniaca.";
+                linea6 = "A medida que avanzaba la guerra las puertas del";
+                linea7 = "Infierno parecían abrirse, como si el derramamiento";
+                linea8 = "de sangre fuera la llave.";
+                break;
+            case 2:
+                avatarDialogo=this.avatarE;
+                linea5 = "Cuando las puertas se iban a abrir y Belial entraría";
+                linea6 = "a nuestro mundoaparecio una organización para preservar";
+                linea7 = "la paz, Cardinal. Cardinal sello las puertas del Infierno con";
+                linea8 = "un ritual y los sellos se exparcierón por todo el mundo de Reynos.";
+                break;
+            case 3:
+                avatarDialogo=this.avatarE;
+                linea5 = "Con el paso de los siglos los sellos se han debilitado y los";
+                linea6 = "movimientos sospechosos de Cardinal han aumentado considerablemente.";
+                linea7 = "";
+                linea8 = "";
+                break;
+            
             case 5:
                 avatarDialogo=this.avatarHestia;
                 //////="////////////////////////////////////////////////////////";
@@ -175,5 +190,11 @@ public class EscenaPrototipo extends BasicGameState{
         texto.drawString(160, 655,linea3 );
         texto.drawString(160, 670,linea4);
     }
-    
+    private void renderDialogo1(){
+        avatarDialogo.draw(POSICIONAVATARX, POSICIONAVATARY, TAMANYOAVATARX, TAMANYOAVATARY);
+        texto.drawString(450, 300, linea5, rojo);
+        texto.drawString(450, 350, linea6, rojo);
+        texto.drawString(450, 400, linea7, rojo);
+        texto.drawString(450, 450, linea8, rojo);
+    }
 }
