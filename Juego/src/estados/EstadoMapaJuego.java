@@ -47,6 +47,8 @@ public class EstadoMapaJuego extends BasicGameState {
 
     @Override
     public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
+        
+            
         player.update(gc, sbg, delta, this);
         if (gc.getInput().isKeyPressed(Input.KEY_ESCAPE)) {
             sbg.enterState(VenganzaBelial.ESTADOMENU);
