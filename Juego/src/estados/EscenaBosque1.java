@@ -56,8 +56,8 @@ public class EscenaBosque1 extends BasicGameState{
     private SpriteSheet sheetExclamacion;
     private Animation exclamacion;
     private Image horac, horacKO, horacL, horacR,horacF;
-    private Image mor, morKO, kibF, kibiR;
-    private Image kib, kibKO, morF, morB;
+    private Image mor, morKO, morF, morB;
+    private Image kib, kibKO, kibF, kibiR;
     private Image fondo;
     /*Imagenes*/
     private Image ventanaDialogo,avatarDialogo, avatarH,avatarM, avatarK;
@@ -89,6 +89,12 @@ public class EscenaBosque1 extends BasicGameState{
         kibKO.rotate(90);
         kibiR= new Image("Imagenes/Animaciones/Sprites/kib8.png");
         kib=kibKO;
+        /**/
+        morF=new Image("Imagenes/Animaciones/Sprites/mor2.png");
+        morKO= new Image("Imagenes/Animaciones/Sprites/mor11.png");
+        morKO.rotate(-90);
+        morB= new Image("Imagenes/Animaciones/Sprites/mor11.png");
+        mor=morKO;
         
         fondo= new Image("Imagenes/Escenas/EscenaBosque1/bosque.png");
         //salidaEscena= new Image("Imagenes/Escenas/EscenaCarreta1/salidaEscena1.png");
@@ -118,6 +124,8 @@ public class EscenaBosque1 extends BasicGameState{
             fondo.draw(0, 0);
             horac.draw(posicion.x+34, posicion.y);
             kib.draw(posicion.x-34, posicion.y);
+            mor.draw(posicion.x+34, posicion.y+64);
+            //EDIT:Rener Mordeim
             if(reproducirExclamacion)
                 this.exclamacion.draw(posicion.x+34, posicion.y-34);
             
@@ -220,6 +228,7 @@ public class EscenaBosque1 extends BasicGameState{
             case 8:
                 //EDIT Mordeim
                 kib=kibiR;
+                mor=morB;
                 avatarDialogo=this.avatarH;
                 //////="////////////////////////////////////////////////////////";
                 linea1="¡Estais vivos!";
@@ -277,6 +286,8 @@ public class EscenaBosque1 extends BasicGameState{
                 linea4="";
                 break;
             case 15:
+                kib=kibF;
+                mor=morF;
                 avatarDialogo=this.avatarK;
                 //////="////////////////////////////////////////////////////////";
                 linea1="Para que hablaré...";
@@ -285,6 +296,7 @@ public class EscenaBosque1 extends BasicGameState{
                 linea4="";
                 break;
             case 16:
+                sbg.enterState(VenganzaBelial.ESTADOCOMBATETUT);
                 break;
 
         }

@@ -258,7 +258,7 @@ public class EstadoCombateTutorial extends BasicGameState{
                         FinTurno();
                         break;
                     case FINCOMBATE:
-                        FinCombate(gc);
+                        FinCombate(gc,sbg);
                         //sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);//EDIT:Eliminar
                         OST.stop();
                         break;
@@ -542,7 +542,7 @@ public class EstadoCombateTutorial extends BasicGameState{
         }/*if(input.isKeyPressed(Input.KEY_ENTER))*/
     }/*private void FinTurno()*/
     
-    private void FinCombate(GameContainer gc)
+    private void FinCombate(GameContainer gc, StateBasedGame sbg)
     {
         /*Comprobar quien ha ganado el combate y actuar concorde*/
         if(NewCombate.CombateGanado())
@@ -569,8 +569,9 @@ public class EstadoCombateTutorial extends BasicGameState{
                 }/*for(aux=0;aux<VenganzaBelial.Party.size();aux++)*/
                 //Reactiva Flag para la proxima vez que se genera un combate
                 NuevoCombate=true;
-                //EDIT:ELIMINAR OBJETO COMBATE O VACIAR
-                gc.exit();  
+                //EDIT:Volver al mapa
+                sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
+                //gc.exit();  
             }/*if(input.isKeyPressed(Input.KEY_ENTER))*/
         }/*if(NewCombate.CombateGanado())*/
         else

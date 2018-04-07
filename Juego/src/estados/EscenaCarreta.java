@@ -81,6 +81,7 @@ public class EscenaCarreta extends BasicGameState{
         fondo= new Animation(animationfondo,500);
         hero1=new Image("Imagenes/HeroeMundo/her01.png");
         hero2=new Image("Imagenes/Animaciones/Sprites/kib2.png");
+        hero3=new Image("Imagenes/Animaciones/Sprites/mor8.png");
         Image[] explo ={new Image("Imagenes/Animaciones/Combate/ex1.png"),new Image("Imagenes/Animaciones/Combate/ex2.png"),new Image("Imagenes/Animaciones/Combate/ex3.png"),new Image("Imagenes/Animaciones/Combate/ex4.png"),new Image("Imagenes/Animaciones/Combate/ex5.png"),new Image("Imagenes/Animaciones/Combate/ex6.png"),new Image("Imagenes/Animaciones/Combate/ex7.png"),new Image("Imagenes/Animaciones/Combate/ex8.png"),new Image("Imagenes/Animaciones/Combate/ex9.png")};
         explosion = new Animation(explo,200);
         Image[] banRight={new Image("Imagenes/Animaciones/Sprites/ban2.png"),new Image("Imagenes/Animaciones/Sprites/ban3.png"),new Image("Imagenes/Animaciones/Sprites/ban4.png")};
@@ -117,6 +118,7 @@ public class EscenaCarreta extends BasicGameState{
             fondo.draw(esquinaXMapa, esquinaYMapa);
             hero1.draw(posicion.x+34, posicion.y);
             hero2.draw(posicion.x-34, posicion.y);
+            hero3.draw(posicion.x-32, posicion.y+60);
             renderDialogo();
         }      
         else if(estado>18 && estado<23){
@@ -353,7 +355,7 @@ public class EscenaCarreta extends BasicGameState{
             case 24:
                 posicion.y+=0.4f*i;
                 if(posicion.y>=700){
-                    sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);//EDIT:Cambio de escena
+                    sbg.enterState(VenganzaBelial.ESCENABOSQUE1);//EDIT:Cambio de escena
                 }
                 break;
         }
