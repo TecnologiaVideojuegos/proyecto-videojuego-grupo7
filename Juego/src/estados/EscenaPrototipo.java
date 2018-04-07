@@ -56,6 +56,7 @@ public class EscenaPrototipo extends BasicGameState{
     private Animation animacionHestia;
     private Music musicaIntro;
     private Sound efecto;
+    private Sound sonidoPuerta;
     private Vector2f posicion;
     
 
@@ -74,7 +75,8 @@ public class EscenaPrototipo extends BasicGameState{
         fondo= new Image("Imagenes/Fondos/FondoIntro.jpg");
         fondoHestia= new Image("Imagenes/Escenas/SalaInicial/SalaHestia.png");//EDIT
         ventanaDialogo= new Image("Imagenes/Avatar/cajaMensaje.png");
-        hero1=new Image("Imagenes/HeroeMundo/her01.png");
+        hero1=new Image("Imagenes/HeroeMundo/her21.png");
+        hero2=new Image("Imagenes/HeroeMundo/her01.png");
         avatarH =  new Image("Imagenes/Personajes/HoraciaA.png");
         avatarM =  new Image("Imagenes/Personajes/MordeimA.png");
         avatarK =  new Image("Imagenes/Personajes/KibitoA.png");
@@ -86,6 +88,7 @@ public class EscenaPrototipo extends BasicGameState{
         this.animacionHestia = new Animation(hestia,200);
         this.musicaIntro = new Music("Musica/BSO/Ablaze.wav");
         this.efecto = new Sound("Musica/Efectos/Cry2.wav");
+        sonidoPuerta=new Sound("Musica/Efectos/Door.wav");
         
     }
 
@@ -97,24 +100,24 @@ public class EscenaPrototipo extends BasicGameState{
             fondo.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
             renderDialogo1();
         }
-        switch (estado){
-            case 4:
-                fondoHestia.draw(esquinaXMapa, esquinaYMapa);//EDIT
-                texto.drawString(1050, 0, "Sala de Hestia");
-                hero1.draw(posicion.x+40, posicion.y);
-                break;
-            case 5:
-                fondoHestia.draw(esquinaXMapa, esquinaYMapa);//EDIT
-                hero1.draw(posicion.x+40, posicion.y);
-                renderDialogo();
-                break;
-            case 6:
-                fondoHestia.draw(esquinaXMapa, esquinaYMapa);//EDIT
-                hero1.draw(posicion.x+40, posicion.y);
-                renderDialogo();
-                break;
-            
+        if(estado==4){
+            fondoHestia.draw(esquinaXMapa, esquinaYMapa);//EDIT
+            texto.drawString(1050, 0, "Sala de Hestia");
+            hero1.draw(posicion.x+80, posicion.y);
         }
+        if(estado>4){
+            fondoHestia.draw(esquinaXMapa, esquinaYMapa);//EDIT
+            texto.drawString(1050, 0, "Sala de Hestia");
+            hero1.draw(posicion.x+80, posicion.y);
+            renderDialogo();
+            if(estado>=7){
+                hero2.draw(posicion.x+80, posicion.y+190);
+                if(estado>=18){
+                    hero2.draw();
+                }
+            }
+        }
+        
     }
 
     @Override
@@ -125,7 +128,7 @@ public class EscenaPrototipo extends BasicGameState{
             if(estado==4){
                 musicaIntro.stop();
             }
-            if(estado==6){
+            if(estado==18){
                 sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
             }
             estado++;
@@ -160,7 +163,6 @@ public class EscenaPrototipo extends BasicGameState{
                 linea7 = "";
                 linea8 = "";
                 break;
-            
             case 5:
                 avatarDialogo=this.avatarHestia;
                 //////="////////////////////////////////////////////////////////";
@@ -170,10 +172,94 @@ public class EscenaPrototipo extends BasicGameState{
                 linea4="";
                 break;
             case 6:
+                if(!sonidoPuerta.playing())
+                {
+                    sonidoPuerta.play();
+                }
+                estado++;
+                break;
+            case 7:
                 avatarDialogo=this.avatarH;
                 //////="////////////////////////////////////////////////////////";
-                linea1="Cap...capi...CAPITANA DEL ESCUADRÓN “F”, HORACIA LABELLE";
-                linea2="A SU SERVICIO MI SEÑORA.";
+                linea1="Cap...capi...CAPITANA DEL ESCUADRÓN “F”, HORACIA";
+                linea2="LABELLE A SU SERVICIO MI SEÑORA.";
+                linea3="";
+                linea4="";
+                break;
+            case 8:
+                avatarDialogo=this.avatarHestia;
+                linea1="¿Sabe porque le he hecho llamar capitana Labelle?";
+                linea2="";
+                linea3="";
+                linea4="";
+                break;
+            case 9:
+                avatarDialogo=this.avatarH;
+                linea1="Le prometo que la explosión en Ciudad Deyolica no fue a";
+                linea2="proposito.";
+                linea3="Mordeim utilizo explosivos para detener a un ladrón y";
+                linea4="Kibito no sabe usar magia de agua y...";
+                break;
+            case 10:
+                avatarDialogo=this.avatarHestia;
+                linea1="¿Eh?";
+                linea2="";
+                linea3="";
+                linea4="";
+                break;
+            case 11:
+                avatarDialogo=this.avatarH;
+                linea1="¿Eh?... quiero decir...eh... no se nada de una explosión";
+                linea2="en la ciudad.";
+                linea3="¿Para que me había llamado Sacerdotisa Hestia?";
+                linea4="";
+                break;
+            case 12:
+                avatarDialogo=this.avatarHestia;
+                linea1="...";
+                linea2="Tengo una misión de altísima importancia para tu equipo.";
+                linea3="¿Conoceís los sellos de Luci capitana Labelle?";
+                linea4="";
+                break;
+            case 13:
+                avatarDialogo=this.avatarH;
+                linea1="¿No son los sellos que impidierón que el Demonio Belial";
+                linea2="llegará a nuestro mundo?";
+                linea3="";
+                linea4="";
+                break;
+            case 14:
+                avatarDialogo=this.avatarHestia;
+                linea1="En efecto capitana Labelle.";
+                linea2="Han pasado varios siglos desde la Guerra Demoniaca y los";
+                linea3="sellos se han debilitado, por ello, tu escuadrón deberá";
+                linea4="reforzarlos con este objeto. ¿Alguna duda?";
+                break;
+            case 15:
+                avatarDialogo=this.avatarH;
+                linea1="Si, digo, no, digo...¿Está ústed segura de esto?";
+                linea2="";
+                linea3="";
+                linea4="";
+                break;
+            case 16:
+                avatarDialogo=this.avatarHestia;
+                linea1="Esta es una misión ultrasecreta incluso para Archi.";
+                linea2="Por ello, viajaréis de incognito sin que nadie sepa lo";
+                linea3="que hareís. Os daré un mapa de la posición aproximada de";
+                linea4="los sellos. Buena suerte capitana Labelle.";
+                break;
+            case 17:
+                avatarDialogo=this.avatarH;
+                linea1="No la defraudaremos Sacerdotisa Hestia.";
+                linea2="";
+                linea3="";
+                linea4="";
+                break;
+            case 18:
+                avatarDialogo=this.avatarHestia;
+                linea1="Espero que cumplan esta misión.";
+                linea2="";
                 linea3="";
                 linea4="";
                 break;
