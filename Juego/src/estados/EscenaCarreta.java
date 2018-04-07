@@ -355,8 +355,11 @@ public class EscenaCarreta extends BasicGameState{
             case 24:
                 posicion.y+=0.4f*i;
                 if(posicion.y>=700){
-                    sbg.enterState(VenganzaBelial.ESCENABOSQUE1);//EDIT:Cambio de escena
+                    estado++;
                 }
+                break;
+            case 25:
+                sbg.enterState(VenganzaBelial.ESCENABOSQUE1);//EDIT:Cambio de escena
                 break;
         }
     }
