@@ -90,10 +90,13 @@ public final class Combate {
         {
             case 0://Caso tutorial, poner enemigos muy rapidos  
                 //EDIT: Eliminar
+                VenganzaBelial.hori.setHpActual(50);
+                VenganzaBelial.mordi.setHpActual(50);
+                VenganzaBelial.kibi.setHpActual(50);
                 GeneraEnemigos.add(VenganzaBelial.hori);
                 GeneraEnemigos.add(VenganzaBelial.mordi);
                 GeneraEnemigos.add(VenganzaBelial.kibi);
-                this.setExpCombate(105);;
+                this.setExpCombate(105);
                 break;
             case 1:
                 break;

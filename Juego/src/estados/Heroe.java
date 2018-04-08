@@ -1,5 +1,6 @@
 package estados;
 
+import java.util.Random;
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Vector2f;
@@ -14,7 +15,12 @@ public class Heroe {
     private static final int ANIMATIONSPEED = 500;
     private static final float SPEED = 0.1f;
     private int w, h;
-
+    
+    private int offset=0;//Original=-4
+    //EDIT
+    private float aparicion=0;
+    
+    //EDIT
     public Heroe(float x, float y) throws SlickException {
         Image[] animationUp = {new Image("Imagenes/HeroeMundo/her20.png"), new Image("Imagenes/HeroeMundo/her22.png")};
         Image[] animationDown = {new Image("Imagenes/HeroeMundo/her00.png"), new Image("Imagenes/HeroeMundo/her02.png")};
@@ -47,21 +53,21 @@ public class Heroe {
         Input input = gc.getInput();
 
         if (input.isKeyDown(Input.KEY_UP)) {
-            if (!gps.isBlocked(pos.x + w -4, pos.y - delta * SPEED) && !gps.isBlocked(pos.x + 4, pos.y - delta * SPEED)) {
+            if (!gps.isBlocked(pos.x + w -offset, pos.y - delta * SPEED) && !gps.isBlocked(pos.x + offset, pos.y - delta * SPEED)) {
                 pos.y -= delta * SPEED;
             }
             hero = movementUp;
             hero.update(delta);
             ultimaDireccion = 'u';
         } else if (input.isKeyDown(Input.KEY_DOWN)) {
-            if (!gps.isBlocked(pos.x + w - 4, pos.y + h + delta * SPEED) && !gps.isBlocked(pos.x + 4, pos.y + h + delta * SPEED)) {
+            if (!gps.isBlocked(pos.x + w - offset, pos.y + h + delta * SPEED) && !gps.isBlocked(pos.x + offset, pos.y + h + delta * SPEED)) {
                 pos.y += delta * SPEED;
             }
             hero = movementDown;
             hero.update(delta);
             ultimaDireccion = 'd';
         } else if (input.isKeyDown(Input.KEY_LEFT)) {
-            if (!gps.isBlocked(pos.x - delta * SPEED, pos.y + 4) && !gps.isBlocked(pos.x - delta * SPEED, pos.y + h - 4)) {
+            if (!gps.isBlocked(pos.x - delta * SPEED, pos.y + offset) && !gps.isBlocked(pos.x - delta * SPEED, pos.y + h - offset)) {
                 pos.x -= delta * SPEED;
             }
             hero = movementLeft;
@@ -69,7 +75,7 @@ public class Heroe {
             ultimaDireccion = 'l';
 
         } else if (input.isKeyDown(Input.KEY_RIGHT)) {
-            if (!gps.isBlocked(pos.x + w + delta * SPEED, pos.y + h - 4) && !gps.isBlocked(pos.x + w + delta * SPEED, pos.y + 4)) {
+            if (!gps.isBlocked(pos.x + w + delta * SPEED, pos.y + h - offset) && !gps.isBlocked(pos.x + w + delta * SPEED, pos.y + offset)) {
                 pos.x += delta * SPEED;
             }
             hero = movementRight;
@@ -77,7 +83,7 @@ public class Heroe {
             ultimaDireccion = 'r';
         } 
         
-
+        
         else {
             switch (ultimaDireccion) {
                 case 'd':
@@ -93,10 +99,18 @@ public class Heroe {
                     hero = stillRight;
                     break;
             }
-        }
+        }/*else*/
+        //EDIT:Pruebas
+        ApareceEnemigo( gc,  sbg,  delta,  gps,  input);
     }
 
     public void render() {
+        //EDIT:Debug Param
+        TrueTypeFont textoDebug;
+        java.awt.Font letra  =new java.awt.Font("Verdana", java.awt.Font.PLAIN, 12); 
+        textoDebug= new TrueTypeFont(letra,true);
+        textoDebug.drawString(500, 30, "Tasa: "+this.aparicion);
+        //
         hero.draw(pos.x, pos.y);
     }
 
@@ -123,4 +137,34 @@ public class Heroe {
     public void setRectangle(Rectangle rectangle) {
         this.rectangle = rectangle;
     }
+    
+    //EDIT:Comprobando funcion de enemigos
+    private void ApareceEnemigo(GameContainer gc, StateBasedGame sbg, int delta, EstadoMapaJuego gps, Input input)
+    {
+        Random rand=new Random();
+        //aparicion=0;
+        if (input.isKeyDown(Input.KEY_UP)) {
+            if (gps.isEnemigos(pos.x + w -4, pos.y - delta * SPEED) && gps.isEnemigos(pos.x + 4, pos.y - delta * SPEED)) {
+                aparicion=rand.nextFloat();
+            }
+        } else if (input.isKeyDown(Input.KEY_DOWN)) {
+            if (gps.isEnemigos(pos.x + w - 4, pos.y + h + delta * SPEED) && gps.isEnemigos(pos.x + 4, pos.y + h + delta * SPEED)) {
+                aparicion=rand.nextFloat();
+                //
+            }
+        } else if (input.isKeyDown(Input.KEY_LEFT)) {
+            if (gps.isEnemigos(pos.x - delta * SPEED, pos.y + 4) && gps.isEnemigos(pos.x - delta * SPEED, pos.y + h - 4)) {
+                aparicion=rand.nextFloat();
+            }
+
+        } else if (input.isKeyDown(Input.KEY_RIGHT)) {
+            if (gps.isEnemigos(pos.x + w + delta * SPEED, pos.y + h - 4) && gps.isEnemigos(pos.x + w + delta * SPEED, pos.y + 4)) {
+                aparicion=rand.nextFloat();
+            }
+        }
+        if(aparicion>0.9f){
+            sbg.enterState(VenganzaBelial.ESTADOCOMBATE);
+            aparicion=0;
+        }
+    }/**/
 }

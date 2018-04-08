@@ -241,7 +241,7 @@ public class EstadoCombate extends BasicGameState{
                     FinTurno();
                     break;
                 case FINCOMBATE:
-                    FinCombate(gc);
+                    FinCombate(gc,sbg);
                     //sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);//EDIT:Eliminar
                     OST.stop();
                     break;
@@ -522,7 +522,7 @@ public class EstadoCombate extends BasicGameState{
         }/*if(input.isKeyPressed(Input.KEY_ENTER))*/
     }/*private void FinTurno()*/
     
-    private void FinCombate(GameContainer gc)
+    private void FinCombate(GameContainer gc, StateBasedGame sbg)
     {
         /*Comprobar quien ha ganado el combate y actuar concorde*/
         if(NewCombate.CombateGanado())
@@ -550,7 +550,8 @@ public class EstadoCombate extends BasicGameState{
                 //Reactiva Flag para la proxima vez que se genera un combate
                 NuevoCombate=true;
                 //EDIT:ELIMINAR OBJETO COMBATE O VACIAR
-                gc.exit();  
+                retornoAlMapa(sbg);
+                //gc.exit();  
             }/*if(input.isKeyPressed(Input.KEY_ENTER))*/
         }/*if(NewCombate.CombateGanado())*/
         else
@@ -566,6 +567,23 @@ public class EstadoCombate extends BasicGameState{
             //Si se ha perdido el combate recargar datos del ultimo punto de control
         }
     }/*private void FinComabte()*/
+    
+    
+    private void retornoAlMapa(StateBasedGame sbg)//Origen sera de un id de donde proviene el combate(mapax o eventox)
+    {
+        //
+        switch(VenganzaBelial.MapaActual)
+        {
+            case 0://Bosque
+                sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
+                break;
+            case 1://Boss Battle Bosque
+                break;
+            case 2://Event Battle Puerto1
+                break;
+                //ETC
+        }
+    }/*private void retornoAlMapa()*/
     
     private void renderOpcionesJugador()
     {
@@ -729,15 +747,15 @@ public class EstadoCombate extends BasicGameState{
             marco.draw(0,605,920,15);
             marcoL.draw(900, 613, 20, 160);
             /*EDIT:Debug prints*/
-            //mensajePantalla.drawString(700, 10, "LVL "+VenganzaBelial.horacia.getNivel());
+            mensajePantalla.drawString(700, 10, "LVL "+VenganzaBelial.horacia.getNivel());
             //mensajePantalla.drawString(700, 30, "Atk: "+VenganzaBelial.horacia.getAtaque()+"Def: "+VenganzaBelial.horacia.getDefensa());
             //mensajePantalla.drawString(700, 50, "Exp: "+VenganzaBelial.horacia.getExp()+"/: "+VenganzaBelial.horacia.getExpProxNivel());
             
-            //mensajePantalla.drawString(700, 70, "LVL "+VenganzaBelial.mordeim.getNivel());
+            mensajePantalla.drawString(700, 70, "LVL "+VenganzaBelial.mordeim.getNivel());
              //mensajePantalla.drawString(700, 90, "Atk: "+VenganzaBelial.mordeim.getAtaque()+"Def: "+VenganzaBelial.mordeim.getDefensa());
              //mensajePantalla.drawString(700, 110, "Exp: "+VenganzaBelial.mordeim.getExp()+"/: "+VenganzaBelial.mordeim.getExpProxNivel());
              
-            //mensajePantalla.drawString(700, 130, "LVL "+VenganzaBelial.kibito.getNivel());
+            mensajePantalla.drawString(700, 130, "LVL "+VenganzaBelial.kibito.getNivel());
             // mensajePantalla.drawString(700, 150, "Atk: "+VenganzaBelial.kibito.getAtaque()+"Def: "+VenganzaBelial.kibito.getDefensa());
             // mensajePantalla.drawString(700, 110, "Exp: "+VenganzaBelial.kibito.getExp()+"/: "+VenganzaBelial.kibito.getExpProxNivel());
             /**/
