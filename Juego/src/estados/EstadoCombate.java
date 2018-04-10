@@ -161,6 +161,7 @@ public class EstadoCombate extends BasicGameState{
         if(NuevoCombate)//Ejecutar Con Cada nuevo combate
         {
             /*Genera Nuevo Combate*/
+            //EDIT:Posible casteo a Personaje
             NewCombate= new Combate(VenganzaBelial.Party, VenganzaBelial.MapaActual);//
             if(NewCombate.GestionaPrimerTurno())
             {
@@ -616,7 +617,8 @@ public class EstadoCombate extends BasicGameState{
     {
         for (int i=0;i<NCONSUMIBLES;i++)
         {
-            Consumible consumible=(Consumible)VenganzaBelial.inventario.getItems().get(i);
+            //EDIT: Ruta de Inventario
+            Consumible consumible=(Consumible)VenganzaBelial.atributoGestion.inv.getItems().get(i);
             if(eleccionJugador==i)
             {
                opcionesJugadorTTF.drawString(10,i*20+400,consumible.getNombre()+" "+consumible.getNumero()+"/10");

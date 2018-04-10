@@ -117,8 +117,9 @@ public abstract class Jugador extends Personaje implements Serializable{
     }
     
     //Metodos
-    public void cambiarArma(Arma arma){ 
+    public boolean cambiarArma(Arma arma){ 
         Arma armaAntigua = this.getArma();
+        boolean condicion=false;
         if (arma.getRequisitoCategoria().contains(this.getNombre()) &&
                 arma.getRequisitoNivel() <= this.getNivel()){
             this.arma=arma;
@@ -126,24 +127,25 @@ public abstract class Jugador extends Personaje implements Serializable{
             this.setHabCritico(arma.getCritico());
             this.inventario.getItems().remove(arma);
             this.inventario.getItems().add(armaAntigua);
-            System.out.println("Arma cambiada correctamente");
+            condicion=true;
         }
-        else
-            System.out.println("No puedes equiparte este arma");
+        return condicion;
     }
-    public void cambiarArmadura(Armadura armadura){
+    
+    public boolean cambiarArmadura(Armadura armadura){
         Armadura armaduraAntigua = this.getArmadura();
+        boolean condicion=false;
         if (armadura.getRequisitoCategoria().contains(this.getNombre()) &&
                 armadura.getRequisitoNivel() <= this.getNivel()){
             this.armadura=armadura;
             this.setDefensa(this.getDefensaBase() + armadura.getDefensa());
             this.inventario.getItems().remove(armadura);
             this.inventario.getItems().add(armaduraAntigua);
-            System.out.println("Armadura cambiada correctamente");
+            condicion=true;
         }
-        else
-            System.out.println("No puedes equiparte esta armadura");
+        return condicion;
     }
+    
     public void anadirHabilidad(Habilidad hab){
         this.habilidades.add(hab);
     }
