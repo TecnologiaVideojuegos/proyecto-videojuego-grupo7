@@ -32,6 +32,10 @@ public class EscenaPrototipo extends BasicGameState{
     private static final int TAMANYOAVATARX = 115;
     private static final int TAMANYOAVATARY = 115;
     //avatarDialogo.draw(30, 610, 115, 125);
+    private boolean reproducirExclamacion=false;//EDIT
+    private SpriteSheet sheetExclamacion;//EDIT
+    private Animation exclamacion;//EDIT
+    int time;//EDIT
     private static final int TILESIZE = 32;
     private String linea1="";
     private String linea2="";
@@ -43,7 +47,8 @@ public class EscenaPrototipo extends BasicGameState{
     private String linea8="";
     private static final int esquinaXMapa=550;
     private static final int esquinaYMapa=300;
-    private Image hero1, hero2, hero3;
+    private Image hes1, hes2, hes3;//EDIT
+    private Image hor1;//EDIT
     private Image ventanaDialogo,avatarDialogo, avatarH,avatarM, avatarK, avatarHestia,avatarE;
     private Input input;
     private int estado;
@@ -72,11 +77,15 @@ public class EscenaPrototipo extends BasicGameState{
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
         estado=0;
         this.input = gc.getInput();
+        this.sheetExclamacion= new SpriteSheet("Imagenes/Animaciones/malestar.png",32,33);//EDIT
+        this.exclamacion = new Animation(sheetExclamacion,200);//EDIT
         fondo= new Image("Imagenes/Fondos/FondoIntro.jpg");
         fondoHestia= new Image("Imagenes/Escenas/SalaInicial/SalaHestia.png");//EDIT
         ventanaDialogo= new Image("Imagenes/Avatar/cajaMensaje.png");
-        hero1=new Image("Imagenes/HeroeMundo/her21.png");
-        hero2=new Image("Imagenes/HeroeMundo/her01.png");
+        hes1=new Image("Imagenes/Animaciones/Sprites/hes11.png");//EDIT
+        hes2=new Image("Imagenes/Animaciones/Sprites/hes5.png");//EDIT
+        hes3=new Image("Imagenes/Animaciones/Sprites/hes2.png");//EDIT
+        hor1=new Image("Imagenes/HeroeMundo/her01.png");//EDIT
         avatarH =  new Image("Imagenes/Personajes/HoraciaA.png");
         avatarM =  new Image("Imagenes/Personajes/MordeimA.png");
         avatarK =  new Image("Imagenes/Personajes/KibitoA.png");
@@ -103,17 +112,21 @@ public class EscenaPrototipo extends BasicGameState{
         if(estado==4){
             fondoHestia.draw(esquinaXMapa, esquinaYMapa);//EDIT
             texto.drawString(1050, 0, "Sala de Hestia");
-            hero1.draw(posicion.x+80, posicion.y);
+            hes1.draw(posicion.x+80, posicion.y);//EDIT
         }
         if(estado>4){
             fondoHestia.draw(esquinaXMapa, esquinaYMapa);//EDIT
             texto.drawString(1050, 0, "Sala de Hestia");
-            hero1.draw(posicion.x+80, posicion.y);
+            hes2.draw(posicion.x+80, posicion.y);//EDIT
             renderDialogo();
             if(estado>=7){
-                hero2.draw(posicion.x+80, posicion.y+190);
+                hor1.draw(posicion.x+80, posicion.y+190);//EDIT
+                if(estado==10){
+                    if(reproducirExclamacion)
+                    this.exclamacion.draw(posicion.x+80, posicion.y-34);
+                }
                 if(estado>=18){
-                    hero2.draw();
+                    hor1.draw();//EDIT
                 }
             }
         }
