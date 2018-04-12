@@ -32,9 +32,11 @@ public class EscenaPrototipo extends BasicGameState{
     private static final int TAMANYOAVATARX = 115;
     private static final int TAMANYOAVATARY = 115;
     //avatarDialogo.draw(30, 610, 115, 125);
-    private boolean reproducirExclamacion=false;//EDIT
-    private SpriteSheet sheetExclamacion;//EDIT
+    private boolean reproducirExclamacion=false;//EDIT    
+    private boolean reproducirExclamacion1=false;//EDIT
+    private SpriteSheet sheetExclamacion,sheetExclamacion1;//EDIT
     private Animation exclamacion;//EDIT
+    private Animation exclamacion1;//EDIT
     int time;//EDIT
     private static final int TILESIZE = 32;
     private String linea1="";
@@ -78,14 +80,16 @@ public class EscenaPrototipo extends BasicGameState{
         estado=0;
         this.input = gc.getInput();
         this.sheetExclamacion= new SpriteSheet("Imagenes/Animaciones/malestar.png",32,33);//EDIT
+        this.sheetExclamacion1= new SpriteSheet("Imagenes/Animaciones/puntos.png",32,33);//EDIT
         this.exclamacion = new Animation(sheetExclamacion,200);//EDIT
+        this.exclamacion1 = new Animation(sheetExclamacion1,200);//EDIT
         fondo= new Image("Imagenes/Fondos/FondoIntro.jpg");
         fondoHestia= new Image("Imagenes/Escenas/SalaInicial/SalaHestia.png");//EDIT
         ventanaDialogo= new Image("Imagenes/Avatar/cajaMensaje.png");
         hes1=new Image("Imagenes/Animaciones/Sprites/hes11.png");//EDIT
         hes2=new Image("Imagenes/Animaciones/Sprites/hes5.png");//EDIT
         hes3=new Image("Imagenes/Animaciones/Sprites/hes2.png");//EDIT
-        hor1=new Image("Imagenes/HeroeMundo/her01.png");//EDIT
+        hor1=new Image("Imagenes/HeroeMundo/her21.png");//EDIT
         avatarH =  new Image("Imagenes/Personajes/HoraciaA.png");
         avatarM =  new Image("Imagenes/Personajes/MordeimA.png");
         avatarK =  new Image("Imagenes/Personajes/KibitoA.png");
@@ -114,22 +118,29 @@ public class EscenaPrototipo extends BasicGameState{
             texto.drawString(1050, 0, "Sala de Hestia");
             hes1.draw(posicion.x+80, posicion.y);//EDIT
         }
-        if(estado>4){
+        if(estado>=5){
             fondoHestia.draw(esquinaXMapa, esquinaYMapa);//EDIT
             texto.drawString(1050, 0, "Sala de Hestia");
-            hes2.draw(posicion.x+80, posicion.y);//EDIT
+            hes1.draw(posicion.x+80, posicion.y);//EDIT
             renderDialogo();
+            
             if(estado>=7){
                 hor1.draw(posicion.x+80, posicion.y+190);//EDIT
+                hes3.draw(posicion.x+80, posicion.y);//EDIT
                 if(estado==10){
                     if(reproducirExclamacion)
                     this.exclamacion.draw(posicion.x+80, posicion.y-34);
+                }
+                if(estado==12){
+                    if(reproducirExclamacion1)
+                    this.exclamacion1.draw(posicion.x+80, posicion.y-34);
                 }
                 if(estado>=18){
                     hor1.draw();//EDIT
                 }
             }
         }
+        texto.drawString(1000, 0, "" + estado);
         
     }
 
@@ -185,11 +196,17 @@ public class EscenaPrototipo extends BasicGameState{
                 linea4="";
                 break;
             case 6:
+                time+=i;
+                hes1=hes2;
                 if(!sonidoPuerta.playing())
                 {
                     sonidoPuerta.play();
                 }
-                estado++;
+                if(time/1000>0.4f)//
+                {
+                    time=0;
+                    estado++;
+                }
                 break;
             case 7:
                 avatarDialogo=this.avatarH;
@@ -214,6 +231,14 @@ public class EscenaPrototipo extends BasicGameState{
                 linea4="Kibito no sabe usar magia de agua y...";
                 break;
             case 10:
+                time+=i;
+                reproducirExclamacion=true;
+                if(time/1000>0.4f)//
+                {
+                    reproducirExclamacion=false;
+                    estado++;
+                    time=0;
+                }
                 avatarDialogo=this.avatarHestia;
                 linea1="¿Eh?";
                 linea2="";
@@ -228,6 +253,13 @@ public class EscenaPrototipo extends BasicGameState{
                 linea4="";
                 break;
             case 12:
+                time+=i;
+                reproducirExclamacion1=true;
+                if(time/1000>0.4f)//
+                {
+                    reproducirExclamacion1=false;
+                    time=0;
+                }
                 avatarDialogo=this.avatarHestia;
                 linea1="...";
                 linea2="Tengo una misión de altísima importancia para tu equipo.";
