@@ -34,9 +34,11 @@ public class EscenaPrototipo extends BasicGameState{
     //avatarDialogo.draw(30, 610, 115, 125);
     private boolean reproducirExclamacion=false;//EDIT    
     private boolean reproducirExclamacion1=false;//EDIT
-    private SpriteSheet sheetExclamacion,sheetExclamacion1;//EDIT
+    private boolean reproducirExclamacion2=false;//EDIT
+    private SpriteSheet sheetExclamacion,sheetExclamacion1,sheetExclamacion2;//EDIT
     private Animation exclamacion;//EDIT
     private Animation exclamacion1;//EDIT
+    private Animation exclamacion2;//EDIT
     int time;//EDIT
     private static final int TILESIZE = 32;
     private String linea1="";
@@ -56,9 +58,10 @@ public class EscenaPrototipo extends BasicGameState{
     private int estado;
     private Image fondo;
     private Image fondoHestia;//EDIT
-    private TrueTypeFont texto;
-    private Font letraMenu  =new Font("Verdana", Font.PLAIN, 15);    
-    private Color rojo = new Color (256,0,0);
+    private TrueTypeFont texto, texto1;
+    private Font letraMenu  = new Font("Arial Black", Font.PLAIN, 15);    
+    private Font letraMenu1  = new Font("Verdana", Font.PLAIN, 15);
+    private Color rojo = new Color (160,64,0);
     private SpriteSheet hestia;
     private Animation animacionHestia;
     private Music musicaIntro;
@@ -81,8 +84,10 @@ public class EscenaPrototipo extends BasicGameState{
         this.input = gc.getInput();
         this.sheetExclamacion= new SpriteSheet("Imagenes/Animaciones/malestar.png",32,33);//EDIT
         this.sheetExclamacion1= new SpriteSheet("Imagenes/Animaciones/puntos.png",32,33);//EDIT
+        this.sheetExclamacion2= new SpriteSheet("Imagenes/Animaciones/amor.png",32,33);//EDIT
         this.exclamacion = new Animation(sheetExclamacion,200);//EDIT
         this.exclamacion1 = new Animation(sheetExclamacion1,200);//EDIT
+        this.exclamacion2 = new Animation(sheetExclamacion2,200);//EDIT
         fondo= new Image("Imagenes/Fondos/FondoIntro.jpg");
         fondoHestia= new Image("Imagenes/Escenas/SalaInicial/SalaHestia.png");//EDIT
         ventanaDialogo= new Image("Imagenes/Avatar/cajaMensaje.png");
@@ -96,6 +101,7 @@ public class EscenaPrototipo extends BasicGameState{
         avatarHestia = new Image("Imagenes/Personajes/HestiaA.png");//EDIT
         avatarE = new Image ("Imagenes/Personajes/EncapuchadoA.png");
         texto= new TrueTypeFont(letraMenu, true);
+        texto1= new TrueTypeFont(letraMenu1, true);
         posicion = new Vector2f(esquinaXMapa+TILESIZE*2,esquinaYMapa+TILESIZE*2);
         this.hestia= new SpriteSheet("Imagenes/Animaciones/Sprites/Hestia.png",20,20);
         this.animacionHestia = new Animation(hestia,200);
@@ -115,17 +121,20 @@ public class EscenaPrototipo extends BasicGameState{
         }
         if(estado==4){
             fondoHestia.draw(esquinaXMapa, esquinaYMapa);//EDIT
-            texto.drawString(1050, 0, "Sala de Hestia");
+            if(reproducirExclamacion2){
+            this.exclamacion2.draw(posicion.x+80, posicion.y-34);
+            }
+            texto1.drawString(1050, 0, "Sala de Hestia");
             hes1.draw(posicion.x+80, posicion.y);//EDIT
+            renderDialogo();
         }
         if(estado>=5){
             fondoHestia.draw(esquinaXMapa, esquinaYMapa);//EDIT
-            texto.drawString(1050, 0, "Sala de Hestia");
+            texto1.drawString(1050, 0, "Sala de Hestia");
             hes1.draw(posicion.x+80, posicion.y);//EDIT
             renderDialogo();
             
-            if(estado>=7){
-                hor1.draw(posicion.x+80, posicion.y+190);//EDIT
+            if(estado>=7 && estado<19){
                 hes3.draw(posicion.x+80, posicion.y);//EDIT
                 if(estado==10){
                     if(reproducirExclamacion)
@@ -135,12 +144,12 @@ public class EscenaPrototipo extends BasicGameState{
                     if(reproducirExclamacion1)
                     this.exclamacion1.draw(posicion.x+80, posicion.y-34);
                 }
-                if(estado>=18){
-                    hor1.draw();//EDIT
+                if(estado<18){
+                    hor1.draw(posicion.x+80, posicion.y+190);//EDIT
                 }
             }
         }
-        texto.drawString(1000, 0, "" + estado);
+        texto1.drawString(1000, 0, "" + estado);
         
     }
 
@@ -153,9 +162,10 @@ public class EscenaPrototipo extends BasicGameState{
                 musicaIntro.stop();
             }
             if(estado==18){
-                sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
+                sbg.enterState(VenganzaBelial.ESCENACARRETA);
             }
             estado++;
+            time=0;
         }
         switch (estado)
         {
@@ -186,6 +196,22 @@ public class EscenaPrototipo extends BasicGameState{
                 linea6 = "movimientos sospechosos de Cardinal han aumentado considerablemente.";
                 linea7 = "";
                 linea8 = "";
+                break;
+            //Primera escena introducción
+            case 4:
+                time+=i;
+                reproducirExclamacion2=true;
+                if(time/1000>0.4f)//
+                {
+                    reproducirExclamacion2=false;
+                    time=0;
+                }
+                avatarDialogo=this.avatarHestia;
+                //////="////////////////////////////////////////////////////////";
+                linea1="Que vidriera tan bonita.";
+                linea2="";
+                linea3="";
+                linea4="";
                 break;
             case 5:
                 avatarDialogo=this.avatarHestia;
@@ -302,11 +328,20 @@ public class EscenaPrototipo extends BasicGameState{
                 linea4="";
                 break;
             case 18:
+                if(!sonidoPuerta.playing())
+                {
+                    sonidoPuerta.play();
+                }
                 avatarDialogo=this.avatarHestia;
                 linea1="Espero que cumplan esta misión.";
                 linea2="";
                 linea3="";
                 linea4="";
+                break;
+            //Segunda escena introducción.
+            case 19:
+                break;
+            case 20:
                 break;
         }
         
@@ -316,10 +351,10 @@ public class EscenaPrototipo extends BasicGameState{
         avatarDialogo.draw(POSICIONAVATARX, POSICIONAVATARY, TAMANYOAVATARX, TAMANYOAVATARY);
         this.ventanaDialogo.draw(0, 600, 1);
         ///////////////////////////////////,"////////////////////////////////////////////////////////"/;
-        texto.drawString(160, 625,linea1 );
-        texto.drawString(160, 640,linea2);
-        texto.drawString(160, 655,linea3 );
-        texto.drawString(160, 670,linea4);
+        texto1.drawString(160, 625,linea1 );
+        texto1.drawString(160, 640,linea2);
+        texto1.drawString(160, 655,linea3 );
+        texto1.drawString(160, 670,linea4);
     }
     private void renderDialogo1(){
         avatarDialogo.draw(POSICIONAVATARX, POSICIONAVATARY, TAMANYOAVATARX, TAMANYOAVATARY);
