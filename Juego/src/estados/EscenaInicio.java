@@ -373,8 +373,8 @@ public class EscenaInicio extends BasicGameState{
             case 21:
                 avatarDialogo=this.avatarH;
                 linea1="Muy bien equipo, la sacerdotisa Hestia nos ha mandado";
-                linea2="una misión ultrasecreta que ni Archi se debe enterar.";
-                linea3="Os diré ahora los detalles.";
+                linea2="una misión ultrasecreta que ni Archi debe saber.";
+                linea3="Os diré los detalles cuando salgamos.";
                 linea4="";
                 break;
         }
