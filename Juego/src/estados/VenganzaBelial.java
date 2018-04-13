@@ -55,7 +55,7 @@ public class VenganzaBelial extends StateBasedGame {
         addState(new EstadoCombate(ESTADOCOMBATE));
         addState(new EstadoMenu(ESTADOMENU));
         //EDIT
-        addState(new EscenaPrototipo(ESTADOESCENAPROTOTIPO));
+        addState(new EscenaInicio(ESTADOESCENAPROTOTIPO));
         addState(new EstadoMapaJuego(ESTADOMAPAJUEGO));
         addState(new EstadoCombateTutorial(ESTADOCOMBATETUT));
         addState(new EscenaCarreta(ESCENACARRETA));
