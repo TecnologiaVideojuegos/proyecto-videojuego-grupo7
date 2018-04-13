@@ -35,7 +35,7 @@ public final class BaseDatosEnemigos{
     private ArrayList<Enemigo> party5;     
     private ArrayList<Enemigo> party6;    
     private ArrayList<ArrayList<Enemigo>> enem;
-    private Rata rat1;
+    private Rata rat11,rat12,rat13;
     private Rata rat3;
     private Rata rat5;
     private Goblin gob1;
@@ -49,7 +49,9 @@ public final class BaseDatosEnemigos{
         //int nivel, int hp, int ataque, int defensa
         initArrays();
         enem = new ArrayList<ArrayList<Enemigo>>();
-        rat1 = new Rata(1, 100, 50, 30);
+        rat11 = new Rata(1, 100, 50, 30);
+        rat12 = new Rata(1, 100, 50, 30);
+        rat13 = new Rata(1, 100, 50, 30);
         rat3 = new Rata(3, 150, 60, 40);
         rat5 = new Rata(5, 200, 70, 50);
         gob1 = new Goblin(1, 130, 40, 40);
@@ -78,9 +80,9 @@ public final class BaseDatosEnemigos{
     }
     
     public void partyNivel1(){
-        party.add(rat1);
-        party.add(rat1);
-        party.add(rat1);
+        party.add(rat11);
+        party.add(rat12);
+        party.add(rat13);
         enem.add(party);
         //
         party2.add(gob1);
@@ -95,17 +97,17 @@ public final class BaseDatosEnemigos{
         
         party4.add(gob1);
         party4.add(sp1);
-        party4.add(rat1);
+        party4.add(rat11);
         enem.add(party4);
         //
         party5.add(gob1);
         party5.add(gob1);
-        party5.add(rat1);
+        party5.add(rat11);
         enem.add(party5);
         //
         party6.add(sp1);
         party6.add(sp1);
-        party6.add(rat1);
+        party6.add(rat11);
         enem.add(party6);
         
     }
