@@ -25,7 +25,7 @@ import org.newdawn.slick.state.StateBasedGame;
  *
  * @author Dolores
  */
-public class EscenaPrototipo extends BasicGameState{
+public class EscenaInicio extends BasicGameState{
     private int idEstado;
     private static final int POSICIONAVATARX = 30;
     private static final int POSICIONAVATARY = 620;
@@ -52,12 +52,13 @@ public class EscenaPrototipo extends BasicGameState{
     private static final int esquinaXMapa=550;
     private static final int esquinaYMapa=300;
     private Image hes1, hes2, hes3;//EDIT
-    private Image hor1;//EDIT
+    private Image hor1,hor2,mor1,kib1;//EDIT
     private Image ventanaDialogo,avatarDialogo, avatarH,avatarM, avatarK, avatarHestia,avatarE;
     private Input input;
     private int estado;
     private Image fondo;
     private Image fondoHestia;//EDIT
+    private Image fondoCardinal;//EDIT
     private TrueTypeFont texto, texto1;
     private Font letraMenu  = new Font("Arial Black", Font.PLAIN, 15);    
     private Font letraMenu1  = new Font("Verdana", Font.PLAIN, 15);
@@ -66,11 +67,12 @@ public class EscenaPrototipo extends BasicGameState{
     private Animation animacionHestia;
     private Music musicaIntro;
     private Sound efecto;
+    private Sound sonidoSelect;
     private Sound sonidoPuerta;
     private Vector2f posicion;
     
 
-    public EscenaPrototipo(int id) {
+    public EscenaInicio(int id) {
         this.idEstado=id;
     }
     @Override
@@ -90,11 +92,15 @@ public class EscenaPrototipo extends BasicGameState{
         this.exclamacion2 = new Animation(sheetExclamacion2,200);//EDIT
         fondo= new Image("Imagenes/Fondos/FondoIntro.jpg");
         fondoHestia= new Image("Imagenes/Escenas/SalaInicial/SalaHestia.png");//EDIT
+        fondoCardinal= new Image("Imagenes/Escenas/SalaInicial/SalaCardinal.png");//EDIT
         ventanaDialogo= new Image("Imagenes/Avatar/cajaMensaje.png");
         hes1=new Image("Imagenes/Animaciones/Sprites/hes11.png");//EDIT
         hes2=new Image("Imagenes/Animaciones/Sprites/hes5.png");//EDIT
         hes3=new Image("Imagenes/Animaciones/Sprites/hes2.png");//EDIT
         hor1=new Image("Imagenes/HeroeMundo/her21.png");//EDIT
+        hor2=new Image("Imagenes/HeroeMundo/her01.png");//EDIT
+        kib1=new Image("Imagenes/Animaciones/Sprites/kib11.png");
+        mor1=new Image("Imagenes/Animaciones/Sprites/mor11.png");
         avatarH =  new Image("Imagenes/Personajes/HoraciaA.png");
         avatarM =  new Image("Imagenes/Personajes/MordeimA.png");
         avatarK =  new Image("Imagenes/Personajes/KibitoA.png");
@@ -107,6 +113,7 @@ public class EscenaPrototipo extends BasicGameState{
         this.animacionHestia = new Animation(hestia,200);
         this.musicaIntro = new Music("Musica/BSO/Ablaze.wav");
         this.efecto = new Sound("Musica/Efectos/Cry2.wav");
+        sonidoSelect=new Sound("Musica/Efectos/select.wav");
         sonidoPuerta=new Sound("Musica/Efectos/Door.wav");
         
     }
@@ -128,13 +135,13 @@ public class EscenaPrototipo extends BasicGameState{
             hes1.draw(posicion.x+80, posicion.y);//EDIT
             renderDialogo();
         }
-        if(estado>=5){
+        if(estado>=5 && estado<=19){
             fondoHestia.draw(esquinaXMapa, esquinaYMapa);//EDIT
             texto1.drawString(1050, 0, "Sala de Hestia");
             hes1.draw(posicion.x+80, posicion.y);//EDIT
             renderDialogo();
             
-            if(estado>=7 && estado<19){
+            if(estado>=7){
                 hes3.draw(posicion.x+80, posicion.y);//EDIT
                 if(estado==10){
                     if(reproducirExclamacion)
@@ -149,6 +156,14 @@ public class EscenaPrototipo extends BasicGameState{
                 }
             }
         }
+        if(estado>=20){
+            fondoCardinal.draw(esquinaXMapa, esquinaYMapa);
+            texto1.drawString(1050, 0, "Cuartel de Cardinal");
+            renderDialogo2();
+            hor2.draw(posicion.x+65, posicion.y);//EDIT
+            mor1.draw(posicion.x+40, posicion.y+102);//EDIT
+            kib1.draw(posicion.x+90, posicion.y+100);//EDIT
+        }
         texto1.drawString(1000, 0, "" + estado);
         
     }
@@ -158,10 +173,11 @@ public class EscenaPrototipo extends BasicGameState{
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
         musicaIntro.play();
         if (input.isKeyPressed(Input.KEY_ENTER)){
+            sonidoSelect.play(1, 0.2f);
             if(estado==4){
                 musicaIntro.stop();
             }
-            if(estado==18){
+            if(estado==21){
                 sbg.enterState(VenganzaBelial.ESCENACARRETA);
             }
             estado++;
@@ -340,8 +356,26 @@ public class EscenaPrototipo extends BasicGameState{
                 break;
             //Segunda escena introducción.
             case 19:
+                avatarDialogo=this.avatarE;
+                linea1="Y asi comenzo la aventura de nuestros patéticos héroes.";
+                linea2="";
+                linea3="";
+                linea4="";
                 break;
             case 20:
+                time+=i;
+                if(time/1000>0.4f)//
+                {
+                    time=0;
+                    estado++;
+                }
+                break;
+            case 21:
+                avatarDialogo=this.avatarH;
+                linea1="Muy bien equipo, la sacerdotisa Hestia nos ha mandado";
+                linea2="una misión ultrasecreta que ni Archi debe saber.";
+                linea3="Os diré los detalles cuando salgamos.";
+                linea4="";
                 break;
         }
         
@@ -353,7 +387,7 @@ public class EscenaPrototipo extends BasicGameState{
         ///////////////////////////////////,"////////////////////////////////////////////////////////"/;
         texto1.drawString(160, 625,linea1 );
         texto1.drawString(160, 640,linea2);
-        texto1.drawString(160, 655,linea3 );
+        texto1.drawString(160, 655,linea3);
         texto1.drawString(160, 670,linea4);
     }
     private void renderDialogo1(){
@@ -362,5 +396,14 @@ public class EscenaPrototipo extends BasicGameState{
         texto.drawString(450, 350, linea6, rojo);
         texto.drawString(450, 400, linea7, rojo);
         texto.drawString(450, 450, linea8, rojo);
+    }
+    private void renderDialogo2(){
+        avatarDialogo.draw(POSICIONAVATARX, POSICIONAVATARY, TAMANYOAVATARX, TAMANYOAVATARY);
+        this.ventanaDialogo.draw(0, 600, 1);
+        ///////////////////////////////////,"////////////////////////////////////////////////////////"/;
+        texto1.drawString(160, 625,linea1 );
+        texto1.drawString(160, 640,linea2);
+        texto1.drawString(160, 655,linea3);
+        texto1.drawString(160, 670,linea4);
     }
 }

@@ -2,6 +2,7 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group>
 <<<<<<< HEAD
             <file>file:/C:/Users/David/Desktop/proyecto-videojuego-grupo7/Juego/src/estados/Heroe.java</file>
@@ -16,5 +17,8 @@
             <file>file:/C:/Users/Dolores/Desktop/proyecto-videojuego-grupo7/Juego/src/estados/EstadoMenu.java</file>
 >>>>>>> 42397566d713a7588b11ae3a1e0bbe1f0ce4ded3
         </group>
+=======
+        <group/>
+>>>>>>> 19216db81a32d96c090b0dd3d35f0bfa6884fa10
     </open-files>
 </project-private>
