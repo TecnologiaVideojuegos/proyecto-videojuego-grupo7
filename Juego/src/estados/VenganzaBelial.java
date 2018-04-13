@@ -97,7 +97,7 @@ public class VenganzaBelial extends StateBasedGame {
         atributoGestion.jugs.add(kibito);
         horacia.setHpActual(50);
         kibito.setMpActual(15);
-        mordeim.setHpActual(0);
+        //mordeim.setHpActual(0);
         /*Inventario de Gestion*/
         atributoGestion.inv.addItem(arma);
         atributoGestion.inv.addItem(armadura);

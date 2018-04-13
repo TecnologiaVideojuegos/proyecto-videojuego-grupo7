@@ -16,7 +16,7 @@ public class Heroe {
     private static final float SPEED = 0.1f;
     private int w, h;
     
-    private int offset=0;//Original=-4
+    private int offset=6;//Original=-4
     //EDIT
     private float aparicion=0;
     
