@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.1.4" orientation="orthogonal" renderorder="right-down" width="86" height="60" tilewidth="32" tileheight="32" infinite="0" nextobjectid="1">
+ <tileset firstgid="1" source="bosque01.tsx"/>
+ <tileset firstgid="257" source="bosque03.tsx"/>
+ <tileset firstgid="851" source="bosque02.tsx"/>
+ <tileset firstgid="1076" source="bosque04.tsx"/>
+ <layer name="capa_suelo" width="86" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztwzENAAAMA6Aek1T/2ipkkNBLqqqqqqqqqqqqqqqqqqqqqqqqqqq+Pvi/aP0=
+  </data>
+ </layer>
+ <layer name="capa_blocked" width="86" height="60">
+  <properties>
+   <property name="blocked" type="bool" value="true"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztm0lOAzEQRb2AG8A9kLgAC5AYdyAxXoDhAgwXYNjCCQLrLAJn4AhchRWVhRV34XJ5SIkm+U/6srrjTjtPotq07IFzboCYJIQfg3Lg1QZ4tUHyuk3ZoexS9lxe/QATJK/HlBPKKeWM9YVXHcnrOeWCckm5Yn3hVUfyek25odxS7pxcB+A2juT1nvJAeaQ8OXgtRfIq5ZnyErTwGqfU6yvlLWjhNU6p13fKR9C6yPWg3GtIWAvgtovk5NPpXn0tGAnfMc9IXr/Y57E+vhbA629a/4YxL4jT6tXXAtAlx2uqTzgvABNK5gMgH8krn0PBaxmS1/D/KXgtR/Lq6ya81iF5/f6DscwS8GpDaj4A6sH7ahvg1Qa4tAE+bYBXG+DVBni1AV5tgFcb4NUGeLUBXm2AVxvg1QZ4tQFebYBXG1q8pt7dzvu7x5rfHltbAK9dan57bG0BXHZJefCf8T0Ffm0B1hXL5KzP4nsKvE9+DCbkeOV7CrxPfvwfsapdOV61OtDHtZq5z1TrpMYU21s0iBz3BT+eUSQLlMWMdhjEn6sZQ+ycVAf4+T56jTkdZ4mynNGGxM7ljEGbD8xSVgr95JJTB3hfiXXKBmWTsqXcl/cdsmj9VwuS8rqmjDNFa30NvyfFPuWAckg5cmlPvK9Gaf++0eIVyMCrzrgml7ro27O8lbAW5dY7jbWKa2fNq7Sv14fPUzV8v2l75c9t7Tk+jWtb7jne15vyyuep2r18v1qvyPTzAwtv/2M=
+  </data>
+ </layer>
+ <layer name="capa_decoracion" width="86" height="60">
+  <data encoding="base64" compression="zlib">
+   eJzt2jEKACAIQFHvfx/v1xpBUYQE8R4Izn9yMAIAAABgX3bDGc1q6fuG7jVysnNH1xoZ7gMAAAAAAAAAAAAA7o1/qathn641dAQA4GcNfO8eaA==
+  </data>
+ </layer>
+ <layer name="capa_enemigos" width="86" height="60">
+  <properties>
+   <property name="enemigos" type="bool" value="true"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt2zsOgCAURcG3/zVT2NoIQrzxN5PQ0XBCoIEqAACAqrYbXEfXDF0zdOWt7NmM1hms0zXjqKWuGbpm6DrvzBmq6zxdM9z5Gbpm6AoAAAAAAAAAAHjznqFrhq4ZK11H83v/akbvl7/yJ0fXDF2fQ9ecv62X+20PR6Fx
+  </data>
+ </layer>
+</map>
