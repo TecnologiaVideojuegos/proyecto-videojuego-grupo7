@@ -55,7 +55,7 @@ public final class BaseDatosEnemigos{
         partyNivel3();
         initArrays();
         partyNivel5();
-        ges.guardarGrupoEnemigos(enem);
+        ges.guardarGrupoEnemigos(enem, "BaseDatos/enemigosBosque.dat");
     }
     public void enemigosBosque() throws SlickException{
         rat11 = new Rata(1, 100, 50, 30);
