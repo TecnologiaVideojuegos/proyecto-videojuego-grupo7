@@ -224,7 +224,7 @@ public class EscenaCarreta extends BasicGameState{
                 //////="////////////////////////////////////////////////////////";
                 linea1="La carretera secundaria...esa que circula por encima de ";
                 linea2="un barranco, ese barranco en cuyo fondo se encuentra el";
-                linea3="conocido bosque de Tanberl, ese bosque donde, según las";
+                linea3="conocido bosque de Tamberl, ese bosque donde, según las";
                 linea4="leyendas, nadie que haya entrado en los ultimos 50 años";
                 break;
             case 8:

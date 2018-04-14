@@ -49,8 +49,8 @@ public class EscenaInicio extends BasicGameState{
     private String linea6="";
     private String linea7="";
     private String linea8="";
-    private static final int esquinaXMapa=550;
-    private static final int esquinaYMapa=300;
+    private static int esquinaXMapa=550;
+    private static int esquinaYMapa=300;
     private Image hes1, hes2, hes3;//EDIT
     private Image hor1,hor2,mor1,kib1;//EDIT
     private Image ventanaDialogo,avatarDialogo, avatarH,avatarM, avatarK, avatarHestia,avatarE;
@@ -156,15 +156,15 @@ public class EscenaInicio extends BasicGameState{
                 }
             }
         }
-        if(estado>=20){
+        if(estado>19 && estado<22){
             fondoCardinal.draw(esquinaXMapa, esquinaYMapa);
             texto1.drawString(1050, 0, "Cuartel de Cardinal");
-            renderDialogo2();
+            renderDialogo();
             hor2.draw(posicion.x+65, posicion.y);//EDIT
             mor1.draw(posicion.x+40, posicion.y+102);//EDIT
             kib1.draw(posicion.x+90, posicion.y+100);//EDIT
         }
-        texto1.drawString(1000, 0, "" + estado);
+        //texto1.drawString(1000, 0, "" + estado);
         
     }
 
@@ -176,9 +176,6 @@ public class EscenaInicio extends BasicGameState{
             sonidoSelect.play(1, 0.2f);
             if(estado==4){
                 musicaIntro.stop();
-            }
-            if(estado==21){
-                sbg.enterState(VenganzaBelial.ESCENACARRETA);
             }
             estado++;
             time=0;
@@ -209,8 +206,8 @@ public class EscenaInicio extends BasicGameState{
             case 3:
                 avatarDialogo=this.avatarE;
                 linea5 = "Con el paso de los siglos los sellos se han debilitado y los";
-                linea6 = "movimientos sospechosos de Cardinal han aumentado considerablemente.";
-                linea7 = "";
+                linea6 = "movimientos sospechosos de Cardinal han aumentado ";
+                linea7 = "considerablemente.";
                 linea8 = "";
                 break;
             //Primera escena introducción
@@ -221,6 +218,7 @@ public class EscenaInicio extends BasicGameState{
                 {
                     reproducirExclamacion2=false;
                     time=0;
+                    estado++;
                 }
                 avatarDialogo=this.avatarHestia;
                 //////="////////////////////////////////////////////////////////";
@@ -297,10 +295,11 @@ public class EscenaInicio extends BasicGameState{
             case 12:
                 time+=i;
                 reproducirExclamacion1=true;
-                if(time/1000>0.4f)//
+                if(time/1000>1)//
                 {
                     reproducirExclamacion1=false;
                     time=0;
+                    estado++;
                 }
                 avatarDialogo=this.avatarHestia;
                 linea1="...";
@@ -363,19 +362,19 @@ public class EscenaInicio extends BasicGameState{
                 linea4="";
                 break;
             case 20:
-                time+=i;
-                if(time/1000>0.4f)//
-                {
-                    time=0;
-                    estado++;
-                }
-                break;
-            case 21:
                 avatarDialogo=this.avatarH;
                 linea1="Muy bien equipo, la sacerdotisa Hestia nos ha mandado";
                 linea2="una misión ultrasecreta que ni Archi debe saber.";
                 linea3="Os diré los detalles cuando salgamos.";
                 linea4="";
+                break;
+            case 21:
+                posicion.x+=1f*i;
+                esquinaXMapa+=1f*i;
+                if(esquinaXMapa>=1350){
+                    estado=0;
+                    sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);
+                }
                 break;
         }
         
@@ -397,13 +396,5 @@ public class EscenaInicio extends BasicGameState{
         texto.drawString(450, 400, linea7, rojo);
         texto.drawString(450, 450, linea8, rojo);
     }
-    private void renderDialogo2(){
-        avatarDialogo.draw(POSICIONAVATARX, POSICIONAVATARY, TAMANYOAVATARX, TAMANYOAVATARY);
-        this.ventanaDialogo.draw(0, 600, 1);
-        ///////////////////////////////////,"////////////////////////////////////////////////////////"/;
-        texto1.drawString(160, 625,linea1 );
-        texto1.drawString(160, 640,linea2);
-        texto1.drawString(160, 655,linea3);
-        texto1.drawString(160, 670,linea4);
-    }
 }
+
