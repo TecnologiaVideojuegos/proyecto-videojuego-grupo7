@@ -42,7 +42,6 @@ public class VenganzaBelial extends StateBasedGame {
     public static Horacia horacia = new Horacia( arma,  armadura,  habilidades,  atributoGestion.inv);
     public static Mordeim mordeim = new Mordeim( arma,  armadura,  habilidades,  atributoGestion.inv);
     public static Kibito kibito= new Kibito( arma,  armadura,  habilidades,  atributoGestion.inv);
-    public static ArrayList<Personaje> Party= new ArrayList<Personaje>();
     public static int MapaActual=0;
     public static Horacia hori =new Horacia( arma,  armadura,  habilidades,  atributoGestion.inv);
     public static Mordeim mordi =new Mordeim( arma,  armadura,  habilidades,  atributoGestion.inv);
@@ -87,17 +86,10 @@ public class VenganzaBelial extends StateBasedGame {
         horacia.setPJ(true);
         mordeim.setPJ(true);
         kibito.setPJ(true);
-        /*Party de forma normal*/
-        Party.add(horacia);
-        Party.add(mordeim);
-        Party.add(kibito);
         /*Party mediante Gestion*/
         atributoGestion.jugs.add(horacia);
         atributoGestion.jugs.add(mordeim);
         atributoGestion.jugs.add(kibito);
-        horacia.setHpActual(50);
-        kibito.setMpActual(15);
-        //mordeim.setHpActual(0);
         /*Inventario de Gestion*/
         atributoGestion.inv.addItem(arma);
         atributoGestion.inv.addItem(armadura);
@@ -110,6 +102,10 @@ public class VenganzaBelial extends StateBasedGame {
         kibi.setPJ(false);
         kibi.setNombre("Kibito(Dark)");
         //Combate com = new Combate(VenganzaBelial.Party, VenganzaBelial.MapaActual);
+        //Edit: Pruebas de Cambio de armas/armadura con requisitos
+        ArrayList<String> requisitos =new ArrayList<String>();
+        requisitos.add("Mordeim");
+        arma.setRequisitoCategoria(requisitos);
         /*ATRIBUTOS DE PRUEBA FIN*/
         AppGameContainer app = new AppGameContainer(new VenganzaBelial());
         app.setDisplayMode(WIDTH, HEIGHT, FULLSCREEN);

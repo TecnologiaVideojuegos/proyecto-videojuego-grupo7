@@ -162,7 +162,12 @@ public class EstadoCombate extends BasicGameState{
         {
             /*Genera Nuevo Combate*/
             //EDIT:Posible casteo a Personaje
-            NewCombate= new Combate(VenganzaBelial.Party, VenganzaBelial.MapaActual);//
+            ArrayList<Personaje> party= new ArrayList<Personaje>();
+            party.add(VenganzaBelial.atributoGestion.jugs.get(0));
+            party.add(VenganzaBelial.atributoGestion.jugs.get(1));
+            party.add(VenganzaBelial.atributoGestion.jugs.get(2));
+            NewCombate= new Combate(party, VenganzaBelial.MapaActual);//
+            //NewCombate= new Combate(VenganzaBelial.Party, VenganzaBelial.MapaActual);//
             if(NewCombate.GestionaPrimerTurno())
             {
                 Estado=OPCIONESBASE;
@@ -233,7 +238,7 @@ public class EstadoCombate extends BasicGameState{
                     selObjetivo();
                     break;
                 case  SELALIADO://Uso de habilidad/Consumible sobre objetivo Aliado
-                    OpcionControl(VenganzaBelial.Party.size());
+                    OpcionControl(VenganzaBelial.atributoGestion.jugs.size());
                     //Seleccion de aliado al que lanzar Habilidad
                     selAliado();
                     break;
@@ -422,12 +427,12 @@ public class EstadoCombate extends BasicGameState{
                     
                     //Ejecutar habilidad con el pj correcpondiente sobre el Aliado designado y comprobar que se puede
                     //Si se puede se ejecutará y devolvera true
-                    if(pj.usarHabilidad(this.habilidadSeleccionada, VenganzaBelial.Party.get(eleccionJugador)))
+                    if(pj.usarHabilidad(this.habilidadSeleccionada, VenganzaBelial.atributoGestion.jugs.get(eleccionJugador)))
                     {
                         /*EDIT: Cambiar Mensaje Sistema*/
-                        this.mensajeSistema=(pj.getNombre()+" ha utilizado "+pj.getHabilidades().get(habilidadSeleccionada).getNombre()+" sobre "+VenganzaBelial.Party.get(eleccionJugador).getNombre());
+                        this.mensajeSistema=(pj.getNombre()+" ha utilizado "+pj.getHabilidades().get(habilidadSeleccionada).getNombre()+" sobre "+VenganzaBelial.atributoGestion.jugs.get(eleccionJugador).getNombre());
                         if(pj.getHabilidades().get(habilidadSeleccionada).getTipoHabilidad()==Habilidad.TIPORESUCITAR){
-                            NewCombate.GestionaResurrecion(VenganzaBelial.Party.get(eleccionJugador));
+                            NewCombate.GestionaResurrecion(VenganzaBelial.atributoGestion.jugs.get(eleccionJugador));
                         }
                         eleccionJugador=0;
                         estadoAnterior=SELALIADO;
@@ -444,7 +449,7 @@ public class EstadoCombate extends BasicGameState{
                     switch (consumibleSeleccionado)
                     {
                         case 0:
-                            if(pj.getInventario().usarPocionVida((Jugador)VenganzaBelial.Party.get(eleccionJugador))){
+                            if(pj.getInventario().usarPocionVida((Jugador)VenganzaBelial.atributoGestion.jugs.get(eleccionJugador))){
                                 this.mensajeSistema=("Utilizada "+pj.getInventario().getItems().get(consumibleSeleccionado).getNombre());
                                 estadoAnterior=SELALIADO;//EDIT:Buscar forma optima de cambiar de estado
                                 Estado=FINTURNO;
@@ -454,7 +459,7 @@ public class EstadoCombate extends BasicGameState{
                             }
                             break;
                         case 1:
-                            if(pj.getInventario().usarPocionMana((Jugador)VenganzaBelial.Party.get(eleccionJugador))){
+                            if(pj.getInventario().usarPocionMana((Jugador)VenganzaBelial.atributoGestion.jugs.get(eleccionJugador))){
                                 this.mensajeSistema=("Utilizada "+pj.getInventario().getItems().get(consumibleSeleccionado).getNombre());
                                 estadoAnterior=SELALIADO;//EDIT:Buscar forma optima de cambiar de estado
                                 Estado=FINTURNO;
@@ -464,9 +469,9 @@ public class EstadoCombate extends BasicGameState{
                             }
                             break;
                         case 2:
-                            if(pj.getInventario().usarPocionRes((Jugador)VenganzaBelial.Party.get(eleccionJugador))){
+                            if(pj.getInventario().usarPocionRes((Jugador)VenganzaBelial.atributoGestion.jugs.get(eleccionJugador))){
                                 this.mensajeSistema=("Utilizada "+pj.getInventario().getItems().get(consumibleSeleccionado).getNombre());
-                                NewCombate.GestionaResurrecion(VenganzaBelial.Party.get(eleccionJugador));
+                                NewCombate.GestionaResurrecion(VenganzaBelial.atributoGestion.jugs.get(eleccionJugador));
                                 estadoAnterior=SELALIADO;//EDIT:Buscar forma optima de cambiar de estado
                                 Estado=FINTURNO;
                             }
@@ -535,9 +540,9 @@ public class EstadoCombate extends BasicGameState{
             {
                 int aux=0;
                 int exp=NewCombate.getExpCombate();
-                for(aux=0;aux<VenganzaBelial.Party.size();aux++)
+                for(aux=0;aux<VenganzaBelial.atributoGestion.jugs.size();aux++)
                 {
-                    Jugador pj=(Jugador)VenganzaBelial.Party.get(aux);
+                    Jugador pj=(Jugador)VenganzaBelial.atributoGestion.jugs.get(aux);
                     //Recibe la experiencia solo si no esta muerto al final del combate
                     if(pj.estaVivo())
                     {
@@ -547,7 +552,7 @@ public class EstadoCombate extends BasicGameState{
                             pj.subirNivel();
                         }/*if(pj.puedeSubir())*/
                     }/* if(pj.estaVivo())*/
-                }/*for(aux=0;aux<VenganzaBelial.Party.size();aux++)*/
+                }/*for(aux=0;aux<VenganzaBelial.atributoGestion.jugs.size();aux++)*/
                 //Reactiva Flag para la proxima vez que se genera un combate
                 NuevoCombate=true;
                 //EDIT:ELIMINAR OBJETO COMBATE O VACIAR
@@ -631,7 +636,8 @@ public class EstadoCombate extends BasicGameState{
     
     private void renderSelAliados()
     {
-        opcionesJugadorTTF.drawString(10,20+400, VenganzaBelial.Party.get(this.eleccionJugador).getNombre());
+        
+        opcionesJugadorTTF.drawString(10,20+400, VenganzaBelial.atributoGestion.jugs.get(this.eleccionJugador).getNombre());
     }/*private void renderSelAliados()*/
     
     private void renderSelObjetivo()

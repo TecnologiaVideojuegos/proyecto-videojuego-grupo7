@@ -1,7 +1,9 @@
 package estados;
 
 import items.Arma;
+import items.Armadura;
 import items.Consumible;
+import items.Item;
 import java.awt.Font;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -107,12 +109,17 @@ public class EstadoMenu extends BasicGameState{
                 renderInventario();
                 break;
             case GUARDANDO:
+                renderGuardando();
                 break;
             case CARGANDO:
+                renderCargando();
                 break;
             case CAMBIARARMA:
+                //renderInventario();
+                renderCambioEquipo();
                 break;
             case CAMBIARARMADURA:
+                renderCambioEquipo();
                 break;
             case SELHABILIDAD:
                 renderHabilidades();
@@ -146,12 +153,20 @@ public class EstadoMenu extends BasicGameState{
                 menuInventario();
                 break;
             case GUARDANDO:
+                OpcionControl(2);
+                guardando();
                 break;
             case CARGANDO:
+                OpcionControl(2);
+                cargando();
                 break;
             case CAMBIARARMA:
+                OpcionControl(VenganzaBelial.atributoGestion.inv.getItems().size());
+                cambiarArma();
                 break;
             case CAMBIARARMADURA:
+                OpcionControl(VenganzaBelial.atributoGestion.inv.getItems().size());
+                cambiarArmadura();
                 break;
             case SELHABILIDAD:
                 OpcionControl(5);//Numero de Habilidades
@@ -304,7 +319,7 @@ public class EstadoMenu extends BasicGameState{
                 case SELHABILIDAD:
                     //Ejecutar habilidad con el pj correcpondiente sobre el Aliado designado y comprobar que se puede
                     //Si se puede se ejecutará y devolvera true
-                    if(pj.usarHabilidad(this.habilidadSeleccionada, VenganzaBelial.Party.get(eleccionJugador))&& pj.habilidadUsable(this.habilidadSeleccionada))
+                    if(pj.usarHabilidad(this.habilidadSeleccionada, VenganzaBelial.atributoGestion.jugs.get(eleccionJugador))&& pj.habilidadUsable(this.habilidadSeleccionada))
                     {
                         sonidoSelect.play();
                         estado=SELOBJETIVO;
@@ -319,7 +334,7 @@ public class EstadoMenu extends BasicGameState{
                     switch (consumibleSeleccionado)
                     {
                         case 0:
-                            if(pj.getInventario().usarPocionVida((Jugador)VenganzaBelial.Party.get(eleccionJugador)))
+                            if(pj.getInventario().usarPocionVida((Jugador)VenganzaBelial.atributoGestion.jugs.get(eleccionJugador)))
                             {
                                 sonidoSelect.play();
                                 estado=SELOBJETIVO; 
@@ -329,7 +344,7 @@ public class EstadoMenu extends BasicGameState{
                             }
                             break;
                         case 1:
-                            if(pj.getInventario().usarPocionMana((Jugador)VenganzaBelial.Party.get(eleccionJugador))){
+                            if(pj.getInventario().usarPocionMana((Jugador)VenganzaBelial.atributoGestion.jugs.get(eleccionJugador))){
                                 //this.mensajeSistema=("Utilizada "+pj.getInventario().getItems().get(consumibleSeleccionado).getNombre());
                                 sonidoSelect.play();
                                 estado=SELOBJETIVO; 
@@ -339,7 +354,7 @@ public class EstadoMenu extends BasicGameState{
                             }
                             break;
                         case 2:
-                            if(pj.getInventario().usarPocionRes((Jugador)VenganzaBelial.Party.get(eleccionJugador))){
+                            if(pj.getInventario().usarPocionRes((Jugador)VenganzaBelial.atributoGestion.jugs.get(eleccionJugador))){
                                 //this.mensajeSistema=("Utilizada "+pj.getInventario().getItems().get(consumibleSeleccionado).getNombre());
                                 sonidoSelect.play();
                                 estado=SELOBJETIVO; 
@@ -374,8 +389,69 @@ public class EstadoMenu extends BasicGameState{
        if(input.isKeyPressed(Input.KEY_ENTER))
         { 
           //EDIT//Comprobar que el item seleccionado sea un arma y cumpla los requisitos
+            Item item=VenganzaBelial.atributoGestion.inv.getItems().get(eleccionJugador);
+            if(item.getTipoItem()==1)
+            {
+                if(VenganzaBelial.atributoGestion.jugs.get(this.personajeElegido).cambiarArma((Arma)item))
+                    this.sonidoSelect.play();
+                else
+                    this.sonidoError.play();
+                    
+            }
+            else
+                this.sonidoError.play();
         } 
+       
     }/*private void cambiarArma()*/
+    private void cambiarArmadura()
+    {
+       if(input.isKeyPressed(Input.KEY_ENTER))
+        { 
+          //EDIT//Comprobar que el item seleccionado sea un arma y cumpla los requisitos
+            Item item=VenganzaBelial.atributoGestion.inv.getItems().get(eleccionJugador);
+            if(item.getTipoItem()==2)
+            {
+                if(VenganzaBelial.atributoGestion.jugs.get(this.personajeElegido).cambiarArmadura((Armadura)item))
+                    this.sonidoSelect.play();
+                else
+                    this.sonidoError.play();       
+            }
+            else
+                this.sonidoError.play();
+        } 
+       
+    }/*private void cambiarArma()*/
+    
+    private void guardando()
+    {
+        if(input.isKeyPressed(Input.KEY_ENTER))
+       { 
+           if(eleccionJugador==0)
+           {
+               //EDIT:Guardar Partida
+           }
+           if(eleccionJugador==1)
+           {
+               estado=MENUBASE;
+               eleccionJugador=0;
+           }
+       }
+    }/*private void guardando()*/
+    private void cargando()
+    {
+        if(input.isKeyPressed(Input.KEY_ENTER))
+       { 
+           if(eleccionJugador==0)
+           {
+               //EDIT:Cargar Partida
+           }
+           if(eleccionJugador==1)
+           {
+               estado=MENUBASE;
+               eleccionJugador=0;
+           }
+       }
+    }/*private void guardando()*/
      
     private void renderOpcionesJugador() {
         for (int i = 0; i < NUMOPCIONES; i++) {
@@ -408,11 +484,13 @@ public class EstadoMenu extends BasicGameState{
         textoStatus.drawString(offsetX, offsetY,  "HP "+ pj.getHpActual()+"/"+pj.getHp());
         offsetY+=20;
         textoStatus.drawString(offsetX, offsetY,  "MP "+ pj.getMpActual()+"/"+pj.getMp());
+        //
+        textoStatus.drawString(650, 0, "Personajes");
     }/*private void renderSelPersonaje()*/
     
     private void renderMenuPJ()
     {
-        for(int i=0; i<3;i++)
+        for(int i=0; i<4;i++)
         {
            if (eleccionJugador == i) {
                 opcionesJugadorTTF.drawString(100, i * 50 + 200,opcionesPJ[i] );
@@ -420,6 +498,7 @@ public class EstadoMenu extends BasicGameState{
                 opcionesJugadorTTF.drawString(100, i * 50 + 200, opcionesPJ[i], notChosen);
             } 
         }
+        textoStatus.drawString(650, 0, "Personajes>>"+VenganzaBelial.atributoGestion.jugs.get(this.personajeElegido).getNombre());
     }/*private void renderMenuPJ()*/
     
     private void renderStatusPJ()
@@ -467,6 +546,8 @@ public class EstadoMenu extends BasicGameState{
         }
         /*Render Descripcion de Habilidad Bajo Seleccion*/
         this.textoStatus.drawString(800, 100, pj.getHabilidades().get(eleccionJugador).getDescripcion());
+        /**/
+        textoStatus.drawString(650, 0, "Personajes>>"+pj.getNombre()+">>Habilidades");
     }/* private void renderHabilidades()*/
     
     private void renderInventario()
@@ -476,8 +557,6 @@ public class EstadoMenu extends BasicGameState{
         String nombreItem="";
         for (int i=0;i<inven.getCapacidadInv();i++)
         {
-            
-            
             if(i<espaciosLlenos)
             {
                 if(i<3)
@@ -501,6 +580,76 @@ public class EstadoMenu extends BasicGameState{
         }
         /*Render Descripcion de Habilidad Bajo Seleccion*/
         this.textoStatus.drawString(800, 100, inven.getItems().get(eleccionJugador).getDescripcion());
+        //
+        textoStatus.drawString(650, 0, "Inventario");
     }/* private void renderInventario()*/
+    
+    private void renderGuardando()
+    {
+        textoStatus.drawString(450, 300, "¿Quiere guardar la partida en este punto?");  
+        textoStatus.drawString(450, 320, "Se sobreescribirán los datos ya guardados."); 
+        if(eleccionJugador==0)
+            opcionesJugadorTTF.drawString(560,350,"SÍ");
+        else
+          opcionesJugadorTTF.drawString(560,350,"SÍ", notChosen);
+        
+        if(eleccionJugador==1)
+            opcionesJugadorTTF.drawString(560,380,"NO");
+        else
+          opcionesJugadorTTF.drawString(560,380,"NO", notChosen);
+    }
+    private void renderCargando()
+    {
+        textoStatus.drawString(450, 300, "¿Quiere cargar la partida al ultimo punto");  
+        textoStatus.drawString(450, 320, "de guardado?, Se perderán los datos no guardados."); 
+        if(eleccionJugador==0)
+            opcionesJugadorTTF.drawString(560,350,"SÍ");
+        else
+          opcionesJugadorTTF.drawString(560,350,"SÍ", notChosen);
+        
+        if(eleccionJugador==1)
+            opcionesJugadorTTF.drawString(560,380,"NO");
+        else
+          opcionesJugadorTTF.drawString(560,380,"NO", notChosen);
+    }
+    
+    
+    //EDIT
+    private void renderCambioEquipo()
+    {
+        Jugador pj= VenganzaBelial.atributoGestion.jugs.get(this.personajeElegido);
+        textoStatus.drawString(650, 0, "Personajes>>"+pj.getNombre()+">>"+"Cambiar equipo");
+        //Inventario Izquierda
+        Inventario inven = VenganzaBelial.atributoGestion.inv;
+        int espaciosLlenos= inven.getItems().size();
+        String nombreItem="";
+        for (int i=0;i<inven.getCapacidadInv();i++)
+        {
+            if(i<espaciosLlenos)
+            {
+                if(i<3)
+                {
+                    Consumible consum = (Consumible)inven.getItems().get(i);
+                    nombreItem= consum.getNombre()+" ("+consum.getNumero()+"/"+consum.getCapacidad()+")";
+                }
+                else
+                    nombreItem=inven.getItems().get(i).getNombre();
+                
+                if(eleccionJugador==i)
+                {
+                   opcionesJugadorTTF.drawString(100,i*50+100,nombreItem);
+                }
+                else{
+                    opcionesJugadorTTF.drawString(100, i * 50 + 100, nombreItem, notChosen);
+                }
+            }
+            else
+                opcionesJugadorTTF.drawString(100,i*50+100,"---");
+        }
+        /*Render Descripcion de Habilidad Bajo Seleccion*/
+        this.textoStatus.drawString(800, 100, inven.getItems().get(eleccionJugador).getDescripcion());
+        //EDIT:posible mejora incluyendo cuanto sube o baja el atributo de Ataque y Defensa
+        
+    }
 
 }

@@ -11,6 +11,9 @@ public class Item implements Serializable{
     private int requisitoNivel;
     private int precioCompra;
     private int precioVenta;
+    //EDIT
+    private int tipoItem;//Consumible=0/Arma=1//Armadura=2
+    //
     private static final long serialVersionUID = 3L;
     
     //Constructor
@@ -60,4 +63,14 @@ public class Item implements Serializable{
     public void setPrecioVenta(int precioVenta) {
         this.precioVenta = precioVenta;
     }   
+
+    public int getTipoItem() {
+        return tipoItem;
+    }
+
+    public void setTipoItem(int tipoItem) {
+        this.tipoItem = tipoItem;
+    }
+    
+    
 }

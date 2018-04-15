@@ -19,6 +19,7 @@ public class Consumible extends Item implements Serializable{
         this.numero = numero;
         //El numero maximo del mismo consumible sera 10 por ejemplo
         this.capacidad = 10;
+        this.setTipoItem(0);//Identificador de Consumible
     }
     //Getters and Setters
     public int getPh() {

@@ -14,6 +14,7 @@ public class Arma extends Item implements Serializable{
         super(nombre, descripcion, requisitoCategoria, requisitoNivel, precioCompra, precioVenta);
         this.danyo = danyo;
         this.critico = critico;
+        this.setTipoItem(1);//Identificador de arma
     }   
 
     //Getters and Setters
