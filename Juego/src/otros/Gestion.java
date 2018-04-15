@@ -55,10 +55,10 @@ public class Gestion {
         }
     }
     
-    public void guardarGrupoEnemigos(ArrayList<ArrayList<Enemigo>> enemigos) {
+    public void guardarGrupoEnemigos(ArrayList<ArrayList<Enemigo>> enemigos, String ruta) {
         try {
             if (!enemigos.isEmpty()) {
-                FileOutputStream ostreamPer = new FileOutputStream("BaseDatos/enemigos.dat");
+                FileOutputStream ostreamPer = new FileOutputStream(ruta);
                 ObjectOutputStream oosPer = new ObjectOutputStream(ostreamPer);
                 oosPer.writeObject(enemigos);
                 ostreamPer.close();
@@ -73,10 +73,10 @@ public class Gestion {
         }
     }
     
-    public ArrayList<ArrayList<Enemigo>> cargarGrupoEnemigos() {
+    public ArrayList<ArrayList<Enemigo>> cargarGrupoEnemigos(String ruta) {
         ArrayList<ArrayList<Enemigo>> enemigos = new ArrayList<ArrayList<Enemigo>>();
         try {
-            FileInputStream istreamPer = new FileInputStream("BaseDatos/enemigos.dat");
+            FileInputStream istreamPer = new FileInputStream(ruta);
             ObjectInputStream oisPer = new ObjectInputStream(istreamPer);            
             enemigos = (ArrayList<ArrayList<Enemigo>>) oisPer.readObject();
             istreamPer.close();

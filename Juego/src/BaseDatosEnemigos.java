@@ -35,37 +35,58 @@ public final class BaseDatosEnemigos{
     private ArrayList<Enemigo> party5;     
     private ArrayList<Enemigo> party6;    
     private ArrayList<ArrayList<Enemigo>> enem;
-    private Rata rat11,rat12,rat13;
-    private Rata rat3;
-    private Rata rat5;
-    private Goblin gob1;
-    private Goblin gob3;
-    private Goblin gob5;
-    private Spider sp1;
-    private Spider sp3;
-    private Spider sp5;
+
+    private Rata rat11, rat12, rat13;
+    private Rata rat31, rat32, rat33;
+    private Rata rat51, rat52, rat53;
+    private Goblin gob11, gob12, gob13;
+    private Goblin gob31, gob32, gob33;
+    private Goblin gob51, gob52, gob53;
+    private Spider sp11, sp12, sp13;
+    private Spider sp31, sp32, sp33;
+    private Spider sp51, sp52, sp53;
     //Base datos enemigos
     public BaseDatosEnemigos() throws SlickException{
         //int nivel, int hp, int ataque, int defensa
         initArrays();
         enem = new ArrayList<ArrayList<Enemigo>>();
-        rat11 = new Rata(1, 100, 50, 30);
-        rat12 = new Rata(1, 100, 50, 30);
-        rat13 = new Rata(1, 100, 50, 30);
-        rat3 = new Rata(3, 150, 60, 40);
-        rat5 = new Rata(5, 200, 70, 50);
-        gob1 = new Goblin(1, 130, 40, 40);
-        gob3 = new Goblin(3, 170, 50, 50);
-        gob5 = new Goblin(5, 220, 60, 60);
-        sp1 = new Spider(1, 80, 60, 20);
-        sp3 = new Spider(3, 120, 70, 30);
-        sp5 = new Spider(5, 160, 80, 40);
+
+        enemigosBosque();
         partyNivel1();
         initArrays();
         partyNivel3();
         initArrays();
         partyNivel5();
-        ges.guardarGrupoEnemigos(enem);
+        ges.guardarGrupoEnemigos(enem, "BaseDatos/enemigosBosque.dat");
+    }
+    public void enemigosBosque() throws SlickException{
+        rat11 = new Rata(1, 100, 50, 30);
+        rat12 = new Rata(1, 100, 50, 30);
+        rat13 = new Rata(1, 100, 50, 30);
+        rat31 = new Rata(3, 150, 60, 40);
+        rat32 = new Rata(3, 150, 60, 40);
+        rat33 = new Rata(3, 150, 60, 40);
+        rat51 = new Rata(5, 200, 70, 50);
+        rat52 = new Rata(5, 200, 70, 50);
+        rat53 = new Rata(5, 200, 70, 50);
+        gob11 = new Goblin(1, 130, 40, 40);
+        gob12 = new Goblin(1, 130, 40, 40);
+        gob13 = new Goblin(1, 130, 40, 40);
+        gob31 = new Goblin(3, 170, 50, 50);
+        gob32 = new Goblin(3, 170, 50, 50);
+        gob33 = new Goblin(3, 170, 50, 50);
+        gob51 = new Goblin(5, 220, 60, 60);
+        gob52 = new Goblin(5, 220, 60, 60);
+        gob53 = new Goblin(5, 220, 60, 60);
+        sp11 = new Spider(1, 80, 60, 20);
+        sp12 = new Spider(1, 80, 60, 20);
+        sp13 = new Spider(1, 80, 60, 20);
+        sp31 = new Spider(3, 120, 70, 30);
+        sp32 = new Spider(3, 120, 70, 30);
+        sp33 = new Spider(3, 120, 70, 30);
+        sp51 = new Spider(5, 160, 80, 40);
+        sp52 = new Spider(5, 160, 80, 40);
+        sp53 = new Spider(5, 160, 80, 40);
     }
     public void initArrays(){
         party = new ArrayList<>();
@@ -85,93 +106,93 @@ public final class BaseDatosEnemigos{
         party.add(rat13);
         enem.add(party);
         //
-        party2.add(gob1);
-        party2.add(gob1);
-        party2.add(gob1);
+        party2.add(gob11);
+        party2.add(gob12);
+        party2.add(gob13);
         enem.add(party2);
         //
-        party3.add(sp1);
-        party3.add(sp1);
-        party3.add(sp1);
+        party3.add(sp11);
+        party3.add(sp12);
+        party3.add(sp13);
         enem.add(party3);
         
-        party4.add(gob1);
-        party4.add(sp1);
+        party4.add(gob11);
+        party4.add(sp11);
         party4.add(rat11);
         enem.add(party4);
         //
-        party5.add(gob1);
-        party5.add(gob1);
+        party5.add(gob11);
+        party5.add(gob12);
         party5.add(rat11);
         enem.add(party5);
         //
-        party6.add(sp1);
-        party6.add(sp1);
+        party6.add(sp11);
+        party6.add(sp12);
         party6.add(rat11);
         enem.add(party6);
         
     }
     public void partyNivel3(){
-        party.add(rat3);
-        party.add(rat3);
-        party.add(rat3);
+        party.add(rat31);
+        party.add(rat32);
+        party.add(rat33);
         enem.add(party);
         //
-        party2.add(gob3);
-        party2.add(gob3);
-        party2.add(gob3);
+        party2.add(gob31);
+        party2.add(gob32);
+        party2.add(gob33);
         enem.add(party2);
         //
-        party3.add(sp3);
-        party3.add(sp3);
-        party3.add(sp3);
+        party3.add(sp31);
+        party3.add(sp32);
+        party3.add(sp33);
         enem.add(party3);
         //
-        party4.add(gob3);
-        party4.add(sp3);
-        party4.add(rat3);
+        party4.add(gob31);
+        party4.add(sp31);
+        party4.add(rat31);
         enem.add(party4);
         //
-        party5.add(gob3);
-        party5.add(gob3);
-        party5.add(rat3);
+        party5.add(gob31);
+        party5.add(gob32);
+        party5.add(rat31);
         enem.add(party5);
         //
-        party6.add(sp3);
-        party6.add(sp3);
-        party6.add(rat3);
+        party6.add(sp31);
+        party6.add(sp32);
+        party6.add(rat31);
         enem.add(party6);
     }
     public void partyNivel5(){
         //Nivel 5
-        party.add(rat5);
-        party.add(rat5);
-        party.add(rat5);
+        party.add(rat51);
+        party.add(rat52);
+        party.add(rat53);
         enem.add(party);
         //
-        party2.add(gob5);
-        party2.add(gob5);
-        party2.add(gob5);
+        party2.add(gob51);
+        party2.add(gob52);
+        party2.add(gob53);
         enem.add(party2);
         //
-        party3.add(sp5);
-        party3.add(sp5);
-        party3.add(sp5);
+        party3.add(sp51);
+        party3.add(sp52);
+        party3.add(sp53);
         enem.add(party3);
         //
-        party4.add(gob5);
-        party4.add(sp5);
-        party4.add(rat5);
+        party4.add(gob51);
+        party4.add(sp51);
+        party4.add(rat51);
         enem.add(party4);
         //
-        party5.add(gob5);
-        party5.add(gob5);
-        party5.add(rat5);
+        party5.add(gob51);
+        party5.add(gob52);
+        party5.add(rat51);
         enem.add(party5);
         //
-        party6.add(sp5);
-        party6.add(sp5);
-        party6.add(rat5);
+        party6.add(sp51);
+        party6.add(sp52);
+        party6.add(rat51);
         enem.add(party6);
     }
     

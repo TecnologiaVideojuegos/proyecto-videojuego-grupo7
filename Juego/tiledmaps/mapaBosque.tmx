@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.1.4" orientation="orthogonal" renderorder="right-down" width="86" height="60" tilewidth="32" tileheight="32" infinite="0" nextobjectid="1">
+ <tileset firstgid="1" source="bosque01.tsx"/>
+ <tileset firstgid="257" source="bosque03.tsx"/>
+ <tileset firstgid="851" source="bosque02.tsx"/>
+ <tileset firstgid="1076" source="bosque04.tsx"/>
+ <layer name="capa_suelo" width="86" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztwzENAAAMA6Aek1T/2ipkkNBLqqqqqqqqqqqqqqqqqqqqqqqqqqq+Pvi/aP0=
+  </data>
+ </layer>
+ <layer name="capa_blocked" width="86" height="60">
+  <properties>
+   <property name="blocked" type="bool" value="true"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztW0tyFDEM9QJuAPegigtkwf+z4/+5AJ8L8LkAny2cYGA9i8AJAhVgC1SAbaAG2GbDCnVVVKNSJFuS7Z5Mklf1aqbdbdn9WpLd7e5JSmlywC6k4NuLxmybQ7/WgO+A74EvgC+Bq4zWcmprVbDPkdvH9y+DroihX5+BX4Bfga+Ar9NO/Wg51ZIfT21NBPscuX18/7Lpugn8CfwFfAN8C5ymuX6JlFMtp6x8ldmaCPY5cvv4fk3Xc8DzwAvAi8mWP7iNSA7KYTh2uk0ac8M29cVpmmtHteR1MPYjfclhqtgbtm8AbwJvAW+T8lpd0a/w16sraktjTvJFiVKc1lxnDTld7wDvAu8B77PzqtEV/Qp/afxaIMXrlHCL2OT+KcXp2Lo+AD4EPgI+DvRDOxb9Cn9RXw+oPa7pFrFJ/RN9tmVe0pDT9QnwKfAZ8HmDfpR09vgtt4F6on+iTat/RnJSDjldW+fHko94/FazQf0Ttbb4ZyRmNJwBniW2Lf2W8qP3Gpf8tsYW9U9JU639SNsargGvJ7+uPD8moX4Olhjwone+jMCrKwXNBTV+y2Mgit2iKe0Lx3oq95POxaPnoMXAskPTdYPtl46hc3G63xOTUj7YC6iNF54LvLmu17jcEt683SIPUS2k+5xSDu41LrdEL11zx1AtpPscOh8r6YqcFfpT6mfr+QGvT/2GgpZ75gMlSPc5WObRVeOMUIPHngXS+K09h7U8f5XyZmtI11drJxqHtTpvCMdRv6Gg5ZquPH576Fq6vrxPVi3ofsk/6LzDMgePXidJVx6/PXTl19eKXP+5dpJ/0LGW/h9D139CmfdcW8RhtE3US8rvdKy13I/31LV0fovEulAmxdvAtSSP5WPlAatWY2ma69OGUk41xPrSWF46X55bWsdlq/j1oKYdaVzcTDvHckuOG8BzcUuOido2qYbaeVh8FUFzsZRPpPigXMTzj97XUbNtiX8JUj4prfeO/fwD2z0BPJnmaxmtwX3MMlZpkPKJFB90XWas5x+875eAl9N8LcMDKS45uI9FNbUAbfB1md75NGpfi+fSu1MDJH/S2qjNhVoe76lrS01z43ypTq6NVmtCWj9aoHY8GmsOQ+vU5kLe9gfgR+CnYD+1Otb7Nx5/vbUs9T0KXv8b8Dvwh9JOKX4GTgVaIT0nkWgZp0qgNlpenyTU/w38A/zrbEs71qurdl/PYRmnSuDzzZbPnLX8mssHXts0F8wy9PjkZsq/42sBtTG0F3nmjHPuU8DTZFvTNZcPIojkxRY+Sa+pRNq2NVYocM59BXiVbGu6avlgTNT6ZHTMyz238rbt6c8yIKqplg966ros0PwvJdszVJ4PZin+XnmuX8us6QBtPUuqZ7Hh6UcENbHW+lrl7GvrWVZ7M0c9Xt+KYS2p1XpEK417Xa8aW96+DGtJ1nuinrru9lyV6xPP+/jLv7XA49aS796yZpxdpJ5Rf+H7tG+u+HaLeXzkHHqhdRzyfdo3V3x7M9XfW46NlrnMq2spD+TGSik3WMtq0FuvHnmAl+fisbRumSuLAvsjfSN7CHjY8EufcWJZpA9SmZYHeHlOVyk3WMui0DQdeAR41PBLIZVZ+qBpsugY6sFjTn2ssOQBfqyW+zzr/fzY0noCP/64gzldVwr9zKE2v1I7A7Tcx9f7czp53w2oeZdgN8Cia8vct19g0XW/Y8jJXi1yui4jaC6y5rsSVgJ195qu2ne9SD5PLQGPa62r9C6A9b2AaN2aNqXvgij5PLXUFh4X1fWA7fkf+RjAAw==
+  </data>
+ </layer>
+ <layer name="capa_decoracion" width="86" height="60">
+  <data encoding="base64" compression="zlib">
+   eJzt2kEKgzAURdHsfzcdZH/FQUFKU9ua15hwDgScGS7hK2IppNXRG1iUrhm6Zuj6X3pn6AoAPNTd4juaZek7hu4ZtXHNOboe+6VLLd4PjuhCL85Sxr7rbdguXptttraetVfsOqtt71fruYKt6ehzMfr+CbPNsBlommO2AgAAAPTh+1U/rZYaAwCwuuf/Ut8tPqdrho4AAKzsDv+qM4o=
+  </data>
+ </layer>
+ <layer name="capa_enemigos" width="86" height="60">
+  <properties>
+   <property name="enemigos" type="bool" value="true"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztl0mOwzAMBPP/3+R/OQzmFgTaSHWTLZkF5JBES7ssUfbrVUTxaXw8/a3zKDHK5vWj5DXLeXnlwPAaiarX0ymvPFa8lls7q16V3LZqrFrGEaqZVzIp5laH7fXkvbBDxHq9zevKWomqA0ivqPvU6md1tuMVgeXdyXKfve9uvX5ZXndrwUqbp3plnUUKXi1YM3rao+vIbV6t+Vbm8ID2ysBS11hzZI2X6R7t1bqedvfzartot5aMozFa7ZFeEWeBEgped85LRaf/9M4p1bynsOoV8ezDQLUW3OZVye0vqGeIqOtlzvO7ttBYcyO8evcGitaeHf2/Ot5OXmR/z1zWZ5VR7fv+3uqPhrnXs2tza97yah9/dm73+jBynuz1Rqw1UwH15znFTDMy9r333GURUZMU6ikzz2w+xphR42dnGs2XOeaJ9W6EyrmikAGJyvWo5EARUWMsba15ouumAuWVww1eR8+Mu3O9vz6t31r/szNFEXENI4e9TLN86mSvjdl8t3nttY2eW+Ve79bvWRtLjlkW1bUYlYvl9emUVw7lqSgwVO3hUF45lFcOHq+z9t73z8z3VjTllUN51aG88nja9Rb5/AHOyX4f
+  </data>
+ </layer>
+</map>
