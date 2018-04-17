@@ -50,11 +50,12 @@ public final class Horacia extends Jugador{
     
     @Override
     public void setearHabilidades(){
-        Habilidad[] habs = new Habilidad[4];
-        habs[0] = new Habilidad("Embestida", 1, 20, 5, "Embestida potente contra un objetivo", 2);
-        habs[1] = new Habilidad("Apalear", 5, 30, 7, "Apalea a un bjetivo", 2);
+        Habilidad[] habs = new Habilidad[5];
+        habs[0] = new Habilidad("Embestida", 1, 2, 5, "Embestida potente contra un objetivo", 2);
+        habs[1] = new Habilidad("Apalear", 5, 3, 7, "Apalea a un bjetivo", 2);
         habs[2] = new Habilidad("Ira salvaje", 10, 5, 5, "Habilidad multiobjetivo", 4);
-        habs[3] = new Habilidad("Torbellino", 5, 15, 7, "Hace un torbellino en torno a todos los objetivos", 4);
+        habs[3] = new Habilidad("Torbellino", 15, 5, 7, "Hace un torbellino en torno a todos los objetivos", 4);
+        habs[4] = new Habilidad("Provisional", 20, 5, 7, "Habilidad sin decidir para evitar bugs", 4);
         for (int i = 0; i < habs.length; i++) {
             this.anadirHabilidad(habs[i]);
         }

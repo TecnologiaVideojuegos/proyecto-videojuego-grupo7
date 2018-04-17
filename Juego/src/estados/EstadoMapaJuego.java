@@ -35,8 +35,8 @@ public class EstadoMapaJuego extends BasicGameState {
 
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-        //map = new TiledMap("tiledmaps/bosque.tmx");
-        map = new TiledMap("tiledmaps/prueba.tmx");
+        map = new TiledMap("tiledmaps/mapaBosque.tmx");
+        //map = new TiledMap("tiledmaps/prueba.tmx");
         mapWidth = map.getWidth() * map.getTileWidth();
         mapHeight = map.getHeight() * map.getTileHeight();
         tileHeight = map.getTileHeight();

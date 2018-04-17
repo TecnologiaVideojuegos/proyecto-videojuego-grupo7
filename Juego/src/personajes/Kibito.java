@@ -24,11 +24,11 @@ public final class Kibito extends Jugador{
         ArrayList<String> requisitos = new ArrayList<>();
         requisitos.add("Kibito");
         //EDIT:armas
-        //Arma armaInicio = new Arma(10, 1, "Palo", "Palo de poca calidad", requisitos, 1, 0, 10);
-        //Armadura armaduraInicio = new Armadura(10, "Calzoncillos", "Calzoncillos un tanto usados", requisitos, 1, 0, 10);
+        Arma armaInicio = new Arma(10, 1, "Palo", "Palo de poca calidad", requisitos, 1, 0, 10);
+        Armadura armaduraInicio = new Armadura(10, "Calzoncillos", "Calzoncillos un tanto usados", requisitos, 1, 0, 10);
         this.setNombre("Kibito");
-        //this.setArma(armaInicio);
-        //this.setArmadura(armaduraInicio);
+        this.setArma(armaInicio);
+        this.setArmadura(armaduraInicio);
         this.setHp(80);
         this.setHpActual(this.getHp());
         this.setMp(100);
