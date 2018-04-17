@@ -48,6 +48,7 @@ public class EscenaBosque2 extends BasicGameState{
     private Input input;
     private int estado;
     private boolean reproducirExclamacion=false;
+    private boolean reproducirSusto=false;
     /*Mapa*/
     private Vector2f posicion;
     private static final int esquinaXMapa=0;
@@ -55,9 +56,12 @@ public class EscenaBosque2 extends BasicGameState{
     /*Animaciones*/
     private SpriteSheet sheetExclamacion;
     private Animation exclamacion;
+    private SpriteSheet sheetSusto;
+    private Animation susto;
     private Animation hor,kib,mor;
     private Animation horD,kibD,morD;
     private Animation horI,kibS,morS;
+    private Animation horE;
     private Image fondo;
     /*Imagenes*/
     private Image ventanaDialogo,avatarDialogo, avatarH,avatarM, avatarK, avatarDesconocido;
@@ -91,6 +95,8 @@ public class EscenaBosque2 extends BasicGameState{
         kibS=new Animation(kibF,200);
         Image[] morF={new Image("Imagenes/Animaciones/Sprites/mor8.png")};
         morS=new Animation(morF,200);
+        Image[] horEnfrente={new Image("Imagenes/HeroeMundo/her11.png")};
+        horE=new Animation(horEnfrente,200);
         hor=horD;
         kib=kibD;
         mor=morD;
@@ -98,6 +104,8 @@ public class EscenaBosque2 extends BasicGameState{
         /**/
         this.sheetExclamacion= new SpriteSheet("Imagenes/Animaciones/puntos.png",32,33);
         this.exclamacion = new Animation(sheetExclamacion,200);
+        this.sheetSusto= new SpriteSheet("Imagenes/Animaciones/exclamacion.png",32,33);
+        this.susto = new Animation(sheetSusto,200);
         /**/
         estado=0;
         this.input = gc.getInput();
@@ -110,7 +118,7 @@ public class EscenaBosque2 extends BasicGameState{
         avatarDesconocido = new Image("Imagenes/Personajes/Arbol.png");
         avatarDialogo = avatarH;
         sonidoSelect=new Sound("Musica/Efectos/select.wav");
-        rugido=new Sound("Musica/Efectos/rugido1.ogx");
+        rugido=new Sound("Musica/Efectos/rugido1.wav");
         texto= new TrueTypeFont(letraMenu, true);
         /**/
         
@@ -125,23 +133,26 @@ public class EscenaBosque2 extends BasicGameState{
             //EDIT:Rener Mordeim
             if(reproducirExclamacion)
                 this.exclamacion.draw(posicion.x-64, posicion.y-64);
+            if(reproducirSusto){
+                this.susto.draw(posicion.x, posicion.y-32);
+            }
             if(estado>=0){
                 hor.draw(posicion.x, posicion.y);
                 mor.draw(posicion.x-64, posicion.y+32);
                 kib.draw(posicion.x-64, posicion.y-32);
-                if(estado>=1){
+                if(estado>=2){
                 renderDialogo();
                 }
                 
             }
-            texto.drawString(1000, 0, "" + estado);
+            //texto.drawString(1000, 0, "" + estado);
     }
     @Override
     //Muestra la actualización
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
         exclamacion.update(i);
         if(input.isKeyPressed(Input.KEY_ENTER)){
-            if(estado!=17)
+            if(estado!=18)
             {
                 sonidoSelect.play(1, 0.2f);
                 time=0;
@@ -158,6 +169,26 @@ public class EscenaBosque2 extends BasicGameState{
                 }
                 break;
             case 1:
+                time+=i;
+                reproducirSusto=true;
+                if(!rugido.playing())
+                {
+                    rugido.play();
+                }
+                if(time/1000>0.4f)//
+                {
+                    time=0;
+                    estado++;
+                }
+                break;
+            case 2:
+                time+=i;
+                if(time/1000>1f)//
+                {
+                    reproducirSusto=false;
+                    time=0;
+                    estado++;
+                }
                 hor=horI;
                 kib=kibS;
                 mor=morS;
@@ -168,7 +199,7 @@ public class EscenaBosque2 extends BasicGameState{
                 linea3="";
                 linea4="";
                 break;
-            case 2:
+            case 3:
                 avatarDialogo=this.avatarM;
                 //////="////////////////////////////////////////////////////////";
                 linea1="Ya esta otra vez, serán más monstruos,";
@@ -176,7 +207,7 @@ public class EscenaBosque2 extends BasicGameState{
                 linea3="";
                 linea4="";
                 break;
-            case 3:
+            case 4:
                 avatarDialogo=this.avatarH;
                 //////="////////////////////////////////////////////////////////";
                 linea1="Pero...esto sonaba más fuerte, y... y el ambiente se";
@@ -184,7 +215,7 @@ public class EscenaBosque2 extends BasicGameState{
                 linea3="más fuertes y...";
                 linea4="";
                 break;
-            case 4:
+            case 5:
                 avatarDialogo=this.avatarM;
                 //////="////////////////////////////////////////////////////////";
                 linea1="Bla, bla, bla, deja de lloriquear y tira pa'lante.";
@@ -192,7 +223,7 @@ public class EscenaBosque2 extends BasicGameState{
                 linea3="";
                 linea4="";
                 break;
-            case 5:
+            case 6:
                 avatarDialogo=this.avatarK;
                 //////="////////////////////////////////////////////////////////";
                 linea1="Chicos, ahora en serío.";
@@ -200,7 +231,7 @@ public class EscenaBosque2 extends BasicGameState{
                 linea3="";
                 linea4="";
                 break;
-            case 6:
+            case 7:
                 avatarDialogo=this.avatarH;
                 //////="////////////////////////////////////////////////////////";
                 linea1="¿Tú te sabes la his...hist...historia Kibito?";
@@ -208,7 +239,7 @@ public class EscenaBosque2 extends BasicGameState{
                 linea3="";
                 linea4="";
                 break;
-            case 7:
+            case 8:
                 avatarDialogo=this.avatarK;
                 //////="////////////////////////////////////////////////////////";
                 linea1="Según la leyenda existe un tesoro oculto en este bosque";
@@ -216,7 +247,7 @@ public class EscenaBosque2 extends BasicGameState{
                 linea3="";
                 linea4="";
                 break;
-            case 8:
+            case 9:
                 avatarDialogo=this.avatarM;
                 //////="////////////////////////////////////////////////////////";
                 linea1="Bla,bla,bla, solamente me interesa saber donde está el";
@@ -224,7 +255,7 @@ public class EscenaBosque2 extends BasicGameState{
                 linea3="";
                 linea4="";
                 break;
-            case 9:
+            case 10:
                 avatarDialogo=this.avatarK;
                 //////="////////////////////////////////////////////////////////";
                 linea1="Ejem, respecto al tesoro, nadie a sido capaz de";
@@ -232,7 +263,7 @@ public class EscenaBosque2 extends BasicGameState{
                 linea3="Lo bueno es que el Dios del Bosque es un ser";
                 linea4="amable y simpático según la leyenda...";
                 break;
-            case 10:
+            case 11:
                 time+=i;
                 if(!rugido.playing())
                 {
@@ -250,7 +281,7 @@ public class EscenaBosque2 extends BasicGameState{
                 linea4="";
                 break;
                 
-            case 11:
+            case 12:
                 avatarDialogo=this.avatarH;
                 //////="////////////////////////////////////////////////////////";
                 linea1="IAAAAAAAAAAAAAAAAAAAHHHHHHHHHHHHH!!!!!!!!";
@@ -258,7 +289,7 @@ public class EscenaBosque2 extends BasicGameState{
                 linea3="";
                 linea4="";
                 break;
-            case 12:
+            case 13:
                 avatarDialogo=this.avatarM;
                 //////="////////////////////////////////////////////////////////";
                 linea1="Vaya capitana tan cobarde...";
@@ -266,7 +297,7 @@ public class EscenaBosque2 extends BasicGameState{
                 linea3="";
                 linea4="";
                 break;
-            case 13:
+            case 14:
                 time+=i;
                 if(!rugido.playing())
                 {
@@ -282,7 +313,8 @@ public class EscenaBosque2 extends BasicGameState{
                 linea3="";
                 linea4="";
                 break;
-            case 14:
+            case 15:
+                hor=horE;
                 avatarDialogo=this.avatarH;
                 //////="////////////////////////////////////////////////////////";
                 linea1="¡¡¡¡¡MÁS MONSTRUOS!!!!!";
@@ -290,7 +322,7 @@ public class EscenaBosque2 extends BasicGameState{
                 linea3="";
                 linea4="";
                 break;
-            case 15:
+            case 16:
                 time+=i;
                 reproducirExclamacion=true;
                 if(time/1000>1f)//
@@ -306,7 +338,8 @@ public class EscenaBosque2 extends BasicGameState{
                 linea3="";
                 linea4="";
                 break;
-            case 16:
+            case 17:
+                //Aquí se metería a un combate fijo, a traición XD.
                 estado=0;
                 sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);
                 break;
@@ -319,9 +352,9 @@ public class EscenaBosque2 extends BasicGameState{
         avatarDialogo.draw(POSICIONAVATARX, POSICIONAVATARY, TAMANYOAVATARX, TAMANYOAVATARY);
         this.ventanaDialogo.draw(0, 600, 1);
         ///////////////////////////////////,"////////////////////////////////////////////////////////"/;
-        mensajePantalla.drawString(160, 625,linea1 );
+        mensajePantalla.drawString(160, 625,linea1);
         mensajePantalla.drawString(160, 640,linea2);
-        mensajePantalla.drawString(160, 655,linea3 );
+        mensajePantalla.drawString(160, 655,linea3);
         mensajePantalla.drawString(160, 670,linea4);
     }
     
