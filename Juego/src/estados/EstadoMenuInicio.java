@@ -49,7 +49,7 @@ public class EstadoMenuInicio extends BasicGameState {
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
         
-        fondo= new Image("Imagenes/Fondos/Fondo.jpg");
+        fondo= new Image("Imagenes/Fondos/Fondo1.png");
         letraMenu = new Font("Verdana", Font.BOLD, 30);
         letraEquipo = new Font("Verdana", Font.PLAIN, 20);
         letraTitulo = new Font("Verdana", Font.BOLD, 40);
@@ -117,8 +117,10 @@ public class EstadoMenuInicio extends BasicGameState {
                     sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO); //EDIT
                     break;
                 case PRUEBASHISAM:
-                    sbg.enterState(VenganzaBelial.ESTADOESCENAPROTOTIPO);//EDIT 
+                    //sbg.enterState(VenganzaBelial.ESTADOESCENAPROTOTIPO);//EDIT 
                     //sbg.enterState(VenganzaBelial.ESCENABOSQUE2);//EDIT
+                    sbg.enterState(VenganzaBelial.ESCENABOSQUEPREBOSS);//EDIT
+                    //sbg.enterState(VenganzaBelial.ESCENAPUERTO2);//EDIT
                     break;
                 case PRUEBASDAVID:
                     //sbg.enterState(VenganzaBelial.ESCENACARRETA);//EDIT

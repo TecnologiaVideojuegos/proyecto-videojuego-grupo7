@@ -170,7 +170,7 @@ public class EscenaInicio extends BasicGameState{
             mor1.draw(posicion.x+40, posicion.y+102);//EDIT
             kib1.draw(posicion.x+90, posicion.y+100);//EDIT
         }
-        texto1.drawString(1000, 0, "" + estado);
+        //texto1.drawString(1000, 0, "" + estado);
         
     }
 
