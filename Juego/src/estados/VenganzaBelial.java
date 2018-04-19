@@ -20,11 +20,14 @@ public class VenganzaBelial extends StateBasedGame {
     public static final int ESTADOCOMBATE = 1;
     public static final int ESTADOMENU = 2;
     public static final int ESTADOESCENAPROTOTIPO = 3;//EDIT
-    public static final int ESTADOMAPAJUEGO = 4;
+    public static final int ESTADOMAPAJUEGO = 4;//EDIT
     public static final int ESTADOCOMBATETUT=5;
     public static final int ESCENACARRETA=6;
     public static final int ESCENABOSQUE1=7;
     public static final int ESCENABOSQUE2=8;//EDIT
+    public static final int ESCENABOSQUE3=9;//EDIT
+    public static final int ESTADOTIENDA=10;//EDIT
+    
     public static final int WIDTH = 1366;
     public static final int HEIGHT = 768;
     public static final boolean FULLSCREEN = false;
@@ -34,14 +37,6 @@ public class VenganzaBelial extends StateBasedGame {
     public static Arma arma = new Arma(5, 0, "Arma1","Descripcion" , St, 1, 1, 1);
     public static Armadura armadura = new Armadura(5, "Armadura1", "Descripcion", St, 1, 1, 1);
     public static ArrayList<Habilidad> habilidades= new ArrayList<Habilidad>();
-//    public static Habilidad Ataque = new Habilidad("Ataque Fuerte",1 , 2 , 5, "Golpea al objetivo muy fuerte (Daño x2)", Habilidad.TIPOATACAR);
-//    public static Habilidad Drenar = new Habilidad("Drena vida",1 , 2 , 5, "Daña al enemigo y recupera parte del daño infligido(Daño x1)", Habilidad.TIPODRENARVIDA);
-//    public static Habilidad AOE = new Habilidad("AOE",1 , 2 , 5, "Golpea a todos los enemigos (Daño x2)", Habilidad.TIPOAOE);
-//    public static Habilidad Curar = new Habilidad("Cura",1 , 2 , 5, "Recupera parte de los Hp de un aliado ", Habilidad.TIPOCURAR);
-//    public static Habilidad Resucitar = new Habilidad("Resucita",1 , 2 , 5, "Resucita un aliado", Habilidad.TIPORESUCITAR);    
-//    public static Horacia horacia = new Horacia( arma,  armadura,  habilidades,  atributoGestion.inv);
-//    public static Mordeim mordeim = new Mordeim( arma,  armadura,  habilidades,  atributoGestion.inv);
-//    public static Kibito kibito= new Kibito( arma,  armadura,  habilidades,  atributoGestion.inv);
     public static Horacia horacia = new Horacia(atributoGestion.inv);
     public static Mordeim mordeim = new Mordeim(atributoGestion.inv);
     public static Kibito kibito= new Kibito(atributoGestion.inv);
@@ -63,6 +58,7 @@ public class VenganzaBelial extends StateBasedGame {
         addState(new EscenaCarreta(ESCENACARRETA));
         addState(new EscenaBosque1(ESCENABOSQUE1));
         addState(new EscenaBosque2(ESCENABOSQUE2));
+        addState(new EstadoTienda(ESTADOTIENDA));
         //
         this.enterState(ESTADOMENUINICIO);
     }
@@ -79,6 +75,7 @@ public class VenganzaBelial extends StateBasedGame {
         getState(ESTADOESCENAPROTOTIPO).init(gc, this);
         getState(ESTADOMAPAJUEGO).init(gc, this);
         getState(ESTADOCOMBATETUT).init(gc, this);
+        getState(ESTADOTIENDA).init(gc, this);
     }
 
     public static void main(String[] args) throws SlickException {
