@@ -55,6 +55,7 @@ public class EscenaInicio extends BasicGameState{
     private Image hor1,hor2,mor1,kib1;//EDIT
     private Image ventanaDialogo,avatarDialogo, avatarH,avatarM, avatarK, avatarHestia,avatarE;
     private Input input;
+    private Animation nar,narI,narE;
     private int estado;
     private Image fondo;
     private Image fondoHestia;//EDIT
@@ -63,13 +64,11 @@ public class EscenaInicio extends BasicGameState{
     private Font letraMenu  = new Font("Arial Black", Font.PLAIN, 15);    
     private Font letraMenu1  = new Font("Verdana", Font.PLAIN, 15);
     private Color rojo = new Color (160,64,0);
-    private SpriteSheet hestia;
-    private Animation animacionHestia;
     private Music musicaIntro;
     private Sound efecto;
     private Sound sonidoSelect;
     private Sound sonidoPuerta;
-    private Vector2f posicion;
+    private Vector2f posicion,posicionE;
     
 
     public EscenaInicio(int id) {
@@ -84,6 +83,11 @@ public class EscenaInicio extends BasicGameState{
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
         estado=0;
         this.input = gc.getInput();
+        Image[] narIzquierda={new Image("Imagenes/Animaciones/Sprites/nar4.png"),new Image("Imagenes/Animaciones/Sprites/nar5.png"),new Image("Imagenes/Animaciones/Sprites/nar6.png")};
+        narI=new Animation(narIzquierda,200);
+        Image[] narEnfrente={new Image("Imagenes/Animaciones/Sprites/nar2.png")};
+        narE=new Animation(narEnfrente,200);
+        nar=narI;
         this.sheetExclamacion= new SpriteSheet("Imagenes/Animaciones/malestar.png",32,33);//EDIT
         this.sheetExclamacion1= new SpriteSheet("Imagenes/Animaciones/puntos.png",32,33);//EDIT
         this.sheetExclamacion2= new SpriteSheet("Imagenes/Animaciones/amor.png",32,33);//EDIT
@@ -109,8 +113,7 @@ public class EscenaInicio extends BasicGameState{
         texto= new TrueTypeFont(letraMenu, true);
         texto1= new TrueTypeFont(letraMenu1, true);
         posicion = new Vector2f(esquinaXMapa+TILESIZE*2,esquinaYMapa+TILESIZE*2);
-        this.hestia= new SpriteSheet("Imagenes/Animaciones/Sprites/Hestia.png",20,20);
-        this.animacionHestia = new Animation(hestia,200);
+        posicionE = new Vector2f(esquinaXMapa+TILESIZE*2,esquinaYMapa+TILESIZE*2);
         this.musicaIntro = new Music("Musica/BSO/Ablaze.wav");
         this.efecto = new Sound("Musica/Efectos/Cry2.wav");
         sonidoSelect=new Sound("Musica/Efectos/select.wav");
@@ -135,7 +138,7 @@ public class EscenaInicio extends BasicGameState{
             hes1.draw(posicion.x+80, posicion.y);//EDIT
             renderDialogo();
         }
-        if(estado>=5 && estado<=19){
+        if(estado>=5 && estado<=20){
             fondoHestia.draw(esquinaXMapa, esquinaYMapa);//EDIT
             texto1.drawString(1050, 0, "Sala de Hestia");
             hes1.draw(posicion.x+80, posicion.y);//EDIT
@@ -154,9 +157,12 @@ public class EscenaInicio extends BasicGameState{
                 if(estado<18){
                     hor1.draw(posicion.x+80, posicion.y+190);//EDIT
                 }
+                if(estado>18){
+                    nar.draw(posicionE.x+128, posicionE.y+64);
+                }
             }
         }
-        if(estado>19 && estado<22){
+        if(estado>20 && estado<23){
             fondoCardinal.draw(esquinaXMapa, esquinaYMapa);
             texto1.drawString(1050, 0, "Cuartel de Cardinal");
             renderDialogo();
@@ -164,7 +170,7 @@ public class EscenaInicio extends BasicGameState{
             mor1.draw(posicion.x+40, posicion.y+102);//EDIT
             kib1.draw(posicion.x+90, posicion.y+100);//EDIT
         }
-        //texto1.drawString(1000, 0, "" + estado);
+        texto1.drawString(1000, 0, "" + estado);
         
     }
 
@@ -355,20 +361,28 @@ public class EscenaInicio extends BasicGameState{
                 break;
             //Segunda escena introducción.
             case 19:
+                nar=narI;
+                posicionE.x-=0.1f*i;
+                if(posicionE.x<=550){
+                    estado++;
+                }
+                break;
+            case 20:
+                nar=narE;
                 avatarDialogo=this.avatarE;
                 linea1="Y asi comenzo la aventura de nuestros patéticos héroes.";
                 linea2="";
                 linea3="";
                 linea4="";
                 break;
-            case 20:
+            case 21:
                 avatarDialogo=this.avatarH;
                 linea1="Muy bien equipo, la sacerdotisa Hestia nos ha mandado";
                 linea2="una misión ultrasecreta que ni Archi debe saber.";
                 linea3="Os diré los detalles cuando salgamos.";
                 linea4="";
                 break;
-            case 21:
+            case 22:
                 posicion.x+=1f*i;
                 esquinaXMapa+=1f*i;
                 if(esquinaXMapa>=1350){
