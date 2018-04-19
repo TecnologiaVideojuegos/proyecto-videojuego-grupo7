@@ -51,6 +51,7 @@ public class EstadoMenu extends BasicGameState{
     private TrueTypeFont opcionesJugadorTTF,textoStatus;
     private int eleccionJugador, idEstado;
     private Color notChosen = new Color(153, 204, 255);
+    private Color amarillo = new Color(255, 255, 0);
     /*Sonido*/
     private Sound sonidoSelect, sonidoError;
 
@@ -572,7 +573,7 @@ public class EstadoMenu extends BasicGameState{
                    opcionesJugadorTTF.drawString(100,i*50+100,nombreItem);
                 }
                 else{
-                    opcionesJugadorTTF.drawString(100, i * 50 + 100, nombreItem, notChosen);
+                    opcionesJugadorTTF.drawString(100, i*50 + 100, nombreItem, notChosen);
                 }
             }
             else
@@ -582,6 +583,7 @@ public class EstadoMenu extends BasicGameState{
         this.textoStatus.drawString(800, 100, inven.getItems().get(eleccionJugador).getDescripcion());
         //
         textoStatus.drawString(650, 0, "Inventario");
+        textoStatus.drawString(100, 50, "Dinero: "+VenganzaBelial.atributoGestion.inv.getDinero(), amarillo);
     }/* private void renderInventario()*/
     
     private void renderGuardando()

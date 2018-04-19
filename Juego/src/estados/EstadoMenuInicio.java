@@ -125,7 +125,8 @@ public class EstadoMenuInicio extends BasicGameState {
                 case PRUEBASDAVID:
                     //sbg.enterState(VenganzaBelial.ESCENACARRETA);//EDIT
                     //sbg.enterState(VenganzaBelial.ESTADOMENU);//EDIT
-                    sbg.enterState(VenganzaBelial.ESTADOMENU);//EDIT
+                    //sbg.enterState(VenganzaBelial.ESTADOCOMBATE);//EDIT
+                    sbg.enterState(VenganzaBelial.ESTADOTIENDA);//EDIT
                     break;
                 case PRUEBASANGEL:
                     break;
@@ -135,7 +136,6 @@ public class EstadoMenuInicio extends BasicGameState {
                     
             }
         }
-        
     }
     
     private void renderOpcionesJugador() {

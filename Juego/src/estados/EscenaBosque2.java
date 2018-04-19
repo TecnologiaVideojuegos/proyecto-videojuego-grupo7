@@ -118,6 +118,7 @@ public class EscenaBosque2 extends BasicGameState{
         avatarDesconocido = new Image("Imagenes/Personajes/Arbol.png");
         avatarDialogo = avatarH;
         sonidoSelect=new Sound("Musica/Efectos/select.wav");
+
         rugido=new Sound("Musica/Efectos/rugido1.wav");
         texto= new TrueTypeFont(letraMenu, true);
         /**/

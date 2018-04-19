@@ -35,8 +35,8 @@ public class EstadoMapaJuego extends BasicGameState {
 
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-        //map = new TiledMap("tiledmaps/bosque.tmx");
-        map = new TiledMap("tiledmaps/prueba.tmx");
+        map = new TiledMap("tiledmaps/mapaBosque.tmx");
+        //map = new TiledMap("tiledmaps/prueba.tmx");
         mapWidth = map.getWidth() * map.getTileWidth();
         mapHeight = map.getHeight() * map.getTileHeight();
         tileHeight = map.getTileHeight();
@@ -52,7 +52,16 @@ public class EstadoMapaJuego extends BasicGameState {
     @Override
     public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
         
-            
+        //EDIT: idea para eventos
+        /*He pensado que habra eventos donde queramos que se renderice el mapa y se den opciones al jugador
+        *pero el jugador no tendra que moverse, por ello tal vez debamos añadir un flag que controle si estamos
+        *moviendonos por el mapa o moviendonos en las opciones de un evento.
+        EJ:
+        if(evento==false)
+            player.update(gc, sbg, delta, this);
+        else
+            eventos.update();//COntrol del evento dentrol Estado Eventos
+        */
         player.update(gc, sbg, delta, this);
         if (gc.getInput().isKeyPressed(Input.KEY_ESCAPE)) {
             sbg.enterState(VenganzaBelial.ESTADOMENU);

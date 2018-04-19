@@ -1,5 +1,6 @@
 package estados;
 
+import enemigos.Enemigo;
 import static estados.VenganzaBelial.ESTADOMENUINICIO;
 import static estados.VenganzaBelial.hori;
 import static estados.VenganzaBelial.kibi;
@@ -76,7 +77,7 @@ public class EstadoCombate extends BasicGameState{
     //private SpriteSheet sprite;
     //private Animation animacion;
     /*EDIT*/
-    private int flagPruebas=0;
+    Image enemigo;
     
     public EstadoCombate(int id) {
         idEstado = id;
@@ -152,7 +153,18 @@ public class EstadoCombate extends BasicGameState{
             case FINCOMBATE:
                 renderMensajeSistema();
                 break;
-        }    
+        }
+        //Debug Prints
+        mensajePantalla.drawString(0, 80, "Turno "+NewCombate.getTurno());
+        mensajePantalla.drawString(0, 100, "Enemigos "+NewCombate.getEnemigosRestantes());
+        mensajePantalla.drawString(0, 120, "Aliados "+NewCombate.getAliadosRestantes());
+        mensajePantalla.drawString(0, 140, "Participantes "+NewCombate.getnParticipantes());
+        mensajePantalla.drawString(0, 160, "Estado "+this.Estado);
+        mensajePantalla.drawString(0, 180, "eleccionJugador "+this.eleccionJugador);
+        mensajePantalla.drawString(0, 200, "CombateOver "+NewCombate.CombateAcabado());
+        for (int i = 0; i < NewCombate.getOrdenPersonajes().size(); i++) {
+            mensajePantalla.drawString(900, 20*i, " "+NewCombate.getOrdenPersonajes().get(i).getNombre());  
+        }
     }
 
     @Override
@@ -167,6 +179,7 @@ public class EstadoCombate extends BasicGameState{
             party.add(VenganzaBelial.atributoGestion.jugs.get(1));
             party.add(VenganzaBelial.atributoGestion.jugs.get(2));
             NewCombate= new Combate(party, VenganzaBelial.MapaActual);//
+            mensajeSistema="";
             //NewCombate= new Combate(VenganzaBelial.Party, VenganzaBelial.MapaActual);//
             if(NewCombate.GestionaPrimerTurno())
             {
@@ -179,6 +192,8 @@ public class EstadoCombate extends BasicGameState{
             VenganzaBelial.hori.setImagen("Imagenes/Monstruos/Test1.png");
             VenganzaBelial.mordi.setImagen("Imagenes/Monstruos/Test2.png");
             VenganzaBelial.kibi.setImagen("Imagenes/Monstruos/Test3.png");
+            enemigo= new Image("Imagenes/Monstruos/Bosque/Goblin.png");
+            //EDIT END
             NuevoCombate = false;
             //OST.loop(1, 0.1f);
         }
@@ -210,24 +225,9 @@ public class EstadoCombate extends BasicGameState{
                     Huir();
                     break;
                 case  TURNOENEMIGO://Turno automatico Enemigo
-                    //EDIT: Eliminar
-                    if(this.flagPruebas==0)
-                    {
-                        this.mensajeSistema=NewCombate.Atacar(NewCombate.getOrdenPersonajes().get(NewCombate.getTurno()), VenganzaBelial.mordeim);
-                    }
-                    else if(this.flagPruebas==1)
-                    {
-                        this.mensajeSistema=NewCombate.Atacar(NewCombate.getOrdenPersonajes().get(NewCombate.getTurno()), VenganzaBelial.horacia);
-                    }
-                    else if(this.flagPruebas==2)
-                    {
-                        this.mensajeSistema=NewCombate.Atacar(NewCombate.getOrdenPersonajes().get(NewCombate.getTurno()), VenganzaBelial.kibito);
-                    }
-                    this.flagPruebas++;
-                    if(this.flagPruebas>3)
-                    {
-                       this.flagPruebas=0; 
-                    }
+                    //EDIT: 
+                    Enemigo enem=(Enemigo)NewCombate.getOrdenPersonajes().get(NewCombate.getTurno());
+                    enem.estrategiaAtacar(VenganzaBelial.atributoGestion.jugs);
                     //VenganzaBelial.horacia.setHpActual(50);
                     estadoAnterior=TURNOENEMIGO;
                     Estado=FINTURNO;
@@ -339,8 +339,7 @@ public class EstadoCombate extends BasicGameState{
             eleccionJugador=0;//Resetea el indice de seleccion de opciones para el nuevo estado*/
             estadoAnterior=ATACANDO;
             Estado=FINTURNO; 
-        }/**/
-             
+        }/**/       
     }/*private void Atacando()*/
     
     private void selHabilidades()/*EDIT: Bajo Pruebas*/
@@ -394,6 +393,7 @@ public class EstadoCombate extends BasicGameState{
             sonidoSelect.play(1, 0.2f);
             consumibleSeleccionado=eleccionJugador;
             estadoAnterior=SELCONSUMIBLE;
+            eleccionJugador=0;
             Estado=SELALIADO;
         }
     }/*private void selConsumible()*/
@@ -452,6 +452,7 @@ public class EstadoCombate extends BasicGameState{
                             if(pj.getInventario().usarPocionVida((Jugador)VenganzaBelial.atributoGestion.jugs.get(eleccionJugador))){
                                 this.mensajeSistema=("Utilizada "+pj.getInventario().getItems().get(consumibleSeleccionado).getNombre());
                                 estadoAnterior=SELALIADO;//EDIT:Buscar forma optima de cambiar de estado
+                                eleccionJugador=0;
                                 Estado=FINTURNO;
                             }
                             else{
@@ -462,6 +463,7 @@ public class EstadoCombate extends BasicGameState{
                             if(pj.getInventario().usarPocionMana((Jugador)VenganzaBelial.atributoGestion.jugs.get(eleccionJugador))){
                                 this.mensajeSistema=("Utilizada "+pj.getInventario().getItems().get(consumibleSeleccionado).getNombre());
                                 estadoAnterior=SELALIADO;//EDIT:Buscar forma optima de cambiar de estado
+                                eleccionJugador=0;
                                 Estado=FINTURNO;
                             }
                             else{
@@ -473,6 +475,7 @@ public class EstadoCombate extends BasicGameState{
                                 this.mensajeSistema=("Utilizada "+pj.getInventario().getItems().get(consumibleSeleccionado).getNombre());
                                 NewCombate.GestionaResurrecion(VenganzaBelial.atributoGestion.jugs.get(eleccionJugador));
                                 estadoAnterior=SELALIADO;//EDIT:Buscar forma optima de cambiar de estado
+                                eleccionJugador=0;
                                 Estado=FINTURNO;
                             }
                             else{
@@ -494,17 +497,20 @@ public class EstadoCombate extends BasicGameState{
             //Objetivo no huye y pierde turno
             this.mensajeSistema="No se ha conseguido huir";
             estadoAnterior=HUYENDO;
+            eleccionJugador=0;
             Estado=FINTURNO;
         }
         else
         {
             //Objetivo Huye y se finaliza el combate 
+            eleccionJugador=0;
             Estado=FINCOMBATE;          
         }
     }/*private void Huir()*/
     
     private void FinTurno()
     {
+        eleccionJugador=0;
         if(input.isKeyPressed(Input.KEY_ENTER))
         {
             estadoAnterior=FINTURNO;
@@ -556,6 +562,7 @@ public class EstadoCombate extends BasicGameState{
                 //Reactiva Flag para la proxima vez que se genera un combate
                 NuevoCombate=true;
                 //EDIT:ELIMINAR OBJETO COMBATE O VACIAR
+//                NewCombate.regeneraEnemigos();
                 retornoAlMapa(sbg);
                 //gc.exit();  
             }/*if(input.isKeyPressed(Input.KEY_ENTER))*/
@@ -577,18 +584,18 @@ public class EstadoCombate extends BasicGameState{
     
     private void retornoAlMapa(StateBasedGame sbg)//Origen sera de un id de donde proviene el combate(mapax o eventox)
     {
+        //EDIT
         //
-        switch(VenganzaBelial.MapaActual)
-        {
-            case 0://Bosque
-                sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
-                break;
-            case 1://Boss Battle Bosque
-                break;
-            case 2://Event Battle Puerto1
-                break;
-                //ETC
-        }
+//        switch(VenganzaBelial.MapaActual)
+//        {
+//            case 1://Boss Battle Bosque
+//                sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
+//                break;
+//            case 2://Event Battle Puerto1
+//                break;
+//                //ETC
+//        }
+        sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
     }/*private void retornoAlMapa()*/
     
     private void renderOpcionesJugador()
@@ -647,6 +654,7 @@ public class EstadoCombate extends BasicGameState{
     
     private void renderEnemigos() throws SlickException
     {
+        //EDIT
        /*Render Enemigos si no estan muertos*/
         int aux;
         int nEnemigos= NewCombate.getEnemigos().size();
@@ -654,13 +662,13 @@ public class EstadoCombate extends BasicGameState{
         {
             if(NewCombate.getEnemigos().get(aux).estaVivo())
             {
-                NewCombate.getEnemigos().get(aux).getImagen().draw(aux*300+200, 200, 350, 400);
+                /*Debug prints*/
+                Personaje debugPJ= NewCombate.getEnemigos().get(aux);
+                mensajePantalla.drawString(700, 20*aux, debugPJ.getNombre()+"/LVL: "+debugPJ.getNivel()+"/HP: "+debugPJ.getHpActual()+"|"+debugPJ.getHp());
+                //NewCombate.getEnemigos().get(aux).getImagen().draw(aux*300+200, 200, 350, 400);
+                enemigo.draw(aux*200+200, 200, 0.5f);
             }
         }
-       /*Debug prints*/
-        mensajePantalla.drawString(1000, 50, "HP D.Horacia "+VenganzaBelial.hori.getHpActual()+ "/"+VenganzaBelial.hori.getHp());
-        mensajePantalla.drawString(1000, 100, "HP D. Mordeim "+VenganzaBelial.mordi.getHpActual()+ "/"+VenganzaBelial.mordi.getHp());
-        mensajePantalla.drawString(1000, 150, "HP D. Kibito "+VenganzaBelial.kibi.getHpActual()+ "/"+VenganzaBelial.kibi.getHp()); 
     }/*private void renderEnemigos() throws SlickException*/
     
     private void renderAvatars() throws SlickException
@@ -755,15 +763,15 @@ public class EstadoCombate extends BasicGameState{
             marco.draw(0,605,920,15);
             marcoL.draw(900, 613, 20, 160);
             /*EDIT:Debug prints*/
-            mensajePantalla.drawString(700, 10, "LVL "+VenganzaBelial.horacia.getNivel());
+            //mensajePantalla.drawString(700, 10, "LVL "+VenganzaBelial.horacia.getNivel());
             //mensajePantalla.drawString(700, 30, "Atk: "+VenganzaBelial.horacia.getAtaque()+"Def: "+VenganzaBelial.horacia.getDefensa());
             //mensajePantalla.drawString(700, 50, "Exp: "+VenganzaBelial.horacia.getExp()+"/: "+VenganzaBelial.horacia.getExpProxNivel());
             
-            mensajePantalla.drawString(700, 70, "LVL "+VenganzaBelial.mordeim.getNivel());
+            //mensajePantalla.drawString(700, 70, "LVL "+VenganzaBelial.mordeim.getNivel());
              //mensajePantalla.drawString(700, 90, "Atk: "+VenganzaBelial.mordeim.getAtaque()+"Def: "+VenganzaBelial.mordeim.getDefensa());
              //mensajePantalla.drawString(700, 110, "Exp: "+VenganzaBelial.mordeim.getExp()+"/: "+VenganzaBelial.mordeim.getExpProxNivel());
              
-            mensajePantalla.drawString(700, 130, "LVL "+VenganzaBelial.kibito.getNivel());
+            //mensajePantalla.drawString(700, 130, "LVL "+VenganzaBelial.kibito.getNivel());
             // mensajePantalla.drawString(700, 150, "Atk: "+VenganzaBelial.kibito.getAtaque()+"Def: "+VenganzaBelial.kibito.getDefensa());
             // mensajePantalla.drawString(700, 110, "Exp: "+VenganzaBelial.kibito.getExp()+"/: "+VenganzaBelial.kibito.getExpProxNivel());
             /**/

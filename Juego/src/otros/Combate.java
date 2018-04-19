@@ -20,6 +20,7 @@ public final class Combate {
     private int expCombate;
     /*EDIT: posible conversion de dropItem a ArrayList*/
     private Item dropItem;
+    private int ArrayEnemigosUsado;
     //Constructor
     public Combate(ArrayList<Personaje> Party, int Mapa) 
     {
@@ -80,31 +81,6 @@ public final class Combate {
             auxCount++;//Aumentamos el indice del orden de pjs
         }/* while(auxCount<nParticipantes) END*/
     }/* private void OrdenaTurnos(Personaje[] participantes)END*/
-    
-    private ArrayList<Personaje> GeneraArrayEnemigos (int Mapa)
-    {
-        ArrayList<Personaje> GeneraEnemigos;
-        /*Swtch casa aleatorio en funcion del mapa para generar grupos de enemigos*/
-        GeneraEnemigos= new ArrayList<Personaje>();
-        switch (Mapa)
-        {
-            case 0://Caso tutorial, poner enemigos muy rapidos  
-                //EDIT: Eliminar
-                VenganzaBelial.hori.setHpActual(50);
-                VenganzaBelial.mordi.setHpActual(50);
-                VenganzaBelial.kibi.setHpActual(50);
-                GeneraEnemigos.add(VenganzaBelial.hori);
-                GeneraEnemigos.add(VenganzaBelial.mordi);
-                GeneraEnemigos.add(VenganzaBelial.kibi);
-                this.setExpCombate(105);
-                break;
-            case 1:
-                break;
-            case 2:
-                break;
-        }/*switch (Mapa)*/
-        return GeneraEnemigos;
-    }    
     
     public String Atacar(Personaje Atacante, Personaje Defensor)
     {
@@ -257,5 +233,58 @@ public final class Combate {
         this.dropItem = dropItems;
     }
     
-    
+    //Genera enemigos
+    private ArrayList<Personaje> GeneraArrayEnemigos (int Mapa)
+    {
+        ArrayList<Personaje> GeneraEnemigos;
+        /*Swtch casa aleatorio en funcion del mapa para generar grupos de enemigos*/
+        GeneraEnemigos= new ArrayList<Personaje>();
+        Random rand = new Random();
+        int ini = 0; //dependiendo del nivel emepzamos a buscar en una pos u otra
+        int fin = rand.nextInt(6);//Como hay 6 tipos de party elegimos entre la 0-5
+        int nivel=0;
+        //Nos quedamos el mayor nivel
+        for (int i = 0; i < VenganzaBelial.atributoGestion.jugs.size(); i++) {
+            if (VenganzaBelial.atributoGestion.jugs.get(i).getNivel() > nivel)
+                nivel = VenganzaBelial.atributoGestion.jugs.get(i).getNivel();
+        }
+        switch (Mapa)
+        {
+            case 0://Caso tutorial, poner enemigos muy rapidos  
+                //EDIT: Eliminar
+                VenganzaBelial.hori.setHpActual(50);
+                VenganzaBelial.mordi.setHpActual(50);
+                VenganzaBelial.kibi.setHpActual(50);
+                GeneraEnemigos.add(VenganzaBelial.hori);
+                GeneraEnemigos.add(VenganzaBelial.mordi);
+                GeneraEnemigos.add(VenganzaBelial.kibi);
+                this.setExpCombate(105);
+                break;
+            case 1://Bosque
+                if (nivel <= 1)
+                    ini = 0;
+                else if (nivel <= 3)
+                    ini = 6;
+                else
+                 ini = 12;
+                 ArrayEnemigosUsado = ini + fin;
+                 regeneraEnemigos();
+                for (int i = 0; i < VenganzaBelial.atributoGestion.enem.get(ArrayEnemigosUsado).size(); i++) {
+                    GeneraEnemigos.add((Personaje)VenganzaBelial.atributoGestion.enem.get(ArrayEnemigosUsado).get(i));
+                }
+                break;
+            case 2:
+                break;
+        }/*switch (Mapa)*/
+        return GeneraEnemigos;
+    }/*private ArrayList<Personaje> GeneraArrayEnemigos (int Mapa)*/
+
+    private void regeneraEnemigos()
+    {
+        Enemigo enem;
+        for (int i = 0; i < VenganzaBelial.atributoGestion.enem.get(ArrayEnemigosUsado).size(); i++) {
+            enem=VenganzaBelial.atributoGestion.enem.get(ArrayEnemigosUsado).get(i);
+            enem.setHpActual(enem.getHp());
+        }
+    }/*private void regeneraEnemigos()*/
 }

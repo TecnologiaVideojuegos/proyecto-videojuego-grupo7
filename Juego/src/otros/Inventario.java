@@ -21,18 +21,18 @@ public class Inventario implements Serializable {
     //Constructor
     public Inventario() {
         this.items = new ArrayList<Item>();
-        this.dinero = 50;
+        this.dinero = 750;//EDIT
         this.capacidadInv = 10;
         this.requisitoCategoria = new ArrayList<String>();
         requisitoCategoria.add("Mordeim");
         requisitoCategoria.add("Kibito");
         requisitoCategoria.add("Horacia");
         this.pocionVida = new Consumible(20, 0, 5, "PocionVida", "Pocion que sirve para curar tu vida",
-            requisitoCategoria, 1, 0, 0);
+            requisitoCategoria, 1, 50, 20);
         this.pocionMana = new Consumible(0, 20, 5, "PocionMana", "Pocion que sirve para curar tu mana",
-            requisitoCategoria, 1, 0, 0);
+            requisitoCategoria, 1, 50, 20);
         this.pocionRes = new Consumible(50, 0, 2, "PocionResucitar", "Pocion que sirve para resucitar un jugador",
-            requisitoCategoria, 1, 0, 0);
+            requisitoCategoria, 1, 200, 80);
         items.add(pocionVida);
         items.add(pocionMana);
         items.add(pocionRes);
@@ -60,11 +60,13 @@ public class Inventario implements Serializable {
     }
     
     //Metodos
-    public void addItem(Item i){
+    public boolean addItem(Item i){
+        boolean condicion=false;
         if (items.size()<capacidadInv) {
-            items.add(i);            
+            items.add(i);
+            condicion=true;            
         }
-        else    System.out.println("Inventario lleno");        
+        return condicion;
     }
     
     public void borrarItem(Item i){
@@ -75,6 +77,7 @@ public class Inventario implements Serializable {
             System.out.println("No tienes ese " + i);
         }
     }
+    
     public void tirarObjeto(Item i){
         borrarItem(i);
     }
