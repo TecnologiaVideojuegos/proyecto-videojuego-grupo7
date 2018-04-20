@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" tiledversion="1.1.4" orientation="orthogonal" renderorder="right-down" width="20" height="15" tilewidth="32" tileheight="32" infinite="0" nextobjectid="1">
  <tileset firstgid="1" source="Dungeon_A5.tsx"/>
+ <tileset firstgid="129" source="spriteset1.tsx"/>
+ <tileset firstgid="225" source="Behavior2.tsx"/>
  <layer name="suelo" width="20" height="15">
   <data encoding="base64" compression="zlib">
    eJxTZmBgUB7Fo3gUj+IhgAF9uCkF
@@ -20,6 +22,15 @@
   </properties>
   <data encoding="base64" compression="zlib">
    eJwTZmBgEKYyhgFkNjlgsJiHrgeff0kNI3zuI8Y9hNQNlHnEpg9y4xSbPlzmkZtWKUnXlJhHjvuoAWhpHrUwAEl0CJ0=
+  </data>
+ </layer>
+ <layer name="evento" width="20" height="15">
+  <properties>
+   <property name="blocked" type="bool" value="true"/>
+   <property name="evento" type="bool" value="true"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFgxk0AnETEDcDcQsQtw6sc0bBKBhQAADGaQKQ
   </data>
  </layer>
 </map>

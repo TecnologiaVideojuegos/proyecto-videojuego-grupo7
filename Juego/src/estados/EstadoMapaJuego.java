@@ -10,11 +10,12 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
 public class EstadoMapaJuego extends BasicGameState {
-
+    private final int LAYEREVENTOS=2;
     static boolean fullscreen = false;
     static boolean showFPS = true;
     private boolean[][] blocked;
     private boolean[][] enemigos;
+    private boolean[][] eventos;
     static String title = "Bosque";
     static int fpslimit = 60;
     TiledMap map;
@@ -35,8 +36,8 @@ public class EstadoMapaJuego extends BasicGameState {
 
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-        map = new TiledMap("tiledmaps/mapaBosque.tmx");
-        //map = new TiledMap("tiledmaps/prueba.tmx");
+        //map = new TiledMap("tiledmaps/mapaBosque.tmx");
+        map = new TiledMap("tiledmaps/prueba.tmx");
         mapWidth = map.getWidth() * map.getTileWidth();
         mapHeight = map.getHeight() * map.getTileHeight();
         tileHeight = map.getTileHeight();
@@ -45,8 +46,11 @@ public class EstadoMapaJuego extends BasicGameState {
         camera = new Camara(map, mapWidth, mapHeight);
         blocked = new boolean[map.getWidth()][map.getHeight()];
         enemigos= new boolean[map.getWidth()][map.getHeight()];
+        eventos= new boolean[map.getWidth()][map.getHeight()];
         initializeBlocked();
         initializeEnemigos();
+        initializeEventos();
+        int a=0;
     }
 
     @Override
@@ -89,7 +93,7 @@ public class EstadoMapaJuego extends BasicGameState {
         player.setpos(pos);
     }
 
-    private void initializeBlocked() {
+    private void initializeBlocked() {    
         for (int l = 0; l < map.getLayerCount(); l++) {
             String layerValue = map.getLayerProperty(l, "blocked", "false");
             if (layerValue.equals("true")) {
@@ -126,19 +130,33 @@ public class EstadoMapaJuego extends BasicGameState {
         return enemigos[xBlock][yBlock];
     }/**/
     //
-//    private void initializeEventos() {
-//        for (int l = 0; l < map.getLayerCount(); l++) {
-//            int layerValue = map.getLayerProperty(l, "eventos", "0");
-//            map.ge
-//            if (layerValue.equals("true")) {
-//                for (int c = 0; c < map.getWidth(); c++) {
-//                    for (int r = 0; r < map.getHeight(); r++) {
-//                        if (map.getTileId(c, r, l) != 0) {
-//                            enemigos[c][r] = true;
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }/**/
+    private void initializeEventos() {
+        for (int l = 0; l < map.getLayerCount(); l++) {
+            String layerValue = map.getLayerProperty(l, "evento", "false");
+            if (layerValue.equals("true")) {
+                for (int c = 0; c < map.getWidth(); c++) {
+                    for (int r = 0; r < map.getHeight(); r++) {
+                        if (map.getTileId(c, r, l) != 0) {
+                            eventos[c][r] = true;
+                        }
+                    }
+                }
+            }
+        }
+    }/**/
+        public boolean isEventos(float x, float y) {
+        int xBlock = (int) x / map.getTileWidth();
+        int yBlock = (int) y / map.getTileHeight();
+        
+        return eventos[xBlock][yBlock];
+    }/**/
+        public int devuelveIDEvento(float x, float y) {
+        int id; 
+        int xBlock = (int) x / map.getTileWidth();
+        int yBlock = (int) y / map.getTileHeight();
+        id= map.getTileId(xBlock, yBlock, LAYEREVENTOS);
+        return id;
+    }/**/
+        
+        
 }

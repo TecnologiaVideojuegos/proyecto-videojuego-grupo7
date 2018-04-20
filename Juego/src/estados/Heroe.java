@@ -102,6 +102,7 @@ public class Heroe {
         }/*else*/
         //EDIT:Pruebas
         ApareceEnemigo( gc,  sbg,  delta,  gps,  input);
+        ApareceEvento( gc,  sbg,  delta,  gps,  input);
     }
 
     public void render() {
@@ -166,5 +167,35 @@ public class Heroe {
             sbg.enterState(VenganzaBelial.ESTADOCOMBATE);
             aparicion=0;
         }
+    }/**/
+    
+    private void ApareceEvento(GameContainer gc, StateBasedGame sbg, int delta, EstadoMapaJuego gps, Input input)
+    {
+        //EDIT: Llamada a clase eventos, ajustar colision
+        int id=0;
+        if (input.isKeyDown(Input.KEY_UP)) {
+            if (gps.isEventos(pos.x + w -4, pos.y - delta * SPEED) && gps.isEventos(pos.x + 4, pos.y - delta * SPEED)) {
+                id=gps.devuelveIDEvento(pos.x+w, pos.y- delta * SPEED);
+                System.out.println(id);
+            }
+        } else if (input.isKeyDown(Input.KEY_DOWN)) {
+            if (gps.isEventos(pos.x + w - 4, pos.y + h + delta * SPEED) && gps.isEventos(pos.x + 4, pos.y + h + delta * SPEED)) {
+                id=gps.devuelveIDEvento(pos.x+w, pos.y+ h + delta * SPEED);
+                System.out.println(id);
+                //
+            }
+        } else if (input.isKeyDown(Input.KEY_LEFT)) {
+            if (gps.isEventos(pos.x - delta * SPEED, pos.y + 4) && gps.isEventos(pos.x - delta * SPEED, pos.y + h - 4)) {
+                id=gps.devuelveIDEvento(pos.x- delta * SPEED, pos.y);
+                System.out.println(id);
+            }
+
+        } else if (input.isKeyDown(Input.KEY_RIGHT)) {
+            if (gps.isEventos(pos.x + w + delta * SPEED, pos.y + h - 4) && gps.isEventos(pos.x + w + delta * SPEED, pos.y + 4)) {
+                id=gps.devuelveIDEvento(pos.x, pos.y);
+                System.out.println(id);
+            }
+        }
+
     }/**/
 }
