@@ -24,10 +24,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
-/**
- *
- * @author Dolores
- */
+
 public class EscenaBosque1 extends BasicGameState{
     private int idEstado;
     private static final int POSICIONAVATARX = 30;
@@ -96,7 +93,7 @@ public class EscenaBosque1 extends BasicGameState{
         morB= new Image("Imagenes/Animaciones/Sprites/mor11.png");
         mor=morKO;
         
-        fondo= new Image("Imagenes/Escenas/EscenaBosque1/bosque.png");
+        fondo= new Image("Imagenes/Escenas/EscenaBosque1/mapaBosque.png");
         //salidaEscena= new Image("Imagenes/Escenas/EscenaCarreta1/salidaEscena1.png");
         /**/
         this.sheetExclamacion= new SpriteSheet("Imagenes/Animaciones/exclamacion.png",32,33);

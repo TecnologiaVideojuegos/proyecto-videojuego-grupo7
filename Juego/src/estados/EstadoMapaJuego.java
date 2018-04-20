@@ -104,7 +104,7 @@ public class EstadoMapaJuego extends BasicGameState {
         }
     }
     
-    //EDIT:PRUEBAS
+    //
     private void initializeEnemigos() {
         for (int l = 0; l < map.getLayerCount(); l++) {
             String layerValue = map.getLayerProperty(l, "enemigos", "false");
@@ -119,10 +119,26 @@ public class EstadoMapaJuego extends BasicGameState {
             }
         }
     }/**/
-    //EDIT:Pruebas
+
     public boolean isEnemigos(float x, float y) {
         int xBlock = (int) x / map.getTileWidth();
         int yBlock = (int) y / map.getTileHeight();
         return enemigos[xBlock][yBlock];
     }/**/
+    //
+//    private void initializeEventos() {
+//        for (int l = 0; l < map.getLayerCount(); l++) {
+//            int layerValue = map.getLayerProperty(l, "eventos", "0");
+//            map.ge
+//            if (layerValue.equals("true")) {
+//                for (int c = 0; c < map.getWidth(); c++) {
+//                    for (int r = 0; r < map.getHeight(); r++) {
+//                        if (map.getTileId(c, r, l) != 0) {
+//                            enemigos[c][r] = true;
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }/**/
 }

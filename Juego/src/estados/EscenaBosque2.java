@@ -100,7 +100,7 @@ public class EscenaBosque2 extends BasicGameState{
         hor=horD;
         kib=kibD;
         mor=morD;
-        fondo= new Image("Imagenes/Escenas/EscenaBosque1/bosque.png");
+        fondo= new Image("Imagenes/Escenas/EscenaBosque1/mapaBosque.png");
         /**/
         this.sheetExclamacion= new SpriteSheet("Imagenes/Animaciones/puntos.png",32,33);
         this.exclamacion = new Animation(sheetExclamacion,200);
@@ -129,7 +129,7 @@ public class EscenaBosque2 extends BasicGameState{
     //Muestra por pantalla
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException { 
         
-            fondo.draw(0, 0);
+            fondo.draw(-1200, -160);
             
             //EDIT:Rener Mordeim
             if(reproducirExclamacion)
@@ -141,7 +141,7 @@ public class EscenaBosque2 extends BasicGameState{
                 hor.draw(posicion.x, posicion.y);
                 mor.draw(posicion.x-64, posicion.y+32);
                 kib.draw(posicion.x-64, posicion.y-32);
-                if(estado>=2){
+                if(estado>=2 && estado<21){
                 renderDialogo();
                 }
                 
@@ -153,7 +153,7 @@ public class EscenaBosque2 extends BasicGameState{
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
         exclamacion.update(i);
         if(input.isKeyPressed(Input.KEY_ENTER)){
-            if(estado!=18)
+            if(estado!=23)
             {
                 sonidoSelect.play(1, 0.2f);
                 time=0;
@@ -315,10 +315,10 @@ public class EscenaBosque2 extends BasicGameState{
                 linea4="";
                 break;
             case 15:
-                hor=horE;
+                
                 avatarDialogo=this.avatarH;
                 //////="////////////////////////////////////////////////////////";
-                linea1="¡¡¡¡¡MÁS MONSTRUOS!!!!!";
+                linea1="¡¡¡¡¡QUIERO IRME A MI CASA!!!!!";
                 linea2="";
                 linea3="";
                 linea4="";
@@ -334,13 +334,54 @@ public class EscenaBosque2 extends BasicGameState{
                 }
                 avatarDialogo=this.avatarK;
                 //////="////////////////////////////////////////////////////////";
-                linea1="¿Porque le ocurre todo al negro?";
+                linea1="¿Porque ella es nuestra capitana?";
                 linea2="";
                 linea3="";
                 linea4="";
                 break;
             case 17:
-                //Aquí se metería a un combate fijo, a traición XD.
+                avatarDialogo=this.avatarM;
+                //////="////////////////////////////////////////////////////////";
+                linea1="Menuda capitana estás echa.";
+                linea2="";
+                linea3="";
+                linea4="";
+                break;
+            case 18:
+                avatarDialogo=this.avatarK;
+                //////="////////////////////////////////////////////////////////";
+                linea1="Sugiero que continuemos por este camino, a lo mejor";
+                linea2="encontramos la forma de salir de este bosque maldito";
+                linea3="del que no ha salido nadie en los últimos 50 años.";
+                linea4="";
+                break;
+            case 19:
+                hor=horE;
+                avatarDialogo=this.avatarH;
+                //////="////////////////////////////////////////////////////////";
+                linea1="Tienes razón Kibito, debemos salir de este bosque.";
+                linea2="Vamos equipo.";
+                linea3="";
+                linea4="";
+                break;
+            case 20:
+                avatarDialogo=this.avatarM;
+                //////="////////////////////////////////////////////////////////";
+                linea1="Pero si estás temblando de miedo gallina.";
+                linea2="";
+                linea3="";
+                linea4="";
+                break;
+            case 21:
+                hor=horD;
+                kib=kibD;
+                mor=morD;
+                posicion.x+=0.1f*i;
+                if(posicion.x>=600){
+                    estado++;
+                }
+                break;
+            case 22:
                 estado=0;
                 sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);
                 break;
