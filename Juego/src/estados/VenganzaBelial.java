@@ -5,12 +5,9 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 import otros.Habilidad;
-import otros.Inventario;
 import items.Arma;
 import items.Armadura;
 import java.util.ArrayList;
-import org.newdawn.slick.Image;
-import otros.Combate;
 import otros.Gestion;
 /*Pruebas*/
 import personajes.*;

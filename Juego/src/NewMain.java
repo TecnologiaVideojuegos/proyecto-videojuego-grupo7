@@ -1,3 +1,10 @@
+/*
+OST= new Music("Musica/BSO/Ablaze.wav");  --> EstadoCombate
+avatarE = new Image ("Imagenes/Personajes/EncapuchadoA.png");  --> EscenaPuerto2 
+salidaEscena= new Image("Imagenes/Escenas/EscenaCarreta1/salidaEscena1.png"); --> EscenaCarreta
+*/
+
+
 
 import enemigos.Enemigo;
 import items.Arma;

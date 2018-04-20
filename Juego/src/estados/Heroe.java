@@ -172,7 +172,7 @@ public class Heroe {
     private void ApareceEvento(GameContainer gc, StateBasedGame sbg, int delta, EstadoMapaJuego gps, Input input)
     {
         //EDIT: Llamada a clase eventos, ajustar colision
-        int id=0;
+        int id = 0;
         if (input.isKeyDown(Input.KEY_UP)) {
             if (gps.isEventos(pos.x + w -4, pos.y - delta * SPEED) && gps.isEventos(pos.x + 4, pos.y - delta * SPEED)) {
                 id=gps.devuelveIDEvento(pos.x+w, pos.y- delta * SPEED);

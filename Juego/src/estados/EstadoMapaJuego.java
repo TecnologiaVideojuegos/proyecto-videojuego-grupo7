@@ -10,7 +10,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
 public class EstadoMapaJuego extends BasicGameState {
-    private final int LAYEREVENTOS=2;
+    private final int LAYEREVENTOS = 2;
     static boolean fullscreen = false;
     static boolean showFPS = true;
     private boolean[][] blocked;
@@ -36,8 +36,8 @@ public class EstadoMapaJuego extends BasicGameState {
 
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-        //map = new TiledMap("tiledmaps/mapaBosque.tmx");
-        map = new TiledMap("tiledmaps/prueba.tmx");
+        map = new TiledMap("tiledmaps/mapaBosque.tmx");
+        //map = new TiledMap("tiledmaps/prueba.tmx");
         mapWidth = map.getWidth() * map.getTileWidth();
         mapHeight = map.getHeight() * map.getTileHeight();
         tileHeight = map.getTileHeight();
@@ -50,7 +50,6 @@ public class EstadoMapaJuego extends BasicGameState {
         initializeBlocked();
         initializeEnemigos();
         initializeEventos();
-        int a=0;
     }
 
     @Override
@@ -122,12 +121,12 @@ public class EstadoMapaJuego extends BasicGameState {
                 }
             }
         }
-    }/**/
+    }
 
     public boolean isEnemigos(float x, float y) {
-        int xBlock = (int) x / map.getTileWidth();
-        int yBlock = (int) y / map.getTileHeight();
-        return enemigos[xBlock][yBlock];
+        int xEnemigos = (int) x / map.getTileWidth();
+        int yEnemigos = (int) y / map.getTileHeight();
+        return enemigos[xEnemigos][yEnemigos];
     }/**/
     //
     private void initializeEventos() {
@@ -143,18 +142,17 @@ public class EstadoMapaJuego extends BasicGameState {
                 }
             }
         }
-    }/**/
-        public boolean isEventos(float x, float y) {
-        int xBlock = (int) x / map.getTileWidth();
-        int yBlock = (int) y / map.getTileHeight();
-        
-        return eventos[xBlock][yBlock];
-    }/**/
-        public int devuelveIDEvento(float x, float y) {
+    }
+    public boolean isEventos(float x, float y) {
+        int xEventos = (int) x / map.getTileWidth();
+        int yEventos = (int) y / map.getTileHeight();
+        return eventos[xEventos][yEventos];
+    }
+    public int devuelveIDEvento(float x, float y) {
         int id; 
-        int xBlock = (int) x / map.getTileWidth();
-        int yBlock = (int) y / map.getTileHeight();
-        id= map.getTileId(xBlock, yBlock, LAYEREVENTOS);
+        int xEventos = (int) x / map.getTileWidth();
+        int yEventos = (int) y / map.getTileHeight();
+        id = map.getTileId(xEventos, yEventos, LAYEREVENTOS);
         return id;
     }/**/
         
