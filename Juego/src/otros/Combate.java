@@ -8,6 +8,7 @@ import estados.VenganzaBelial;
 import items.Item;
 import java.util.Random;
 import org.newdawn.slick.SlickException;
+import personajes.Jugador;
 
 public final class Combate {
     //Atributos
@@ -85,8 +86,19 @@ public final class Combate {
     public String Atacar(Personaje Atacante, Personaje Defensor)
     {
         String mensaje;
+        Jugador jug= (Jugador)Atacante;
         /*Calculo de daño*/
-        int danyoCausado=Atacante.getAtaque()-Defensor.getDefensa();
+        Random rand=new Random();
+        int danyoCausado;
+        float critico=rand.nextFloat()*100;//EDIT
+        if(critico<jug.getHabCritico())
+        {
+            danyoCausado=Atacante.getAtaque()*2-Defensor.getDefensa();
+        }
+        else
+        {
+           danyoCausado=Atacante.getAtaque()-Defensor.getDefensa(); 
+        }
         if (danyoCausado>0)
         {
           Defensor.setHpActual(Defensor.getHpActual()- danyoCausado);

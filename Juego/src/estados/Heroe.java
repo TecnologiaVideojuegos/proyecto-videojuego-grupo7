@@ -162,7 +162,7 @@ public class Heroe {
                 aparicion=rand.nextFloat();
             }
         }
-        if(aparicion>0.9f){
+        if(aparicion>0.99f){
             sbg.enterState(VenganzaBelial.ESTADOCOMBATE);
             aparicion=0;
         }
