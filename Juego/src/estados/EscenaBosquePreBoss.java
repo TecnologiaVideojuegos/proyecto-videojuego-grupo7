@@ -195,7 +195,7 @@ public class EscenaBosquePreBoss extends BasicGameState{
             case 3:
                 avatarDialogo=this.avatarK;
                 //////="////////////////////////////////////////////////////////";
-                linea1="Claaaaaaaaaaro, como soy negro tengo que saberlo";
+                linea1="Claaaaaaaaaaro, como soy el mago tengo que saberlo";
                 linea2="absolutamente todo de este bosque.";
                 linea3="";
                 linea4="";
@@ -269,7 +269,7 @@ public class EscenaBosquePreBoss extends BasicGameState{
             case 10:
                 avatarDialogo=this.avatarDesconocido;
                 //////="////////////////////////////////////////////////////////";
-                linea1="LAMENTAREÍS ENFRENTAROS A MI, AL GRAN YGGDRASIL!!!!!";
+                linea1="LAMENTAREÍS ENFRENTAROS A MI, AL GRAN YGGDRASIL!!!!";
                 linea2="";
                 linea3="";
                 linea4="";

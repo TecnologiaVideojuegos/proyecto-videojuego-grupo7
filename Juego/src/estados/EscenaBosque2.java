@@ -141,7 +141,7 @@ public class EscenaBosque2 extends BasicGameState{
                 hor.draw(posicion.x, posicion.y);
                 mor.draw(posicion.x-64, posicion.y+32);
                 kib.draw(posicion.x-64, posicion.y-32);
-                if(estado>=2 && estado<21){
+                if(estado>=2 && estado<23){
                 renderDialogo();
                 }
                 
@@ -153,7 +153,7 @@ public class EscenaBosque2 extends BasicGameState{
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
         exclamacion.update(i);
         if(input.isKeyPressed(Input.KEY_ENTER)){
-            if(estado!=23)
+            if(estado!=25)
             {
                 sonidoSelect.play(1, 0.2f);
                 time=0;
@@ -184,6 +184,7 @@ public class EscenaBosque2 extends BasicGameState{
                 break;
             case 2:
                 time+=i;
+                reproducirSusto=true;
                 if(time/1000>1f)//
                 {
                     reproducirSusto=false;
@@ -201,6 +202,7 @@ public class EscenaBosque2 extends BasicGameState{
                 linea4="";
                 break;
             case 3:
+                reproducirSusto=false;
                 avatarDialogo=this.avatarM;
                 //////="////////////////////////////////////////////////////////";
                 linea1="Ya esta otra vez, serán más monstruos,";
@@ -259,7 +261,7 @@ public class EscenaBosque2 extends BasicGameState{
             case 10:
                 avatarDialogo=this.avatarK;
                 //////="////////////////////////////////////////////////////////";
-                linea1="Ejem, respecto al tesoro, nadie a sido capaz de";
+                linea1="Ejem, respecto al tesoro, nadie ha sido capaz de";
                 linea2="encontrarlo.";
                 linea3="Lo bueno es que el Dios del Bosque es un ser";
                 linea4="amable y simpático según la leyenda...";
@@ -356,15 +358,31 @@ public class EscenaBosque2 extends BasicGameState{
                 linea4="";
                 break;
             case 19:
-                hor=horE;
                 avatarDialogo=this.avatarH;
                 //////="////////////////////////////////////////////////////////";
-                linea1="Tienes razón Kibito, debemos salir de este bosque.";
-                linea2="Vamos equipo.";
-                linea3="";
+                linea1="Pero si nadie ha salido de este bosque en los últimos";
+                linea2="50 años, eso significa que el Dios del Bosque no es tan";
+                linea3="amable como cuentas.";
                 linea4="";
                 break;
             case 20:
+                avatarDialogo=this.avatarK;
+                //////="////////////////////////////////////////////////////////";
+                linea1="Solo digo lo que dicen las leyendas que oigo en los";
+                linea2="bares.";
+                linea3="";
+                linea4="";
+                break;
+            case 21:
+                hor=horE;
+                avatarDialogo=this.avatarH;
+                //////="////////////////////////////////////////////////////////";
+                linea1="Muy bien equipo, sugiero seguir el camino que ha dicho";
+                linea2="Kibito, ha lo mejor salimos de este bosque.";
+                linea3="Vamos equipo.";
+                linea4="";
+                break;
+            case 22:
                 avatarDialogo=this.avatarM;
                 //////="////////////////////////////////////////////////////////";
                 linea1="Pero si estás temblando de miedo gallina.";
@@ -372,7 +390,7 @@ public class EscenaBosque2 extends BasicGameState{
                 linea3="";
                 linea4="";
                 break;
-            case 21:
+            case 23:
                 hor=horD;
                 kib=kibD;
                 mor=morD;
@@ -381,7 +399,7 @@ public class EscenaBosque2 extends BasicGameState{
                     estado++;
                 }
                 break;
-            case 22:
+            case 24:
                 estado=0;
                 sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);
                 break;

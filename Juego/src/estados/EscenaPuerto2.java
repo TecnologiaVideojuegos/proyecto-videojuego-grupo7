@@ -40,23 +40,27 @@ public class EscenaPuerto2 extends BasicGameState{
     private Input input;
     private int estado;
     private boolean reproducirExclamacion=false;
-    private boolean reproducirSusto=false;
+    private boolean reproducirExclamacion1=false;
+    private boolean reproducirEncapuchado=false;
     /*Mapa*/
-    private Vector2f posicion;
+    private Vector2f posicion,posicionE;
     private static final int esquinaXMapa=0;
     private static final int esquinaYMapa=0;
     /*Animaciones*/
     private SpriteSheet sheetExclamacion;
     private Animation exclamacion;
-    private SpriteSheet sheetSusto;
-    private Animation susto;
-    private Image hor,kib,mor,alcalde;
-    private Animation horD,kibD,morD;
-    private Animation horI,kibS,morS;
-    private Animation horE;
+    private SpriteSheet sheetExclamacion1;
+    private Animation exclamacion1;
+    private SpriteSheet sheetEncapuchado;
+    private Animation encapuchado;
+    private Image alcalde;
+    private Animation hor,horA;
+    private Animation mor,morA;
+    private Animation kib,kibA;
+    private Animation nar,narI,narE;
     private Image fondo;
     /*Imagenes*/
-    private Image ventanaDialogo,avatarDialogo, avatarH,avatarM, avatarK, avatarAlcalde;
+    private Image ventanaDialogo,avatarDialogo, avatarH,avatarM, avatarK, avatarAlcalde,avatarE;
     private Image salidaEscena;
     /*Sonido*/
     private Sound sonidoSelect,rugido;
@@ -75,40 +79,44 @@ public class EscenaPuerto2 extends BasicGameState{
 
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-//        Image[] horDere={new Image("Imagenes/HeroeMundo/her10.png"),new Image("Imagenes/HeroeMundo/her11.png"),new Image("Imagenes/HeroeMundo/her12.png")};
-//        horD=new Animation(horDere,200);
-//        Image[] morDere={new Image("Imagenes/Animaciones/Sprites/mor7.png"),new Image("Imagenes/Animaciones/Sprites/mor8.png"),new Image("Imagenes/Animaciones/Sprites/mor9.png")};
-//        morD=new Animation(morDere,200);
-//        Image[] kibDere={new Image("Imagenes/Animaciones/Sprites/kib7.png"),new Image("Imagenes/Animaciones/Sprites/kib8.png"),new Image("Imagenes/Animaciones/Sprites/kib9.png")};
-//        kibD=new Animation(kibDere,200);
-//        Image[] horIzq={new Image("Imagenes/HeroeMundo/her31.png")};
-//        horI=new Animation(horIzq,200);
-//        Image[] kibF={new Image("Imagenes/Animaciones/Sprites/kib8.png")};
-//        kibS=new Animation(kibF,200);
-//        Image[] morF={new Image("Imagenes/Animaciones/Sprites/mor8.png")};
-//        morS=new Animation(morF,200);
-//        Image[] horEnfrente={new Image("Imagenes/HeroeMundo/her11.png")};
-//        horE=new Animation(horEnfrente,200);
-        hor = new Image("Imagenes/HeroeMundo/her31.png");
-        kib=new Image("Imagenes/Animaciones/Sprites/kib5.png");
-        mor=new Image("Imagenes/Animaciones/Sprites/mor5.png");
+        Image[] horAbajo={new Image("Imagenes/HeroeMundo/her01.png")};
+        horA=new Animation(horAbajo,200);
+        Image[] horIzq={new Image("Imagenes/HeroeMundo/her31.png")};
+        hor=new Animation(horIzq,200);
+        Image[] morS={new Image("Imagenes/Animaciones/Sprites/mor5.png")};
+        mor=new Animation(morS,200);
+        Image[] morAbajo={new Image("Imagenes/Animaciones/Sprites/mor2.png")};
+        morA=new Animation(morAbajo,200);
+        Image[] kibS={new Image("Imagenes/Animaciones/Sprites/kib5.png")};
+        kib=new Animation(kibS,200);
+        Image[] kibAbajo={new Image("Imagenes/Animaciones/Sprites/kib2.png")};
+        kibA=new Animation(kibAbajo,200);
+        Image[] narIzquierda={new Image("Imagenes/Animaciones/Sprites/nar4.png"),new Image("Imagenes/Animaciones/Sprites/nar5.png"),new Image("Imagenes/Animaciones/Sprites/nar6.png")};
+        narI=new Animation(narIzquierda,200);
+        Image[] narEnfrente={new Image("Imagenes/Animaciones/Sprites/nar2.png")};
+        narE=new Animation(narEnfrente,200);
+        nar=narI;
         alcalde=new Image("Imagenes/Animaciones/Sprites/ban3.png");
         fondo= new Image("Imagenes/Escenas/EscenaPuerto/Puerto.png");
         /**/
         this.sheetExclamacion= new SpriteSheet("Imagenes/Animaciones/puntos.png",32,33);
         this.exclamacion = new Animation(sheetExclamacion,200);
-        this.sheetSusto= new SpriteSheet("Imagenes/Animaciones/exclamacion.png",32,33);
-        this.susto = new Animation(sheetSusto,200);
+        this.sheetExclamacion1= new SpriteSheet("Imagenes/Animaciones/puntos.png",32,33);
+        this.exclamacion1 = new Animation(sheetExclamacion,200);
+        this.sheetEncapuchado= new SpriteSheet("Imagenes/Animaciones/interrogacion.png",32,33);
+        this.encapuchado = new Animation(sheetEncapuchado,200);
         /**/
         estado=0;
         this.input = gc.getInput();
         mensajePantalla= new TrueTypeFont(tipoLetra, true);
         posicion = new Vector2f(0,300);
+        posicionE = new Vector2f(0,300);
         ventanaDialogo= new Image("Imagenes/Avatar/cajaMensaje.png");
         avatarH =  new Image("Imagenes/Personajes/HoraciaA.png");
         avatarM =  new Image("Imagenes/Personajes/MordeimA.png");
         avatarK =  new Image("Imagenes/Personajes/KibitoA.png");
         avatarAlcalde = new Image("Imagenes/Personajes/Arbol.png");
+        avatarE = new Image ("Imagenes/Personajes/EncapuchadoA.png");
         avatarDialogo = avatarH;
         sonidoSelect=new Sound("Musica/Efectos/select.wav");
         rugido=new Sound("Musica/Efectos/rugido1.wav");
@@ -127,15 +135,21 @@ public class EscenaPuerto2 extends BasicGameState{
             if(reproducirExclamacion){
                 this.exclamacion.draw(posicion.x+300, posicion.y-96);
             }
-//            if(reproducirSusto){
-//                this.susto.draw(posicion.x+300, posicion.y-32);
-//            }
+            if(reproducirExclamacion1){
+                this.exclamacion1.draw(posicion.x+364, posicion.y-128);
+            }
+            if(reproducirEncapuchado){
+                this.encapuchado.draw(posicion.x+300, posicion.y-96);
+            }
             if(estado>=0){
                 hor.draw(posicion.x+300, posicion.y-64);
                 mor.draw(posicion.x+364, posicion.y-32);
                 kib.draw(posicion.x+364, posicion.y-96);
                 alcalde.draw(posicion.x+236, posicion.y-64);
                 renderDialogo();
+                if(estado>=16){
+                    nar.draw(posicionE.x+344, posicionE.y+96);
+                }
                 }
                 
             texto.drawString(1000, 0, "" + estado);
@@ -145,7 +159,7 @@ public class EscenaPuerto2 extends BasicGameState{
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
         exclamacion.update(i);
         if(input.isKeyPressed(Input.KEY_ENTER)){
-            if(estado!=18)
+            if(estado!=23)
             {
                 sonidoSelect.play(1, 0.2f);
                 time=0;
@@ -215,119 +229,124 @@ public class EscenaPuerto2 extends BasicGameState{
             case 6:
                 avatarDialogo=this.avatarK;
                 //////="////////////////////////////////////////////////////////";
-                linea1="Chicos, ahora en serío.";
-                linea2="¿No sabeís la historia de este bosque?";
+                linea1="Alcalde, solo necesitamos ir a Troyia.";
+                linea2="";
                 linea3="";
                 linea4="";
                 break;
             case 7:
-                avatarDialogo=this.avatarH;
+                avatarDialogo=this.avatarM;
                 //////="////////////////////////////////////////////////////////";
-                linea1="¿Tú te sabes la his...hist...historia Kibito?";
+                linea1="Y todo vuestro oro tampoco estaría mal.";
                 linea2="";
                 linea3="";
                 linea4="";
                 break;
             case 8:
-                avatarDialogo=this.avatarK;
+                avatarDialogo=this.avatarAlcalde;
                 //////="////////////////////////////////////////////////////////";
-                linea1="Según la leyenda existe un tesoro oculto en este bosque";
-                linea2="maldito tras la Guerra Demoniaca...";
-                linea3="";
-                linea4="";
+                linea1="¿Solo queríais ir a Troyia?";
+                linea2="¿Esa ciudad montañosa donde la gente esta";
+                linea3="misteriosamente resucitando volviendo como";
+                linea4="no muertos?";
                 break;
             case 9:
-                avatarDialogo=this.avatarM;
+                avatarDialogo=this.avatarH;
                 //////="////////////////////////////////////////////////////////";
-                linea1="Bla,bla,bla, solamente me interesa saber donde está el";
-                linea2="tesoro y acabar con los monstruos.";
+                linea1="Solo era eso, si, ehhh, nada más.";
+                linea2="";
                 linea3="";
                 linea4="";
                 break;
             case 10:
-                avatarDialogo=this.avatarK;
+                avatarDialogo=this.avatarM;
                 //////="////////////////////////////////////////////////////////";
-                linea1="Ejem, respecto al tesoro, nadie a sido capaz de";
-                linea2="encontrarlo.";
-                linea3="Lo bueno es que el Dios del Bosque es un ser";
-                linea4="amable y simpático según la leyenda...";
+                linea1="Y el oro, sobretodo el oro.";
+                linea2="";
+                linea3="";
+                linea4="";
                 break;
             case 11:
-                time+=i;
-                if(!rugido.playing())
-                {
-                    rugido.play();
-                }
-                if(time/1000>1f)//
-                {
-                    time=0;
-                    estado++;
-                }
-                avatarDialogo=this.avatarAlcalde;
-                linea1="GRRRRRRRRRRRRRRRRRRRR!!!!!!";
-                linea2="";
+                avatarDialogo=this.avatarK;
+                linea1="En cualquier caso, gracias por la información de";
+                linea2="Troyia.";
                 linea3="";
                 linea4="";
                 break;
                 
             case 12:
-                avatarDialogo=this.avatarH;
+                avatarDialogo=this.avatarM;
                 //////="////////////////////////////////////////////////////////";
-                linea1="IAAAAAAAAAAAAAAAAAAAHHHHHHHHHHHHH!!!!!!!!";
+                linea1="¿Pero que pasa con nuestra recompensa?";
                 linea2="";
                 linea3="";
                 linea4="";
                 break;
             case 13:
-                avatarDialogo=this.avatarM;
-                //////="////////////////////////////////////////////////////////";
-                linea1="Vaya capitana tan cobarde...";
-                linea2="";
-                linea3="";
-                linea4="";
-                break;
-            case 14:
                 time+=i;
-                if(!rugido.playing())
-                {
-                    rugido.play();
-                }
+                reproducirExclamacion1=true;
                 if(time/1000>1f)//
                 {
-                    time=0;
-                }
-                avatarDialogo=this.avatarAlcalde;
-                linea1="¡¡¡¡¡¡FUEEERAAAAA DE ESTE BOSQUEEEEEEEEEEEEE!!!!!!";
-                linea2="";
-                linea3="";
-                linea4="";
-                break;
-            case 15:
-                avatarDialogo=this.avatarH;
-                //////="////////////////////////////////////////////////////////";
-                linea1="¡¡¡¡¡MÁS MONSTRUOS!!!!!";
-                linea2="";
-                linea3="";
-                linea4="";
-                break;
-            case 16:
-                time+=i;
-                reproducirExclamacion=true;
-                if(time/1000>1f)//
-                {
-                    reproducirExclamacion=false;
+                    reproducirExclamacion1=false;
                     time=0;
                     estado++;
                 }
                 avatarDialogo=this.avatarK;
                 //////="////////////////////////////////////////////////////////";
-                linea1="¿Porque le ocurre todo al negro?";
+                linea1="...";
                 linea2="";
                 linea3="";
                 linea4="";
                 break;
+            case 14:
+                avatarDialogo=this.avatarAlcalde;
+                linea1="No os preocupeís, recibiréis una recompensa, pero tened";
+                linea2="mucho cuidado jóvenes aventureros.";
+                linea3="Y no os preocupeis por el viaje, podeis ir en este";
+                linea4="barco, os lo habeis ganado.";
+                break;
+            case 15:
+                avatarDialogo=this.avatarH;
+                //////="////////////////////////////////////////////////////////";
+                linea1="Muchas gracias alcalde.";
+                linea2="";
+                linea3="";
+                linea4="";
+                break;
+            case 16:
+                nar=narI;
+                posicionE.x-=0.1f*i;
+                if(posicionE.x<=(-50)){
+                    estado++;
+                }
+                break;
             case 17:
-                //Aquí se metería a un combate fijo, a traición XD.
+                nar=narE;
+                avatarDialogo=this.avatarE;
+                linea1="Y asi nuestros patéticos héroes consiguieron el pase.";
+                linea2="para ir al segundo sello de Luci en Troyia.";
+                linea3="Pero su aventura continuara.";
+                linea4="";
+                break;
+            case 18:
+                hor=horA;
+                mor=morA;
+                kib=kibA;
+                time+=i;
+                reproducirEncapuchado=true;
+                if(time/1000>1f)//
+                {
+                    reproducirEncapuchado=false;
+                    time=0;
+                    estado++;
+                }
+                avatarDialogo=this.avatarH;
+                linea1="¿Quién es este tío?";
+                linea2="";
+                linea3="";
+                linea4="";
+                break;
+            case 19:
                 estado=0;
                 sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);
                 break;
