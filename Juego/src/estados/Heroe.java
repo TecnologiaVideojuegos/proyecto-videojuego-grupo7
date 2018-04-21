@@ -19,8 +19,16 @@ public class Heroe {
     private int offset=6;//Original=-4
     //EDIT
     private float aparicion=0;
+
+    private final int MAPATUTORIAL = 0;
+    private final int MAPABOSQUE = 1;
+    private final int MAPAPUERTO = 2;
+    private final int MAPACIUDADCATACUMBAS = 3;
+    private final int MAPADUNGEONCATACUMBAS = 4;
+    private final int MAPACIUDADMONTANA = 5;
+    private final int MAPADUNGEONMONTANA = 6;
     
-    private int numMapa = 2;
+    private int numMapa = MAPABOSQUE;
     
     //EDIT
     public Heroe(float x, float y) throws SlickException {
@@ -203,8 +211,10 @@ public class Heroe {
             tipo = VenganzaBelial.eventos.comprobarEvento(posicion[0], posicion[1], numMapa);
             if (tipo == 0)
                 sbg.enterState(VenganzaBelial.ESTADOEVENTO);
-            if (tipo == 1)
+            else if (tipo == 1)
                 sbg.enterState(VenganzaBelial.ESTADOTIENDA);
+            //else if (tipo == 2)
+                //Accion de Healer
         }
     }
 

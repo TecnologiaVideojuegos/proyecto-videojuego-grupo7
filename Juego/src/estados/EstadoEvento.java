@@ -48,12 +48,16 @@ public class EstadoEvento extends BasicGameState {
                 linea = "Hola mi nimbre es: " + VenganzaBelial.eventos.getEvento().getNombre();
                 break;
             case 2:
-                linea = VenganzaBelial.eventos.getEvento().getHistoria();
+                linea = VenganzaBelial.eventos.getEvento().getSaludo();
                 break;
             case 3:
+                linea = VenganzaBelial.eventos.getEvento().getHistoria();
+                break;
+            case 4:
                 estado = 0;
                 sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
                 break;
+                
         }
          
              
