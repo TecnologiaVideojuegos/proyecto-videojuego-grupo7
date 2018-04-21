@@ -32,7 +32,7 @@
    <property name="enemigos" type="bool" value="true"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztl0uOAyEMRHP/2+R+WYxmF0X8yrjsgvaTspgJn+rXYMjrVUTxaXws/dF5lBhls/pR8prlvLxyYHiNRNXr6ZRXHiteyy3Oqlclt60aq5ZxhGrmlUyKudVhez15L+wQsV5v87qyVqLqgKdXr/fU6oc62/HqAfLbCXnP1t9uvX5ZXndrwUqbp3plnUUKXhHQjJb23nXkNq9ovpU5LHh7ZYDUNdYcWeNluvf2iq6n3f282i7aLZJxNEarvadXj7NACQWvO+elotN/eueUat5TWPXqcfdhoFoLbvOq5PYXrztE1PMy5/ldW96guT28WveGF609O/p+dbydvJ79LXOhd5VR7fv+u9XfG+Zez67NrXnLKz7+7Nzu9WHkPNnrjaA1UwH1+5xiphkZ+9567rKIqEkK9ZSZZzYfY8yo8bMzjebLHPPEejdC5VxRyOCJyvOo5PAiosYgbdE80XVTgfLK4Qavozvj7lzvr0/rf63v2ZmiiHiGkcNeplk+dbLXxmy+27z22kbPrfKud+v3rA2SY5ZFdS1G5WJ5fTrllUN5KgofqvZwKK8cyisHi9dZO+u76rU98X3veJ15QO+O1n6KlFcdyiuPpz1vkc8fl+x1Qw==
+   eJztl0uOAyEMRHP/2+R+WYxmF0U02LjKrqb9pCxmwqf6BQz9ejVZfAafSP9ouwpm2Xb9KHmtct5eOTC8ZqLq9e60Vx4Wr+3Wj9WrkttRjVXLOEM1s/dcbmywvd55L0TIWK+nebWslaw6gPSK+p1G/bzOIl4ReN6dvO9hluzWelTlNVoLLG2e6pV1Fil49eDNuNMeXUdO8+rNZ5ljB7RXBp66xpqjarxK92iv3vUU3c/WdtluPRlnY4zaI70izgIlFLxGzktFp/9cnVOqee+C1Svi7sNAtRac5lXJ7S+oO0TW8zLn+V1baLy5EV539waK0Z6dfW8dL5IX2X9nLu9dZVb7vv8e9UfD3OvVtXk0b3v1j786t6/6MHLe2euJeGumAur3OcVMKyr2/e65yyKjJinUU2ae1XyMMbPGr840m69yzDvWuxkq54pCBiQqz6OSA0VGjfG09ebJrpsKtFcOJ3id3Rmjc72/PqP/jb5nZ8oi4xlmDq8yrfKpU702VvOd5vWqbfbcKr91tH6v2nhyrLKorsWsXCyvT6e9cmhPTYOhaw+H9sqhvXLY8bpqv/v+Wfneiqa9cmivOrRXHk973qaePw/+hAc=
   </data>
  </layer>
  <layer name="evento" width="86" height="60">
@@ -41,7 +41,7 @@
    <property name="evento" type="bool" value="true"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt2KsNgEAMANAKEKdIGIABSFA3Awn7L4NlANQZoMd7sqof0zYCAAAAIo7x7Qx4WjFzAIBUVvsbAAAAP7N0dgv3Vg8AAPnNdlQAAAAA+JxzuMemhL+82pDz3ljflrAfAJDNBahZAqs=
+   eJzt2qENACAQA8AXIFAk7L8nlgEYoCTcyarqplUAAADAj0ZPNwAAAAAAAAAAAFKW/xAAAAAAPGO3O5s2PAAg5AB/fgE1
   </data>
  </layer>
 </map>

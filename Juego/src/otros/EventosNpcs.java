@@ -42,14 +42,8 @@ public class EventosNpcs {
         switch(mapa){
             //bosque
             case MAPABOSQUE:
-                //Evento
-                if(x == 19 && y == 19){
-                    evento = new Evento("Estas empezando una gran aventura, "
-                            + "espero que te diviertas y salves nuestro amado mundo", "Marisa", "¿Como llevas el día?"); 
-                    tipo = 0;
-                }
                 //Vendedor
-                else if(x == 83 && y == 11){
+                if(x == 83 && y == 11){
                     items = new ArrayList<>();
                     requisitoCategoria = new ArrayList<>();
                     requisitoCategoria.add("Mordeim");
@@ -59,42 +53,16 @@ public class EventosNpcs {
                     vendedor = new Vendedor(items, "Luis", "que tal");                   
                     tipo = 1;
                 }
-                //Evento
+                //Evento con algo de historia opcional pa rellenar zona mapa opcional
                 else if(x == 81 && y == 38){
                     tipo = 0;
                 }
-                //Evento
-                else if(x == 36 && y == 30){
-                    tipo = 0;
-                }
-                //Evento
-                else if(x == 44 && y == 10){
-                    evento = new Evento("Creo que deberías investigar el mapa, en el cual podras encontrar "
-                            + "información o gente vendiendo cosas excepcionales", "Pepita", "¿Qué tal estas?"); 
-                    tipo = 0;
-                }
-                //Evento
-                else if(x == 2 && y == 31){
-                    tipo = 0; 
-                }
-                //Evento
-                else if(x == 17 && y == 54){
-                    tipo = 0;
-                }
-                //Evento
-                else if(x == 28 && y == 54){
-                    tipo = 0;
-                }
-                //Evento
-                else if(x == 40 && y == 54){
-                    tipo = 0;
-                }
                 //Vendedor
-                else if(x == 53 && y == 53){
+                else if(x == 51 && y == 53){
                     tipo = 1;
                 }
                 //Healer
-                else if(x == 58 && y == 53){
+                else if(x == 56 && y == 53){
                     evento = new Evento("Voy a curarte para que puedas seguir luchando con"
                             + " los peligros de Reynos", "Healer", "Hola amigo"); 
                     tipo = 2;
