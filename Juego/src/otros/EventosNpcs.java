@@ -95,6 +95,8 @@ public class EventosNpcs {
                 }
                 //Healer
                 else if(x == 58 && y == 53){
+                    evento = new Evento("Voy a curarte para que puedas seguir luchando con"
+                            + " los peligros de Reynos", "Healer", "Hola amigo"); 
                     tipo = 2;
                 }
                 break;

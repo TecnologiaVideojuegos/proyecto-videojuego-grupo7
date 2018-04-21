@@ -36,6 +36,10 @@
   </data>
  </layer>
  <layer name="evento" width="86" height="60">
+  <properties>
+   <property name="blocked" type="bool" value="true"/>
+   <property name="evento" type="bool" value="true"/>
+  </properties>
   <data encoding="base64" compression="zlib">
    eJzt2KsNgEAMANAKEKdIGIABSFA3Awn7L4NlANQZoMd7sqof0zYCAAAAIo7x7Qx4WjFzAIBUVvsbAAAAP7N0dgv3Vg8AAPnNdlQAAAAA+JxzuMemhL+82pDz3ljflrAfAJDNBahZAqs=
   </data>

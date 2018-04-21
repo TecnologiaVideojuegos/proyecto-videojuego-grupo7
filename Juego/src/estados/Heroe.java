@@ -213,8 +213,15 @@ public class Heroe {
                 sbg.enterState(VenganzaBelial.ESTADOEVENTO);
             else if (tipo == 1)
                 sbg.enterState(VenganzaBelial.ESTADOTIENDA);
-            //else if (tipo == 2)
-                //Accion de Healer
+            else if (tipo == 2){
+                //Cura a los aliados al maximo
+                VenganzaBelial.atributoGestion.jugs.get(0).setHpActual(VenganzaBelial.atributoGestion.jugs.get(0).getHp());
+                VenganzaBelial.atributoGestion.jugs.get(2).setHpActual(VenganzaBelial.atributoGestion.jugs.get(1).getHp());
+                VenganzaBelial.atributoGestion.jugs.get(1).setHpActual(VenganzaBelial.atributoGestion.jugs.get(2).getHp());
+                //Cuenta la tipica historia de te voy a curar
+                sbg.enterState(VenganzaBelial.ESTADOEVENTO);
+                
+            }
         }
     }
 
