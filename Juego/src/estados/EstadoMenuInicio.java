@@ -33,7 +33,8 @@ public class EstadoMenuInicio extends BasicGameState {
     private Font letraMenu, letraEquipo, letraTitulo;
     private TrueTypeFont opcionesJugadorTTF, equipoTTF, tituloTTF;
     private int eleccionJugador, idEstado;
-    private Color notChosen = new Color(153, 204, 255);
+    private Color notChosen = new Color(211,84,0);//EDIT
+    //private Color notChosen = new Color(153, 204, 255);
     private static final String titulo = "La Venganza de Belial";
     private static final String[] equipo = {"David Ibañez (Jefe Proyecto)", "Alberto Murillo", 
         "Angel Oroquieta", "Hisam Moreno", "Pablo Contreras"};
@@ -117,10 +118,11 @@ public class EstadoMenuInicio extends BasicGameState {
                     sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO); //EDIT
                     break;
                 case PRUEBASHISAM:
-                    //sbg.enterState(VenganzaBelial.ESTADOESCENAPROTOTIPO);/EDIT 
+                    //sbg.enterState(VenganzaBelial.ESTADOESCENAPROTOTIPO);//EDIT 
                     //sbg.enterState(VenganzaBelial.ESCENABOSQUE2);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENABOSQUEPREBOSS);//EDIT
-                    sbg.enterState(VenganzaBelial.ESCENAPUERTO2);//EDIT
+                    //sbg.enterState(VenganzaBelial.ESCENAPUERTO2);//EDIT
+                    sbg.enterState(VenganzaBelial.ESCENAPUERTO1);//EDIT
                     break;
                 case PRUEBASDAVID:
                     //sbg.enterState(VenganzaBelial.ESCENACARRETA);//EDIT

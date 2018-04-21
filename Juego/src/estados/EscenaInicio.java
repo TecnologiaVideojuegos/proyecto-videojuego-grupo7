@@ -218,14 +218,7 @@ public class EscenaInicio extends BasicGameState{
                 break;
             //Primera escena introducción
             case 4:
-                time+=i;
                 reproducirExclamacion2=true;
-                if(time/1000>0.4f)//
-                {
-                    reproducirExclamacion2=false;
-                    time=0;
-                    estado++;
-                }
                 avatarDialogo=this.avatarHestia;
                 //////="////////////////////////////////////////////////////////";
                 linea1="Que vidriera tan bonita.";
@@ -234,6 +227,7 @@ public class EscenaInicio extends BasicGameState{
                 linea4="";
                 break;
             case 5:
+                reproducirExclamacion2=false;
                 avatarDialogo=this.avatarHestia;
                 //////="////////////////////////////////////////////////////////";
                 linea1="¿Quién va?";
@@ -277,14 +271,7 @@ public class EscenaInicio extends BasicGameState{
                 linea4="Kibito no sabe usar magia de agua y...";
                 break;
             case 10:
-                time+=i;
                 reproducirExclamacion=true;
-                if(time/1000>0.4f)//
-                {
-                    reproducirExclamacion=false;
-                    estado++;
-                    time=0;
-                }
                 avatarDialogo=this.avatarHestia;
                 linea1="¿Eh?";
                 linea2="";
@@ -292,6 +279,7 @@ public class EscenaInicio extends BasicGameState{
                 linea4="";
                 break;
             case 11:
+                reproducirExclamacion=false;
                 avatarDialogo=this.avatarH;
                 linea1="¿Eh?... quiero decir...eh... no se nada de una explosión";
                 linea2="en la ciudad.";
@@ -301,11 +289,11 @@ public class EscenaInicio extends BasicGameState{
             case 12:
                 time+=i;
                 reproducirExclamacion1=true;
-                if(time/1000>1)//
+                if(time/1000>0.4)//
                 {
                     reproducirExclamacion1=false;
                     time=0;
-                    estado++;
+                    //estado++;
                 }
                 avatarDialogo=this.avatarHestia;
                 linea1="...";

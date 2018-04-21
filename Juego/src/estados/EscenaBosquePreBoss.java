@@ -93,9 +93,9 @@ public class EscenaBosquePreBoss extends BasicGameState{
         hor=horD;
         kib=kibD;
         mor=morD;
-        Image[] bossMove={new Image("Imagenes/Animaciones/Sprites/kib4.png"),new Image("Imagenes/Animaciones/Sprites/kib5.png"),new Image("Imagenes/Animaciones/Sprites/kib6.png")};
+        Image[] bossMove={new Image("Imagenes/Animaciones/Sprites/arbol5.png"),new Image("Imagenes/Animaciones/Sprites/arbol6.png"),new Image("Imagenes/Animaciones/Sprites/arbol7.png"),new Image("Imagenes/Animaciones/Sprites/arbol8.png")};
         bossI=new Animation(bossMove,200);
-        Image[] bossStop={new Image("Imagenes/Animaciones/Sprites/kib5.png")};
+        Image[] bossStop={new Image("Imagenes/Animaciones/Sprites/arbol6.png")};
         bossE=new Animation(bossStop,200);
         boss=bossI;
         fondo= new Image("Imagenes/Escenas/EscenaBosque1/mapaBosque.png");
@@ -126,21 +126,23 @@ public class EscenaBosquePreBoss extends BasicGameState{
     //Muestra por pantalla
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException { 
         
-            fondo.draw(-1800, -1160);
+            fondo.draw(-1800, -1184);
             
             //EDIT:Rener Mordeim
             if(reproducirExclamacion){
-                this.exclamacion.draw(posicion.x-64, posicion.y-64);
+                this.exclamacion.draw(posicion.x-64, posicion.y+176);
             }
             if(estado>=0){
-                hor.draw(posicion.x, posicion.y);
-                mor.draw(posicion.x-64, posicion.y+32);
-                kib.draw(posicion.x-64, posicion.y-32);
+                hor.draw(posicion.x, posicion.y+240);
+                mor.draw(posicion.x-64, posicion.y+272);
+                //mor.draw(posicion.x-64, posicion.y+32);
+                kib.draw(posicion.x-64, posicion.y+208);
+                //kib.draw(posicion.x-64, posicion.y-32);
                 if(estado>=1 && estado!=6){
                 renderDialogo();
                 }
                 if(estado>=6){
-                    boss.draw(posicionE.x+664, posicionE.y);
+                    boss.draw(posicionE.x+664, posicionE.y+212);
                 }
                 
             }
@@ -218,14 +220,7 @@ public class EscenaBosquePreBoss extends BasicGameState{
                 linea4="";
                 break;
             case 5:
-                time+=i;
                 reproducirExclamacion=true;
-                if(time/1000>1f)//
-                {
-                    reproducirExclamacion=false;
-                    time=0;
-                    estado++;
-                }
                 avatarDialogo=this.avatarK;
                 //////="////////////////////////////////////////////////////////";
                 linea1="Para que hablaré.";
@@ -234,6 +229,7 @@ public class EscenaBosquePreBoss extends BasicGameState{
                 linea4="";
                 break;
             case 6:
+                reproducirExclamacion=false;
                 hor=horE;
                 boss=bossI;
                 posicionE.x-=0.1f*i;

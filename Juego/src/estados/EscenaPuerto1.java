@@ -20,7 +20,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
 
-public class EscenaPuerto2 extends BasicGameState{
+public class EscenaPuerto1 extends BasicGameState{
     private int idEstado;
     private static final int POSICIONAVATARX = 30;
     private static final int POSICIONAVATARY = 620;
@@ -54,14 +54,13 @@ public class EscenaPuerto2 extends BasicGameState{
     private SpriteSheet sheetEncapuchado;
     private Animation encapuchado;
     private Image alcalde;
-    private Animation hor,horA;
+    private Animation hor,horA,horS;
     private Animation mor,morA;
     private Animation kib,kibA;
     private Animation nar,narI,narE;
     private Image fondo;
     /*Imagenes*/
-    private Image ventanaDialogo,avatarDialogo, avatarH,avatarM, avatarK; 
-    private Image avatarAlcalde,avatarE;
+    private Image ventanaDialogo,avatarDialogo, avatarH,avatarM, avatarK, avatarAlcalde,avatarE;
     private Image salidaEscena;
     /*Sonido*/
     private Sound sonidoSelect,rugido;
@@ -70,7 +69,7 @@ public class EscenaPuerto2 extends BasicGameState{
     private TrueTypeFont texto;
     private Font letraMenu  = new Font("Arial Black", Font.PLAIN, 15); 
     
-    public EscenaPuerto2(int id) {
+    public EscenaPuerto1(int id) {
         this.idEstado=id;
     }
     @Override
@@ -80,10 +79,10 @@ public class EscenaPuerto2 extends BasicGameState{
 
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-        Image[] horAbajo={new Image("Imagenes/HeroeMundo/her01.png")};
+        Image[] horAbajo={new Image("Imagenes/HeroeMundo/her10.png"),new Image("Imagenes/HeroeMundo/her11.png"),new Image("Imagenes/HeroeMundo/her12.png")};
         horA=new Animation(horAbajo,200);
-        Image[] horIzq={new Image("Imagenes/HeroeMundo/her31.png")};
-        hor=new Animation(horIzq,200);
+        Image[] horStop={new Image("Imagenes/HeroeMundo/her01.png")};
+        horS=new Animation(horStop,200);
         Image[] morS={new Image("Imagenes/Animaciones/Sprites/mor5.png")};
         mor=new Animation(morS,200);
         Image[] morAbajo={new Image("Imagenes/Animaciones/Sprites/mor2.png")};
@@ -97,7 +96,7 @@ public class EscenaPuerto2 extends BasicGameState{
         Image[] narEnfrente={new Image("Imagenes/Animaciones/Sprites/nar2.png")};
         narE=new Animation(narEnfrente,200);
         nar=narI;
-        alcalde=new Image("Imagenes/Animaciones/Sprites/alcalde8.png");
+        alcalde=new Image("Imagenes/Animaciones/Sprites/ban3.png");
         fondo= new Image("Imagenes/Escenas/EscenaPuerto/Puerto.png");
         /**/
         this.sheetExclamacion= new SpriteSheet("Imagenes/Animaciones/puntos.png",32,33);
@@ -116,7 +115,7 @@ public class EscenaPuerto2 extends BasicGameState{
         avatarH =  new Image("Imagenes/Personajes/HoraciaA.png");
         avatarM =  new Image("Imagenes/Personajes/MordeimA.png");
         avatarK =  new Image("Imagenes/Personajes/KibitoA.png");
-        avatarAlcalde = new Image("Imagenes/Personajes/alcalde.png");
+        avatarAlcalde = new Image("Imagenes/Personajes/Arbol.png");
         avatarE = new Image ("Imagenes/Personajes/EncapuchadoA.png");
         avatarDialogo = avatarH;
         sonidoSelect=new Sound("Musica/Efectos/select.wav");
@@ -147,13 +146,11 @@ public class EscenaPuerto2 extends BasicGameState{
                 mor.draw(posicion.x+364, posicion.y-32);
                 kib.draw(posicion.x+364, posicion.y-96);
                 alcalde.draw(posicion.x+236, posicion.y-64);
-                if(estado!=16){
                 renderDialogo();
-                }
                 if(estado>=16){
                     nar.draw(posicionE.x+344, posicionE.y+96);
                 }
-            }
+                }
                 
             texto.drawString(1000, 0, "" + estado);
     }
@@ -172,7 +169,7 @@ public class EscenaPuerto2 extends BasicGameState{
         }
         switch (estado)
         {
-            case 0://EDIT
+            case 0:
 //                time+=i;
 //                if(time/1000>0.4f)//
 //                {
@@ -214,7 +211,14 @@ public class EscenaPuerto2 extends BasicGameState{
                 linea4="obligarnos a morir, ...";
                 break;
             case 5:
+                time+=i;
                 reproducirExclamacion=true;
+                if(time/1000>1f)//
+                {
+                    reproducirExclamacion=false;
+                    time=0;
+                    estado++;
+                }
                 avatarDialogo=this.avatarH;
                 //////="////////////////////////////////////////////////////////";
                 linea1="Ehhh...";
@@ -223,7 +227,6 @@ public class EscenaPuerto2 extends BasicGameState{
                 linea4="";
                 break;
             case 6:
-                reproducirExclamacion=false;
                 avatarDialogo=this.avatarK;
                 //////="////////////////////////////////////////////////////////";
                 linea1="Alcalde, solo necesitamos ir a Troyia.";
@@ -280,7 +283,14 @@ public class EscenaPuerto2 extends BasicGameState{
                 linea4="";
                 break;
             case 13:
+                time+=i;
                 reproducirExclamacion1=true;
+                if(time/1000>1f)//
+                {
+                    reproducirExclamacion1=false;
+                    time=0;
+                    estado++;
+                }
                 avatarDialogo=this.avatarK;
                 //////="////////////////////////////////////////////////////////";
                 linea1="...";
@@ -289,7 +299,6 @@ public class EscenaPuerto2 extends BasicGameState{
                 linea4="";
                 break;
             case 14:
-                reproducirExclamacion1=false;
                 avatarDialogo=this.avatarAlcalde;
                 linea1="No os preocupeís, recibiréis una recompensa, pero tened";
                 linea2="mucho cuidado jóvenes aventureros.";
