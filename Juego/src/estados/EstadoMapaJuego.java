@@ -148,13 +148,15 @@ public class EstadoMapaJuego extends BasicGameState {
         int yEventos = (int) y / map.getTileHeight();
         return eventos[xEventos][yEventos];
     }
-    public int devuelveIDEvento(float x, float y) {
-        int id; 
-        int xEventos = (int) x / map.getTileWidth();
-        int yEventos = (int) y / map.getTileHeight();
-        id = map.getTileId(xEventos, yEventos, LAYEREVENTOS);
-        return id;
-    }/**/
+    public int[] devuelvePosicion(float x, float y) {
+        int pos[] = {0,0};
+        int xPos = (int) x / map.getTileWidth();
+        int yPos = (int) y / map.getTileHeight();
+        pos[0] = xPos;
+        pos[1] = yPos;
+        return pos;
+    }
+
         
         
 }

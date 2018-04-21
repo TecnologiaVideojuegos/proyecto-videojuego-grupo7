@@ -20,6 +20,8 @@ public class Heroe {
     //EDIT
     private float aparicion=0;
     
+    private int numMapa = 2;
+    
     //EDIT
     public Heroe(float x, float y) throws SlickException {
         Image[] animationUp = {new Image("Imagenes/HeroeMundo/her20.png"), new Image("Imagenes/HeroeMundo/her22.png")};
@@ -172,30 +174,38 @@ public class Heroe {
     private void ApareceEvento(GameContainer gc, StateBasedGame sbg, int delta, EstadoMapaJuego gps, Input input)
     {
         //EDIT: Llamada a clase eventos, ajustar colision
-        int id = 0;
+        int tipo;
+        int posicion[] = {0,0};
+        boolean evento = false;
         if (input.isKeyDown(Input.KEY_UP)) {
-            if (gps.isEventos(pos.x + w -4, pos.y - delta * SPEED) && gps.isEventos(pos.x + 4, pos.y - delta * SPEED)) {
-                id=gps.devuelveIDEvento(pos.x+w, pos.y- delta * SPEED);
-                System.out.println(id);
-            }
+            if (gps.isEventos(pos.x + w -offset, pos.y - delta * SPEED) && gps.isEventos(pos.x + offset, pos.y - delta * SPEED)) {
+                posicion = gps.devuelvePosicion(pos.x + w -offset, pos.y- delta * SPEED);
+                evento = true;
+            } 
         } else if (input.isKeyDown(Input.KEY_DOWN)) {
-            if (gps.isEventos(pos.x + w - 4, pos.y + h + delta * SPEED) && gps.isEventos(pos.x + 4, pos.y + h + delta * SPEED)) {
-                id=gps.devuelveIDEvento(pos.x+w, pos.y+ h + delta * SPEED);
-                System.out.println(id);
-                //
+            if (gps.isEventos(pos.x + w - offset, pos.y + h + delta * SPEED) && gps.isEventos(pos.x + offset, pos.y + h + delta * SPEED)) {
+                posicion=gps.devuelvePosicion(pos.x + w - offset, pos.y + h + delta * SPEED);
+                evento = true;
             }
         } else if (input.isKeyDown(Input.KEY_LEFT)) {
-            if (gps.isEventos(pos.x - delta * SPEED, pos.y + 4) && gps.isEventos(pos.x - delta * SPEED, pos.y + h - 4)) {
-                id=gps.devuelveIDEvento(pos.x- delta * SPEED, pos.y);
-                System.out.println(id);
+            if (gps.isEventos(pos.x - delta * SPEED, pos.y + offset) && gps.isEventos(pos.x - delta * SPEED, pos.y + h - offset)) {
+                posicion=gps.devuelvePosicion(pos.x - delta * SPEED, pos.y + offset);
+                evento = true;
             }
 
         } else if (input.isKeyDown(Input.KEY_RIGHT)) {
-            if (gps.isEventos(pos.x + w + delta * SPEED, pos.y + h - 4) && gps.isEventos(pos.x + w + delta * SPEED, pos.y + 4)) {
-                id=gps.devuelveIDEvento(pos.x, pos.y);
-                System.out.println(id);
+            if (gps.isEventos(pos.x + w + delta * SPEED, pos.y + h - offset) && gps.isEventos(pos.x + w + delta * SPEED, pos.y + 4)) {
+                posicion=gps.devuelvePosicion(pos.x + w + delta * SPEED , pos.y + h - offset);
+                evento = true;
             }
         }
+        if(evento){
+            tipo = VenganzaBelial.eventos.comprobarEvento(posicion[0], posicion[1], numMapa);
+            if (tipo == 0)
+                sbg.enterState(VenganzaBelial.ESTADOEVENTO);
+            if (tipo == 1)
+                sbg.enterState(VenganzaBelial.ESTADOTIENDA);
+        }
+    }
 
-    }/**/
 }
