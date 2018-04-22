@@ -342,6 +342,7 @@ public class EscenaBosque2 extends BasicGameState{
                 linea4="";
                 break;
             case 17:
+                reproducirExclamacion=false;
                 avatarDialogo=this.avatarM;
                 //////="////////////////////////////////////////////////////////";
                 linea1="Menuda capitana estás echa.";
@@ -401,7 +402,7 @@ public class EscenaBosque2 extends BasicGameState{
                 break;
             case 24:
                 estado=0;
-                sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);
+                sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
                 break;
 
         }

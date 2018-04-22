@@ -303,8 +303,10 @@ public class EscenaBosquePreBoss extends BasicGameState{
                 linea4="";
                 break;
             case 14:
+                reproducirExclamacion=false;
                 estado=0;
-                sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);
+                sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);//EDIT:
+                //Deberiamos entrar en estado Combate contra Boss
                 break;
 
         }

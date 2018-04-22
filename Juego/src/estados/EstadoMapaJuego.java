@@ -10,7 +10,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
 public class EstadoMapaJuego extends BasicGameState {
-    private final int LAYEREVENTOS = 2;
+    private final int LAYEREVENTOS = 2;//EDIT
     static boolean fullscreen = false;
     static boolean showFPS = true;
     private boolean[][] blocked;
@@ -36,8 +36,10 @@ public class EstadoMapaJuego extends BasicGameState {
 
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
+        //EDIT: Hacer un Switch de carga de mapa en funcion del alguun indicador
         map = new TiledMap("tiledmaps/mapaBosque.tmx");
         //map = new TiledMap("tiledmaps/prueba.tmx");
+        //
         mapWidth = map.getWidth() * map.getTileWidth();
         mapHeight = map.getHeight() * map.getTileHeight();
         tileHeight = map.getTileHeight();

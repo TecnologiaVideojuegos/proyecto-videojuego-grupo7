@@ -172,7 +172,8 @@ public class EstadoTienda extends BasicGameState {
                    break;
                case SALIR:
                    this.flagEntrando=true;
-                   sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);//EDIT
+                   //sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);//EDIT
+                   sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);//EDIT
                    break;
            }
            eleccionJugador=0;
@@ -436,7 +437,7 @@ public class EstadoTienda extends BasicGameState {
                 else{
                     opcionesJugadorTTF.drawString(100, i*50 + 50, nombreItem, notChosen);
                 }
-                opcionesJugadorTTF.drawString(550, i * 50 + 50, ""+mercanciaActual.get(i).getPrecioVenta(),amarillo);
+                opcionesJugadorTTF.drawString(550, i * 50 + 50, ""+inven.getItems().get(i).getPrecioVenta(),amarillo);
             }
             else
                 opcionesJugadorTTF.drawString(100,i*50+50,"---");

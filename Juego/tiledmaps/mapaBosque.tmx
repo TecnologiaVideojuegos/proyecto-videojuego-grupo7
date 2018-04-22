@@ -41,7 +41,15 @@
    <property name="evento" type="bool" value="true"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt2qENACAQA8AXIFAk7L8nlgEYoCTcyarqplUAAADAj0ZPNwAAAAAAAAAAAFKW/xAAAAAAPGO3O5s2PAAg5AB/fgE1
+   eJzt2iEKACAQBECDBpPge/z/l6xGg90TnImbri0slxIAwDZK9AUAwC1V7wMAAAAAAAAAwLe6/yEAAAAAeMbMZ9ZseABAkAXqCwF2
+  </data>
+ </layer>
+ <layer name="escenas" width="86" height="60">
+  <properties>
+   <property name="evento" type="bool" value="true"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt2jENACAAA0EGJOFfGwMaPiRwp6D5uWMAAADAsebtBW/StaFrQ9eGrg1dG7o2dG3oCgAAAAAAAAAAAAAUfJUbujZ0beja0LWha0NXfrYBa20DgQ==
   </data>
  </layer>
 </map>

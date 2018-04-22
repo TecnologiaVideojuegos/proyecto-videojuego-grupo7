@@ -105,7 +105,6 @@ public class EscenaCarreta extends BasicGameState{
         avatarDialogo = avatarH;
         sonidoSelect=new Sound("Musica/Efectos/select.wav");
         sonidoExplosion=new Sound("Musica/Efectos/Explosion5.wav");
-        //EDIT//ost= new Music("Musica/BSO/caminoMoria.wav");
         /**/
         
     }
