@@ -29,21 +29,20 @@ public final class Rata extends Enemigo{
     }
 
     @Override
-    public void estrategiaAtacar(ArrayList<Jugador> jugadores) {
+    public String estrategiaAtacar(ArrayList<Jugador> jugadores) {
+        //Ataca al primer aliado que este vivo
+        String msg;
         Random rand = new Random();
         float probHab = rand.nextFloat();
         int at = this.getAtaque();
         int danyo, total, indice, danyoInflingido;
+        boolean habilidad = false;
         //Se supone que hay vivos porque se comprueba donde se llame
         //Comprobamos si va a hacer habilidad o no
-        if (probHab > 0.8)
+        if (probHab > 0.8){
             at += this.getHabilidad().get(0).getDanyo();
-        danyo = at - jugadores.get(0).getDefensa();
-
-        if (danyo > 0)
-            total = danyo;
-        else
-            total = 1;
+            habilidad = true;
+        }
 
         //Elegimos a quien atacar simplemente desde 0 a 2 el primero que este vivo
         if (jugadores.get(0).estaVivo())
@@ -53,11 +52,22 @@ public final class Rata extends Enemigo{
         else
             indice = 2;
 
+        danyo = at - jugadores.get(indice).getDefensa();
+
+        if (danyo > 0)
+            total = danyo;
+        else
+            total = 1;
+        
         danyoInflingido = jugadores.get(indice).getHpActual() - total;
         if(danyoInflingido < 0)
             jugadores.get(indice).setHpActual(0);
         else
-            jugadores.get(indice).setHpActual(jugadores.get(indice).getHpActual() - total);     
-        
+            jugadores.get(indice).setHpActual(danyoInflingido);   
+        //Se ha hecho funciÃ³n para que todos los tipos de enemigos la tengan
+        //y no tengamos que estar metiendo el mismo codigo varias veces
+        msg = this.escribirMensaje(habilidad, this.getHabilidad().get(0), jugadores.get(indice), danyoInflingido);
+        return msg;
     }
 }
+
