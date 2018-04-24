@@ -10,13 +10,37 @@ import java.util.ArrayList;
 import personajes.Jugador;
 
 public class Gestion {
-    public ArrayList<Jugador> jugs;
-    public ArrayList<ArrayList<Enemigo>> enem;
-    public Inventario inv = new Inventario();
+    private ArrayList<Jugador> jugs;
+    private ArrayList<ArrayList<Enemigo>> enem;
+    private Inventario inv = new Inventario();
     
     public Gestion(){
         jugs = new ArrayList<>();
         enem = new ArrayList<ArrayList<Enemigo>>();
+    }
+
+    public ArrayList<Jugador> getJugs() {
+        return jugs;
+    }
+
+    public void setJugs(ArrayList<Jugador> jugs) {
+        this.jugs = jugs;
+    }
+
+    public ArrayList<ArrayList<Enemigo>> getEnem() {
+        return enem;
+    }
+
+    public void setEnem(ArrayList<ArrayList<Enemigo>> enem) {
+        this.enem = enem;
+    }
+
+    public Inventario getInv() {
+        return inv;
+    }
+
+    public void setInv(Inventario inv) {
+        this.inv = inv;
     }
     
     public ArrayList<Jugador> cargarJugadores() {

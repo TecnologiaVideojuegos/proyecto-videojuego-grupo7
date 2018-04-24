@@ -32,11 +32,11 @@ public final class Horacia extends Jugador{
         this.setNombre("Horacia");
         this.setArma(armaInicio);
         this.setArmadura(armaduraInicio);
-        this.setHp(100);
+        this.setHp(200);
         this.setHpActual(this.getHp());
         this.setMp(30);
         this.setMpActual(30);
-        this.setAtaqueBase(50);
+        this.setAtaqueBase(55);
         this.setAtaque(this.getAtaqueBase() + this.getArma().getDanyo());
         this.setDefensaBase(30);
         this.setDefensa(this.getDefensaBase()+ this.getArmadura().getDefensa());

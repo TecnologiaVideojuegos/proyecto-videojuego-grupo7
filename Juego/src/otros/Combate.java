@@ -255,10 +255,16 @@ public final class Combate {
         int ini = 0; //dependiendo del nivel emepzamos a buscar en una pos u otra
         int fin = rand.nextInt(6);//Como hay 6 tipos de party elegimos entre la 0-5
         int nivel=0;
+        int exptotal=0;
+        int dinerototal=0;
         //Nos quedamos el mayor nivel
-        for (int i = 0; i < VenganzaBelial.atributoGestion.jugs.size(); i++) {
-            if (VenganzaBelial.atributoGestion.jugs.get(i).getNivel() > nivel)
-                nivel = VenganzaBelial.atributoGestion.jugs.get(i).getNivel();
+//        for (int i = 0; i < VenganzaBelial.atributoGestion.jugs.size(); i++) {
+//            if (VenganzaBelial.atributoGestion.jugs.get(i).getNivel() > nivel)
+//                nivel = VenganzaBelial.atributoGestion.jugs.get(i).getNivel();
+//        }
+        for (int i = 0; i < VenganzaBelial.atributoGestion.getJugs().size(); i++) {
+            if (VenganzaBelial.atributoGestion.getJugs().get(i).getNivel() > nivel)
+                nivel = VenganzaBelial.atributoGestion.getJugs().get(i).getNivel();
         }
         switch (Mapa)
         {
@@ -278,24 +284,34 @@ public final class Combate {
                 else if (nivel <= 3)
                     ini = 6;
                 else
-                 ini = 12;
+                    ini = 12;
                  ArrayEnemigosUsado = ini + fin;
                  regeneraEnemigos();
-                for (int i = 0; i < VenganzaBelial.atributoGestion.enem.get(ArrayEnemigosUsado).size(); i++) {
-                    GeneraEnemigos.add((Personaje)VenganzaBelial.atributoGestion.enem.get(ArrayEnemigosUsado).get(i));
-                }
+                 
+                for (int i = 0; i < VenganzaBelial.atributoGestion.getEnem().get(ArrayEnemigosUsado).size(); i++) {
+                    GeneraEnemigos.add((Personaje)VenganzaBelial.atributoGestion.getEnem().get(ArrayEnemigosUsado).get(i));
+                    Enemigo enemaux=(Enemigo)GeneraEnemigos.get(i);
+                    exptotal+=enemaux.getExpAportada();
+                    dinerototal+=enemaux.getOro();
+                }          
                 break;
             case 2:
                 break;
+            case 8://Boss del Bosque
+                //Drop Arma Kibito 50%
+                //Armadura random 50%
+                //Exp random entre 100-200
+                break;
         }/*switch (Mapa)*/
+        this.setExpCombate(exptotal);
         return GeneraEnemigos;
     }/*private ArrayList<Personaje> GeneraArrayEnemigos (int Mapa)*/
 
     private void regeneraEnemigos()
     {
         Enemigo enem;
-        for (int i = 0; i < VenganzaBelial.atributoGestion.enem.get(ArrayEnemigosUsado).size(); i++) {
-            enem=VenganzaBelial.atributoGestion.enem.get(ArrayEnemigosUsado).get(i);
+        for (int i = 0; i < VenganzaBelial.atributoGestion.getEnem().get(ArrayEnemigosUsado).size(); i++) {
+            enem=VenganzaBelial.atributoGestion.getEnem().get(ArrayEnemigosUsado).get(i);
             enem.setHpActual(enem.getHp());
         }
     }/*private void regeneraEnemigos()*/

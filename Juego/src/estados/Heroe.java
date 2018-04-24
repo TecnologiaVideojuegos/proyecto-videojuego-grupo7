@@ -30,20 +30,11 @@ public class Heroe {
     private static final int ANIMATIONSPEED = 500;
     private static final float SPEED = 0.1f;//0.1f
     private int w, h;
-    private float tasaAparicion=0.0f;//0-1(0-100%)
+    private float tasaAparicion=0.1f;//0-1(0-100%)
     private int offset=6;//Original=-4
     //EDIT
     private float aparicion=1;
 
-    private final int MAPATUTORIAL = 0;
-    private final int MAPABOSQUE = 1;
-    private final int MAPAPUERTO = 2;
-    private final int MAPACIUDADCATACUMBAS = 3;
-    private final int MAPADUNGEONCATACUMBAS = 4;
-    private final int MAPACIUDADMONTANA = 5;
-    private final int MAPADUNGEONMONTANA = 6;
-    
-    private int numMapa = MAPABOSQUE;
     
     //EDIT
     public Heroe(float x, float y) throws SlickException {
@@ -227,7 +218,7 @@ public class Heroe {
             }
         }
         if(evento){
-            tipo = VenganzaBelial.eventos.comprobarEvento(posicion[0], posicion[1], numMapa);
+            tipo = VenganzaBelial.eventos.comprobarEvento(posicion[0], posicion[1], VenganzaBelial.MapaActual);
             switch (tipo) {
                 case 0://Renderizar dialogo simple
                     renderizarEvento=true;
@@ -237,12 +228,12 @@ public class Heroe {
                     break;
                 case 2://Healier
                     //Cura a los aliados al maximoVenganzaBelial.atributoGestion.jugs.get(0).setHpActual(0);
-                    VenganzaBelial.atributoGestion.jugs.get(0).setHpActual(VenganzaBelial.atributoGestion.jugs.get(0).getHp());
-                    VenganzaBelial.atributoGestion.jugs.get(1).setHpActual(VenganzaBelial.atributoGestion.jugs.get(1).getHp());
-                    VenganzaBelial.atributoGestion.jugs.get(2).setHpActual(VenganzaBelial.atributoGestion.jugs.get(2).getHp());
-                    VenganzaBelial.atributoGestion.jugs.get(0).setMpActual(VenganzaBelial.atributoGestion.jugs.get(0).getMp());
-                    VenganzaBelial.atributoGestion.jugs.get(1).setMpActual(VenganzaBelial.atributoGestion.jugs.get(1).getMp());
-                    VenganzaBelial.atributoGestion.jugs.get(2).setMpActual(VenganzaBelial.atributoGestion.jugs.get(2).getMp());
+                    VenganzaBelial.atributoGestion.getJugs().get(0).setHpActual(VenganzaBelial.atributoGestion.getJugs().get(0).getHp());
+                    VenganzaBelial.atributoGestion.getJugs().get(1).setHpActual(VenganzaBelial.atributoGestion.getJugs().get(1).getHp());
+                    VenganzaBelial.atributoGestion.getJugs().get(2).setHpActual(VenganzaBelial.atributoGestion.getJugs().get(2).getHp());
+                    VenganzaBelial.atributoGestion.getJugs().get(0).setMpActual(VenganzaBelial.atributoGestion.getJugs().get(0).getMp());
+                    VenganzaBelial.atributoGestion.getJugs().get(1).setMpActual(VenganzaBelial.atributoGestion.getJugs().get(1).getMp());
+                    VenganzaBelial.atributoGestion.getJugs().get(2).setMpActual(VenganzaBelial.atributoGestion.getJugs().get(2).getMp());
                     //Cuenta la tipica historia de te voy a curar
                     renderizarEvento=true;
                     break;
@@ -250,8 +241,6 @@ public class Heroe {
                       sbg.enterState(VenganzaBelial.eventos.getNextEstado());  
                     break;
                 case 4://Batalla definida(Boss o eventos especiales)
-                    break;
-                case 5://Cambio de mapa, carga de nuevos datos en gestion
                     break;
                 default:
                     break;
@@ -265,14 +254,6 @@ public class Heroe {
     {
         if(renderizarEvento)
         {       
-            //EDIT:render avatar, posible base de datos de imagenes
-    //        avatarDialogo.draw(POSICIONAVATARX, POSICIONAVATARY, TAMANYOAVATARX, TAMANYOAVATARY);
-//            this.ventanaDialogo.draw(0, 600, 1);
-//    //      ///////////////////////////////////,"////////////////////////////////////////////////////////"/;
-//            mensajePantalla.drawString(160, 625,linea1);
-//            mensajePantalla.drawString(160, 640,linea2);
-//            mensajePantalla.drawString(160, 655,linea3);
-//            mensajePantalla.drawString(160, 670,linea4);
             Vector2f posicionEvento= VenganzaBelial.eventos.getPosicionEvento();
             this.ventanaDialogo.draw(posicionEvento.x*this.w+10, posicionEvento.y*this.h+10, 1);
     //      ///////////////////////////////////,"////////////////////////////////////////////////////////"/;

@@ -93,7 +93,7 @@ public class EstadoTienda extends BasicGameState {
                 break;
         }
         vendedor.draw(800, 130);
-        opcionesJugadorTTF.drawString(1000, 650, "Dinero: "+VenganzaBelial.atributoGestion.inv.getDinero(),amarillo);
+        opcionesJugadorTTF.drawString(1000, 650, "Dinero: "+VenganzaBelial.atributoGestion.getInv().getDinero(),amarillo);
     }
 
     @Override
@@ -115,7 +115,7 @@ public class EstadoTienda extends BasicGameState {
                 comprando();
                 break;
             case VENDIENDO:
-                OpcionControl(VenganzaBelial.atributoGestion.inv.getItems().size());
+                OpcionControl(VenganzaBelial.atributoGestion.getInv().getItems().size());
                 vendiendo();
                 break;
             case SALIENDO:
@@ -193,15 +193,15 @@ public class EstadoTienda extends BasicGameState {
     private void compraObjeto(Item objeto)
     {
         int dineroRestante;
-        if(VenganzaBelial.atributoGestion.inv.getDinero()>objeto.getPrecioCompra())
+        if(VenganzaBelial.atributoGestion.getInv().getDinero()>objeto.getPrecioCompra())
         {
             if(objeto.getTipoItem()!=0)//Si no es un consumible
             {
-                if(VenganzaBelial.atributoGestion.inv.addItem(objeto))
+                if(VenganzaBelial.atributoGestion.getInv().addItem(objeto))
                 {
                     //Restamos el dinero
-                    dineroRestante=VenganzaBelial.atributoGestion.inv.getDinero()-objeto.getPrecioCompra();
-                    VenganzaBelial.atributoGestion.inv.setDinero(dineroRestante);
+                    dineroRestante=VenganzaBelial.atributoGestion.getInv().getDinero()-objeto.getPrecioCompra();
+                    VenganzaBelial.atributoGestion.getInv().setDinero(dineroRestante);
                     //Eliminamos el obejeto de mercancias
                     this.mercanciaActual.remove(objeto);
                     //EDIT: hacer algo para eliminar de la base de datos de mercancias.
@@ -221,41 +221,41 @@ public class EstadoTienda extends BasicGameState {
                     //if(objeto.getNombre()=="PocionVida")
                     if(objeto.getNombre().matches("PocionVida"))
                     {
-                        consumInv = (Consumible)VenganzaBelial.atributoGestion.inv.getItems().get(0); 
+                        consumInv = (Consumible)VenganzaBelial.atributoGestion.getInv().getItems().get(0); 
                         if(consumInv.getNumero()<consumInv.getCapacidad())
                         {
                             consumInv.setNumero(consumInv.getNumero()+1);
                             consumTienda.setNumero(consumTienda.getNumero()-1);
                             //Restamos el dinero
-                            dineroRestante=VenganzaBelial.atributoGestion.inv.getDinero()-objeto.getPrecioCompra();
-                            VenganzaBelial.atributoGestion.inv.setDinero(dineroRestante);       
+                            dineroRestante=VenganzaBelial.atributoGestion.getInv().getDinero()-objeto.getPrecioCompra();
+                            VenganzaBelial.atributoGestion.getInv().setDinero(dineroRestante);       
                         }
                     }/*if(objeto.getNombre()=="PocionVida")*/
                     //else if(objeto.getNombre()=="PocionMana")
                     else if(objeto.getNombre().matches("PocionMana"))
                     {
-                        consumInv = (Consumible)VenganzaBelial.atributoGestion.inv.getItems().get(1); 
+                        consumInv = (Consumible)VenganzaBelial.atributoGestion.getInv().getItems().get(1); 
                         if(consumInv.getNumero()<consumInv.getCapacidad())
                         {
                             consumInv.setNumero(consumInv.getNumero()+1);
                             consumTienda.setNumero(consumTienda.getNumero()-1);
                             //Restamos el dinero
-                            dineroRestante=VenganzaBelial.atributoGestion.inv.getDinero()-objeto.getPrecioCompra();
-                            VenganzaBelial.atributoGestion.inv.setDinero(dineroRestante);  
+                            dineroRestante=VenganzaBelial.atributoGestion.getInv().getDinero()-objeto.getPrecioCompra();
+                            VenganzaBelial.atributoGestion.getInv().setDinero(dineroRestante);  
                         }
                     }/*if(objeto.getNombre()=="PocionMana")*/
                     //else if(objeto.getNombre()=="PocionResucitar")
                     else if(objeto.getNombre().matches("PocionResucitar"))
                     {
                         
-                        consumInv = (Consumible)VenganzaBelial.atributoGestion.inv.getItems().get(2); 
+                        consumInv = (Consumible)VenganzaBelial.atributoGestion.getInv().getItems().get(2); 
                         if(consumInv.getNumero()<consumInv.getCapacidad())
                         {
                             consumInv.setNumero(consumInv.getNumero()+1);
                             consumTienda.setNumero(consumTienda.getNumero()-1);
                             //Restamos el dinero
-                            dineroRestante=VenganzaBelial.atributoGestion.inv.getDinero()-objeto.getPrecioCompra();
-                            VenganzaBelial.atributoGestion.inv.setDinero(dineroRestante);  
+                            dineroRestante=VenganzaBelial.atributoGestion.getInv().getDinero()-objeto.getPrecioCompra();
+                            VenganzaBelial.atributoGestion.getInv().setDinero(dineroRestante);  
                         }
                     }/*if(objeto.getNombre()=="PocionResucitar")*/
                 }/*if(consumTienda.getNumero()>0)*/
@@ -273,18 +273,18 @@ public class EstadoTienda extends BasicGameState {
         
         if(input.isKeyPressed(Input.KEY_ENTER)) 
         {
-            if(VenganzaBelial.atributoGestion.inv.getItems().get(eleccionJugador).getTipoItem()!=0)
+            if(VenganzaBelial.atributoGestion.getInv().getItems().get(eleccionJugador).getTipoItem()!=0)
             {
                 //EDIT: Comprobar
-                nuevoDinero=VenganzaBelial.atributoGestion.inv.getDinero()+VenganzaBelial.atributoGestion.inv.getItems().get(eleccionJugador).getPrecioVenta();
-                VenganzaBelial.atributoGestion.inv.setDinero(nuevoDinero);
-                VenganzaBelial.atributoGestion.inv.borrarItem(VenganzaBelial.atributoGestion.inv.getItems().get(eleccionJugador));
-                if(eleccionJugador>=VenganzaBelial.atributoGestion.inv.getItems().size())
+                nuevoDinero=VenganzaBelial.atributoGestion.getInv().getDinero()+VenganzaBelial.atributoGestion.getInv().getItems().get(eleccionJugador).getPrecioVenta();
+                VenganzaBelial.atributoGestion.getInv().setDinero(nuevoDinero);
+                VenganzaBelial.atributoGestion.getInv().borrarItem(VenganzaBelial.atributoGestion.getInv().getItems().get(eleccionJugador));
+                if(eleccionJugador>=VenganzaBelial.atributoGestion.getInv().getItems().size())
                      eleccionJugador--;//EDIT
             }
             else
             {
-                Consumible consum=(Consumible)VenganzaBelial.atributoGestion.inv.getItems().get(eleccionJugador);
+                Consumible consum=(Consumible)VenganzaBelial.atributoGestion.getInv().getItems().get(eleccionJugador);
                 if(consum.getNumero()>0)
                 {
                     //if(objeto.getNombre()=="PocionVida")
@@ -292,24 +292,24 @@ public class EstadoTienda extends BasicGameState {
                     {
                         consum.setNumero(consum.getNumero()-1);
                         //Restamos el dinero
-                        nuevoDinero=VenganzaBelial.atributoGestion.inv.getDinero()+consum.getPrecioVenta();
-                        VenganzaBelial.atributoGestion.inv.setDinero(nuevoDinero);       
+                        nuevoDinero=VenganzaBelial.atributoGestion.getInv().getDinero()+consum.getPrecioVenta();
+                        VenganzaBelial.atributoGestion.getInv().setDinero(nuevoDinero);       
                     }/*if(objeto.getNombre()=="PocionVida")*/
                     //else if(objeto.getNombre()=="PocionMana")
                     else if(consum.getNombre().matches("PocionMana"))
                     {
                         consum.setNumero(consum.getNumero()-1);
                         //Restamos el dinero
-                        nuevoDinero=VenganzaBelial.atributoGestion.inv.getDinero()+consum.getPrecioVenta();
-                        VenganzaBelial.atributoGestion.inv.setDinero(nuevoDinero); 
+                        nuevoDinero=VenganzaBelial.atributoGestion.getInv().getDinero()+consum.getPrecioVenta();
+                        VenganzaBelial.atributoGestion.getInv().setDinero(nuevoDinero); 
                     }/*if(objeto.getNombre()=="PocionMana")*/
                     //else if(objeto.getNombre()=="PocionResucitar")
                     else if(consum.getNombre().matches("PocionResucitar"))
                     {
                        consum.setNumero(consum.getNumero()-1);
                         //Restamos el dinero
-                        nuevoDinero=VenganzaBelial.atributoGestion.inv.getDinero()+consum.getPrecioVenta();
-                        VenganzaBelial.atributoGestion.inv.setDinero(nuevoDinero); 
+                        nuevoDinero=VenganzaBelial.atributoGestion.getInv().getDinero()+consum.getPrecioVenta();
+                        VenganzaBelial.atributoGestion.getInv().setDinero(nuevoDinero); 
                     }/*if(objeto.getNombre()=="PocionResucitar")*/
                 }/*if(numero>0)*/
             }
@@ -415,7 +415,7 @@ public class EstadoTienda extends BasicGameState {
     
     private void renderVendiendo()
     {
-        Inventario inven = VenganzaBelial.atributoGestion.inv;
+        Inventario inven = VenganzaBelial.atributoGestion.getInv();
         int espaciosLlenos= inven.getItems().size();
         String nombreItem="";
         for (int i=0;i<inven.getCapacidadInv();i++)

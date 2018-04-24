@@ -10,7 +10,6 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
 public class EstadoMapaJuego extends BasicGameState {
-    private final int LAYEREVENTOS = 2;//EDIT
     static boolean fullscreen = false;
     static boolean showFPS = true;
     private boolean[][] blocked;
@@ -24,7 +23,15 @@ public class EstadoMapaJuego extends BasicGameState {
     int mapHeight, mapWidth;
     int tileHeight, tileWidth;
     int idEstado;
-
+    
+    private int mapaCargado;
+    private final int MAPATUTORIAL = 0;
+    private final int MAPABOSQUE = 1;
+    private final int MAPAPUERTO = 2;
+    private final int MAPACIUDADCATACUMBAS = 3;
+    private final int MAPADUNGEONCATACUMBAS = 4;
+    private final int MAPACIUDADMONTANA = 5;
+    private final int MAPADUNGEONMONTANA = 6;
     public EstadoMapaJuego(int id) {
         idEstado = id;
     }
@@ -37,7 +44,20 @@ public class EstadoMapaJuego extends BasicGameState {
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
         //EDIT: Hacer un Switch de carga de mapa en funcion del alguun indicador
+        mapaCargado=VenganzaBelial.MapaActual;
         map = new TiledMap("tiledmaps/mapaBosque.tmx");
+        for (int i = 0; i < VenganzaBelial.atributoGestion.getEnem().size(); i++) {
+            for (int j = 0; j < VenganzaBelial.atributoGestion.getEnem().get(i).size(); j++) {
+                if(VenganzaBelial.atributoGestion.getEnem().get(i).get(j).getNombre().equals("Rata"))
+                    VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Bosque/Rata.png");
+                else if(VenganzaBelial.atributoGestion.getEnem().get(i).get(j).getNombre().equals("Goblin"))
+                    VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Bosque/Goblin.png");
+                else if(VenganzaBelial.atributoGestion.getEnem().get(i).get(j).getNombre().equals("Araña"))
+                    VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Bosque/Spider.png");
+            }
+        }
+            
+        //VenganzaBelial.atributoGestion.enem.
         //map = new TiledMap("tiledmaps/prueba.tmx");
         //
         mapWidth = map.getWidth() * map.getTileWidth();
@@ -57,16 +77,32 @@ public class EstadoMapaJuego extends BasicGameState {
     @Override
     public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
         
-        //EDIT: idea para eventos
-        /*He pensado que habra eventos donde queramos que se renderice el mapa y se den opciones al jugador
-        *pero el jugador no tendra que moverse, por ello tal vez debamos añadir un flag que controle si estamos
-        *moviendonos por el mapa o moviendonos en las opciones de un evento.
-        EJ:
-        if(evento==false)
-            player.update(gc, sbg, delta, this);
-        else
-            eventos.update();//COntrol del evento dentrol Estado Eventos
-        */
+        if(VenganzaBelial.MapaActual>this.mapaCargado){
+            this.mapaCargado=VenganzaBelial.MapaActual;
+            switch(VenganzaBelial.MapaActual){
+                case 0://Mapa Tutorial: ID=0
+                    break;
+                case 1://Dungeon Bosque: ID=1
+                    map = new TiledMap("tiledmaps/mapaBosque.tmx");
+                    /**/
+                    break;
+                case 2://Ciudad Puerto: ID=2
+                    break;
+                case 3://Ciudad Catacumbas: ID=3
+                    break;
+                case 4://Dungeon Catacumbas: ID=4
+                    break;
+                case 5: //Ciudad Montañas: ID=5
+                    break;
+                case 6://Dungeon Montañas: ID=6
+                    break;
+                case 7: //Mapa Boss: ID=6(Posible cambio en este identificador)
+                    break;
+            }
+            initializeBlocked();
+            initializeEnemigos();
+            initializeEventos();
+        }
         player.update(gc, sbg, delta, this);
         if (gc.getInput().isKeyPressed(Input.KEY_ESCAPE)) {
             sbg.enterState(VenganzaBelial.ESTADOMENU);

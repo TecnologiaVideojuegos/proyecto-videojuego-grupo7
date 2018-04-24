@@ -50,7 +50,7 @@ public class EstadoMenuInicio extends BasicGameState {
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
         
-        fondo= new Image("Imagenes/Fondos/Fondo1.png");
+        fondo= new Image("Imagenes/Fondos/Fondo.jpg");
         letraMenu = new Font("Verdana", Font.BOLD, 30);
         letraEquipo = new Font("Verdana", Font.PLAIN, 20);
         letraTitulo = new Font("Verdana", Font.BOLD, 40);
@@ -97,13 +97,13 @@ public class EstadoMenuInicio extends BasicGameState {
             switch (eleccionJugador) {
                 case EMPEZAR:
                     Gestion ges = new Gestion();
-                    Horacia horacia = new Horacia(ges.inv);
-                    Kibito kibito = new Kibito(ges.inv);
-                    Mordeim mordeim = new Mordeim(ges.inv);
-                    ges.jugs.add(horacia);
-                    ges.jugs.add(kibito);
-                    ges.jugs.add(mordeim);
-                    ges.guardarJugadores(ges.jugs);
+                    Horacia horacia = new Horacia(ges.getInv());
+                    Kibito kibito = new Kibito(ges.getInv());
+                    Mordeim mordeim = new Mordeim(ges.getInv());
+                    ges.getJugs().add(horacia);
+                    ges.getJugs().add(kibito);
+                    ges.getJugs().add(mordeim);
+                    ges.guardarJugadores(ges.getJugs());
                     break;
                 case CARGAR:
                     //heropos = fileio.loadSave();
@@ -120,8 +120,8 @@ public class EstadoMenuInicio extends BasicGameState {
                 case PRUEBASHISAM:
                     //sbg.enterState(VenganzaBelial.ESTADOESCENAPROTOTIPO);//EDIT 
                     //sbg.enterState(VenganzaBelial.ESCENABOSQUE2);//EDIT
-                    sbg.enterState(VenganzaBelial.ESCENABOSQUEPREBOSS);//EDIT
-                    //sbg.enterState(VenganzaBelial.ESCENAPUERTO2);//EDIT
+                    //sbg.enterState(VenganzaBelial.ESCENABOSQUEPREBOSS);//EDIT
+                    sbg.enterState(VenganzaBelial.ESCENAPUERTO2);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENAPUERTO1);//EDIT
                     break;
                 case PRUEBASDAVID:

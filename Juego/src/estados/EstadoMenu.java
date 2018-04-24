@@ -149,7 +149,7 @@ public class EstadoMenu extends BasicGameState{
                 menuPJ();
                 break;
             case MENUINVENTARIO:
-                int numeroItems=VenganzaBelial.atributoGestion.inv.getItems().size();
+                int numeroItems=VenganzaBelial.atributoGestion.getInv().getItems().size();
                 OpcionControl(numeroItems);//La party son 3 PJs
                 menuInventario();
                 break;
@@ -162,11 +162,11 @@ public class EstadoMenu extends BasicGameState{
                 cargando();
                 break;
             case CAMBIARARMA:
-                OpcionControl(VenganzaBelial.atributoGestion.inv.getItems().size());
+                OpcionControl(VenganzaBelial.atributoGestion.getInv().getItems().size());
                 cambiarArma();
                 break;
             case CAMBIARARMADURA:
-                OpcionControl(VenganzaBelial.atributoGestion.inv.getItems().size());
+                OpcionControl(VenganzaBelial.atributoGestion.getInv().getItems().size());
                 cambiarArmadura();
                 break;
             case SELHABILIDAD:
@@ -286,7 +286,7 @@ public class EstadoMenu extends BasicGameState{
      private void selHabilidades()/*EDIT: Bajo Pruebas*/
     {
         int tipo;
-        Jugador pj= VenganzaBelial.atributoGestion.jugs.get(this.personajeElegido);
+        Jugador pj= VenganzaBelial.atributoGestion.getJugs().get(this.personajeElegido);
         if(input.isKeyPressed(Input.KEY_ENTER))
         {
             if(pj.habilidadUsable(this.eleccionJugador))
@@ -314,13 +314,13 @@ public class EstadoMenu extends BasicGameState{
     {
        if(input.isKeyPressed(Input.KEY_ENTER))
         { 
-            Jugador pj= VenganzaBelial.atributoGestion.jugs.get(this.personajeElegido);
+            Jugador pj= VenganzaBelial.atributoGestion.getJugs().get(this.personajeElegido);
             switch (estadoAnterior)
             {
                 case SELHABILIDAD:
                     //Ejecutar habilidad con el pj correcpondiente sobre el Aliado designado y comprobar que se puede
                     //Si se puede se ejecutará y devolvera true
-                    if(pj.usarHabilidad(this.habilidadSeleccionada, VenganzaBelial.atributoGestion.jugs.get(eleccionJugador))&& pj.habilidadUsable(this.habilidadSeleccionada))
+                    if(pj.usarHabilidad(this.habilidadSeleccionada, VenganzaBelial.atributoGestion.getJugs().get(eleccionJugador))&& pj.habilidadUsable(this.habilidadSeleccionada))
                     {
                         sonidoSelect.play();
                         estado=SELOBJETIVO;
@@ -335,7 +335,7 @@ public class EstadoMenu extends BasicGameState{
                     switch (consumibleSeleccionado)
                     {
                         case 0:
-                            if(pj.getInventario().usarPocionVida((Jugador)VenganzaBelial.atributoGestion.jugs.get(eleccionJugador)))
+                            if(pj.getInventario().usarPocionVida((Jugador)VenganzaBelial.atributoGestion.getJugs().get(eleccionJugador)))
                             {
                                 sonidoSelect.play();
                                 estado=SELOBJETIVO; 
@@ -345,7 +345,7 @@ public class EstadoMenu extends BasicGameState{
                             }
                             break;
                         case 1:
-                            if(pj.getInventario().usarPocionMana((Jugador)VenganzaBelial.atributoGestion.jugs.get(eleccionJugador))){
+                            if(pj.getInventario().usarPocionMana((Jugador)VenganzaBelial.atributoGestion.getJugs().get(eleccionJugador))){
                                 //this.mensajeSistema=("Utilizada "+pj.getInventario().getItems().get(consumibleSeleccionado).getNombre());
                                 sonidoSelect.play();
                                 estado=SELOBJETIVO; 
@@ -355,7 +355,7 @@ public class EstadoMenu extends BasicGameState{
                             }
                             break;
                         case 2:
-                            if(pj.getInventario().usarPocionRes((Jugador)VenganzaBelial.atributoGestion.jugs.get(eleccionJugador))){
+                            if(pj.getInventario().usarPocionRes((Jugador)VenganzaBelial.atributoGestion.getJugs().get(eleccionJugador))){
                                 //this.mensajeSistema=("Utilizada "+pj.getInventario().getItems().get(consumibleSeleccionado).getNombre());
                                 sonidoSelect.play();
                                 estado=SELOBJETIVO; 
@@ -390,10 +390,10 @@ public class EstadoMenu extends BasicGameState{
        if(input.isKeyPressed(Input.KEY_ENTER))
         { 
           //EDIT//Comprobar que el item seleccionado sea un arma y cumpla los requisitos
-            Item item=VenganzaBelial.atributoGestion.inv.getItems().get(eleccionJugador);
+            Item item=VenganzaBelial.atributoGestion.getInv().getItems().get(eleccionJugador);
             if(item.getTipoItem()==1)
             {
-                if(VenganzaBelial.atributoGestion.jugs.get(this.personajeElegido).cambiarArma((Arma)item))
+                if(VenganzaBelial.atributoGestion.getJugs().get(this.personajeElegido).cambiarArma((Arma)item))
                     this.sonidoSelect.play();
                 else
                     this.sonidoError.play();
@@ -409,10 +409,10 @@ public class EstadoMenu extends BasicGameState{
        if(input.isKeyPressed(Input.KEY_ENTER))
         { 
           //EDIT//Comprobar que el item seleccionado sea un arma y cumpla los requisitos
-            Item item=VenganzaBelial.atributoGestion.inv.getItems().get(eleccionJugador);
+            Item item=VenganzaBelial.atributoGestion.getInv().getItems().get(eleccionJugador);
             if(item.getTipoItem()==2)
             {
-                if(VenganzaBelial.atributoGestion.jugs.get(this.personajeElegido).cambiarArmadura((Armadura)item))
+                if(VenganzaBelial.atributoGestion.getJugs().get(this.personajeElegido).cambiarArmadura((Armadura)item))
                     this.sonidoSelect.play();
                 else
                     this.sonidoError.play();       
@@ -471,7 +471,7 @@ public class EstadoMenu extends BasicGameState{
         String nombre= "";
         for(int i=0; i<3;i++)
         {
-           nombre=VenganzaBelial.atributoGestion.jugs.get(i).getNombre();
+           nombre=VenganzaBelial.atributoGestion.getJugs().get(i).getNombre();
            if (eleccionJugador == i) {
                 opcionesJugadorTTF.drawString(100, i * 50 + 200,nombre );
             } else {
@@ -479,7 +479,7 @@ public class EstadoMenu extends BasicGameState{
             } 
         }
         //EDIT:VenganzaBelial.atributoGestion.jugs.get(eleccionJugador).getImagen().draw(600, 50, 200, 600);
-        Jugador pj = VenganzaBelial.atributoGestion.jugs.get(eleccionJugador);
+        Jugador pj = VenganzaBelial.atributoGestion.getJugs().get(eleccionJugador);
         textoStatus.drawString(offsetX, offsetY,  ""+ pj.getNombre());
         offsetY+=20;
         textoStatus.drawString(offsetX, offsetY,  "HP "+ pj.getHpActual()+"/"+pj.getHp());
@@ -499,7 +499,7 @@ public class EstadoMenu extends BasicGameState{
                 opcionesJugadorTTF.drawString(100, i * 50 + 200, opcionesPJ[i], notChosen);
             } 
         }
-        textoStatus.drawString(650, 0, "Personajes>>"+VenganzaBelial.atributoGestion.jugs.get(this.personajeElegido).getNombre());
+        textoStatus.drawString(650, 0, "Personajes>>"+VenganzaBelial.atributoGestion.getJugs().get(this.personajeElegido).getNombre());
     }/*private void renderMenuPJ()*/
     
     private void renderStatusPJ()
@@ -507,7 +507,7 @@ public class EstadoMenu extends BasicGameState{
         int offsetX=1000;
         int offsetY=50;
         Color color = new Color(255, 0, 0);
-        Jugador pj = VenganzaBelial.atributoGestion.jugs.get(this.personajeElegido);
+        Jugador pj = VenganzaBelial.atributoGestion.getJugs().get(this.personajeElegido);
         //VenganzaBelial.atributoGestion.jugs.get(eleccionJugador).getImagen().draw(600, 50, 200, 600);
         textoStatus.drawString(offsetX, offsetY,  ""+ pj.getNombre());
         offsetY+=20;
@@ -534,7 +534,7 @@ public class EstadoMenu extends BasicGameState{
     
     private void renderHabilidades()
     {
-        Jugador pj= VenganzaBelial.atributoGestion.jugs.get(this.personajeElegido);
+        Jugador pj= VenganzaBelial.atributoGestion.getJugs().get(this.personajeElegido);
         for (int i=0;i<5;i++)
         {
             if(eleccionJugador==i)
@@ -553,7 +553,7 @@ public class EstadoMenu extends BasicGameState{
     
     private void renderInventario()
     {
-        Inventario inven = VenganzaBelial.atributoGestion.inv;
+        Inventario inven = VenganzaBelial.atributoGestion.getInv();
         int espaciosLlenos= inven.getItems().size();
         String nombreItem="";
         for (int i=0;i<inven.getCapacidadInv();i++)
@@ -583,7 +583,7 @@ public class EstadoMenu extends BasicGameState{
         this.textoStatus.drawString(800, 100, inven.getItems().get(eleccionJugador).getDescripcion());
         //
         textoStatus.drawString(650, 0, "Inventario");
-        textoStatus.drawString(100, 50, "Dinero: "+VenganzaBelial.atributoGestion.inv.getDinero(), amarillo);
+        textoStatus.drawString(100, 50, "Dinero: "+VenganzaBelial.atributoGestion.getInv().getDinero(), amarillo);
     }/* private void renderInventario()*/
     
     private void renderGuardando()
@@ -619,10 +619,10 @@ public class EstadoMenu extends BasicGameState{
     //EDIT
     private void renderCambioEquipo()
     {
-        Jugador pj= VenganzaBelial.atributoGestion.jugs.get(this.personajeElegido);
+        Jugador pj= VenganzaBelial.atributoGestion.getJugs().get(this.personajeElegido);
         textoStatus.drawString(650, 0, "Personajes>>"+pj.getNombre()+">>"+"Cambiar equipo");
         //Inventario Izquierda
-        Inventario inven = VenganzaBelial.atributoGestion.inv;
+        Inventario inven = VenganzaBelial.atributoGestion.getInv();
         int espaciosLlenos= inven.getItems().size();
         String nombreItem="";
         for (int i=0;i<inven.getCapacidadInv();i++)

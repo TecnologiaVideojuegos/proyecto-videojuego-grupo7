@@ -28,13 +28,13 @@ public final class Mordeim extends Jugador{
         this.setNombre("Mordeim");
         this.setArma(armaInicio);
         this.setArmadura(armaduraInicio);
-        this.setHp(90);
+        this.setHp(120);
         this.setHpActual(this.getHp());
         this.setMp(50);
         this.setMpActual(50);
-        this.setAtaqueBase(75);
+        this.setAtaqueBase(70);
         this.setAtaque(this.getAtaqueBase() + this.getArma().getDanyo());
-        this.setDefensaBase(20);
+        this.setDefensaBase(25);
         this.setDefensa(this.getDefensaBase()+ this.getArmadura().getDefensa());
         this.setVelocidad(15);
         this.setHabCritico(5 + this.getArma().getCritico());

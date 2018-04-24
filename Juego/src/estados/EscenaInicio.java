@@ -114,7 +114,7 @@ public class EscenaInicio extends BasicGameState{
         texto1= new TrueTypeFont(letraMenu1, true);
         posicion = new Vector2f(esquinaXMapa+TILESIZE*2,esquinaYMapa+TILESIZE*2);
         posicionE = new Vector2f(esquinaXMapa+TILESIZE*2,esquinaYMapa+TILESIZE*2);
-        this.musicaIntro = new Music("Musica/BSO/Ablaze.wav");
+        this.musicaIntro = new Music("Musica/Efectos/Cry2.wav");
         this.efecto = new Sound("Musica/Efectos/Cry2.wav");
         sonidoSelect=new Sound("Musica/Efectos/select.wav");
         sonidoPuerta=new Sound("Musica/Efectos/Door.wav");

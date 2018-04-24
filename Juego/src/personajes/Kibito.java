@@ -29,13 +29,13 @@ public final class Kibito extends Jugador{
         this.setNombre("Kibito");
         this.setArma(armaInicio);
         this.setArmadura(armaduraInicio);
-        this.setHp(80);
+        this.setHp(100);
         this.setHpActual(this.getHp());
         this.setMp(100);
         this.setMpActual(100);
         this.setAtaqueBase(25);
         this.setAtaque(this.getAtaqueBase() + this.getArma().getDanyo());
-        this.setDefensaBase(10);
+        this.setDefensaBase(25);
         this.setDefensa(this.getDefensaBase()+ this.getArmadura().getDefensa());
         this.setVelocidad(10);
         this.setHabCritico(2 + this.getArma().getCritico());

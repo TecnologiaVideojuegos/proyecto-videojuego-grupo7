@@ -49,6 +49,8 @@ public class EventosNpcs {
         ArrayList<String> requisitoCategoria;
         switch(mapa){
             //bosque
+            case MAPATUTORIAL:
+                break;
             case MAPABOSQUE:
                 //Vendedor
                 if(x == 83 && y == 11){

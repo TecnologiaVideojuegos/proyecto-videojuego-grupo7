@@ -38,13 +38,13 @@ public class VenganzaBelial extends StateBasedGame {
     public static Arma arma = new Arma(5, 0, "Arma1","Descripcion" , St, 1, 1, 1);
     public static Armadura armadura = new Armadura(5, "Armadura1", "Descripcion", St, 1, 1, 1);
     public static ArrayList<Habilidad> habilidades= new ArrayList<Habilidad>();
-    public static Horacia horacia = new Horacia(atributoGestion.inv);
-    public static Mordeim mordeim = new Mordeim(atributoGestion.inv);
-    public static Kibito kibito= new Kibito(atributoGestion.inv);
-    public static int MapaActual=1;
-    public static Horacia hori =new Horacia(atributoGestion.inv);
-    public static Mordeim mordi =new Mordeim(atributoGestion.inv);
-    public static Kibito kibi =new Kibito(atributoGestion.inv);
+    public static Horacia horacia = new Horacia(atributoGestion.getInv());
+    public static Mordeim mordeim = new Mordeim(atributoGestion.getInv());
+    public static Kibito kibito= new Kibito(atributoGestion.getInv());
+    public static int MapaActual=1;//Cambiar a gestion
+    public static Horacia hori =new Horacia(atributoGestion.getInv());
+    public static Mordeim mordi =new Mordeim(atributoGestion.getInv());
+    public static Kibito kibi =new Kibito(atributoGestion.getInv());
     
     public static EventosNpcs eventos = new EventosNpcs();
 
@@ -94,21 +94,43 @@ public class VenganzaBelial extends StateBasedGame {
         mordeim.setPJ(true);
         kibito.setPJ(true);
         /*Party mediante Gestion*/
-        atributoGestion.jugs.add(horacia);
-        atributoGestion.jugs.add(mordeim);
-        atributoGestion.jugs.add(kibito);
+        atributoGestion.getJugs().add(horacia);
+        atributoGestion.getJugs().add(mordeim);
+        atributoGestion.getJugs().add(kibito);
         /*Inventario de Gestion*/
-        atributoGestion.inv.addItem(arma);
-        atributoGestion.inv.addItem(armadura);
-        atributoGestion.enem=atributoGestion.cargarGrupoEnemigos("BaseDatos/enemigosBosque.dat");
-        //Enemigos prueba
-        hori.setPJ(false);
-        hori.setNombre("Horacia(Dark)");
-        mordi.setPJ(false);
-        mordi.setNombre("Mordeim(Dark)");
-        mordi.setVelocidad(80);//que vaya primero siempre
-        kibi.setPJ(false);
-        kibi.setNombre("Kibito(Dark)");
+        atributoGestion.getInv().addItem(arma);
+        atributoGestion.getInv().addItem(armadura);
+        atributoGestion.setEnem(atributoGestion.cargarGrupoEnemigos("BaseDatos/enemigosBosque.dat"));
+        System.out.println(atributoGestion.getEnem().size());
+//        //Enemigos prueba
+//        hori.setPJ(false);
+//        hori.setNombre("Horacia(Dark)");
+//        mordi.setPJ(false);
+//        mordi.setNombre("Mordeim(Dark)");
+//        mordi.setVelocidad(80);//que vaya primero siempre
+//        kibi.setPJ(false);
+//        kibi.setNombre("Kibito(Dark)");
+        for (int i = 0; i < 4; i++) {
+        mordeim.setExp(mordeim.getExpProxNivel());
+        if(mordeim.puedeSubir())
+        {
+            mordeim.subirNivel();
+        }/*if(pj.puedeSubir())*/   
+        }
+        for (int i = 0; i < 4; i++) {
+        kibito.setExp(kibito.getExpProxNivel());
+        if(kibito.puedeSubir())
+        {
+            kibito.subirNivel();
+        }/*if(pj.puedeSubir())*/   
+        }
+        for (int i = 0; i < 4; i++) {
+        horacia.setExp(horacia.getExpProxNivel());
+        if(horacia.puedeSubir())
+        {
+            horacia.subirNivel();
+        }/*if(pj.puedeSubir())*/   
+        }
         //Combate com = new Combate(VenganzaBelial.Party, VenganzaBelial.MapaActual);
         //Edit: Pruebas de Cambio de armas/armadura con requisitos
         ArrayList<String> requisitos =new ArrayList<String>();

@@ -50,7 +50,18 @@ public abstract class Enemigo extends Personaje implements Serializable{
         this.habilidad = habilidad;
     }
     
+    public String escribirMensaje(boolean habilidad, Habilidad hab, Jugador jugador, int danyo){
+        String msg;
+        if (habilidad)
+            msg = this.getNombre() + " ha usado la habilidad " + hab.getNombre() + 
+                    " contra " + jugador.getNombre() + " y le ha quitado " + danyo + " puntos de vida";
+        else
+            msg = this.getNombre() + " ha atacado a  " + jugador.getNombre() + 
+                    " y le ha quitado " + danyo + " puntos de vida";
+        return msg;
+    }
     
-    public abstract void estrategiaAtacar(ArrayList<Jugador> jugadores);
+    public abstract String estrategiaAtacar(ArrayList<Jugador> jugadores);
     public abstract void inicializarEnemigo() throws SlickException;
+    
 }
