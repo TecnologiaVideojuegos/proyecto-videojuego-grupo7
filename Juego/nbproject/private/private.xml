@@ -3,21 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/David/Desktop/proyecto-videojuego-grupo7/Juego/src/estados/Heroe.java</file>
-            <file>file:/C:/Users/David/Desktop/proyecto-videojuego-grupo7/Juego/src/npcs/Evento.java</file>
-            <file>file:/C:/Users/David/Desktop/proyecto-videojuego-grupo7/Juego/src/otros/EventosNpcs.java</file>
-            <file>file:/C:/Users/David/Desktop/proyecto-videojuego-grupo7/Juego/src/estados/Camara.java</file>
-            <file>file:/C:/Users/David/Desktop/proyecto-videojuego-grupo7/Juego/src/estados/EstadoTienda.java</file>
-            <file>file:/C:/Users/David/Desktop/proyecto-videojuego-grupo7/Juego/src/estados/EstadoMenuInicio.java</file>
-            <file>file:/C:/Users/David/Desktop/proyecto-videojuego-grupo7/Juego/src/estados/VenganzaBelial.java</file>
-            <file>file:/C:/Users/David/Desktop/proyecto-videojuego-grupo7/Juego/src/estados/EstadoMapaJuego.java</file>
-=======
             <file>file:/C:/Users/Dolores/Desktop/proyecto-videojuego-grupo7/Juego/src/estados/EstadoMenuInicio.java</file>
             <file>file:/C:/Users/Dolores/Desktop/proyecto-videojuego-grupo7/Juego/src/estados/EscenaPuerto1.java</file>
             <file>file:/C:/Users/Dolores/Desktop/proyecto-videojuego-grupo7/Juego/src/estados/EscenaBosquePreBoss.java</file>
             <file>file:/C:/Users/Dolores/Desktop/proyecto-videojuego-grupo7/Juego/src/estados/VenganzaBelial.java</file>
->>>>>>> e6d739223805c6664c41a768e7e99ee885973230
         </group>
     </open-files>
 </project-private>
