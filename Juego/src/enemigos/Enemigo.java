@@ -12,6 +12,7 @@ public abstract class Enemigo extends Personaje implements Serializable{
     //Atributos
     private int expAportada;
     private int oro;
+    private int id;
     private ArrayList<Habilidad> habilidad;
     private static final long serialVersionUID = 3L;
     
@@ -23,8 +24,9 @@ public abstract class Enemigo extends Personaje implements Serializable{
         this.habilidad = habilidad;
         this.setPJ(false);//Establece que no es PJ
     }    
-    public Enemigo(int nivel, int hp, int ataque, int defensa){
+    public Enemigo(int id, int nivel, int hp, int ataque, int defensa){
         super(nivel, hp, ataque, defensa);
+        this.id = id;
         this.setPJ(false);
     }
     
@@ -43,6 +45,12 @@ public abstract class Enemigo extends Personaje implements Serializable{
     public void setOro(int oro) {
         this.oro = oro;
     }
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
     public ArrayList<Habilidad> getHabilidad() {
         return habilidad;
     }
@@ -53,10 +61,10 @@ public abstract class Enemigo extends Personaje implements Serializable{
     public String escribirMensaje(boolean habilidad, Habilidad hab, Jugador jugador, int danyo){
         String msg;
         if (habilidad)
-            msg = this.getNombre() + " ha usado la habilidad " + hab.getNombre() + 
+            msg = this.getNombre() + this.getId() + " ha usado la habilidad " + hab.getNombre() + 
                     " contra " + jugador.getNombre() + " y le ha quitado " + danyo + " puntos de vida";
         else
-            msg = this.getNombre() + " ha atacado a  " + jugador.getNombre() + 
+            msg = this.getNombre() + this.getId() + " ha atacado a  " + jugador.getNombre() + 
                     " y le ha quitado " + danyo + " puntos de vida";
         return msg;
     }

@@ -11,8 +11,8 @@ public final class Rata extends Enemigo implements Serializable{
     private ArrayList<Habilidad> habilidades;
     private static final long serialVersionUID = 4L;
     
-    public Rata(int nivel, int hp, int ataque, int defensa) throws SlickException {
-        super(nivel, hp, ataque, defensa); 
+    public Rata(int id, int nivel, int hp, int ataque, int defensa) throws SlickException {
+        super(id, nivel, hp, ataque, defensa); 
         inicializarEnemigo();
     }
     
