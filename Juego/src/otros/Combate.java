@@ -268,15 +268,18 @@ public final class Combate {
         }
         switch (Mapa)
         {
-            case 0://Caso tutorial, poner enemigos muy rapidos  
-                //EDIT: Eliminar
-                VenganzaBelial.hori.setHpActual(50);
-                VenganzaBelial.mordi.setHpActual(50);
-                VenganzaBelial.kibi.setHpActual(50);
-                GeneraEnemigos.add(VenganzaBelial.hori);
-                GeneraEnemigos.add(VenganzaBelial.mordi);
-                GeneraEnemigos.add(VenganzaBelial.kibi);
-                this.setExpCombate(105);
+            case 0://Caso tutorial, party especial
+                Rata rat1 = new Rata(1, 100, 50, 30);
+                rat1.setVelocidad(99999);
+                rat1.setNombre("Rata1");
+                Rata rat2 = new Rata(1, 100, 50, 30);
+                rat2.setNombre("Rata2");
+                Rata rat3 = new Rata(1, 100, 50, 30);
+                rat3.setNombre("Rata3");
+                GeneraEnemigos.add((Personaje)rat1);
+                GeneraEnemigos.add((Personaje)rat2);
+                GeneraEnemigos.add((Personaje)rat3);
+                exptotal=15;
                 break;
             case 1://Bosque
                 if (nivel <= 1)

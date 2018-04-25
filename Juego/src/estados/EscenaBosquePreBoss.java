@@ -58,7 +58,6 @@ public class EscenaBosquePreBoss extends BasicGameState{
     private Image fondo;
     /*Imagenes*/
     private Image ventanaDialogo,avatarDialogo, avatarH,avatarM, avatarK, avatarDesconocido;
-    private Image salidaEscena;
     /*Sonido*/
     private Sound sonidoSelect,rugido;
     private Music battle;
@@ -144,7 +143,6 @@ public class EscenaBosquePreBoss extends BasicGameState{
                 if(estado>=6){
                     boss.draw(posicionE.x+664, posicionE.y+212);
                 }
-                
             }
             texto.drawString(1000, 0, "" + estado);
     }

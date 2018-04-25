@@ -11,13 +11,13 @@ public final class Rata extends Enemigo implements Serializable{
     private ArrayList<Habilidad> habilidades;
     private static final long serialVersionUID = 4L;
     
-    public Rata(int nivel, int hp, int ataque, int defensa) throws SlickException {
+    public Rata(int nivel, int hp, int ataque, int defensa) {
         super(nivel, hp, ataque, defensa); 
         inicializarEnemigo();
     }
     
     @Override
-    public void inicializarEnemigo() throws SlickException{
+    public void inicializarEnemigo(){
         this.setNombre("Rata");
         habilidades = new ArrayList<>();  
         Habilidad hab = new Habilidad("Mordisco", 1, 25, 0, "Mordisco feroz de la rata", 2);

@@ -1,5 +1,6 @@
 package estados;
 
+import enemigos.Enemigo;
 import static estados.VenganzaBelial.ESTADOMENUINICIO;
 import static estados.VenganzaBelial.hori;
 import static estados.VenganzaBelial.kibi;
@@ -75,10 +76,6 @@ public class EstadoCombateTutorial extends BasicGameState{
     private Music OST;
     private Sound sonidoAtaque,sonidoMuerto,sonidoSelect, sonidoError;
     private String mensajeSistema= "";
-    //private SpriteSheet sprite;
-    //private Animation animacion;
-    /*EDIT*/
-    private int flagPruebas=0;
     
     public EstadoCombateTutorial(int id) {
         idEstado = id;
@@ -117,9 +114,10 @@ public class EstadoCombateTutorial extends BasicGameState{
         avatarMuerto=new Image("Imagenes/Avatar/fondoMuerto.png");
         avatarSeleccionado=new Image("Imagenes/Avatar/fondoSeleccion.png");
         ventanaDialogo= new Image("Imagenes/Avatar/cajaMensaje.png");
-        /*EDIT:Test*/
-        //this.sprite= new SpriteSheet("Imagenes/Animaciones/ataque.png",200,200);
-        //this.animacion= new Animation(sprite, 200);
+
+        Avatar1 =  new Image("Imagenes/Personajes/HoraciaA.png");
+        Avatar2 =  new Image("Imagenes/Personajes/MordeimA.png");
+        Avatar3 =  new Image("Imagenes/Personajes/KibitoA.png");
     }
 
     @Override
@@ -164,6 +162,10 @@ public class EstadoCombateTutorial extends BasicGameState{
                     break;
             }    
         }/*else*/
+        
+        for (int i = 0; i < NewCombate.getOrdenPersonajes().size(); i++) {
+            mensajePantalla.drawString(1200, 600+20*i, " "+NewCombate.getOrdenPersonajes().get(i).getNombre());  
+        }
     }
 
     @Override
@@ -176,19 +178,17 @@ public class EstadoCombateTutorial extends BasicGameState{
             party.add(VenganzaBelial.atributoGestion.getJugs().get(0));
             party.add(VenganzaBelial.atributoGestion.getJugs().get(1));
             party.add(VenganzaBelial.atributoGestion.getJugs().get(2));
-            NewCombate= new Combate(party, VenganzaBelial.MapaActual);//
+            NewCombate= new Combate(party, 0);//
             //NewCombate= new Combate(VenganzaBelial.Party, VenganzaBelial.MapaActual);//
             fondo = new Image("Imagenes/BackBattle/Bosque.jpg");
             /*EDIT:Imagenes de los personajes*/
-            Avatar1 =  new Image("Imagenes/Personajes/HoraciaA.png");
-            Avatar2 =  new Image("Imagenes/Personajes/MordeimA.png");
-            Avatar3 =  new Image("Imagenes/Personajes/KibitoA.png");
+            for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
+                NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Bosque/Rata.png");
+                
+            }
+            
             //
             Estado=DIALOGO;
-            /*EDIT: Mirar donde añadir imagenes al los enemigos*/
-            VenganzaBelial.hori.setImagen("Imagenes/Monstruos/Test1.png");
-            VenganzaBelial.mordi.setImagen("Imagenes/Monstruos/Test2.png");
-            VenganzaBelial.kibi.setImagen("Imagenes/Monstruos/Test3.png");
             NuevoCombate = false;
             //OST.loop(1, 0.1f);
         }
@@ -226,24 +226,8 @@ public class EstadoCombateTutorial extends BasicGameState{
                         Huir();
                         break;
                     case  TURNOENEMIGO://Turno automatico Enemigo
-                        //EDIT: Eliminar
-                        if(this.flagPruebas==0)
-                        {
-                            this.mensajeSistema=NewCombate.Atacar(NewCombate.getOrdenPersonajes().get(NewCombate.getTurno()), VenganzaBelial.horacia);
-                        }
-                        else if(this.flagPruebas==1)
-                        {
-                            this.mensajeSistema=NewCombate.Atacar(NewCombate.getOrdenPersonajes().get(NewCombate.getTurno()), VenganzaBelial.mordeim);
-                        }
-                        else if(this.flagPruebas==2)
-                        {
-                            this.mensajeSistema=NewCombate.Atacar(NewCombate.getOrdenPersonajes().get(NewCombate.getTurno()), VenganzaBelial.kibito);
-                        }
-                        this.flagPruebas++;
-                        if(this.flagPruebas>3)
-                        {
-                           this.flagPruebas=0; 
-                        }
+                        Enemigo enem=(Enemigo)NewCombate.getOrdenPersonajes().get(NewCombate.getTurno());
+                        mensajeSistema=enem.estrategiaAtacar(VenganzaBelial.atributoGestion.getJugs());
                         //VenganzaBelial.horacia.setHpActual(50);
                         estadoAnterior=TURNOENEMIGO;
                         Estado=FINTURNO;
@@ -333,7 +317,6 @@ public class EstadoCombateTutorial extends BasicGameState{
                     Estado=HUYENDO;
                     break;
             }/*switch (eleccionJugador) */
-            /*EDIT: elecciónJugador=0?*/
             eleccionJugador=0;//Resetea el indice de seleccion de opciones para el nuevo estado*/
         }/*if (input.isKeyPressed(Input.KEY_ENTER))*/
     }/*private void OpcionBase()*/
@@ -504,7 +487,7 @@ public class EstadoCombateTutorial extends BasicGameState{
     {
         Random rand= new Random();
         float tasaHuida=rand.nextFloat();
-        if(tasaHuida<1)/*EDIT:0.9*/
+        if(tasaHuida<1)//No se puede huir del tutorial de combate
         {
             //Objetivo no huye y pierde turno
             this.mensajeSistema="No se ha conseguido huir";
@@ -553,7 +536,7 @@ public class EstadoCombateTutorial extends BasicGameState{
         if(NewCombate.CombateGanado())
         {
             //Si el combate ha sido ganado-> EXP+Drop+Devolver al mapa 
-            this.mensajeSistema="YOU WIN\n EXP Recibida: "+NewCombate.getExpCombate()+"\n Items:";
+            this.mensajeSistema="VICTORIA-> EXP Recibida: "+NewCombate.getExpCombate()+"\n Items:";
             //this.mensajeSistema="YOU WIN";
             if(input.isKeyPressed(Input.KEY_ENTER))
             {
@@ -655,23 +638,27 @@ public class EstadoCombateTutorial extends BasicGameState{
         {
             if(NewCombate.getEnemigos().get(aux).estaVivo())
             {
-                NewCombate.getEnemigos().get(aux).getImagen().draw(aux*300+200, 200, 350, 400);
+                /*Debug prints*/
+                Personaje debugPJ= NewCombate.getEnemigos().get(aux);
+                mensajePantalla.drawString(700, 20*aux, debugPJ.getNombre()+"/LVL: "+debugPJ.getNivel()+"/HP: "+debugPJ.getHpActual()+"|"+debugPJ.getHp());
+                //NewCombate.getEnemigos().get(aux).getImagen().draw(aux*300+200, 200, 350, 400);
+                //enemigo.draw(aux*200+200, 200, 0.5f);
+                NewCombate.getEnemigos().get(aux).getImagen().draw(aux*200+200, 200, 0.5f);
             }
-        }
-       /*Debug prints*/
-        mensajePantalla.drawString(1000, 50, "HP D.Horacia "+VenganzaBelial.hori.getHpActual()+ "/"+VenganzaBelial.hori.getHp());
-        mensajePantalla.drawString(1000, 100, "HP D. Mordeim "+VenganzaBelial.mordi.getHpActual()+ "/"+VenganzaBelial.mordi.getHp());
-        mensajePantalla.drawString(1000, 150, "HP D. Kibito "+VenganzaBelial.kibi.getHpActual()+ "/"+VenganzaBelial.kibi.getHp()); 
+        } 
     }/*private void renderEnemigos() throws SlickException*/
     
     private void renderAvatars() throws SlickException
     {
          /*Update Grafico*/
         float porcentajeBarra=1;//Auxuliar de calculo
-            /*EDIT END*/
-            /*Horacia status update*/
+           /*Horacia status update*/
             if(VenganzaBelial.horacia.estaVivo()){
-                if(NewCombate.getOrdenPersonajes().get(NewCombate.getTurno())==VenganzaBelial.horacia)
+                if(NewCombate.getTurno()>=NewCombate.getOrdenPersonajes().size())
+                {
+                   this.avatarVivo.draw(0, 618, 300, 150); 
+                }
+                else if(NewCombate.getOrdenPersonajes().get(NewCombate.getTurno())==VenganzaBelial.horacia)
                 {
                    this.avatarSeleccionado.draw(0, 618, 300, 150);
                 }
@@ -696,7 +683,11 @@ public class EstadoCombateTutorial extends BasicGameState{
             Avatar1.draw(0, 618, 100, 150);        
             /*MORDEIM STATUS UPDATE*/
             if(VenganzaBelial.mordeim.estaVivo()){
-                if(NewCombate.getOrdenPersonajes().get(NewCombate.getTurno())==VenganzaBelial.mordeim)
+                if(NewCombate.getTurno()>=NewCombate.getOrdenPersonajes().size())//If de seguridad para coordeinar render y update
+                {
+                   this.avatarVivo.draw(300, 618, 300, 150);
+                }
+                else if(NewCombate.getOrdenPersonajes().get(NewCombate.getTurno())==VenganzaBelial.mordeim)
                 {
                    this.avatarSeleccionado.draw(300, 618, 300, 150);
                 }
@@ -721,7 +712,11 @@ public class EstadoCombateTutorial extends BasicGameState{
             Avatar2.draw(300, 618, 100, 150);
             /*Kibito Status update*/
             if(VenganzaBelial.kibito.estaVivo()){
-                if(NewCombate.getOrdenPersonajes().get(NewCombate.getTurno())==VenganzaBelial.kibito)
+                if(NewCombate.getTurno()>=NewCombate.getOrdenPersonajes().size())//If de seguridad para coordeinar render y update
+                {
+                   this.avatarVivo.draw(600, 618, 300, 150);
+                }
+                else if(NewCombate.getOrdenPersonajes().get(NewCombate.getTurno())==VenganzaBelial.kibito)
                 {
                    this.avatarSeleccionado.draw(600, 618, 300, 150);
                 }
@@ -747,21 +742,10 @@ public class EstadoCombateTutorial extends BasicGameState{
             //Marco Avatar Complaeto
             marco.draw(0,605,920,15);
             marcoL.draw(900, 613, 20, 160);
-            /*EDIT:Debug prints*/
-            //mensajePantalla.drawString(700, 10, "LVL "+VenganzaBelial.horacia.getNivel());
-            //mensajePantalla.drawString(700, 30, "Atk: "+VenganzaBelial.horacia.getAtaque()+"Def: "+VenganzaBelial.horacia.getDefensa());
-            //mensajePantalla.drawString(700, 50, "Exp: "+VenganzaBelial.horacia.getExp()+"/: "+VenganzaBelial.horacia.getExpProxNivel());
-            
-            //mensajePantalla.drawString(700, 70, "LVL "+VenganzaBelial.mordeim.getNivel());
-             //mensajePantalla.drawString(700, 90, "Atk: "+VenganzaBelial.mordeim.getAtaque()+"Def: "+VenganzaBelial.mordeim.getDefensa());
-             //mensajePantalla.drawString(700, 110, "Exp: "+VenganzaBelial.mordeim.getExp()+"/: "+VenganzaBelial.mordeim.getExpProxNivel());
-             
-            //mensajePantalla.drawString(700, 130, "LVL "+VenganzaBelial.kibito.getNivel());
-            // mensajePantalla.drawString(700, 150, "Atk: "+VenganzaBelial.kibito.getAtaque()+"Def: "+VenganzaBelial.kibito.getDefensa());
-            // mensajePantalla.drawString(700, 110, "Exp: "+VenganzaBelial.kibito.getExp()+"/: "+VenganzaBelial.kibito.getExpProxNivel());
-            /**/
-            mensajePantalla.drawString(10, 560, "Turno de:" + NewCombate.getOrdenPersonajes().get(NewCombate.getTurno()).getNombre());
-            
+            if(NewCombate.getTurno()<NewCombate.getOrdenPersonajes().size())//If de seguridad para coordeinar render y update
+            {
+                mensajePantalla.drawString(10, 560, "Turno de:" + NewCombate.getOrdenPersonajes().get(NewCombate.getTurno()).getNombre());
+            }
     }/*private void renderAvatars(Graphics g)*/  
     private float compruebaPorcentajeBarra(float porcentajeBarra)
     {
