@@ -28,6 +28,8 @@ public class VenganzaBelial extends StateBasedGame {
     public static final int ESCENABOSQUE3=11;//EDIT
     public static final int ESTADOTIENDA=12;
     public static final int ESCENAPUERTO1=13;//EDIT
+    public static final int ESCENATROYIA1=14;//EDIT
+    public static final int ESCENAFANATICO=15;//EDIT
 
     public static final int WIDTH = 1366;
     public static final int HEIGHT = 768;
@@ -66,6 +68,8 @@ public class VenganzaBelial extends StateBasedGame {
         addState(new EscenaPuerto2(ESCENAPUERTO2));
         addState(new EstadoTienda(ESTADOTIENDA));
         addState(new EscenaPuerto1(ESCENAPUERTO1));
+        addState(new EscenaTroyia1(ESCENATROYIA1));
+        addState(new EscenaFanatico(ESCENAFANATICO));
         //
         this.enterState(ESTADOMENUINICIO);
     }
@@ -86,6 +90,8 @@ public class VenganzaBelial extends StateBasedGame {
         getState(ESTADOCOMBATETUT).init(gc, this);
         getState(ESTADOTIENDA).init(gc, this);
         getState(ESCENAPUERTO1).init(gc, this);
+        getState(ESCENATROYIA1).init(gc, this);
+        getState(ESCENAFANATICO).init(gc, this);
     }
 
     public static void main(String[] args) throws SlickException {
@@ -110,27 +116,27 @@ public class VenganzaBelial extends StateBasedGame {
 //        mordi.setVelocidad(80);//que vaya primero siempre
 //        kibi.setPJ(false);
 //        kibi.setNombre("Kibito(Dark)");
-        for (int i = 0; i < 4; i++) {
-        mordeim.setExp(mordeim.getExpProxNivel());
-        if(mordeim.puedeSubir())
-        {
-            mordeim.subirNivel();
-        }/*if(pj.puedeSubir())*/   
-        }
-        for (int i = 0; i < 4; i++) {
-        kibito.setExp(kibito.getExpProxNivel());
-        if(kibito.puedeSubir())
-        {
-            kibito.subirNivel();
-        }/*if(pj.puedeSubir())*/   
-        }
-        for (int i = 0; i < 4; i++) {
-        horacia.setExp(horacia.getExpProxNivel());
-        if(horacia.puedeSubir())
-        {
-            horacia.subirNivel();
-        }/*if(pj.puedeSubir())*/   
-        }
+//        for (int i = 0; i < 4; i++) {
+//        mordeim.setExp(mordeim.getExpProxNivel());
+//        if(mordeim.puedeSubir())
+//        {
+//            mordeim.subirNivel();
+//        }/*if(pj.puedeSubir())*/   
+//        }
+//        for (int i = 0; i < 4; i++) {
+//        kibito.setExp(kibito.getExpProxNivel());
+//        if(kibito.puedeSubir())
+//        {
+//            kibito.subirNivel();
+//        }/*if(pj.puedeSubir())*/   
+//        }
+//        for (int i = 0; i < 4; i++) {
+//        horacia.setExp(horacia.getExpProxNivel());
+//        if(horacia.puedeSubir())
+//        {
+//            horacia.subirNivel();
+//        }/*if(pj.puedeSubir())*/   
+//        }
         //Combate com = new Combate(VenganzaBelial.Party, VenganzaBelial.MapaActual);
         //Edit: Pruebas de Cambio de armas/armadura con requisitos
         ArrayList<String> requisitos =new ArrayList<String>();
