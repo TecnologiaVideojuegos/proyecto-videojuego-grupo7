@@ -11,8 +11,8 @@ public final class Goblin extends Enemigo implements Serializable{
     private ArrayList<Habilidad> habilidades;
     private static final long serialVersionUID = 6L;
     
-    public Goblin(int nivel, int hp, int ataque, int defensa) throws SlickException {
-        super(nivel, hp, ataque, defensa);
+    public Goblin(int id, int nivel, int hp, int ataque, int defensa) throws SlickException {
+        super(id, nivel, hp, ataque, defensa);
         inicializarEnemigo();
     }
     

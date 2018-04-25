@@ -74,10 +74,10 @@ public class EstadoCombate extends BasicGameState{
     private Music OST;
     private Sound sonidoAtaque,sonidoSelect, sonidoError, sonidoMuerto;
     private String mensajeSistema= "";
-    //private SpriteSheet sprite;
-    //private Animation animacion;
-    /*EDIT*/
-    Image enemigo;
+    
+    //
+    private boolean flagHuida=false;
+
     
     public EstadoCombate(int id) {
         idEstado = id;
@@ -190,7 +190,6 @@ public class EstadoCombate extends BasicGameState{
             }
             /*EDIT: Mirar donde añadir imagenes al los enemigos*/
             //switch Case 
-            enemigo= new Image("Imagenes/Monstruos/Bosque/Goblin.png");
             //EDIT END
             NuevoCombate = false;
             //OST.loop(1, 0.1f);
@@ -495,6 +494,7 @@ public class EstadoCombate extends BasicGameState{
             //Objetivo Huye y se finaliza el combate 
             eleccionJugador=0;
             Estado=FINCOMBATE; 
+            flagHuida=true;
             
         }
         else
@@ -536,10 +536,15 @@ public class EstadoCombate extends BasicGameState{
     private void FinCombate(GameContainer gc, StateBasedGame sbg)
     {
         /*Comprobar quien ha ganado el combate y actuar concorde*/
-        if(NewCombate.CombateGanado())
+        if(flagHuida)//Si consigue huir se devuelve al mapa sin ganar o perder
+        {
+            flagHuida=false;
+            retornoAlMapa(sbg);
+        }
+        else if(NewCombate.CombateGanado())
         {
             //Si el combate ha sido ganado-> EXP+Drop+Devolver al mapa 
-            this.mensajeSistema="YOU WIN\n EXP Recibida: "+NewCombate.getExpCombate()+"\n Items:";
+            this.mensajeSistema="YOU WIN/n EXP Recibida: "+NewCombate.getExpCombate()+"/n Oro: "+NewCombate.getOroCombate();
             //this.mensajeSistema="YOU WIN";
             if(input.isKeyPressed(Input.KEY_ENTER))
             {
@@ -558,6 +563,7 @@ public class EstadoCombate extends BasicGameState{
                         }/*if(pj.puedeSubir())*/
                     }/* if(pj.estaVivo())*/
                 }/*for(aux=0;aux<VenganzaBelial.atributoGestion.jugs.size();aux++)*/
+                VenganzaBelial.atributoGestion.getInv().setDinero(VenganzaBelial.atributoGestion.getInv().getDinero()+NewCombate.getOroCombate());
                 //Reactiva Flag para la proxima vez que se genera un combate
                 NuevoCombate=true;
                 //EDIT:ELIMINAR OBJETO COMBATE O VACIAR
@@ -583,18 +589,8 @@ public class EstadoCombate extends BasicGameState{
     
     private void retornoAlMapa(StateBasedGame sbg)//Origen sera de un id de donde proviene el combate(mapax o eventox)
     {
-        //EDIT
-        //
-//        switch(VenganzaBelial.MapaActual)
-//        {
-//            case 1://Boss Battle Bosque
-//                sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
-//                break;
-//            case 2://Event Battle Puerto1
-//                break;
-//                //ETC
-//        }
         sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
+        //Edit, Comprobar casos especiales como Bosses
     }/*private void retornoAlMapa()*/
     
     private void renderOpcionesJugador()

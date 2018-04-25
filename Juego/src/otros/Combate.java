@@ -19,6 +19,7 @@ public final class Combate {
     private int AliadosRestantes;
     private int Turno;
     private int expCombate;
+    private int oroCombate;
     /*EDIT: posible conversion de dropItem a ArrayList*/
     private Item dropItem;
     private int ArrayEnemigosUsado;
@@ -244,6 +245,22 @@ public final class Combate {
     public void setDropItems(Item dropItems) {
         this.dropItem = dropItems;
     }
+
+    public int getOroCombate() {
+        return oroCombate;
+    }
+
+    public void setOroCombate(int oroCombate) {
+        this.oroCombate = oroCombate;
+    }
+
+    public Item getDropItem() {
+        return dropItem;
+    }
+
+    public void setDropItem(Item dropItem) {
+        this.dropItem = dropItem;
+    }
     
     //Genera enemigos
     private ArrayList<Personaje> GeneraArrayEnemigos (int Mapa)
@@ -269,13 +286,13 @@ public final class Combate {
         switch (Mapa)
         {
             case 0://Caso tutorial, party especial
-                Rata rat1 = new Rata(1, 100, 50, 30);
+                Rata rat1 = new Rata(1,1, 100, 50, 30);
                 rat1.setVelocidad(99999);
-                rat1.setNombre("Rata1");
-                Rata rat2 = new Rata(1, 100, 50, 30);
-                rat2.setNombre("Rata2");
-                Rata rat3 = new Rata(1, 100, 50, 30);
-                rat3.setNombre("Rata3");
+                rat1.setNombre("Rata");
+                Rata rat2 = new Rata(2,1, 100, 50, 30);
+                rat2.setNombre("Rata");
+                Rata rat3 = new Rata(3,1, 100, 50, 30);
+                rat3.setNombre("Rata");
                 GeneraEnemigos.add((Personaje)rat1);
                 GeneraEnemigos.add((Personaje)rat2);
                 GeneraEnemigos.add((Personaje)rat3);
@@ -306,6 +323,7 @@ public final class Combate {
                 //Exp random entre 100-200
                 break;
         }/*switch (Mapa)*/
+        this.setOroCombate(dinerototal);
         this.setExpCombate(exptotal);
         return GeneraEnemigos;
     }/*private ArrayList<Personaje> GeneraArrayEnemigos (int Mapa)*/
