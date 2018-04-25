@@ -107,7 +107,7 @@ public class VenganzaBelial extends StateBasedGame {
         atributoGestion.getInv().addItem(arma);
         atributoGestion.getInv().addItem(armadura);
         atributoGestion.setEnem(atributoGestion.cargarGrupoEnemigos("BaseDatos/enemigosBosque.dat"));
-        System.out.println(atributoGestion.getEnem().size());
+        
 //        //Enemigos prueba
 //        hori.setPJ(false);
 //        hori.setNombre("Horacia(Dark)");
@@ -116,6 +116,7 @@ public class VenganzaBelial extends StateBasedGame {
 //        mordi.setVelocidad(80);//que vaya primero siempre
 //        kibi.setPJ(false);
 //        kibi.setNombre("Kibito(Dark)");
+<<<<<<< HEAD
 //        for (int i = 0; i < 4; i++) {
 //        mordeim.setExp(mordeim.getExpProxNivel());
 //        if(mordeim.puedeSubir())
@@ -137,6 +138,8 @@ public class VenganzaBelial extends StateBasedGame {
 //            horacia.subirNivel();
 //        }/*if(pj.puedeSubir())*/   
 //        }
+=======
+>>>>>>> 8efcc3d871976dfbaf62dee81f920690a4e1981f
         //Combate com = new Combate(VenganzaBelial.Party, VenganzaBelial.MapaActual);
         //Edit: Pruebas de Cambio de armas/armadura con requisitos
         ArrayList<String> requisitos =new ArrayList<String>();
