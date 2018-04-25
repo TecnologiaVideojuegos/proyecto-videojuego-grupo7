@@ -30,6 +30,7 @@ public class VenganzaBelial extends StateBasedGame {
     public static final int ESCENAPUERTO1=13;//EDIT
     public static final int ESCENATROYIA1=14;//EDIT
     public static final int ESCENAFANATICO=15;//EDIT
+    public static final int ESCENACATACUMBASPREBOSS=16;//EDIT
 
     public static final int WIDTH = 1366;
     public static final int HEIGHT = 768;
@@ -70,6 +71,7 @@ public class VenganzaBelial extends StateBasedGame {
         addState(new EscenaPuerto1(ESCENAPUERTO1));
         addState(new EscenaTroyia1(ESCENATROYIA1));
         addState(new EscenaFanatico(ESCENAFANATICO));
+        addState(new EscenaCatacumbasPreBoss(ESCENACATACUMBASPREBOSS));
         //
         this.enterState(ESTADOMENUINICIO);
     }
@@ -92,6 +94,7 @@ public class VenganzaBelial extends StateBasedGame {
         getState(ESCENAPUERTO1).init(gc, this);
         getState(ESCENATROYIA1).init(gc, this);
         getState(ESCENAFANATICO).init(gc, this);
+        getState(ESCENACATACUMBASPREBOSS).init(gc, this);
     }
 
     public static void main(String[] args) throws SlickException {
@@ -116,7 +119,6 @@ public class VenganzaBelial extends StateBasedGame {
 //        mordi.setVelocidad(80);//que vaya primero siempre
 //        kibi.setPJ(false);
 //        kibi.setNombre("Kibito(Dark)");
-<<<<<<< HEAD
 //        for (int i = 0; i < 4; i++) {
 //        mordeim.setExp(mordeim.getExpProxNivel());
 //        if(mordeim.puedeSubir())
@@ -138,8 +140,6 @@ public class VenganzaBelial extends StateBasedGame {
 //            horacia.subirNivel();
 //        }/*if(pj.puedeSubir())*/   
 //        }
-=======
->>>>>>> 8efcc3d871976dfbaf62dee81f920690a4e1981f
         //Combate com = new Combate(VenganzaBelial.Party, VenganzaBelial.MapaActual);
         //Edit: Pruebas de Cambio de armas/armadura con requisitos
         ArrayList<String> requisitos =new ArrayList<String>();

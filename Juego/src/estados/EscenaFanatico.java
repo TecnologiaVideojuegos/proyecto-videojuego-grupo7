@@ -80,9 +80,9 @@ public class EscenaFanatico extends BasicGameState{
 
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-        Image[] liderStop={new Image("Imagenes/Animaciones/Sprites/hes2.png")};
+        Image[] liderStop={new Image("Imagenes/Animaciones/Sprites/liderfanatico2.png")};
         liderS=new Animation(liderStop,200);
-        Image[] liderUp={new Image("Imagenes/Animaciones/Sprites/hes11.png")};
+        Image[] liderUp={new Image("Imagenes/Animaciones/Sprites/liderfanatico11.png")};
         liderU=new Animation(liderUp,200);
         lider=liderS;
         Image[] fanDere={new Image("Imagenes/Animaciones/Sprites/misterio8.png")};
