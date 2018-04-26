@@ -130,7 +130,7 @@ public class EscenaCatacumbasPreBoss extends BasicGameState{
         avatarDialogo = avatarH;
         sonidoSelect=new Sound("Musica/Efectos/select.wav");
         texto= new TrueTypeFont(letraMenu, true);
-        this.battle = new Music("Musica/BSO/Escena_Yggdrasil.wav");
+        battle = new Music("Musica/BSO/FanaticBattle.wav");
         /**/
         
     }
@@ -147,8 +147,8 @@ public class EscenaCatacumbasPreBoss extends BasicGameState{
             }
             if(estado>=0){
                 hor.draw(posicion.x, posicion.y+240);
-                mor.draw(posicion.x-64, posicion.y+272);
-                kib.draw(posicion.x-64, posicion.y+208);
+                mor.draw(posicion.x, posicion.y+272);
+                kib.draw(posicion.x, posicion.y+208);
                 sac.draw(posicionL.x+364, posicionL.y+272);
                 if(estado>=1 && estado!=6 && estado!=12){
                 renderDialogo();
@@ -174,11 +174,12 @@ public class EscenaCatacumbasPreBoss extends BasicGameState{
                 time=0;
                 estado++;
                 if(estado>=6){
-                    battle.play();
-                    if(estado<=19){
+                    battle.play(1, 0.2f);
+                }
+                if(estado<=19){
                         battle.stop();
                 }
-                }
+                
             }
             
         }
@@ -186,7 +187,7 @@ public class EscenaCatacumbasPreBoss extends BasicGameState{
         {
             case 0:
                 posicion.x+=0.1f*i;
-                if(posicion.x>=300){
+                if(posicion.x>=256){
                     estado++;
                 }
                 break;
@@ -340,6 +341,7 @@ public class EscenaCatacumbasPreBoss extends BasicGameState{
                 estado=0;
                 sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);//EDIT:
                 //Deberiamos entrar en estado Combate contra los 3 Bosses
+                //Darklord, Death y fanático
                 break;
 
         }
