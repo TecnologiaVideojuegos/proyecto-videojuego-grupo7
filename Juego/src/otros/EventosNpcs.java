@@ -120,6 +120,7 @@ public class EventosNpcs {
                     tipo = 0;
                 }
                 break;
+                //************************************************************
             case MAPAPUERTO:
                 if (x==8 && y==17) {
                     evento = new Evento("Voy a curarte para que puedas seguir luchando con"
@@ -137,7 +138,7 @@ public class EventosNpcs {
                     tipo = 1;
                 }
                 else if (x==11 && y==1) {
-                    evento = new Evento("Me acaban de suspender programacion avanzada, "
+                    evento = new Evento("Me acaban de suspender programación avanzada, "
                             + "y no se si cortarme las venas o dejarmelas largas...", "Rosendo", "Vaya dia de deposicion");
                     tipo = 0;
                 }
@@ -167,10 +168,54 @@ public class EventosNpcs {
                     tipo = 3;
                 }
                 break;
+                //***********************************************************
             case MAPACIUDADMONTANA:
+                if (x==8 && y==10) {
+                    evento = new Evento("Voy a curarte para que puedas seguir luchando con"
+                            + " los peligros de Reynos", "Healer", "Hola amigo"); 
+                    tipo = 2;
+                }
+                else if (x==13 && y==16) {
+                    items = new ArrayList<>();
+                    requisitoCategoria = new ArrayList<>();
+                    requisitoCategoria.add("Mordeim");
+                    Consumible pocionVida = new Consumible(20, 0, 5, "PocionVida", "Pocion que sirve para curar tu vida",
+                    requisitoCategoria, 1, 50, 20);
+                    items.add(pocionVida);
+                    vendedor = new Vendedor(items, "Luis", "que tal");
+                    tipo = 1;
+                }
+                else if (x==13 && y==6) {
+                    evento = new Evento("Creo que estoy borracha"
+                    , "Ginebra", "Ups..");
+                    tipo = 0;
+                }
+                else if (x==13 && y==0) {
+                    evento = new Evento("¿A que jode venir para nada?"
+                    , "J.M.", "Jiji");
+                    tipo = 0;
+                }
+                else if (x==32 && y==4) {
+                    evento = new Evento("Poz el otro dia me ice uno, KACEEES tu con la leña, resulta que le quemé la casa"
+                    , "Ermi", "JIJIJEJO");
+                    tipo = 0;
+                }
+                else if (x==23 && y==20) {
+                    evento = new Evento("Creo que es obvio pero... a lo mejor si sigues el camino pasas al siguiente mapa"
+                    , "Cartel", "Hola, soy un cartel");
+                    tipo = 0;
+                }
+                else if (x==39 && (y==19 || y==20)) {
+                    VenganzaBelial.MapaActual = MAPADUNGEONMONTANA;
+                    tipo = 3;
+                }
+                break;
+                //***********************************************************
+            case MAPADUNGEONMONTANA:
                 if (true) {
                     
                 }
+                break;
         }
         posicionEvento.x=x;
         posicionEvento.y=y;
