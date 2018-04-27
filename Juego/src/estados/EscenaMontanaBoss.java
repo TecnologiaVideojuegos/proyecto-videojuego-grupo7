@@ -23,7 +23,7 @@ import org.newdawn.slick.tiled.TiledMap;
  *
  * @author Dolores
  */
-public class EscenaBosquePreBoss extends BasicGameState{
+public class EscenaMontanaBoss extends BasicGameState{
     private int idEstado;
     private static final int POSICIONAVATARX = 30;
     private static final int POSICIONAVATARY = 620;
@@ -44,7 +44,7 @@ public class EscenaBosquePreBoss extends BasicGameState{
     private int estado;
     private boolean reproducirExclamacion=false;
     /*Mapa*/
-    private Vector2f posicion,posicionE;
+    private Vector2f posicion,posicionE,posicionL,posicionP;
     private static final int esquinaXMapa=0;
     private static final int esquinaYMapa=0;
     /*Animaciones*/
@@ -52,20 +52,20 @@ public class EscenaBosquePreBoss extends BasicGameState{
     private Animation exclamacion;
     private Animation hor,kib,mor;
     private Animation horD,kibD,morD;
-    private Animation horI,kibS,morS;
-    private Animation boss,bossI,bossE;
-    private Animation horE;
+    private Animation horS,kibS,morS,morI;
+    private Animation dragon,dragonV;
+    private Animation sombra;
     private Image fondo;
     /*Imagenes*/
-    private Image ventanaDialogo,avatarDialogo, avatarH,avatarM, avatarK, avatarDesconocido;
+    private Image ventanaDialogo,avatarDialogo, avatarH,avatarM, avatarK, avatarDragon;
     /*Sonido*/
-    private Sound sonidoSelect,rugido;
+    private Sound sonidoSelect,vuelo,roar,dragonSonido;
     private Music battle;
     int time;//EDIT
     private TrueTypeFont texto;
     private Font letraMenu  = new Font("Arial Black", Font.PLAIN, 15); 
     
-    public EscenaBosquePreBoss(int id) {
+    public EscenaMontanaBoss(int id) {
         this.idEstado=id;
     }
     @Override
@@ -81,25 +81,25 @@ public class EscenaBosquePreBoss extends BasicGameState{
         morD=new Animation(morDere,200);
         Image[] kibDere={new Image("Imagenes/Animaciones/Sprites/kib7.png"),new Image("Imagenes/Animaciones/Sprites/kib8.png"),new Image("Imagenes/Animaciones/Sprites/kib9.png")};
         kibD=new Animation(kibDere,200);
-        Image[] horIzq={new Image("Imagenes/HeroeMundo/her31.png")};
-        horI=new Animation(horIzq,200);
         Image[] kibF={new Image("Imagenes/Animaciones/Sprites/kib8.png")};
         kibS=new Animation(kibF,200);
         Image[] morF={new Image("Imagenes/Animaciones/Sprites/mor8.png")};
         morS=new Animation(morF,200);
         Image[] horEnfrente={new Image("Imagenes/HeroeMundo/her11.png")};
-        horE=new Animation(horEnfrente,200);
+        horS=new Animation(horEnfrente,200);
+        Image[] morIzq={new Image("Imagenes/Animaciones/Sprites/mor5.png")};
+        morI=new Animation(morIzq,200);
         hor=horD;
         kib=kibD;
         mor=morD;
-        Image[] bossMove={new Image("Imagenes/Animaciones/Sprites/arbol5.png"),new Image("Imagenes/Animaciones/Sprites/arbol6.png"),new Image("Imagenes/Animaciones/Sprites/arbol7.png"),new Image("Imagenes/Animaciones/Sprites/arbol8.png")};
-        bossI=new Animation(bossMove,200);
-        Image[] bossStop={new Image("Imagenes/Animaciones/Sprites/arbol6.png")};
-        bossE=new Animation(bossStop,200);
-        boss=bossI;
+        Image[] dragonVolador={new Image("Imagenes/Animaciones/Sprites/dragon5.png"),new Image("Imagenes/Animaciones/Sprites/dragon6.png"),new Image("Imagenes/Animaciones/Sprites/dragon7.png"),new Image("Imagenes/Animaciones/Sprites/dragon8.png")};
+        dragonV=new Animation(dragonVolador,200);
+        dragon=dragonV;
+        Image[] dragonSombra={new Image("Imagenes/Animaciones/Sprites/sombra.png")};
+        sombra=new Animation(dragonSombra,200);
         fondo= new Image("Imagenes/Escenas/EscenaBosque1/mapaBosque.png");
         /**/
-        this.sheetExclamacion= new SpriteSheet("Imagenes/Animaciones/puntos.png",32,33);
+        this.sheetExclamacion= new SpriteSheet("Imagenes/Animaciones/exclamacion.png",32,33);
         this.exclamacion = new Animation(sheetExclamacion,200);
         /**/
         estado=0;
@@ -107,16 +107,20 @@ public class EscenaBosquePreBoss extends BasicGameState{
         mensajePantalla= new TrueTypeFont(tipoLetra, true);
         posicion = new Vector2f(0,300);
         posicionE = new Vector2f(0,300);
+        posicionL = new Vector2f(0,300);
+        posicionP = new Vector2f(0,300);
         ventanaDialogo= new Image("Imagenes/Avatar/cajaMensaje.png");
         avatarH =  new Image("Imagenes/Personajes/HoraciaA.png");
         avatarM =  new Image("Imagenes/Personajes/MordeimA.png");
         avatarK =  new Image("Imagenes/Personajes/KibitoA.png");
-        avatarDesconocido = new Image("Imagenes/Personajes/Arbol.png");
+        avatarDragon = new Image("Imagenes/Personajes/Dragon.png");
         avatarDialogo = avatarH;
         sonidoSelect=new Sound("Musica/Efectos/select.wav");
-        rugido=new Sound("Musica/Efectos/rugido1.wav");
+        vuelo = new Sound("Musica/Efectos/Vuelo.wav");
+        roar = new Sound("Musica/Efectos/Grito_dragon.wav");
+        dragonSonido = new Sound("Musica/Efectos/Dragon.wav");
         texto= new TrueTypeFont(letraMenu, true);
-        this.battle = new Music("Musica/BSO/Escena_Yggdrasil.wav");
+        battle = new Music("Musica/BSO/FanaticBattle.wav");
         /**/
         
     }
@@ -125,24 +129,27 @@ public class EscenaBosquePreBoss extends BasicGameState{
     //Muestra por pantalla
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException { 
         
-            fondo.draw(-1800, -1184);
+            fondo.draw(0, 0);
             
             //EDIT:Rener Mordeim
             if(reproducirExclamacion){
                 this.exclamacion.draw(posicion.x-64, posicion.y+176);
             }
+            
             if(estado>=0){
                 hor.draw(posicion.x, posicion.y+240);
-                mor.draw(posicion.x-64, posicion.y+272);
-                //mor.draw(posicion.x-64, posicion.y+32);
-                kib.draw(posicion.x-64, posicion.y+208);
-                //kib.draw(posicion.x-64, posicion.y-32);
-                if(estado>=1 && estado!=6){
+                mor.draw(posicion.x-32, posicion.y+272);
+                kib.draw(posicion.x-32, posicion.y+208);
+                if(estado>=1 && estado!=3 && estado!=7 && estado!=11 &&estado!=16){
                 renderDialogo();
                 }
-                if(estado>=6){
-                    boss.draw(posicionE.x+664, posicionE.y+212);
+                if(estado>=3){
+                    sombra.draw(posicionL.x, posicionL.y+200);
                 }
+                if(estado>=7){
+                    dragon.draw(posicionE.x+1350, posicionE.y+200);
+                }
+                
             }
             texto.drawString(1000, 0, "" + estado);
     }
@@ -151,17 +158,18 @@ public class EscenaBosquePreBoss extends BasicGameState{
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
         exclamacion.update(i);
         if(input.isKeyPressed(Input.KEY_ENTER)){
-            if(estado!=15)
+            if(estado!=30)
             {
                 sonidoSelect.play(1, 0.2f);
                 time=0;
                 estado++;
                 if(estado>=6){
-                    battle.play();
-                    if(estado<=13){
+                    battle.play(1, 0.2f);
+                }
+                if(estado<=19){
                         battle.stop();
                 }
-                }
+                
             }
             
         }
@@ -169,142 +177,183 @@ public class EscenaBosquePreBoss extends BasicGameState{
         {
             case 0:
                 posicion.x+=0.1f*i;
-                if(posicion.x>=300){
+                if(posicion.x>=256){
                     estado++;
                 }
                 break;
             case 1:
-                hor=horI;
-                kib=kibS;
-                mor=morS;
-                avatarDialogo=this.avatarM;
-                //////="////////////////////////////////////////////////////////";
-                linea1="¡¿Cuándo saldremos de este maldito bosque?!";
-                linea2="";
-                linea3="";
-                linea4="";
-                break;
-            case 2:
-                avatarDialogo=this.avatarH;
-                //////="////////////////////////////////////////////////////////";
-                linea1="No lo se Mordeim, pero empiezo ha estar cansada de";
-                linea2="tanto andar.";
-                linea3="¿Cuánto falta para salir Kibito?";
-                linea4="";
-                break;
-            case 3:
-                avatarDialogo=this.avatarK;
-                //////="////////////////////////////////////////////////////////";
-                linea1="Claaaaaaaaaaro, como soy el mago tengo que saberlo";
-                linea2="absolutamente todo de este bosque.";
-                linea3="";
-                linea4="";
-                break;
-            case 4:
                 time+=i;
-                if(!rugido.playing())
+                if(!dragonSonido.playing())
                 {
-                    rugido.play();
+                    dragonSonido.play();
                 }
-                if(time/1000>0.4f)//
+                if(time/1000>0.5f)//
                 {
                     time=0;
                     estado++;
                 }
-                avatarDialogo=this.avatarDesconocido;
-                linea1="GRRRRRRRRRRRRRRRRRRRR!!!!!!";
+                hor=horS;
+                kib=kibS;
+                mor=morS;
+                avatarDialogo=this.avatarH;
+                //////="////////////////////////////////////////////////////////";
+                linea1="¡¿Qué ha sido eso?!";
+                linea2="Mordeim, ¿ha sido tu estómago?";
+                linea3="";
+                linea4="";
+                break;
+            case 2:
+                avatarDialogo=this.avatarM;
+                //////="////////////////////////////////////////////////////////";
+                linea1="Habrá sido el de este tío, que es un glotón.";
+                linea2="";
+                linea3="";
+                linea4="";
+                break;
+            case 3:
+                posicionL.x+=0.9f*i;
+                if(posicionL.x>=1400){
+                    estado++;
+                }
+                break;
+            case 4:
+                time+=i;
+                if(!dragonSonido.playing())
+                {
+                    dragonSonido.play();
+                }
+                avatarDialogo=this.avatarH;
+                linea1="¡¡¡NO ME HACE NINGUNA GRACIA!!!";
                 linea2="";
                 linea3="";
                 linea4="";
                 break;
             case 5:
-                reproducirExclamacion=true;
                 avatarDialogo=this.avatarK;
                 //////="////////////////////////////////////////////////////////";
-                linea1="Para que hablaré.";
+                linea1="No hemos sido ninguno de nosotros Horacia.";
                 linea2="";
                 linea3="";
                 linea4="";
                 break;
             case 6:
-                reproducirExclamacion=false;
-                hor=horE;
-                boss=bossI;
-                posicionE.x-=0.1f*i;
-                if(posicionE.x<=(-300)){
-                    estado++;
-                }
-                break;
-            case 7:
-                boss=bossE;
-                avatarDialogo=this.avatarDesconocido;
+                avatarDialogo=this.avatarH;
                 //////="////////////////////////////////////////////////////////";
-                linea1="¡¡¡¡¡¡FUEEERAAAAA DE ESTE BOSQUEEEEEEEEEEEEE!!!!!!";
+                linea1="Glup, entonces, ¿quién hace ese ruido?";
                 linea2="";
                 linea3="";
                 linea4="";
                 break;
+            case 7:
+                battle.play();
+                vuelo.play();
+                posicionE.x-=0.25f*i;
+                if(posicionE.x<=(-1024)){
+                    estado++;
+                }
+                break;
             case 8:
-                avatarDialogo=this.avatarK;
+                avatarDialogo=this.avatarM;
                 //////="////////////////////////////////////////////////////////";
-                linea1="¿Eres el Dios del Bosque?";
+                linea1="HOS*** PU**, ESTE BICHO ES ENORME!!!!!";
                 linea2="";
                 linea3="";
                 linea4="";
                 break;
             case 9:
-                avatarDialogo=this.avatarM;
+                avatarDialogo=this.avatarK;
                 //////="////////////////////////////////////////////////////////";
-                linea1="Dios del Bosque o no es un enemigo, acabemos con él.";
-                linea2="";
+                linea1="¿POR QUÉ UN DRAGÓN?";
+                linea2="PORQUE UN MALDITO DRAGÓN.";
                 linea3="";
                 linea4="";
                 break;
             case 10:
-                avatarDialogo=this.avatarDesconocido;
+                avatarDialogo=this.avatarH;
                 //////="////////////////////////////////////////////////////////";
-                linea1="LAMENTAREÍS ENFRENTAROS A MI, AL GRAN YGGDRASIL!!!!";
-                linea2="";
+                linea1="¿NO SE HABÍAN EXTINGUIDO EN LA";
+                linea2="GUERRA DEMONIACA?";
                 linea3="";
                 linea4="";
                 break;
             case 11:
-                avatarDialogo=this.avatarH;
-                linea1="Espera, Yggdrasil es el Árbol de la Vida de la";
-                linea2="mitología nórdica.";
-                linea3="¿Eres el Dios del Bosque o de la Vida?";
-                linea4="";
+                time+=i;
+                if(!roar.playing())
+                {
+                    roar.play();
+                }
+                if(time/1000>0.7f)//
+                {
+                    time=0;
+                    estado++;
+                }
                 break;
-                
             case 12:
-                avatarDialogo=this.avatarDesconocido;
+                avatarDialogo=this.avatarDragon;
                 //////="////////////////////////////////////////////////////////";
-                linea1="SOY AMBAS COSAS!!!!!";
-                linea2="PREPARAOS PARA MORIR!!!!!!!";
+                linea1="GRRRRRRRRRRRRR!!!!!!!";
+                linea2="";
                 linea3="";
                 linea4="";
                 break;
             case 13:
-                time+=i;
-                reproducirExclamacion=true;
-                if(time/1000>1f)//
-                {
-                    reproducirExclamacion=false;
-                    time=0;
-                    estado++;
-                }
                 avatarDialogo=this.avatarK;
                 //////="////////////////////////////////////////////////////////";
-                linea1="¿Quién diablos es el guionista de este juego?";
+                linea1="Propongo dar media vuelta y huir ahora que podemos.";
                 linea2="";
                 linea3="";
                 linea4="";
                 break;
             case 14:
-                reproducirExclamacion=false;
+                avatarDialogo=this.avatarH;
+                //////="////////////////////////////////////////////////////////";
+                linea1="¿Y que pasa con el sello?";
+                linea2="No podemos dejarlo por ahí.";
+                linea3="";
+                linea4="";
+                break;
+            case 15:
+                avatarDialogo=this.avatarM;
+                //////="////////////////////////////////////////////////////////";
+                linea1="Lo siento, soy alérgico a la muerte.";
+                linea2="Yo me largo.";
+                linea3="";
+                linea4="";
+                break;
+            case 16:
+                mor=morI;
+                time+=i;
+                if(!roar.playing())
+                {
+                    roar.play();
+                }
+                if(time/1000>0.7f)//
+                {
+                    time=0;
+                    estado++;
+                }
+                break;
+            case 17:
+                mor=morS;
+                avatarDialogo=this.avatarM;
+                //////="////////////////////////////////////////////////////////";
+                linea1="JOD*R, os ayudaré a matar a este bicharraco.";
+                linea2="";
+                linea3="";
+                linea4="";
+                break;
+            case 18:
+                avatarDialogo=this.avatarK;
+                //////="////////////////////////////////////////////////////////";
+                linea1="¿Dónde esta mi pluma para mi testamento?";
+                linea2="";
+                linea3="";
+                linea4="";
+                break;
+            case 19:
                 estado=0;
-                sbg.enterState(VenganzaBelial.ESCENABOSQUEPOSTBOSS);//EDIT:
-                //Deberiamos entrar en estado Combate contra Boss
+                sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);//EDIT:
+                //Deberiamos entrar en estado Combate contra el Dragon
                 break;
 
         }

@@ -125,16 +125,18 @@ public class EstadoMenuInicio extends BasicGameState {
                     //sbg.enterState(VenganzaBelial.ESCENAPUERTO1);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENATROYIA1);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENAFANATICO);//EDIT
-                    sbg.enterState(VenganzaBelial.ESCENACATACUMBASPREBOSS);//EDIT
+                    //sbg.enterState(VenganzaBelial.ESCENACATACUMBASPREBOSS);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENATROYIA2);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENACATACUMBAS1);//EDIT
+                    sbg.enterState(VenganzaBelial.ESCENAMONTANABOSS);//EDIT
+                    //sbg.enterState(VenganzaBelial.ESCENADEYOLICA);//EDIT
                     break;
                 case PRUEBASDAVID:
-                    //sbg.enterState(VenganzaBelial.ESCENACARRETA);//EDIT
+                    sbg.enterState(VenganzaBelial.ESCENACARRETA);//EDIT
                     //sbg.enterState(VenganzaBelial.ESTADOMENU);//EDIT
                     //sbg.enterState(VenganzaBelial.ESTADOCOMBATE);//EDIT
                     //sbg.enterState(VenganzaBelial.ESTADOCOMBATETUT);//EDIT
-                    sbg.enterState(VenganzaBelial.ESCENABOSQUEPOSTBOSS);//EDIT
+                    //sbg.enterState(VenganzaBelial.ESCENABOSQUEPOSTBOSS);//EDIT
                     //sbg.enterState(VenganzaBelial.ESTADOTIENDA);//EDIT
                     break;
                 case PRUEBASANGEL:
