@@ -20,6 +20,15 @@ public class EventosNpcs {
     private final int MAPADUNGEONCATACUMBAS = 4;
     private final int MAPACIUDADMONTANA = 5;
     private final int MAPADUNGEONMONTANA = 6;
+    private final int BOSSBOSQUE = 10;
+    private final int BANDIDOSPUERTO = 11;
+    private final int BOSSPUERTO = 12;
+    private final int FANATICOS = 13;
+    private final int BOSSCATACUMBAS = 14;
+    private final int GRIFO = 15;
+    private final int BOSSMONTANA = 16;
+    private final int BOSSBELIAL = 17;
+    private final int BOSSARCHIE = 18;
     //EDIT
     private int controlEventos=0;//Controla la aparición de escenas y "puntos de control" para que no se repitan
                                 //las escenas al pasar por el mismo lugar
@@ -111,6 +120,57 @@ public class EventosNpcs {
                     tipo = 0;
                 }
                 break;
+            case MAPAPUERTO:
+                if (x==8 && y==17) {
+                    evento = new Evento("Voy a curarte para que puedas seguir luchando con"
+                            + " los peligros de Reynos", "Healer", "Hola amigo"); 
+                    tipo = 2;
+                }
+                else if (x==2 && y==19) {
+                    items = new ArrayList<>();
+                    requisitoCategoria = new ArrayList<>();
+                    requisitoCategoria.add("Mordeim");
+                    Consumible pocionVida = new Consumible(20, 0, 5, "PocionVida", "Pocion que sirve para curar tu vida",
+                    requisitoCategoria, 1, 50, 20);
+                    items.add(pocionVida);
+                    vendedor = new Vendedor(items, "Luis", "que tal");
+                    tipo = 1;
+                }
+                else if (x==11 && y==1) {
+                    evento = new Evento("Me acaban de suspender programacion avanzada, "
+                            + "y no se si cortarme las venas o dejarmelas largas...", "Rosendo", "Vaya dia de deposicion");
+                    tipo = 0;
+                }
+                else if (x==19 && y==12) {
+                    evento = new Evento("Ademas de hacerse con el barco del alcalde no nos dejan salir a pescar"
+                    , "Masto", "Lo que faltaba");
+                    tipo = 0;
+                }
+                else if (x==34 && y==22) {
+                    evento = new Evento("Puedes enfrentarte al lider de los bandidos directamente, pero agradecería que "
+                            + "les dieras una paliza a los abusones que le acompañan", "Tolino", "Snif...");
+                    tipo = 0;
+                }
+                else if (x==43 && y==18) {
+                    VenganzaBelial.MapaActual = BANDIDOSPUERTO;
+                    nextEstado=VenganzaBelial.ESTADOCOMBATE;
+                    tipo = 3;
+                }
+                else if (x==44 && y==12) {
+                    VenganzaBelial.MapaActual = BANDIDOSPUERTO;
+                    nextEstado=VenganzaBelial.ESTADOCOMBATE;
+                    tipo = 3;
+                }
+                else if (x==49 && y==11) {
+                    VenganzaBelial.MapaActual = BOSSPUERTO;
+                    nextEstado=VenganzaBelial.ESTADOCOMBATE;
+                    tipo = 3;
+                }
+                break;
+            case MAPACIUDADMONTANA:
+                if (true) {
+                    
+                }
         }
         posicionEvento.x=x;
         posicionEvento.y=y;
