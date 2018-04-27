@@ -3,9 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/David/Desktop/proyecto-videojuego-grupo7/Juego/src/estados/EscenaBosquePostBoss.java</file>
             <file>file:/C:/Users/David/Desktop/proyecto-videojuego-grupo7/Juego/src/estados/EstadoMenuInicio.java</file>
             <file>file:/C:/Users/David/Desktop/proyecto-videojuego-grupo7/Juego/src/estados/VenganzaBelial.java</file>
+=======
+            <file>file:/C:/Users/Dolores/Desktop/proyecto-videojuego-grupo7/Juego/src/estados/EscenaBosque2.java</file>
+            <file>file:/C:/Users/Dolores/Desktop/proyecto-videojuego-grupo7/Juego/src/estados/EscenaCatacumbas1.java</file>
+            <file>file:/C:/Users/Dolores/Desktop/proyecto-videojuego-grupo7/Juego/src/estados/EstadoMenuInicio.java</file>
+            <file>file:/C:/Users/Dolores/Desktop/proyecto-videojuego-grupo7/Juego/src/estados/VenganzaBelial.java</file>
+>>>>>>> 87b9b05319630ba901962cfa89bc7c72dcca83ae
         </group>
     </open-files>
 </project-private>

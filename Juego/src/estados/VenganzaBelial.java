@@ -32,6 +32,8 @@ public class VenganzaBelial extends StateBasedGame {
     public static final int ESCENATROYIA1=15;//EDIT
     public static final int ESCENAFANATICO=16;//EDIT
     public static final int ESCENACATACUMBASPREBOSS=17;//EDIT
+    public static final int ESCENATROYIA2=18;//EDIT
+    public static final int ESCENACATACUMBAS1=19;
 
 
     public static final int WIDTH = 1366;
@@ -75,8 +77,10 @@ public class VenganzaBelial extends StateBasedGame {
         addState(new EscenaBosquePostBoss(ESCENABOSQUEPOSTBOSS));
 
         addState(new EscenaTroyia1(ESCENATROYIA1));
+        addState(new EscenaTroyia2(ESCENATROYIA2));
         addState(new EscenaFanatico(ESCENAFANATICO));
         addState(new EscenaCatacumbasPreBoss(ESCENACATACUMBASPREBOSS));
+        addState(new EscenaCatacumbas1(ESCENACATACUMBAS1));
 
         //
         this.enterState(ESTADOMENUINICIO);
@@ -102,7 +106,9 @@ public class VenganzaBelial extends StateBasedGame {
         getState(ESCENABOSQUEPOSTBOSS).init(gc, this);
 
         getState(ESCENATROYIA1).init(gc, this);
+        getState(ESCENATROYIA2).init(gc, this);
         getState(ESCENAFANATICO).init(gc, this);
+        getState(ESCENACATACUMBAS1).init(gc, this);
         getState(ESCENACATACUMBASPREBOSS).init(gc, this);
     }
 
