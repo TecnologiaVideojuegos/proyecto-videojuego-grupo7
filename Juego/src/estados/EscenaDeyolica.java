@@ -19,7 +19,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
-public class EscenaCatacumbas1 extends BasicGameState{
+public class EscenaDeyolica extends BasicGameState{
     private int idEstado;
     private static final int POSICIONAVATARX = 30;
     private static final int POSICIONAVATARY = 620;
@@ -38,29 +38,24 @@ public class EscenaCatacumbas1 extends BasicGameState{
     /*Control de escena*/
     private Input input;
     private int estado;
-    private boolean reproducirExclamacion=false;
     /*Mapa*/
     private Vector2f posicion,posicionE,posicionS;
     private static final int esquinaXMapa=0;
     private static final int esquinaYMapa=0;
     /*Animaciones*/
-    private SpriteSheet sheetExclamacion;
-    private Animation exclamacion;
     private Animation hor,kib,mor;
     private Animation horD,kibD,morD;
     private Animation horS,kibS,morS;
-    private Animation corrupto,corruptoI;
-    private Animation misterio,misterioI,misterioA;
     private Image fondo;
     /*Imagenes*/
-    private Image ventanaDialogo,avatarDialogo, avatarH,avatarM, avatarK, avatarCorrupto;
+    private Image ventanaDialogo,avatarDialogo, avatarH,avatarM, avatarK;
     /*Sonido*/
-    private Sound sonidoSelect,grito;
+    private Sound sonidoSelect;
     int time;//EDIT
     private TrueTypeFont texto;
     private Font letraMenu  = new Font("Arial Black", Font.PLAIN, 15); 
     
-    public EscenaCatacumbas1(int id) {
+    public EscenaDeyolica(int id) {
         this.idEstado=id;
     }
     @Override
@@ -85,18 +80,7 @@ public class EscenaCatacumbas1 extends BasicGameState{
         hor=horD;
         kib=kibD;
         mor=morD;
-        Image[] fanIzq={new Image("Imagenes/Animaciones/Sprites/corrupto1.png")};
-        corruptoI=new Animation(fanIzq,200);
-        corrupto=corruptoI;
-        Image[] misIzq={new Image("Imagenes/Animaciones/Sprites/misterio4.png"),new Image("Imagenes/Animaciones/Sprites/misterio5.png"),new Image("Imagenes/Animaciones/Sprites/misterio6.png")};
-        misterioI=new Animation(misIzq,200);
-        Image[] misStop={new Image("Imagenes/Animaciones/Sprites/misterio5.png")};
-        misterioA=new Animation(misStop,200);
-        misterio=misterioI;
         fondo= new Image("Imagenes/Escenas/EscenaBosque1/mapaBosque.png");
-        /**/
-        this.sheetExclamacion= new SpriteSheet("Imagenes/Animaciones/puntos.png",32,33);
-        this.exclamacion = new Animation(sheetExclamacion,200);
         /**/
         estado=0;
         this.input = gc.getInput();
@@ -108,10 +92,8 @@ public class EscenaCatacumbas1 extends BasicGameState{
         avatarH =  new Image("Imagenes/Personajes/HoraciaA.png");
         avatarM =  new Image("Imagenes/Personajes/MordeimA.png");
         avatarK =  new Image("Imagenes/Personajes/KibitoA.png");
-        avatarCorrupto = new Image("Imagenes/Avatar/Caras/corrupted.png");
         avatarDialogo = avatarH;
         sonidoSelect=new Sound("Musica/Efectos/select.wav");
-        grito = new Sound("Musica/Efectos/Grito_corrupto.wav");
         texto= new TrueTypeFont(letraMenu, true);
         /**/
         
@@ -121,23 +103,16 @@ public class EscenaCatacumbas1 extends BasicGameState{
     //Muestra por pantalla
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException { 
         
-            fondo.draw(-1200, -160);
+            fondo.draw(0, 0);
             
             //EDIT:Rener Mordeim
-            if(reproducirExclamacion){
-                this.exclamacion.draw(posicion.x-64, posicion.y+176);
-            }
+            
             if(estado>=0){
                 hor.draw(posicion.x, posicion.y);
                 mor.draw(posicion.x, posicion.y+32);
                 kib.draw(posicion.x, posicion.y-32);
-                corrupto.draw(posicionS.x+364, posicionS.y);
                 if(estado>=1 && estado!=6){
                 renderDialogo();
-                }
-                if(estado>=6){
-                    misterio.draw(posicionE.x+496, posicionE.y-32);
-                    misterio.draw(posicionE.x+496, posicionE.y+32);
                 }
             }
             texto.drawString(1000, 0, "" + estado);
@@ -145,7 +120,6 @@ public class EscenaCatacumbas1 extends BasicGameState{
     @Override
     //Muestra la actualización
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
-        exclamacion.update(i);
         if(input.isKeyPressed(Input.KEY_ENTER)){
             if(estado!=30)
             {
@@ -159,7 +133,7 @@ public class EscenaCatacumbas1 extends BasicGameState{
         {
             case 0:
                 posicion.x+=0.1f*i;
-                if(posicion.x>=256){
+                if(posicion.x>=128){
                     estado++;
                 }
                 break;
@@ -167,86 +141,37 @@ public class EscenaCatacumbas1 extends BasicGameState{
                 hor=horS;
                 kib=kibS;
                 mor=morS;
-                avatarDialogo=this.avatarH;
-                //////="////////////////////////////////////////////////////////";
-                linea1="¿Qué es eso?";
-                linea2="Parece una armadura.";
-                linea3="";
-                linea4="";
-                break;
-            case 2:
                 avatarDialogo=this.avatarM;
                 //////="////////////////////////////////////////////////////////";
-                linea1="Menuda armadura más fea. Es perfecta para tí Horacia.";
+                linea1="¿Y bien, de que trata la misión?";
                 linea2="";
                 linea3="";
                 linea4="";
                 break;
-            case 3:
-                grito.play();
-                avatarDialogo=this.avatarCorrupto;
+            case 2:
+                avatarDialogo=this.avatarH;
                 //////="////////////////////////////////////////////////////////";
-                linea1="GRRRRRRRRRRRRRRRRRRRR!!!!!!!";
+                linea1="Antes de nada es mejor que nos preparemos para";
+                linea2="el viaje, porque va ha ser un viaje muy largo.";
+                linea3="";
+                linea4="";
+                break;
+            case 3:
+                avatarDialogo=this.avatarK;
+                //////="////////////////////////////////////////////////////////";
+                linea1="¿Y adonde vamos exactamente?";
                 linea2="";
                 linea3="";
                 linea4="";
                 break;
             case 4:
-                grito.stop();
                 avatarDialogo=this.avatarH;
-                linea1="Esta vivo.";
-                linea2="";
-                linea3="";
-                linea4="";
+                linea1="Luego os lo cuento.";
+                linea2="Lo primero es hablar con los vendedores.";
+                linea3="Creo que para hablar con ellos hay que chocar";
+                linea4="contra ellos para que salte el diálogo.";
                 break;
             case 5:
-                avatarDialogo=this.avatarK;
-                //////="////////////////////////////////////////////////////////";
-                linea1="Debe ser una armadura maldita que deben de estar";
-                linea2="usando esos fanáticos de antes con magia negra";
-                linea3="a modo de guardian para protejer algo importante.";
-                linea4="";
-                break;
-            case 6:
-                posicionE.x-=0.1f*i;
-                if(posicionE.x<=(-100)){
-                    estado++;
-                }
-                break;
-            case 7:
-                misterio=misterioA;
-                avatarDialogo=this.avatarCorrupto;
-                //////="////////////////////////////////////////////////////////";
-                linea1="OS DESTRUIRÉ!!!!!!!!!!!!!";
-                linea2="NO QUEDARÁ NADA DE VOSOTROS!!!!!!!!!!!!!!!";
-                linea3="";
-                linea4="";
-                break;
-            case 8:
-                avatarDialogo=this.avatarH;
-                //////="////////////////////////////////////////////////////////";
-                linea1="Supongo que habrá que luchar para seguir adelante.";
-                linea2="";
-                linea3="";
-                linea4="";
-                break;
-            case 9:
-                avatarDialogo=this.avatarM;
-                //////="////////////////////////////////////////////////////////";
-                linea1="Todo lo que sea matar me gusta.";
-                linea2="";
-                linea3="";
-                linea4="";
-                break;
-            case 10:
-                avatarDialogo=this.avatarCorrupto;
-                linea1="ACABAD CON ELLOS!!!!!!!";
-                linea2="POR EL GRAN MAESTRO!!!!!!!!!!";
-                linea3="";
-                linea4="";
-                break;
-            case 11:
-                //Batalla contra dos fanáticos y corruptedknight
                 estado=0;
                 sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);//EDIT:
                 break;
