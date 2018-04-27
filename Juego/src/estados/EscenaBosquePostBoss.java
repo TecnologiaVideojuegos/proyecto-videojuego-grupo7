@@ -19,10 +19,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
-/**
- *
- * @author Dolores
- */
+
 public class EscenaBosquePostBoss extends BasicGameState{
     private int idEstado;
     private static final int POSICIONAVATARX = 30;

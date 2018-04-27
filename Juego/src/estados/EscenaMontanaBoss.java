@@ -137,9 +137,9 @@ public class EscenaMontanaBoss extends BasicGameState{
             }
             
             if(estado>=0){
-                hor.draw(posicion.x, posicion.y+240);
-                mor.draw(posicion.x-32, posicion.y+272);
-                kib.draw(posicion.x-32, posicion.y+208);
+                hor.draw(posicion.x+320, posicion.y+240);
+                mor.draw(posicion.x+288, posicion.y+272);
+                kib.draw(posicion.x+288, posicion.y+208);
                 if(estado>=1 && estado!=3 && estado!=7 && estado!=11 &&estado!=16){
                 renderDialogo();
                 }
@@ -239,7 +239,7 @@ public class EscenaMontanaBoss extends BasicGameState{
             case 6:
                 avatarDialogo=this.avatarH;
                 //////="////////////////////////////////////////////////////////";
-                linea1="Glup, entonces, ¿quién hace ese ruido?";
+                linea1="Glup. Entonces, ¿quién hace ese ruido?";
                 linea2="";
                 linea3="";
                 linea4="";
@@ -248,7 +248,7 @@ public class EscenaMontanaBoss extends BasicGameState{
                 battle.play();
                 vuelo.play();
                 posicionE.x-=0.25f*i;
-                if(posicionE.x<=(-1024)){
+                if(posicionE.x<=(-704)){
                     estado++;
                 }
                 break;
@@ -264,7 +264,7 @@ public class EscenaMontanaBoss extends BasicGameState{
                 avatarDialogo=this.avatarK;
                 //////="////////////////////////////////////////////////////////";
                 linea1="¿POR QUÉ UN DRAGÓN?";
-                linea2="PORQUE UN MALDITO DRAGÓN.";
+                linea2="¿POR QUÉ UN MALDITO DRAGÓN?";
                 linea3="";
                 linea4="";
                 break;
