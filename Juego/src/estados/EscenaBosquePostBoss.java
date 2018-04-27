@@ -64,6 +64,8 @@ public class EscenaBosquePostBoss extends BasicGameState{
     private Animation ataque;
     private Animation explosion;
     
+    private SpriteSheet sheetHablar;
+    private Animation hablar;
     
     private Animation hor,kib,mor;
     private Animation horD,kibD,morD;//Movimiento a Derecha
@@ -73,7 +75,7 @@ public class EscenaBosquePostBoss extends BasicGameState{
     private Animation horEQ;//EspaldaQuieta
     private Image fondo;
     /*Imagenes*/
-    private Image ventanaDialogo,avatarDialogo, avatarH,avatarM, avatarK, avatarDesconocido, avatarSello, narrador, fuego;
+    private Image ventanaDialogo,avatarDialogo, avatarH,avatarM, avatarK, avatarDesconocido, avatarSello, narrador, fuego, arbolBoss;
     /*Sonido*/
     private Sound sonidoSelect,sonidoAtaque, sonidoSello;
     private Music battle;
@@ -119,6 +121,8 @@ public class EscenaBosquePostBoss extends BasicGameState{
         this.puntos = new Animation(sheetPuntos,200);
         this.sheetAtaque= new SpriteSheet("Imagenes/Animaciones/Combate/ataque1.png",190,181);
         this.ataque = new Animation(sheetAtaque,200);
+        this.sheetHablar= new SpriteSheet("Imagenes/Animaciones/hablar.png",32,33);
+        this.hablar = new Animation(sheetHablar,200);
         Image[] explo ={new Image("Imagenes/Animaciones/Combate/ex1.png"),new Image("Imagenes/Animaciones/Combate/ex2.png"),new Image("Imagenes/Animaciones/Combate/ex3.png"),new Image("Imagenes/Animaciones/Combate/ex4.png"),new Image("Imagenes/Animaciones/Combate/ex5.png"),new Image("Imagenes/Animaciones/Combate/ex6.png"),new Image("Imagenes/Animaciones/Combate/ex7.png"),new Image("Imagenes/Animaciones/Combate/ex8.png"),new Image("Imagenes/Animaciones/Combate/ex9.png")};
         explosion = new Animation(explo,200);
         /**/
@@ -137,7 +141,8 @@ public class EscenaBosquePostBoss extends BasicGameState{
         avatarDesconocido = new Image("Imagenes/Personajes/Arbol.png");
         avatarSello= new Image("Imagenes/Personajes/sello.png");
         narrador= new Image ("Imagenes/Personajes/EncapuchadoA.png");
-        
+        arbolBoss= new Image("Imagenes/Animaciones/Sprites/arbolbueno5.png");
+        arbolBoss.rotate(90);
         fuego= new Image("Imagenes/Escenas/Fire.png");
         avatarDialogo = avatarH;
         sonidoSelect=new Sound("Musica/Efectos/select.wav");
@@ -163,6 +168,9 @@ public class EscenaBosquePostBoss extends BasicGameState{
         if(posicion.x<1000)
             kib.draw(posicion.x, posicion.y-50);
         
+        arbolBoss.draw(762, 600);
+        if(estado==18)
+            hablar.draw(780, 600);
         
         if(estado==15)
             renderOpcionesJugador();
@@ -476,6 +484,7 @@ public class EscenaBosquePostBoss extends BasicGameState{
                     linea4="";
                 }
                 else{
+                    this.arbolBoss=new Image("Imagenes/Animaciones/Sprites/arbolbueno4.png");
                    avatarDialogo=this.avatarDesconocido;
                     //////="////////////////////////////////////////////////////////";
                     linea1="Uuughh, ¿Que ha pasado? ¿donde estoy? ¿Quienes soys?";
@@ -569,17 +578,23 @@ public class EscenaBosquePostBoss extends BasicGameState{
                 }
                 break;
             case 31:
+                if(arbolAsesinado){
+                    sbg.enterState(VenganzaBelial.ESCENAPUERTO1);
+                }
+                else{
                    avatarDialogo=this.avatarM;
                     //////="////////////////////////////////////////////////////////";
                     linea1="Hubiera preferido la muerte de Kibito a aguantar este ";
                     linea2="tostón. Me largo.";
                     linea3="";
                     linea4=""; 
+                    mor=morD;
                     posicionMordeim.x+=0.1f*i;
                     posicionMordeim.y+=0.05f*i;
                     if(posicion.x>=900){
                         estado++;
                     }
+                }
                 break;
             case 32:
                    avatarDialogo=this.avatarK;
@@ -598,9 +613,10 @@ public class EscenaBosquePostBoss extends BasicGameState{
                     linea4=""; 
                 break;
             case 34:
-                    posicionMordeim.x+=0.1f*i;
-                    posicionMordeim.y+=0.05f*i;
-                    if(posicion.x>=900){
+                    kib=kibD;
+                    hor=horD;
+                    posicion.x+=0.1f*i;
+                    if(posicion.x>=1000){
                         estado++;
                     }
                 break;

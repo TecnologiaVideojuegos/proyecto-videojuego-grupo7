@@ -28,9 +28,7 @@ public class VenganzaBelial extends StateBasedGame {
     public static final int ESCENABOSQUE3=11;//EDIT
     public static final int ESTADOTIENDA=12;
     public static final int ESCENAPUERTO1=13;//EDIT
-
     public static final int ESCENABOSQUEPOSTBOSS=14;//EDIT
-
     public static final int ESCENATROYIA1=15;//EDIT
     public static final int ESCENAFANATICO=16;//EDIT
     public static final int ESCENACATACUMBASPREBOSS=17;//EDIT
