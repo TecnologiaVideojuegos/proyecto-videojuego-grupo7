@@ -392,7 +392,7 @@ public class EscenaTroyiaPostBoss extends BasicGameState{
             case 19:
                 avatarDialogo=this.avatarSello;
                 //////="////////////////////////////////////////////////////////";
-                linea1="Por favor introduzca la contraseña de su cuenta.";
+                linea1="Lo sentimos, esta cuenta ha sido requisada.";
                 linea2="";
                 linea3="";
                 linea4="";

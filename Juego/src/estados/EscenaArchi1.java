@@ -223,7 +223,7 @@ public class EscenaArchi1 extends BasicGameState{
             case 6:
                 avatarDialogo=this.avatarH;
                 //////="////////////////////////////////////////////////////////";
-                linea1="Pero, ¿eso no ess una buena noticia?";
+                linea1="Pero, ¿eso no es una buena noticia?";
                 linea2="";
                 linea3="";
                 linea4="";
@@ -337,7 +337,7 @@ public class EscenaArchi1 extends BasicGameState{
                 break;
             case 20:
                 estado=0;
-                sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);//EDIT:
+                sbg.enterState(VenganzaBelial.ESCENATROYIAPOSTBOSS2);//EDIT:
                 break;
             
         }
