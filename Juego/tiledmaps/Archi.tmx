@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.1.4" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="32" tileheight="32" infinite="0" nextobjectid="1">
+ <tileset firstgid="1" source="Dungeon_A2.tsx"/>
+ <tileset firstgid="193" source="Dungeon_C.tsx"/>
+ <tileset firstgid="449" source="Inside_B.tsx"/>
+ <tileset firstgid="705" source="Inside_C.tsx"/>
+ <layer name="Capa de Patrones 1" width="15" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxLZ2BgSB/Fo3gUDxgGAOMxWog=
+  </data>
+ </layer>
+ <layer name="Capa de patrones 2" width="15" height="15">
+  <data encoding="base64" compression="zlib">
+   eJzLZGRgyCQTV1KAaQH0mBgY9IHYgIl0vXZAPfZA7ECG3lEwCigBAElHDrM=
+  </data>
+ </layer>
+ <layer name="Capa de patrones 3" width="15" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBh48I6JgeEVE3a5KmYGBk5mVLFlQLXLgXgFDj3YgD8jA0MAEG8D6tkOxDugei2BZltBsQ0S2xrJznigvgRGCHsSkp2eQDVeUOyDxPZmxrSXHACzlxwzYHqQ3Q4C2czY1Wdj8S+6vdU49FZj8S+6vcQAWviXFHsHCgAA6owX0g==
+  </data>
+ </layer>
+</map>

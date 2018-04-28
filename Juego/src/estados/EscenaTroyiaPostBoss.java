@@ -430,7 +430,7 @@ public class EscenaTroyiaPostBoss extends BasicGameState{
                 break;
             case 24:
                 estado=0;
-                sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);//EDIT:
+                sbg.enterState(VenganzaBelial.ESCENAARCHI1);//EDIT:
                 break;
 
         }
