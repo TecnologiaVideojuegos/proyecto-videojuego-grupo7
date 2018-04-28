@@ -3,14 +3,15 @@ package enemigos;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
+import org.newdawn.slick.SlickException;
 import otros.Habilidad;
 import personajes.Jugador;
 
-public final class Zombie extends Enemigo implements Serializable{
+public final class Mimico extends Enemigo implements Serializable{
     private ArrayList<Habilidad> habilidades;
     private static final long serialVersionUID = 4L;
     
-    public Zombie(int id, int nivel, int hp, int ataque, int defensa) {
+    public Mimico(int id, int nivel, int hp, int ataque, int defensa) {
         super(id, nivel, hp, ataque, defensa); 
 
         inicializarEnemigo();
@@ -18,33 +19,34 @@ public final class Zombie extends Enemigo implements Serializable{
     
     @Override
     public void inicializarEnemigo(){
-        this.setNombre("Zombie");
+        this.setNombre("Mimico");
         habilidades = new ArrayList<>();  
-        Habilidad hab = new Habilidad("Mordisco curativo", 1, 40, 0, "Mordisco que cura", 3);
+        Habilidad hab = new Habilidad("Mordiscazo", 1, 25, 0, "Mordiscazo mortal", 2);
         habilidades.add(hab);
         this.setHabilidad(habilidades);
         this.setOro(this.getNivel() * 3);
         this.setExpAportada(this.getNivel() * 5);
         this.setVelocidad(12);
         this.setHpActual(this.getHp());    
+        //this.setImagen("Imagenes/Monstruos/Bosque/Rata.png");
     }
 
     @Override
     public String estrategiaAtacar(ArrayList<Jugador> jugadores) {
-        //Ataca aleatorio y si es habilidad se cura
+        //Ataca aleatorio y quita 1 o lo mata directamente
         String msg;
         Random rand = new Random();
         float probHab = rand.nextFloat();
         int at = this.getAtaque();
-        int danyo, total, indice, danyoInflingido;
+        int indice, danyoInfligido;
         boolean habilidad = false;
         ArrayList<Jugador> jugadoresAux = new ArrayList<>();
         
-        if (probHab > 0.8){
+        if (probHab > 0.95){
             at += this.getHabilidad().get(0).getDanyo();
             habilidad = true;
         }
-
+        
         for (int i = 0; i < jugadores.size(); i++) {
             if (jugadores.get(i).estaVivo())
                 jugadoresAux.add(jugadores.get(i));
@@ -52,28 +54,22 @@ public final class Zombie extends Enemigo implements Serializable{
 
         //Indice aleatorio de los que estan vivos
         indice = rand.nextInt(jugadoresAux.size());
-        
-        danyo = at - jugadores.get(indice).getDefensa();
 
-        if (danyo > 0)
-            total = danyo;
+        if(habilidad)
+            danyoInfligido = jugadores.get(indice).getHpActual();
         else
-            total = 1;
+            danyoInfligido = 1;
         
-        danyoInflingido = jugadores.get(indice).getHpActual() - total;
-        if(habilidad){
-            if((this.getHpActual() + danyoInflingido) >= this.getHp())
-                this.setHpActual(this.getHp());
-            else
-                this.setHpActual(danyoInflingido);
-        }
-            
-        if(danyoInflingido < 0)
+        
+        if((jugadores.get(indice).getHpActual() - danyoInfligido)  <= 0)
             jugadores.get(indice).setHpActual(0);
         else
-            jugadores.get(indice).setHpActual(danyoInflingido);   
+            jugadores.get(indice).setHpActual(danyoInfligido); 
         
-        msg = this.escribirMensaje(habilidad, this.getHabilidad().get(0), jugadores.get(indice), total);
+        
+        jugadores.get(indice).setHpActual(danyoInfligido);
+        
+        msg = this.escribirMensaje(habilidad, this.getHabilidad().get(0), jugadores.get(indice), danyoInfligido);
         return msg;
     }
 }
