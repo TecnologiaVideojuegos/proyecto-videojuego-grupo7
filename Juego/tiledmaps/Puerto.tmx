@@ -10,20 +10,20 @@
  <tileset firstgid="1645" source="PuertoBehavior2.tsx"/>
  <layer name="Fondo" width="60" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3XMQqAMBBE0Vh40BzRi3gmk0oREpbAorP7H6SaQn6wSSkAkM+53WdlV/NVb6Q7nHneX7R/523UFrV51kSvP+9v/q3XW6be2s6xj3d69WX6nzt6bZsqem2bJ8/3Er22TRW9tk3V6vv3Atk9tlRwFwAA
+   H4sIAAAAAAAACu2XSwrAIAxE7cKDekQv0jNZF8VSiIh0aD7zIKtZhBeySFIihJB4nMeondwaf/l6muGM5/y87c4byc2r88yJvnjQPbX5oonkW66qWc7pa59I+9yh71pmFW2+0m371c2rzffui/qXNPoioe9aZpWIvjv/bwMuFanfcBcAAA==
   </data>
  </layer>
- <layer name="Suelo" width="60" height="25">
+ <layer name="Suelo" width="60" height="25" visible="0">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3XOw7CMBAE0I0i51bQQEsHNTgSvwvwPQKngRMyTdLg2Im1XpNoR5rGVux9UhpbIrKJ+o9JZZ2ad6xRr3r7ejcl0Qk9l3H7EuH07uE4oMcOT2hfIpxeWxDVheeuwP6QzCqiefW7vsDa0rHezhBZ51mC3pXHtJ6gt8kWth1q0drjbGeIrPMsYe/FEF3RG3pHH+jT+L8Zi9d1/8u4O+Qcqaq3/5xvmD4dVvXyeKWT+3+WjnrVq97wOZxezvfhGLyc78Pc3tyNTe651ZvW+wUFSQLZcBcAAA==
+   H4sIAAAAAAAACu3SOw7CMBAE0I0i51bQQEsHNTgSv5KG7xE4DZyQaUjDxk4se02iHWkaW1nvk2KJyCbqPyaVdWzeoUa96u3qXZVEB/RYht1LJKZ3C8cO3bd4fPcSiem1BVFdON7y3PfJpCKaVr/nM5zNmfNmh8CyswS9C4dpOULvN2vYNqhFa4ez2SGw7Cxh79kQXdArekPv6MO4vxmKl3v/afj2mSNV9Xbf8wXTu8Wq3jhe6eT+n6WjXvWq1z9HvXxPws3tzd3Q5N5bvWm9H+WWFP5wFwAA
   </data>
  </layer>
- <layer name="Colisiones" width="60" height="25">
+ <layer name="Colisiones" width="60" height="25" visible="0">
   <properties>
    <property name="blocked" type="bool" value="true"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACuXXx2sUYRjH8VEzq0YhXlIV9JJqUC8pekiikqJgb0ksMOuqiV3Bg2IHD4oHCwp6sqB/gXrRo13wINjPdvBm9+B38R14eTPlfWfHnQUf+DDMTvad9zfPzOybO0WWdRf3cB+OZVkP2D7EI+zGHgwXssd1lPC3j4cVnqfM6xme4wWy9ZLtK7zGURwTn5vU5xHJZ/Pyhixv8Q7vRa4PbD/iE87hvEfepOcdlWPeuoLt3b/K+7/11y9vrsfz4QfP5k/8wm98wVd8w3ef95Tf/ZxUXpMxR9uWVYwxGAsbKYzEKDtaf+OYl462lGW1owMzMQuzU8HfqSRTFcZjAkpRhnJU+ORN+/y25jPvPHLNxwIsxCIsxhIsDchcT6YGTEYjqlGDWtQpefvY78dKO/m8q8m0JjW0F2v5LBOQ1/G/ZYfUIDk3YlMB5N0V8Kzt9ZmfaV65wvKs8jhnLnnd9axbRwLyHo8hb9pwTbnZ/vudjKCOFSWvXHHnPcP4Z6VzqNc31zLNe9rg3FHyXmH8q+IcblY5b0bqnU7v5TGirEcvx5S3iWPNaEGrzz3idU/G8c4xcU05/3XmesNjvjf57FZA3k6OdaEbPR7fz/g8g/nOezum53cZx5ZjBXpRgnEBY2Urif+P1Ira33UcW48NGMBETArJm0R/1ZL728v6ok9aewT190nEd24h5R0g66BmXidCVt37Oez6mFw/tWyPtaRbxSHryRP0+CROiV5vYbsV28T+FK7XVEyTrmnSeUvJVIZyoUKoRFVI3gvkuohLIt8+tvtxQOy3kbMdHRrPdb6qmkw1qBXqhHo0hOTdTq4d2CnyqfvZSmuuK9xy3/NxrsnkaiJTM1qEVmE6ZoTkPcicDuFwkfe+I+XV5b7n5XWVO5Yu+bdf1UmmLnQLPcIczA3I+wdTu4K/cBcAAA==
+   H4sIAAAAAAAACuXXyWvUYBzG8ajNqFWol64KeumqqJcuemir0kXB3e4qZJxu7goeFHfwoHhwQUFPLuhfoF706FYFD4L72R28uXvwO/gGXtK8yZtMOhnwBx9C5m3evM+8eTNv7+UZxn08wENYhmGMcHyEx9iLfRgvpNt1FPC3T8blnmeM6zle4CXS9Yrja7zBcZwQnwepLxPiz+bmLVne4T0+iFwfOX7CZ1zARZe8cY87LCv41OXs3I1V3v9tflV5M23Php+szV/4jT/4im/4jh+K95TqeY4rb5A+J5uGkY8pmAoTCUzEJDPc/EYxLh2NCcNoQjMWYTGWJLyvKSVTGaZjBgpRhGKUKPImFb+t2cy7nFwrsBKrsBprsBbrPDJXk6kGszEH5ahAJaoceXs470WfGX/eDWTamBg9F5v4LOWR11I/sqNqmJybsSUH8u7xWGv7FeMLmlcuvzzrXe6ZSV57P2vXMY+8J8cgr19tNf+t85Qgl2r9++WVK+q85+j/vHQP5/ebaQXNezbAvcPkvUb/18U97Kxy3pQ0d0mNsch9hNmPXo0oby1tdahHg+IZcXsmo3jnBHHDcf+bjPWWy3hv89kdj7wttLWiDe0u16cUazDbee9GtH47aOtEF7pRgGkefaUrjv+PnBV2fvtpG8AghjATs3zyxjG/zpLnt5v9RY+09/Ca36ch37k6Y+xgDJ3oUux3/Np18w5x/bBmXitcXK28/YxhAIOKPH7tXnlNl72kXfk++8lTzPFpnBFzvY3jduwQ53P5vuZhvsZznq0qJFMRioUSoRRlPnkvkesyroh8BzgexCFx3kjOJjTnUN5yMlWgUqgSqlHjk3cnuXZht8jnPE9XUnNfYZf9no9yTyZXLZnqUC80CAuw0CfvYcZ0BEfz3M8tKa8u+z0v76vsvnTJv/1OLWRqRZvQLizFMo+8fwEGfULJcBcAAA==
   </data>
  </layer>
  <layer name="NPCs" width="60" height="25">
@@ -32,10 +32,10 @@
    <property name="evento" type="bool" value="true"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3WMQ0AIAwEQCYc44EJF0ggYUIbCtgautwZaJOmny+Fl1GzNwAA4Ied1Pvmh7lHpwUeunxIE5nNyx0hTPNPBLgmGs9ucBcAAA==
+   H4sIAAAAAAAACu3WsQnAMAwEQFWZ2EOkyhYZweDKs2UCFYFEau4WkEDi+Qgy19G9AQAAFVZT77sL5m6dFkic8qHNl9k83ZEfDf8Frz2KmPVLcBcAAA==
   </data>
  </layer>
- <layer name="Eventos" width="60" height="25">
+ <layer name="Eventos" width="60" height="25" visible="0">
   <properties>
    <property name="evento" type="bool" value="true"/>
   </properties>

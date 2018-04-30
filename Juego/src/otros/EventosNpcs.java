@@ -147,7 +147,7 @@ public class EventosNpcs {
                     , "Masto", "Lo que faltaba");
                     tipo = 0;
                 }
-                else if (x==34 && y==22) {
+                else if (x==34 && y==21) {
                     evento = new Evento("Puedes enfrentarte al lider de los bandidos directamente, pero agradecería que "
                             + "les dieras una paliza a los abusones que le acompañan", "Tolino", "Snif...");
                     tipo = 0;

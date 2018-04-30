@@ -116,6 +116,9 @@ public class EstadoMapaJuego extends BasicGameState {
                 case 7: //Mapa Boss: ID=6(Posible cambio en este identificador)
                     break;
             }
+            blocked = new boolean[map.getWidth()][map.getHeight()];
+            enemigos= new boolean[map.getWidth()][map.getHeight()];
+            eventos= new boolean[map.getWidth()][map.getHeight()];
             initializeBlocked();
             initializeEnemigos();
             initializeEventos();
