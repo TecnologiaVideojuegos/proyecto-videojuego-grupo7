@@ -80,7 +80,7 @@ public class EscenaDeyolica extends BasicGameState{
         hor=horD;
         kib=kibD;
         mor=morD;
-        fondo= new Image("Imagenes/Escenas/EscenaBosque1/mapaBosque.png");
+        fondo= new Image("Imagenes/Escenas/SalaInicial/MapaTutorial.png");
         /**/
         estado=0;
         this.input = gc.getInput();
@@ -108,9 +108,9 @@ public class EscenaDeyolica extends BasicGameState{
             //EDIT:Rener Mordeim
             
             if(estado>=0){
-                hor.draw(posicion.x, posicion.y);
-                mor.draw(posicion.x, posicion.y+32);
-                kib.draw(posicion.x, posicion.y-32);
+                hor.draw(posicion.x+160, posicion.y-80);
+                mor.draw(posicion.x+160, posicion.y-48);
+                kib.draw(posicion.x+160, posicion.y-112);
                 if(estado>=1 && estado!=6){
                 renderDialogo();
                 }

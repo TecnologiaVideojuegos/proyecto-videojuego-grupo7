@@ -46,7 +46,7 @@ public class EscenaTroyiaPostBoss2 extends BasicGameState{
     private Vector2f posicion,posicionP,posicionA,posicionC;
     private static int esquinaXMapa=0;
     private static int esquinaYMapa=0;
-    private static int esquinaXMapa2=0;
+    private static int esquinaXMapa2=-100;
     private static int esquinaYMapa2=0;
     /*Animaciones*/
     private SpriteSheet sheetExclamacion;
@@ -118,7 +118,7 @@ public class EscenaTroyiaPostBoss2 extends BasicGameState{
         adulto1 = new Image("Imagenes/Animaciones/Sprites/aldeano1.png");
         adulto2 = new Image("Imagenes/Animaciones/Sprites/aldeana1.png");
         fondo= new Image("Imagenes/Escenas/EscenaPuerto/Puerto.png");
-        fondoFanatico = new Image("Imagenes/Escenas/SalaInicial/SalaCardinal.png");
+        fondoFanatico = new Image("Imagenes/Escenas/SalaInicial/MapaTutorial.png");
         /**/
         this.sheetExclamacion= new SpriteSheet("Imagenes/Animaciones/puntos.png",32,33);
         this.exclamacion = new Animation(sheetExclamacion,200);
@@ -175,10 +175,10 @@ public class EscenaTroyiaPostBoss2 extends BasicGameState{
             }
             if(estado>=10){
                     fondoFanatico.draw(esquinaXMapa2,esquinaYMapa2);
-                    archi.draw(posicionA.x, posicionA.y);
+                    archi.draw(posicionA.x, posicionA.y-80);
                     
                     if(estado<14){
-                    cab.draw(posicionC.x+64, posicionC.y-30);
+                    cab.draw(posicionC.x+64, posicionC.y-110);
                     }
                     
                     if(estado!=10 && estado!=13 && estado!=15){
@@ -306,7 +306,7 @@ public class EscenaTroyiaPostBoss2 extends BasicGameState{
             case 13:
                 cab=cabD;
                 posicionC.x+=0.2f*i;
-                if(posicionC.x>=1024){
+                if(posicionC.x>=1350){
                     estado++;
                 }
                 break;
@@ -319,13 +319,6 @@ public class EscenaTroyiaPostBoss2 extends BasicGameState{
                 linea4="";
                 break;
             case 15:
-                archi=archiD;
-                posicionA.x+=0.1f*i;
-                if(posicionA.x>=544){
-                    estado++;
-                }
-                break;
-            case 16:
                 estado=0;
                 sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);//EDIT:
                 break;
