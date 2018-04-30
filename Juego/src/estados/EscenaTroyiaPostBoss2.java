@@ -57,6 +57,7 @@ public class EscenaTroyiaPostBoss2 extends BasicGameState{
     private Animation nar,narI,narE;
     private Animation archi,archiD,archiS;
     private Animation cab,cabS,cabD;
+    private Image abu1,abu2,nino1,nino2,joven1,joven2,adulto1,adulto2;
     private Image fondo,fondoFanatico;
     /*Imagenes*/
     private Image ventanaDialogo,avatarDialogo, avatarH,avatarM, avatarK;
@@ -108,6 +109,14 @@ public class EscenaTroyiaPostBoss2 extends BasicGameState{
         Image[] cabStop={new Image("Imagenes/Animaciones/Sprites/pegaso5.png")};
         cabS=new Animation(cabStop,200);
         cab=cabS;
+        abu1 = new Image("Imagenes/Animaciones/Sprites/abuelo1.png");
+        abu2 = new Image("Imagenes/Animaciones/Sprites/abuela1.png");
+        nino1 = new Image("Imagenes/Animaciones/Sprites/nino1.png");
+        nino2 = new Image("Imagenes/Animaciones/Sprites/nina1.png");
+        joven1 = new Image("Imagenes/Animaciones/Sprites/joven1.png");
+        joven2 = new Image("Imagenes/Animaciones/Sprites/joven2.png");
+        adulto1 = new Image("Imagenes/Animaciones/Sprites/aldeano1.png");
+        adulto2 = new Image("Imagenes/Animaciones/Sprites/aldeana1.png");
         fondo= new Image("Imagenes/Escenas/EscenaPuerto/Puerto.png");
         fondoFanatico = new Image("Imagenes/Escenas/SalaInicial/SalaCardinal.png");
         /**/
@@ -150,6 +159,14 @@ public class EscenaTroyiaPostBoss2 extends BasicGameState{
                 mor.draw(posicion.x+1024, posicion.y+272);
                 kib.draw(posicion.x+1024, posicion.y+208);
                 nar.draw(posicionP.x+682, posicionP.y+240);
+                abu1.draw(posicionP.x+650, posicionP.y+208);
+                abu2.draw(posicionP.x+650, posicionP.y+272);
+                nino1.draw(posicionP.x+618, posicionP.y+240);
+                nino2.draw(posicionP.x+618, posicionP.y+208);
+                adulto1.draw(posicionP.x+618, posicionP.y+272);
+                adulto2.draw(posicionP.x+618, posicionP.y+304);
+                joven1.draw(posicionP.x+618, posicionP.y+176);
+                joven2.draw(posicionP.x+650, posicionP.y+176);
                 
                 if(estado>=1 && estado!=9){
                 renderDialogo();
@@ -161,7 +178,7 @@ public class EscenaTroyiaPostBoss2 extends BasicGameState{
                     archi.draw(posicionA.x, posicionA.y);
                     
                     if(estado<14){
-                    cab.draw(posicionC.x+64, posicionC.y-4);
+                    cab.draw(posicionC.x+64, posicionC.y-30);
                     }
                     
                     if(estado!=10 && estado!=13 && estado!=15){
@@ -304,7 +321,7 @@ public class EscenaTroyiaPostBoss2 extends BasicGameState{
             case 15:
                 archi=archiD;
                 posicionA.x+=0.1f*i;
-                if(posicionA.x>=1024){
+                if(posicionA.x>=544){
                     estado++;
                 }
                 break;
