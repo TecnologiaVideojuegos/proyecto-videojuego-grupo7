@@ -19,10 +19,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
-/**
- *
- * @author Dolores
- */
+
 public class EscenaMontanaBoss extends BasicGameState{
     private int idEstado;
     private static final int POSICIONAVATARX = 30;
@@ -120,7 +117,7 @@ public class EscenaMontanaBoss extends BasicGameState{
         roar = new Sound("Musica/Efectos/Grito_dragon.wav");
         dragonSonido = new Sound("Musica/Efectos/Dragon.wav");
         texto= new TrueTypeFont(letraMenu, true);
-        battle = new Music("Musica/BSO/FanaticBattle.wav");
+        battle = new Music("Musica/BSO/DragonTheme.wav");
         /**/
         
     }
@@ -163,10 +160,10 @@ public class EscenaMontanaBoss extends BasicGameState{
                 sonidoSelect.play(1, 0.2f);
                 time=0;
                 estado++;
-                if(estado>=6){
+                if(estado>=7){
                     battle.play(1, 0.2f);
                 }
-                if(estado<=19){
+                if(estado==19){
                         battle.stop();
                 }
                 

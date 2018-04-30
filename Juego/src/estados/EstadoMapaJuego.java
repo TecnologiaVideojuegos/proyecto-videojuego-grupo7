@@ -93,6 +93,21 @@ public class EstadoMapaJuego extends BasicGameState {
                 case 3://Ciudad Catacumbas: ID=3
                     break;
                 case 4://Dungeon Catacumbas: ID=4
+                    VenganzaBelial.atributoGestion.setEnem(VenganzaBelial.atributoGestion.cargarGrupoEnemigos("BaseDatos/enemigosCatacumba.dat"));
+                    map = new TiledMap("tiledmaps/mapaCatacumba.tmx");
+                    for (int i = 0; i < VenganzaBelial.atributoGestion.getEnem().size(); i++) {
+                        for (int j = 0; j < VenganzaBelial.atributoGestion.getEnem().get(i).size(); j++) {
+                            if(VenganzaBelial.atributoGestion.getEnem().get(i).get(j).getNombre().equals("Esqueleto"))
+                                VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Catacumbas/Skeleton.png");
+                            else if(VenganzaBelial.atributoGestion.getEnem().get(i).get(j).getNombre().equals("Fanatico"))
+                                VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Catacumbas/Fanatic.png");
+                            else if(VenganzaBelial.atributoGestion.getEnem().get(i).get(j).getNombre().equals("Zombie"))
+                                VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Catacumbas/Zombie.png");
+                            else if(VenganzaBelial.atributoGestion.getEnem().get(i).get(j).getNombre().equals("Mimico"))
+                                VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Catacumbas/Mimic.png");
+                        }
+                    }   
+
                     break;
                 case 5: //Ciudad Montañas: ID=5
                     break;

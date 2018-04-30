@@ -19,10 +19,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
-/**
- *
- * @author Dolores
- */
+
 public class EscenaArchi1 extends BasicGameState{
     private int idEstado;
     private static final int POSICIONAVATARX = 30;
@@ -115,7 +112,7 @@ public class EscenaArchi1 extends BasicGameState{
         sonidoSelect=new Sound("Musica/Efectos/select.wav");
         sonidoPuerta=new Sound("Musica/Efectos/Door.wav");
         texto= new TrueTypeFont(letraMenu, true);
-        battle = new Music("Musica/BSO/FanaticBattle.wav");
+        battle = new Music("Musica/BSO/Archi.wav");
         /**/
         
     }
@@ -164,6 +161,12 @@ public class EscenaArchi1 extends BasicGameState{
                 sonidoSelect.play(1, 0.2f);
                 time=0;
                 estado++;
+                if(estado>=1){
+                    battle.play();
+                }
+                if(estado==19){
+                    battle.stop();
+                }
             }
         
         switch (estado)
