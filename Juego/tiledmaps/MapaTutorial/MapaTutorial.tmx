@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="35" height="12" tilewidth="32" tileheight="32" infinite="0" nextobjectid="1">
+ <tileset firstgid="1" source="DungeonA4.tsx"/>
+ <tileset firstgid="241" source="Medieval.tsx"/>
+ <tileset firstgid="497" source="SpriteGente.tsx"/>
+ <layer name="suelo" width="35" height="12">
+  <data encoding="base64" compression="zlib">
+   eJwLZmBgCB7Fo3gUj+JRPIoHGAMAAYiILQ==
+  </data>
+ </layer>
+ <layer name="evento" width="35" height="12">
+  <properties>
+   <property name="blocked" type="bool" value="true"/>
+   <property name="evento" type="bool" value="true"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFowATqDIRrzaEgLw2EWZpkGAfPkDILbQAJTjER92CHQyEW0bB0AAAGNMDfw==
+  </data>
+ </layer>
+ <layer name="blocked" width="35" height="12">
+  <properties>
+   <property name="blocked" type="bool" value="true"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzN0rsvXnEYB3AWbDphs2EzUVtTicuiLVIspSrKQi9a7VR3Nbm06SValwVNi3ZuNW1aad5Q4T/gP2AqG5+THMvrvAve1JN88uT3nJzfefLNKUxNOVH/2OeAIs+LuUwJj+nmCU+Z5B3vmaLWO8/0Hnr5wU+auUMLVynlF79Z5Q9XInZJM0sngzLKqaCSIYZ5zggf+cQiS+Fdo/oY42yyxQMe0kU1NXHfDXYpjNglyyybHG5SRz0NvOI1b3jLV76xwvfwrml9hlm22aGPfgYivne8S1QueWb5FNDKXdpoZ455FvjAGuv8ZYMYy3zmC7vsMcELXibY5VGCXE5bsXCX09Rgglz+V51nLmeti5JLbegiVPDvHupV+jWucyPIKfXkLNnn4N/N5BaNNHGbSxGzZJ+DXHLpoJN73A93iZ8l+xzkcgTzZmON
+  </data>
+ </layer>
+</map>
