@@ -303,8 +303,10 @@ public class EscenaBosquePreBoss extends BasicGameState{
             case 14:
                 reproducirExclamacion=false;
                 estado=0;
-                sbg.enterState(VenganzaBelial.ESCENABOSQUEPOSTBOSS);//EDIT:
-                //Deberiamos entrar en estado Combate contra Boss
+                //ENTRAMOS EN COMBATE CONTRA EL BOSS
+                //APLICAMOS IDENTIFICADOR DE MAPA ESPECIAL Y ENTRAMOS EN COMBATE
+                VenganzaBelial.MapaActual=10;//BOSSBOSQUE;
+                sbg.enterState(VenganzaBelial.ESTADOCOMBATE);
                 break;
 
         }

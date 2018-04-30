@@ -17,7 +17,7 @@ public class EstadoMapaJuego extends BasicGameState {
     private boolean[][] eventos;
     static String title = "Bosque";
     static int fpslimit = 60;
-    TiledMap map;
+    private TiledMap map;
     Heroe player;
     Camara camera;
     int mapHeight, mapWidth;
@@ -77,7 +77,7 @@ public class EstadoMapaJuego extends BasicGameState {
     @Override
     public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
         
-        if(VenganzaBelial.MapaActual>this.mapaCargado){
+        if(VenganzaBelial.MapaActual>this.mapaCargado && VenganzaBelial.MapaActual<10){
             this.mapaCargado=VenganzaBelial.MapaActual;
             switch(VenganzaBelial.MapaActual){
                 case 0://Mapa Tutorial: ID=0
@@ -87,6 +87,8 @@ public class EstadoMapaJuego extends BasicGameState {
                     /**/
                     break;
                 case 2://Ciudad Puerto: ID=2
+                    map = new TiledMap("tiledmaps/Puerto.tmx");
+                    this.player.setpos(new Vector2f(2*this.tileWidth,12*this.tileHeight));
                     break;
                 case 3://Ciudad Catacumbas: ID=3
                     break;

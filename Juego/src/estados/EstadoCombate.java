@@ -67,7 +67,7 @@ public class EstadoCombate extends BasicGameState{
     private Image fondo;
     private Image contenedor,hp, mp,avatarVivo, avatarMuerto,avatarSeleccionado,marco,marcoL, Avatar1, Avatar2, Avatar3;
     private TrueTypeFont mensajePantalla;
-    private Font TipoLetra  =new Font("Verdana", Font.PLAIN, 12);    
+    private Font TipoLetra  =new Font("Verdana", Font.PLAIN, 15);    
     private Color rojo = new Color (256,0,0);
     private Color verde = new Color (0,256,0);
     private Color azul = new Color (0,0,256);    
@@ -77,6 +77,7 @@ public class EstadoCombate extends BasicGameState{
     
     //
     private boolean flagHuida=false;
+    private float tasaHuida=0.4f;
 
     
     public EstadoCombate(int id) {
@@ -155,16 +156,17 @@ public class EstadoCombate extends BasicGameState{
                 break;
         }
         //Debug Prints
-        mensajePantalla.drawString(0, 80, "Turno "+NewCombate.getTurno());
-        mensajePantalla.drawString(0, 100, "Enemigos "+NewCombate.getEnemigosRestantes());
-        mensajePantalla.drawString(0, 120, "Aliados "+NewCombate.getAliadosRestantes());
-        mensajePantalla.drawString(0, 140, "Participantes "+NewCombate.getnParticipantes());
-        mensajePantalla.drawString(0, 160, "Estado "+this.Estado);
-        mensajePantalla.drawString(0, 180, "eleccionJugador "+this.eleccionJugador);
-        mensajePantalla.drawString(0, 200, "CombateOver "+NewCombate.CombateAcabado());
+//        mensajePantalla.drawString(0, 80, "Turno "+NewCombate.getTurno());
+//        mensajePantalla.drawString(0, 100, "Enemigos "+NewCombate.getEnemigosRestantes());
+//        mensajePantalla.drawString(0, 120, "Aliados "+NewCombate.getAliadosRestantes());
+//        mensajePantalla.drawString(0, 140, "Participantes "+NewCombate.getnParticipantes());
+//        mensajePantalla.drawString(0, 160, "Estado "+this.Estado);
+//        mensajePantalla.drawString(0, 180, "eleccionJugador "+this.eleccionJugador);
+//        mensajePantalla.drawString(0, 200, "CombateOver "+NewCombate.CombateAcabado());
         for (int i = 0; i < NewCombate.getOrdenPersonajes().size(); i++) {
-            mensajePantalla.drawString(900, 20*i, " "+NewCombate.getOrdenPersonajes().get(i).getNombre());  
+            mensajePantalla.drawString(1100, 20*i, " "+NewCombate.getOrdenPersonajes().get(i).getNombre());  
         }
+        mensajePantalla.drawString(0, 80, "Mapa Actual "+VenganzaBelial.MapaActual);
     }
 
     @Override
@@ -172,14 +174,20 @@ public class EstadoCombate extends BasicGameState{
     {
         if(NuevoCombate)//Ejecutar Con Cada nuevo combate
         {
+            this.tasaHuida=0.35f;
             /*Genera Nuevo Combate*/
-            //EDIT:Posible casteo a Personaje
             ArrayList<Personaje> party= new ArrayList<Personaje>();
             party.add(VenganzaBelial.atributoGestion.getJugs().get(0));
             party.add(VenganzaBelial.atributoGestion.getJugs().get(1));
             party.add(VenganzaBelial.atributoGestion.getJugs().get(2));
             NewCombate= new Combate(party, VenganzaBelial.MapaActual);//
             mensajeSistema="";
+            //Cragar Imagenes especiales
+            if(VenganzaBelial.MapaActual==10)//Boss Bosque
+                for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
+                NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Bosque/Arbol_Boss.png"); 
+                this.tasaHuida=0;
+            }
             //NewCombate= new Combate(VenganzaBelial.Party, VenganzaBelial.MapaActual);//
             if(NewCombate.GestionaPrimerTurno())
             {
@@ -489,7 +497,7 @@ public class EstadoCombate extends BasicGameState{
     {
         Random rand= new Random();
         float tasaHuida=rand.nextFloat();
-        if(tasaHuida<0.3f)/*EDIT:0.9*/
+        if(tasaHuida<this.tasaHuida)/*EDIT:0.9*/
         {
             //Objetivo Huye y se finaliza el combate 
             eleccionJugador=0;
@@ -567,7 +575,6 @@ public class EstadoCombate extends BasicGameState{
                 //Reactiva Flag para la proxima vez que se genera un combate
                 NuevoCombate=true;
                 //EDIT:ELIMINAR OBJETO COMBATE O VACIAR
-//                NewCombate.regeneraEnemigos();
                 retornoAlMapa(sbg);
                 //gc.exit();  
             }/*if(input.isKeyPressed(Input.KEY_ENTER))*/
@@ -589,8 +596,41 @@ public class EstadoCombate extends BasicGameState{
     
     private void retornoAlMapa(StateBasedGame sbg)//Origen sera de un id de donde proviene el combate(mapax o eventox)
     {
-        sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
         //Edit, Comprobar casos especiales como Bosses
+        switch(VenganzaBelial.MapaActual){
+            case 0:
+                VenganzaBelial.MapaActual=1;//MapaBosque
+                break;
+            case 10:
+                sbg.enterState(VenganzaBelial.ESCENABOSQUEPOSTBOSS);
+                break;
+            case 11: 
+                VenganzaBelial.MapaActual=2;//Mapa Puerto
+                sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
+                break;
+            case 12:
+                sbg.enterState(VenganzaBelial.ESCENAPUERTO2);
+                break;
+            case 13:
+                //Escena despues de los fanaticos??
+                VenganzaBelial.MapaActual=4;
+                sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
+                break;
+            case 14:
+                //Derrotado Boss de Cataumbas
+                sbg.enterState(VenganzaBelial.ESCENATROYIAPOSTBOSS);
+                break;
+            case 15:
+                //Derrotado MiniBoss Montaña
+                VenganzaBelial.MapaActual=6;
+                sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
+                break;
+            case 16:
+                break;
+            default:
+                sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);     
+        }
+        
     }/*private void retornoAlMapa()*/
     
     private void renderOpcionesJugador()

@@ -317,7 +317,11 @@ public final class Combate {
                 break;
             case 2:
                 break;
-            case 8://Boss del Bosque
+            case 10://Boss del Bosque
+                BossBosque ygg= new BossBosque(0, 5, 3300, 90, 60);
+                GeneraEnemigos.add(ygg);
+                dinerototal=ygg.getOro();
+                exptotal=ygg.getExpAportada();
                 //Drop Arma Kibito 50%
                 //Armadura random 50%
                 //Exp random entre 100-200

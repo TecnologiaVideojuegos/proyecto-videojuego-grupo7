@@ -126,7 +126,6 @@ public class EstadoCombateTutorial extends BasicGameState{
         /*Imagenes del fondo*/
         fondo.draw(0, 0, 1366, 768);
         renderEnemigos();
-        mensajePantalla.drawString(500, 500, "estadoDialogo"+this.estadoDialogo);
         /*Switch Case para visualizar opciones en funcion del estado*/
         if(Estado==DIALOGO){
             renderDialogos();
@@ -558,6 +557,7 @@ public class EstadoCombateTutorial extends BasicGameState{
                 //Reactiva Flag para la proxima vez que se genera un combate
                 NuevoCombate=true;
                 //EDIT:Volver al mapa
+                VenganzaBelial.MapaActual=1;//Mapa Bosque
                 sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
                 //gc.exit();  
             }/*if(input.isKeyPressed(Input.KEY_ENTER))*/
