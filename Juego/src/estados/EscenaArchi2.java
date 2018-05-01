@@ -47,8 +47,8 @@ public class EscenaArchi2 extends BasicGameState{
     /*Animaciones*/
     private SpriteSheet sheetExclamacion;
     private Animation exclamacion;
-    private Animation archi,archiS1,archiS,archiD;
-    private Animation hestia,hestiaS,hestiaU,hestiaDown,hestiaD,hestiaEnfrente;
+    private Animation archi,archiS,archiD;
+    private Animation hestia,hestiaS,hestiaD;
     private Animation general,generalD,generalS;
     private Animation rider,riderI,riderS;
     private Image fondo;
@@ -75,19 +75,11 @@ public class EscenaArchi2 extends BasicGameState{
         archiS=new Animation(archiStop,200);
         Image[] archiDer={new Image("Imagenes/Animaciones/Sprites/archi7.png"),new Image("Imagenes/Animaciones/Sprites/archi8.png"),new Image("Imagenes/Animaciones/Sprites/archi9.png")};
         archiD=new Animation(archiDer,200);
-//        Image[] archiStop={new Image("Imagenes/Animaciones/Sprites/archi2.png")};
-//        archiS1=new Animation(archiStop,200);
         archi=archiD;
         Image[] hestiaDer={new Image("Imagenes/Animaciones/Sprites/hes7.png"),new Image("Imagenes/Animaciones/Sprites/hes8.png"),new Image("Imagenes/Animaciones/Sprites/hes9.png")};
         hestiaD=new Animation(hestiaDer,200);
         Image[] hestiaStop={new Image("Imagenes/Animaciones/Sprites/hes8.png")};
         hestiaS=new Animation(hestiaStop,200);
-//        Image[] hestiaUp={new Image("Imagenes/Animaciones/Sprites/hes10.png"),new Image("Imagenes/Animaciones/Sprites/hes11.png"),new Image("Imagenes/Animaciones/Sprites/hes12.png")};
-//        hestiaU=new Animation(hestiaUp,200);
-//        Image[] hestiaDown1={new Image("Imagenes/Animaciones/Sprites/hes2.png")};
-//        hestiaDown=new Animation(hestiaDown1,200);
-//        Image[] hestiaE={new Image("Imagenes/Animaciones/Sprites/hes5.png")};
-//        hestiaEnfrente=new Animation(hestiaE,200);
         hestia=hestiaD;
         Image[] genDer={new Image("Imagenes/Animaciones/Sprites/general7.png"),new Image("Imagenes/Animaciones/Sprites/general8.png"),new Image("Imagenes/Animaciones/Sprites/general9.png")};
         generalD=new Animation(genDer,200);
