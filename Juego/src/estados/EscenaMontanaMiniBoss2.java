@@ -283,7 +283,7 @@ public class EscenaMontanaMiniBoss2 extends BasicGameState{
             case 13:
                 avatarDialogo=this.avatarH;
                 //////="////////////////////////////////////////////////////////";
-                linea1="Mordeim, el Jinete Espectral es el 2º lider";
+                linea1="Mordeim, el Jinete Espectral es uno de los líderes";
                 linea2="de Cardinal y un domador de wyverns.";
                 linea3="";
                 linea4="";
