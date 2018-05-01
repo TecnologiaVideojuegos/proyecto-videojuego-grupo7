@@ -3,10 +3,9 @@
  <tileset firstgid="1" source="DungeonA4.tsx"/>
  <tileset firstgid="241" source="Medieval.tsx"/>
  <tileset firstgid="497" source="SpriteGente.tsx"/>
- <tileset firstgid="497" source="SpriteGente.tsx"/>
- <layer name="suelo" width="35" height="12">
-  <data encoding="base64" compression="zlib">
-   eJwLZmBgCB7Fo3gUj+JRPIoHGAMAAYiILQ==
+ <layer name="suelo" width="35" height="12" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACgtmYGAIHsWjeBSP4lE8igcYAwBzpCnQkAYAAA==
   </data>
  </layer>
  <layer name="evento" width="35" height="12">
@@ -14,16 +13,24 @@
    <property name="blocked" type="bool" value="true"/>
    <property name="evento" type="bool" value="true"/>
   </properties>
-  <data encoding="base64" compression="zlib">
-   eJxjYBgFowATaDARrzaEgLwSEWapkmAfPkDILbQAJTjER92CHQyEW0bB0AAA9IgDdg==
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACmNgGAWjABNoMFHPLCUizFKlon30BiUD7QAkMOqWUTCUAQAeCKZpkAYAAA==
+  </data>
+ </layer>
+ <layer name="escenas" width="35" height="12">
+  <properties>
+   <property name="evento" type="bool" value="true"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACmNgGAWjgDIQMtAOQAKjbsEORt0yCoYCAABhlw38kAYAAA==
   </data>
  </layer>
  <layer name="blocked" width="35" height="12">
   <properties>
    <property name="blocked" type="bool" value="true"/>
   </properties>
-  <data encoding="base64" compression="zlib">
-   eJzN0rsvXnEYB3AWbDphs2EzUVtTicuiLVIspSrKQi9a7VR3Nbm06SValwVNi3ZuNW1aad5Q4T/gP2AqG5+THMvrvAve1JN88uT3nJzfefLNKUxNOVH/2OeAIs+LuUwJj+nmCU+Z5B3vmaLWO8/0Hnr5wU+auUMLVynlF79Z5Q9XInZJM0sngzLKqaCSIYZ5zggf+cQiS+Fdo/oY42yyxQMe0kU1NXHfDXYpjNglyyybHG5SRz0NvOI1b3jLV76xwvfwrml9hlm22aGPfgYivne8S1QueWb5FNDKXdpoZ455FvjAGuv8ZYMYy3zmC7vsMcELXibY5VGCXE5bsXCX09Rgglz+V51nLmeti5JLbegiVPDvHupV+jWucyPIKfXkLNnn4N/N5BaNNHGbSxGzZJ+DXHLpoJN73A93iZ8l+xzkcgTzZmON
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACs3Suy9ecRgHcBZsOmGzYTNRW1OJy6ItUiylKspCL1rtVHc1ubTpJVqXBU2Ldm41bVpp3lDhP+A/YCobn5Mcy+u8C97Uk3zy5PecnN958s0pTE05Uf/Y54Aiz4u5TAmP6eYJT5nkHe+ZotY7z/QeevnBT5q5QwtXKeUXv1nlD1cidkkzSyeDMsqpoJIhhnnOCB/5xCJL4V2j+hjjbLLFAx7SRTU1cd8NdimM2CXLLJscblJHPQ284jVveMtXvrHC9/CuaX2GWbbZoY9+BiK+d7xLVC55ZvkU0Mpd2mhnjnkW+MAa6/xlgxjLfOYLu+wxwQteJtjlUYJcTluxcJfT1GCCXP5XnWcuZ62Lkktt6CJU8O8e6lX6Na5zI8gp9eQs2efg383kFo00cZtLEbNkn4Nccumgk3vcD3eJnyX7HORyBDR09K2QBgAA
   </data>
  </layer>
 </map>

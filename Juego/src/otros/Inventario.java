@@ -27,7 +27,7 @@ public class Inventario implements Serializable {
         requisitoCategoria.add("Mordeim");
         requisitoCategoria.add("Kibito");
         requisitoCategoria.add("Horacia");
-        this.pocionVida = new Consumible(20, 0, 5, "PocionVida", "Pocion que sirve para curar tu vida",
+        this.pocionVida = new Consumible(30, 0, 5, "PocionVida", "Pocion que sirve para curar tu vida",
             requisitoCategoria, 1, 50, 20);
         this.pocionMana = new Consumible(0, 20, 5, "PocionMana", "Pocion que sirve para curar tu mana",
             requisitoCategoria, 1, 50, 20);

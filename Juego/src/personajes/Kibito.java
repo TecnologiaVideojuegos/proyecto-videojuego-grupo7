@@ -48,11 +48,11 @@ public final class Kibito extends Jugador{
     @Override
     public void setearHabilidades(){
         Habilidad[] habs = new Habilidad[5];
-        habs[0] = new Habilidad("Bola fuego", 1, 20, 7, "Bola de fuego contra todos los objetivos", 4);
-        habs[1] = new Habilidad("Milagro sanitario", 5, 30, 7, "Cura a un aliado", 0);
-        habs[2] = new Habilidad("Lanza de rayos", 10, 40, 8, "Rayo poderoso contra objetivo", 2);
-        habs[3] = new Habilidad("Levantate gandul", 15, 30, 10, "Resucita un aliado", 1);
-        habs[4] = new Habilidad("O. Arcano", 20, 50, 10, "Proporciona un buen golpe a un objetivo", 2);
+        habs[0] = new Habilidad("Bola fuego", 1, 4, 7, "Bola de fuego contra todos los objetivos", 4);
+        habs[1] = new Habilidad("Milagro sanitario", 6, 30, 7, "Cura a un aliado", 0);
+        habs[2] = new Habilidad("Lanza de rayos", 10, 7, 8, "Rayo poderoso contra objetivo", 2);
+        habs[3] = new Habilidad("Levantate gandul", 15, 300, 10, "Resucita un aliado", 1);
+        habs[4] = new Habilidad("O. Arcano", 20, 5, 10, "Proporciona un buen golpe a un objetivo", 2);
         for (int i = 0; i < habs.length; i++) {
             this.anadirHabilidad(habs[i]);
         }
