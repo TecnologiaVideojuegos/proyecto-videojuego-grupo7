@@ -212,8 +212,40 @@ public class EventosNpcs {
                 break;
                 //***********************************************************
             case MAPADUNGEONMONTANA:
-                if (true) {
-                    
+                if (x==4 && y==6) {
+                    evento = new Evento("Voy a curarte para que puedas seguir luchando con"
+                            + " los peligros de Reynos", "Healer", "Hola amigo"); 
+                    tipo = 2;
+                }
+                else if (x==34 && y==30) {
+                    evento = new Evento("Voy a curarte para que puedas seguir luchando con"
+                            + " los peligros de Reynos", "Healer", "Hola amigo"); 
+                    tipo = 2;
+                }
+                else if (x==64 && y==6) {
+                    evento = new Evento("Voy a curarte para que puedas seguir luchando con"
+                            + " los peligros de Reynos", "Healer", "Hola amigo"); 
+                    tipo = 2;
+                }
+                else if (x==40 && y==5) {
+                    items = new ArrayList<>();
+                    requisitoCategoria = new ArrayList<>();
+                    requisitoCategoria.add("Mordeim");
+                    Consumible pocionVida = new Consumible(20, 0, 5, "PocionVida", "Pocion que sirve para curar tu vida",
+                    requisitoCategoria, 1, 50, 20);
+                    items.add(pocionVida);
+                    vendedor = new Vendedor(items, "Luis", "que tal");
+                    tipo = 1;
+                }
+                else if (x==39 && y==42) {
+                    evento = new Evento("Tenía que haberme puesto una rebequita como me dijo mi madre"
+                    , "Congelio", "Ttttt....");
+                    tipo = 0;
+                }
+                else if (x==23 && y==20) {
+                    evento = new Evento("A mi no me mires, solo estoy aqui de relleno"
+                    , "Rogelio", "xD");
+                    tipo = 0;
                 }
                 break;
         }

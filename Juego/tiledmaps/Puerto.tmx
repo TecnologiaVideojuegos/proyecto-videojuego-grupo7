@@ -13,12 +13,12 @@
    H4sIAAAAAAAACu2XSwrAIAxE7cKDekQv0jNZF8VSiIh0aD7zIKtZhBeySFIihJB4nMeondwaf/l6muGM5/y87c4byc2r88yJvnjQPbX5oonkW66qWc7pa59I+9yh71pmFW2+0m371c2rzffui/qXNPoioe9aZpWIvjv/bwMuFanfcBcAAA==
   </data>
  </layer>
- <layer name="Suelo" width="60" height="25" visible="0">
+ <layer name="Suelo" width="60" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAACu3SOw7CMBAE0I0i51bQQEsHNTgSv5KG7xE4DZyQaUjDxk4se02iHWkaW1nvk2KJyCbqPyaVdWzeoUa96u3qXZVEB/RYht1LJKZ3C8cO3bd4fPcSiem1BVFdON7y3PfJpCKaVr/nM5zNmfNmh8CyswS9C4dpOULvN2vYNqhFa4ez2SGw7Cxh79kQXdArekPv6MO4vxmKl3v/afj2mSNV9Xbf8wXTu8Wq3jhe6eT+n6WjXvWq1z9HvXxPws3tzd3Q5N5bvWm9H+WWFP5wFwAA
   </data>
  </layer>
- <layer name="Colisiones" width="60" height="25" visible="0">
+ <layer name="Colisiones" width="60" height="25">
   <properties>
    <property name="blocked" type="bool" value="true"/>
   </properties>
@@ -35,7 +35,7 @@
    H4sIAAAAAAAACu3WsQnAMAwEQFWZ2EOkyhYZweDKs2UCFYFEau4WkEDi+Qgy19G9AQAAFVZT77sL5m6dFkic8qHNl9k83ZEfDf8Frz2KmPVLcBcAAA==
   </data>
  </layer>
- <layer name="Eventos" width="60" height="25" visible="0">
+ <layer name="Eventos" width="60" height="25">
   <properties>
    <property name="evento" type="bool" value="true"/>
   </properties>
