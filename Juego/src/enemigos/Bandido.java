@@ -7,21 +7,20 @@ import org.newdawn.slick.SlickException;
 import otros.Habilidad;
 import personajes.Jugador;
 
-public final class Goblin extends Enemigo implements Serializable{
+public final class Bandido extends Enemigo implements Serializable{
     private ArrayList<Habilidad> habilidades;
     private static final long serialVersionUID = 6L;
     
-    public Goblin(int id, int nivel, int hp, int ataque, int defensa) throws SlickException {
+    public Bandido(int id, int nivel, int hp, int ataque, int defensa) {
         super(id, nivel, hp, ataque, defensa);
         inicializarEnemigo();
     }
     
     @Override
-    public void inicializarEnemigo() throws SlickException{
-        this.setNombre("Goblin");
+    public void inicializarEnemigo(){
+        this.setNombre("Bandido");
         habilidades = new ArrayList<>(); 
-        //(String nombre, int nivel, int danyo, int costeMP, String descripcion, int tipo)
-        Habilidad hab = new Habilidad("Espadazo", 1, 1.2f, 0, "Ataque fuerte con su espada", 2);
+        Habilidad hab = new Habilidad("Hachazo", 1, 40, 0, "Ataque fuerte con su espada", 2);
         habilidades.add(hab);
         this.setHabilidad(habilidades);
         this.setOro(this.getNivel() * 5);

@@ -15,7 +15,7 @@ public class Habilidad implements Serializable{
     //Atributos
     private String nombre;
     private int nivel;
-    private int danyo;
+    private float danyo;
     private int costeMP; //Aumenta 5 en cada habilidad por nivel
     private String descripcion;
     private int tipoHabilidad;
@@ -26,7 +26,7 @@ public class Habilidad implements Serializable{
     //private boolean AOE;//Ataque en Area( Area Of Effect)
     /*EDIT: Atributos TEST*/
     //Constructor
-    public Habilidad(String nombre, int nivel, int danyo, int costeMP, String descripcion, int tipo) {
+    public Habilidad(String nombre, int nivel, float danyo, int costeMP, String descripcion, int tipo) {
         this.nombre = nombre;
         this.nivel = nivel;
         this.danyo = danyo;
@@ -47,7 +47,7 @@ public class Habilidad implements Serializable{
     public void setNivel(int nivel) {
         this.nivel = nivel;
     }
-    public int getDanyo() {
+    public float getDanyo() {
         return danyo;
     }
     public void setDanyo(int danyo) {
@@ -115,7 +115,7 @@ public class Habilidad implements Serializable{
     private void tipoAtaque(Jugador usuario, Personaje objetivo)
     {
         /*Calculo de daño*/
-        int DanyoCausado=usuario.getAtaque()*danyo-objetivo.getDefensa();
+        int DanyoCausado=(int)(usuario.getAtaque()*danyo)-objetivo.getDefensa();
         if (DanyoCausado>0)
         {
           objetivo.setHpActual(objetivo.getHpActual()- DanyoCausado);
@@ -127,7 +127,7 @@ public class Habilidad implements Serializable{
     
     private void tipoDrenar(Jugador usuario,Personaje objetivo)
     {
-        int DanyoCausado=usuario.getAtaque()*danyo-objetivo.getDefensa();
+        int DanyoCausado=(int)(usuario.getAtaque()*danyo)-objetivo.getDefensa();
         int Recupera=0;
         if (DanyoCausado>0)
         {
@@ -147,7 +147,7 @@ public class Habilidad implements Serializable{
     
     private void tipoAOE(Jugador usuario, ArrayList<Personaje> objetivos)
     {
-        int ataqueHabilidad= usuario.getAtaque()*danyo;
+        int ataqueHabilidad= (int)(usuario.getAtaque()*danyo);
         int i;
         for(i=0; i<objetivos.size();i++)
         {
@@ -169,7 +169,7 @@ public class Habilidad implements Serializable{
         boolean condicion=false;
         if(objetivo.estaVivo())
         {
-            int PuntosCura= (int)(objetivo.getHp()*0.3f);
+            int PuntosCura= (int)(objetivo.getHp()*0.5f);
             int VidaTrasCura=PuntosCura+objetivo.getHpActual();
             if(VidaTrasCura>objetivo.getHp())
             {
@@ -191,7 +191,7 @@ public class Habilidad implements Serializable{
         {
             //No se puede resucitar porque el objetivo esta vivo
             condicion=true;
-            objetivo.setHpActual(1);
+            objetivo.setHpActual(objetivo.getHp()/2);
         }
         return condicion;
     }/*public boolean tipoResucitar(Jugador Objetivo)*/

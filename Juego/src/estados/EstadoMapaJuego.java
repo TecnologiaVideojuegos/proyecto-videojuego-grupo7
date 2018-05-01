@@ -46,6 +46,7 @@ public class EstadoMapaJuego extends BasicGameState {
         //EDIT: Hacer un Switch de carga de mapa en funcion del alguun indicador
         mapaCargado=VenganzaBelial.MapaActual;
         map = new TiledMap("tiledmaps/mapaBosque.tmx");
+        //map = new TiledMap("tiledmaps/MapaTutorial/MapaTutorial.tmx");
         for (int i = 0; i < VenganzaBelial.atributoGestion.getEnem().size(); i++) {
             for (int j = 0; j < VenganzaBelial.atributoGestion.getEnem().get(i).size(); j++) {
                 if(VenganzaBelial.atributoGestion.getEnem().get(i).get(j).getNombre().equals("Rata"))
@@ -91,6 +92,7 @@ public class EstadoMapaJuego extends BasicGameState {
                     this.player.setpos(new Vector2f(2*this.tileWidth,12*this.tileHeight));
                     break;
                 case 3://Ciudad Catacumbas: ID=3
+                    //map = new TiledMap("tiledmaps/Catacumbas.tmx");
                     break;
                 case 4://Dungeon Catacumbas: ID=4
                     VenganzaBelial.atributoGestion.setEnem(VenganzaBelial.atributoGestion.cargarGrupoEnemigos("BaseDatos/enemigosCatacumba.dat"));
