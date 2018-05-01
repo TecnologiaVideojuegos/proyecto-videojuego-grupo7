@@ -98,7 +98,7 @@ public class EscenaPuerto2 extends BasicGameState{
         narE=new Animation(narEnfrente,200);
         nar=narI;
         alcalde=new Image("Imagenes/Animaciones/Sprites/alcalde8.png");
-        fondo= new Image("Imagenes/Escenas/EscenaPuerto/Puerto.png");
+        fondo= new Image("Imagenes/Escenas/EscenaPuerto/Puerto1.png");
         /**/
         this.sheetExclamacion= new SpriteSheet("Imagenes/Animaciones/puntos.png",32,33);
         this.exclamacion = new Animation(sheetExclamacion,200);

@@ -44,6 +44,8 @@ public class VenganzaBelial extends StateBasedGame {
     public static final int ESCENAARCHI2=27;
     public static final int ESCENAPUEBLOMONTANA=28;
     public static final int ESCENAMONTANAPOSTBOSS=29;
+    public static final int ESCENACARDINAL1=30;
+    public static final int ESCENACARDINAL2=31;
 
 
     public static final int WIDTH = 1366;
@@ -101,6 +103,8 @@ public class VenganzaBelial extends StateBasedGame {
         addState(new EscenaArchi2(ESCENAARCHI2));
         addState(new EscenaPuebloMontana(ESCENAPUEBLOMONTANA));
         addState(new EscenaMontanaPostBoss(ESCENAMONTANAPOSTBOSS));
+        addState(new EscenaCardinal1(ESCENACARDINAL1));
+        addState(new EscenaCardinal2(ESCENACARDINAL2));
         //
         this.enterState(ESTADOMENUINICIO);
     }
@@ -139,6 +143,8 @@ public class VenganzaBelial extends StateBasedGame {
         getState(ESCENAARCHI2).init(gc, this);
         getState(ESCENAPUEBLOMONTANA).init(gc, this);
         getState(ESCENAMONTANAPOSTBOSS).init(gc, this);
+        getState(ESCENACARDINAL1).init(gc, this);
+        getState(ESCENACARDINAL2).init(gc, this);
     }
 
     public static void main(String[] args) throws SlickException {

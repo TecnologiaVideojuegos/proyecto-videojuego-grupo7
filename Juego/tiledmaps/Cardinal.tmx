@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.1.4" orientation="orthogonal" renderorder="right-down" width="86" height="60" tilewidth="32" tileheight="32" infinite="0" nextobjectid="1">
+ <tileset firstgid="1" source="Dungeon_A2.tsx"/>
+ <tileset firstgid="193" source="Dungeon_C.tsx"/>
+ <tileset firstgid="449" source="Inside_B.tsx"/>
+ <tileset firstgid="705" source="spriteset1.tsx"/>
+ <tileset firstgid="801" source="cofres.tsx"/>
+ <tileset firstgid="897" source="Behavior2.tsx"/>
+ <layer name="Suelo" width="86" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztwwENAAAMw6D6VzC5F3JIWDVVVVVVVVVVVVVVVVVVVVVVVVVV9fUD8+n4Zg==
+  </data>
+ </layer>
+ <layer name="Bloqueo" width="86" height="60">
+  <properties>
+   <property name="blocked" type="bool" value="true"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztm1FuwjAQBeFIiBO0nKDi/ncplRq1jdaoYd9kbeeN9H6iEJuRcHadcDmfThdHmusjt0fegrSOZ889Qm7f+QjSOp499whZvEa0jmfPPQL2yqDyej8za/+oqLxSa/+oqLxSa/+oqLwSZMZXr0lb16xnXr/WzPcNUZPxWlFPr8dvzT9zXQVZr3vXrOvxW/PPXFdB1mslz7xWY68MM3hV3BOJuVV8VjHe4rXHGn4Grz3W8DN4VV9Xgb3a60heM3tkd3ttouwraUbyquwraUbyOhL2ymCvDJTXPfaOew/htfo9iB5CeM3eu2cI4dX8xV4Z7JXBXhlm8ap65qHKTF6r66z185NZvFbXWb8zk9eesFcGe2WwVwZ7ZYi8Vtd+ryR6Tki8mx8lel8/8lpd+yn26fb8HtFvJfJaXfu9mjV7jftfr2Yb9spgrwz2ymCvDPbKQHrtbV95z0Q9idJrdV/QU0+i9FrdF1SG9Gp+sFcGe2WwVwZ7ZbBXBpXXvf/X0ztLn3R15PkER5qGiw==
+  </data>
+ </layer>
+ <layer name="Enemigos" width="86" height="60">
+  <properties>
+   <property name="enemigos" type="bool" value="true"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt1EEOhDAMQ1HufwKOyx4BUyDG8fRb8q5Sk1fEshBCyHXWgY6em6UVpuuD8//eatfquH1w7dWqvVRx+7hdVbOp9lJEdT+uuCoyi2v1PM53xRXXFFfFbCmu+/sqgyuuX7lenR+xw/Weq3OPN7Ph+tv1aXDFFdd816R5cMU1aR6l6+zBVRM8NFF8rxRXXHOLK64je3SL2wXXnu0at0uFq3uGo3d2z4Frz3bbAVdc011Tc7ab825cc+9Wp6Or+3+UXFxxTemZH641trjimlKl6+zBVRNcNVG6uv9znYorrknFtb8rtrjimlmiywafiizZ
+  </data>
+ </layer>
+ <layer name="Escenas" width="86" height="60">
+  <properties>
+   <property name="evento" type="bool" value="true"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt2MkNACAIAEHtvwH7sTFrMIrnTMKf7A9SAgAAAJij7F7gUboCAAAncaPE0DWGrtCvDA4AAAAAcD8/PwAAAAB+U/PuDd6kawxdWaEBp2MQjQ==
+  </data>
+ </layer>
+ <layer name="Eventos" width="86" height="60">
+  <properties>
+   <property name="blocked" type="bool" value="true"/>
+   <property name="evento" type="bool" value="true"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt3LEJACAMBEDBHV1FcBPBYa0FRTtF7iB94JsvQkIAWGvx9gYkGQAAAAAcK3Ec/pBlCQAAAAAAAAAAPK66cwIAHrTrKH5KAAAw0wE9aQU+
+  </data>
+ </layer>
+</map>
