@@ -188,6 +188,23 @@ public class EstadoCombate extends BasicGameState{
                 NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Bosque/Arbol_Boss.png"); 
                 this.tasaHuida=0;
             }
+            if(VenganzaBelial.MapaActual==11)//Bandidos Normales
+            {
+                for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
+                    NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Puerto/Bandido.png"); 
+                    //this.tasaHuida=0;
+                }
+            }
+            if(VenganzaBelial.MapaActual==12)//Bandidos Normales
+            {
+                for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
+                    if(NewCombate.getEnemigos().get(j).getNombre().equals("Gran Bandido Crow"));
+                        NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Puerto/Crow.png");
+                    if(NewCombate.getEnemigos().get(j).getNombre().equals("Bandido"));
+                        NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Puerto/Bandido.png"); 
+                    this.tasaHuida=0;
+                }
+            }
             //NewCombate= new Combate(VenganzaBelial.Party, VenganzaBelial.MapaActual);//
             if(NewCombate.GestionaPrimerTurno())
             {
@@ -547,6 +564,7 @@ public class EstadoCombate extends BasicGameState{
         if(flagHuida)//Si consigue huir se devuelve al mapa sin ganar o perder
         {
             flagHuida=false;
+            NuevoCombate=true;
             retornoAlMapa(sbg);
         }
         else if(NewCombate.CombateGanado())
@@ -571,7 +589,10 @@ public class EstadoCombate extends BasicGameState{
                         }/*if(pj.puedeSubir())*/
                     }/* if(pj.estaVivo())*/
                 }/*for(aux=0;aux<VenganzaBelial.atributoGestion.jugs.size();aux++)*/
-                VenganzaBelial.atributoGestion.getInv().setDinero(VenganzaBelial.atributoGestion.getInv().getDinero()+NewCombate.getOroCombate());
+                if(VenganzaBelial.atributoGestion.getJugs().get(1).getNivel()<5)
+                    VenganzaBelial.atributoGestion.getInv().setDinero(VenganzaBelial.atributoGestion.getInv().getDinero()+NewCombate.getOroCombate());
+                else
+                    VenganzaBelial.atributoGestion.getInv().setDinero(VenganzaBelial.atributoGestion.getInv().getDinero()+NewCombate.getOroCombate()*2);
                 //Reactiva Flag para la proxima vez que se genera un combate
                 NuevoCombate=true;
                 //EDIT:ELIMINAR OBJETO COMBATE O VACIAR

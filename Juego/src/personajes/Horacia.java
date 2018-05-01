@@ -28,7 +28,7 @@ public final class Horacia extends Jugador{
         ArrayList<String> requisitos = new ArrayList<>();
         requisitos.add("Horacia");
         Arma armaInicio = new Arma(10, 1, "Garrote", "Garrote para aporrear gente", requisitos, 1, 0, 10);
-        Armadura armaduraInicio = new Armadura(10, "Ropa de pobre", "Ropa robada a un mendigo", requisitos, 1, 0, 10);
+        Armadura armaduraInicio = new Armadura(15, "Ropa de pobre gruesa", "Ropa robada a un mendigo", requisitos, 1, 0, 10);
         this.setNombre("Horacia");
         this.setArma(armaInicio);
         this.setArmadura(armaduraInicio);
@@ -51,11 +51,12 @@ public final class Horacia extends Jugador{
     @Override
     public void setearHabilidades(){
         Habilidad[] habs = new Habilidad[5];
-        habs[0] = new Habilidad("Embestida", 1, 2, 5, "Embestida potente contra un objetivo", 2);
-        habs[1] = new Habilidad("Apalear", 5, 3, 7, "Apalea a un bjetivo", 2);
-        habs[2] = new Habilidad("Ira salvaje", 10, 5, 5, "Habilidad multiobjetivo", 4);
-        habs[3] = new Habilidad("Torbellino", 15, 5, 7, "Hace un torbellino en torno a todos los objetivos", 4);
-        habs[4] = new Habilidad("Provisional", 20, 5, 7, "Habilidad sin decidir para evitar bugs", 4);
+        habs[0] = new Habilidad("Bendición de Cardinal", 1, 5, 5, "La bendición de Cardinal cura las heridas de un aliado", 0);
+        habs[1] = new Habilidad("Embestida", 5, 1.5f, 5, "Embestida potente contra un objetivo", 2);
+        habs[2] = new Habilidad("Apalear", 10, 1.75f, 7, "Apalea a un objetivo", 2);
+        habs[3] = new Habilidad("Ira salvaje", 15, 1.5f, 5, "Habilidad multiobjetivo", 4);
+        habs[4] = new Habilidad("Torbellino", 20, 2, 7, "Hace un torbellino en torno a todos los objetivos", 4);
+        
         for (int i = 0; i < habs.length; i++) {
             this.anadirHabilidad(habs[i]);
         }

@@ -340,6 +340,7 @@ public class EscenaPuerto2 extends BasicGameState{
             case 19:
                 estado=0;
                 sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);
+                //EDIT enlazar escena con la siguiente
                 break;
 
         }
