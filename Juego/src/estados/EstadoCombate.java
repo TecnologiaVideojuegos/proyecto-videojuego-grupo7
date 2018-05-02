@@ -198,9 +198,9 @@ public class EstadoCombate extends BasicGameState{
             if(VenganzaBelial.MapaActual==12)//Bandidos Normales
             {
                 for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
-                    if(NewCombate.getEnemigos().get(j).getNombre().equals("Gran Bandido Crow"));
+                    if(NewCombate.getEnemigos().get(j).getNombre().equals("Gran Bandido Crow"))
                         NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Puerto/Crow.png");
-                    if(NewCombate.getEnemigos().get(j).getNombre().equals("Bandido"));
+                    if(NewCombate.getEnemigos().get(j).getNombre().equals("Bandido"))
                         NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Puerto/Bandido.png"); 
                     this.tasaHuida=0;
                 }

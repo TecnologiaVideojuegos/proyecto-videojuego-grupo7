@@ -35,7 +35,7 @@ public class EventosNpcs {
     private int controlEventos=0;//Controla la aparición de escenas y "puntos de control" para que no se repitan
                                 //las escenas al pasar por el mismo lugar
     /*
-    *0= llegando a EscenaBosque2
+    *0= llegando a EscenaDelyolica(En Mapa tutoria)
     *1=Llegando a EscenaBosquePreBoss
     */
     private int nextEstado;
@@ -61,6 +61,52 @@ public class EventosNpcs {
         switch(mapa){
             //bosque
             case MAPATUTORIAL:
+                if(x == 13 && y == 4){
+                    //Charla ini
+                    evento = new Evento("Para ello solo chocate ypara dejar de hablar con ellos pulsa intro."
+                    , "Manolo", "Deberias hablar con la gente.");
+                    tipo = 0;
+                }
+                if(x == 18 && y == 8){
+                    //Charla ini
+                    evento = new Evento("Se dice que ella y su ayudante se aparecen en cualquier lugar"
+                    + "para hacer negocios", "Alfina", "¿Ves a aquella chica durmiendo?");
+                    tipo = 0;
+                }
+                else if(x == 29 & y ==3){
+                    //Healer
+                    evento = new Evento("Voy a curarte para que puedas seguir luchando con"
+                    + " los peligros de Reynos", "Healer", "Hola amigo");
+                    tipo = 2;
+                }
+                else if(x== 22 & y ==4){
+                    //Vendedor
+                    items = new ArrayList<>();
+                    requisitoCategoria = new ArrayList<>();
+                    requisitoCategoria.add("Mordeim");
+                    Consumible pocionVida = new Consumible(20, 0, 5, "PocionVida", "Pocion que sirve para curar tu vida",
+                    requisitoCategoria, 1, 50, 20);
+                    items.add(pocionVida);
+                    vendedor = new Vendedor(items, "Hola", "que tal");
+                    tipo = 1;
+                }
+                else if(x== 5 & y>= 4 && y<=9){
+                    //Escena Delyolica
+                    if (controlEventos==0)
+                    {
+                        controlEventos++;
+                        nextEstado=VenganzaBelial.ESCENADEYOLICA;
+                        tipo=3;
+                    }
+                    else
+                        tipo=10;
+                }
+                else if(x==34 && y>=5 && y<=7){
+                    //Salida de Mapa 
+                    nextEstado=VenganzaBelial.ESCENACARRETA;
+                    tipo=3;
+                    
+                }
                 break;
             case MAPABOSQUE:
                 //Vendedor
@@ -194,6 +240,70 @@ public class EventosNpcs {
                 }
                 break;
                 //***********************************************************
+            case MAPACIUDADCATACUMBAS:
+                if(x == 11 && y == 11){
+                    //Vendedor
+                    items = new ArrayList<>();
+                    requisitoCategoria = new ArrayList<>();
+                    requisitoCategoria.add("Mordeim");
+                    Consumible pocionVida = new Consumible(20, 0, 5, "PocionVida", "Pocion que sirve para curar tu vida",
+                    requisitoCategoria, 1, 50, 20);
+                    items.add(pocionVida);
+                    vendedor = new Vendedor(items, "Luis", "que tal");
+                    tipo = 1;
+                }
+                else if(x == 18 && y == 22){
+                    //Healer
+                    evento = new Evento("Voy a curarte para que puedas seguir luchando con"
+                            + " los peligros de Reynos", "Healer", "Hola amigo"); 
+                    tipo = 2;
+                }
+                else if(x==9 && y>=15 && y<=22){
+                    if (controlEventos==0)
+                    {
+                        controlEventos++;
+                        // La escena que corresponda
+                        tipo=3;
+                    } 
+                    else
+                        tipo=10;
+                }
+                else if(x==29 && y>10 && y<14){
+                //nextEstado=VenganzaBelial.ESCENABOSQUE2; Salida al mapa que toque
+                }
+                break;
+                /*******************************************************************/
+            case MAPADUNGEONCATACUMBAS:
+                if(x == 37 && y == 14){
+                    evento = new Evento("Estas catacumbas están inhóspitas"
+                            + "o eso creo....","quien sabe","comprúebalo tu mismo"); 
+                    tipo = 0;    
+                }
+                else if(x == 4 && y == 27){
+                //Vendedor
+                    items = new ArrayList<>();
+                    requisitoCategoria = new ArrayList<>();
+                    requisitoCategoria.add("Mordeim");
+                    Consumible pocionVida = new Consumible(20, 0, 5, "PocionVida", "Pocion que sirve para curar tu vida",
+                            requisitoCategoria, 1, 50, 20);
+                    items.add(pocionVida);
+                    vendedor = new Vendedor(items, "Luis", "que tal");                   
+                    tipo = 1;    
+                }
+                else if(x == 20 && y == 23){
+                //Healer
+                    evento = new Evento("Voy a curarte para que puedas seguir luchando con"
+                            + " los peligros de Reynos", "Healer", "Hola amigo"); 
+                    tipo = 2;    
+                }
+                else if(x>1 && x<11 && y == 16){
+                //Escena    
+                }
+                else if(x==59 && y>20 && y<22){
+                //nextEstado=VenganzaBelial.ESCENABOSQUE2; Salida al mapa que toque    
+                }
+                break;
+            /**********************************************************************/
             case MAPACIUDADMONTANA:
                 if (x==8 && y==10) {
                     evento = new Evento("Voy a curarte para que puedas seguir luchando con"

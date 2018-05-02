@@ -45,8 +45,10 @@ public class EstadoMapaJuego extends BasicGameState {
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
         //EDIT: Hacer un Switch de carga de mapa en funcion del alguun indicador
         mapaCargado=VenganzaBelial.MapaActual;
-        map = new TiledMap("tiledmaps/mapaBosque.tmx");
+        //map = new TiledMap("tiledmaps/mapaBosque.tmx");
+        map = new TiledMap("tiledmaps/MapaTutorial/MapaTutorial.tmx");
         //map = new TiledMap("tiledmaps/MapaTutorial/MapaTutorial.tmx");
+        /*SE CARGAN DIRECTAMENTE LOS ENEMIGOS DEL BOSQUE PUES NO HAY APARICIONES EN EL PRIMER PUEBLO*/
         for (int i = 0; i < VenganzaBelial.atributoGestion.getEnem().size(); i++) {
             for (int j = 0; j < VenganzaBelial.atributoGestion.getEnem().get(i).size(); j++) {
                 if(VenganzaBelial.atributoGestion.getEnem().get(i).get(j).getNombre().equals("Rata"))
@@ -85,6 +87,7 @@ public class EstadoMapaJuego extends BasicGameState {
                     break;
                 case 1://Dungeon Bosque: ID=1
                     map = new TiledMap("tiledmaps/mapaBosque.tmx");
+                    this.player.setpos(new Vector2f(2*this.tileWidth,2*this.tileHeight));
                     /**/
                     break;
                 case 2://Ciudad Puerto: ID=2
@@ -132,6 +135,11 @@ public class EstadoMapaJuego extends BasicGameState {
                 case 7: //Mapa Boss: ID=6(Posible cambio en este identificador)
                     break;
             }
+            mapWidth = map.getWidth() * map.getTileWidth();
+            mapHeight = map.getHeight() * map.getTileHeight();
+            tileHeight = map.getTileHeight();
+            tileWidth = map.getTileWidth();
+            camera = new Camara(map, mapWidth, mapHeight);
             blocked = new boolean[map.getWidth()][map.getHeight()];
             enemigos= new boolean[map.getWidth()][map.getHeight()];
             eventos= new boolean[map.getWidth()][map.getHeight()];

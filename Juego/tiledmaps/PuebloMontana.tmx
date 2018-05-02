@@ -9,6 +9,7 @@
  <tileset firstgid="1073" source="Outside_B.tsx"/>
  <tileset firstgid="1329" source="ecefdb550aa03b421d1a6b7051259391.tsx"/>
  <tileset firstgid="1585" source="PuebloMontanaBehavior2.tsx"/>
+ <tileset firstgid="1681" source="Damage1.tsx"/>
  <layer name="Suelo" width="40" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAACpNlZGDgQ8JyQIwMZNHkSVVHKdZF4+uh2YsuT6o6erpPl0h1A+E+dDeMug+CKxhIwxxE4lH3jbpv1H2j7iPWPlLxqPtG3TfqvlH3DSb30cot1HAfPd1GTX8NtHsIhflgid+hkD+wYQD4K7vFoA8AAA==
@@ -33,7 +34,7 @@
    <property name="evento" type="bool" value="true"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACmNgIB3EsZGhaRSMgkEI6kdgWnYegX4eBQMDfEbT2igYBcMK5I7m6VFABcBBY/MPs1Cmn9buGwWjgBAAALm8BOWgDwAA
+   H4sIAAAAAAAACmNgIB3EsZGhaRSMgkEI6kdgWnYegX4eBQMDfEbT2igYBcMKLB/N06OACoCDxuYfZqFMP63dNwpGASEAAMndM4WgDwAA
   </data>
  </layer>
  <layer name="Escenas" width="40" height="25">

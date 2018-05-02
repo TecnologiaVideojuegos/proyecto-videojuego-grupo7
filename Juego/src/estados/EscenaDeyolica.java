@@ -173,7 +173,7 @@ public class EscenaDeyolica extends BasicGameState{
                 break;
             case 5:
                 estado=0;
-                sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);//EDIT:
+                sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);//:
                 break;
 
         }
