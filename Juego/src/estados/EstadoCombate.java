@@ -163,10 +163,10 @@ public class EstadoCombate extends BasicGameState{
 //        mensajePantalla.drawString(0, 160, "Estado "+this.Estado);
 //        mensajePantalla.drawString(0, 180, "eleccionJugador "+this.eleccionJugador);
 //        mensajePantalla.drawString(0, 200, "CombateOver "+NewCombate.CombateAcabado());
-        for (int i = 0; i < NewCombate.getOrdenPersonajes().size(); i++) {
-            mensajePantalla.drawString(1100, 20*i, " "+NewCombate.getOrdenPersonajes().get(i).getNombre());  
-        }
-        mensajePantalla.drawString(0, 80, "Mapa Actual "+VenganzaBelial.MapaActual);
+//        for (int i = 0; i < NewCombate.getOrdenPersonajes().size(); i++) {
+//            mensajePantalla.drawString(1100, 20*i, " "+NewCombate.getOrdenPersonajes().get(i).getNombre());  
+//        }
+        //mensajePantalla.drawString(0, 80, "Mapa Actual "+VenganzaBelial.MapaActual);
     }
 
     @Override

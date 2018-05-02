@@ -144,7 +144,7 @@ public class EscenaBosquePreBoss extends BasicGameState{
                     boss.draw(posicionE.x+664, posicionE.y+212);
                 }
             }
-            texto.drawString(1000, 0, "" + estado);
+            //texto.drawString(1000, 0, "" + estado);
     }
     @Override
     //Muestra la actualización

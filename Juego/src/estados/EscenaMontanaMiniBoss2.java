@@ -146,7 +146,7 @@ public class EscenaMontanaMiniBoss2 extends BasicGameState{
                 }
                 
             }
-            texto.drawString(1000, 0, "" + estado);
+//            texto.drawString(1000, 0, "" + estado);
     }
     @Override
     //Muestra la actualización
