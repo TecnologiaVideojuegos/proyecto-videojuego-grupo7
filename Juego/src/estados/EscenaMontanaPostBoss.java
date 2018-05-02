@@ -428,7 +428,7 @@ public class EscenaMontanaPostBoss extends BasicGameState{
             if (eleccionJugador == i) {
                 opcionesJugadorTTF.drawString(10, i * 20 + 400, opciones[i]);
             } else {
-                opcionesJugadorTTF.drawString(10, i * 20 + 400, opciones[i], new Color(153, 204, 255));
+                opcionesJugadorTTF.drawString(10, i * 20 + 400, opciones[i], new Color(211,84,0));
             }
         }
     }

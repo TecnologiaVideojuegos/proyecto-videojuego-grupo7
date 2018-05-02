@@ -122,7 +122,7 @@ public class EstadoMenuInicio extends BasicGameState {
                     //sbg.enterState(VenganzaBelial.ESCENATROYIA2);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENACATACUMBAS1);//EDIT//Sonido de la armadura un po irritante Xd
                     //sbg.enterState(VenganzaBelial.ESCENAMONTANABOSS);//EDIT
-                    sbg.enterState(VenganzaBelial.ESCENADEYOLICA);//EDIT
+                    //sbg.enterState(VenganzaBelial.ESCENADEYOLICA);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENATROYIAPOSTBOSS);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENAARCHI1);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENATROYIAPOSTBOSS2);//EDIT
@@ -131,10 +131,12 @@ public class EstadoMenuInicio extends BasicGameState {
                     //sbg.enterState(VenganzaBelial.ESCENAARCHI2);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENAPUEBLOMONTANA);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENAMONTANAPOSTBOSS);//EDIT
-                    sbg.enterState(VenganzaBelial.ESCENADEYOLICAPOSTMONTANA);//EDIT
+                    //sbg.enterState(VenganzaBelial.ESCENADEYOLICAPOSTMONTANA);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENACARDINAL1);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENACARDINAL2);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENACARDINALMINIBOSS1);//EDIT
+                    //sbg.enterState(VenganzaBelial.ESCENACARDINALMINIBOSS2);//EDIT
+                    sbg.enterState(VenganzaBelial.ESCENACARDINALOPCIONAL);//EDIT
 
 
                     break;

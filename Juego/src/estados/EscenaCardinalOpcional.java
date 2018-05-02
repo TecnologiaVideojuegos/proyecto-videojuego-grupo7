@@ -20,7 +20,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
 
-public class EscenaCardinalMiniBoss1 extends BasicGameState{
+public class EscenaCardinalOpcional extends BasicGameState{
     private int idEstado;
     private static final int POSICIONAVATARX = 30;
     private static final int POSICIONAVATARY = 620;
@@ -43,18 +43,17 @@ public class EscenaCardinalMiniBoss1 extends BasicGameState{
     /*Mapa*/
     private Vector2f posicion,posicionE,posicionL;
     private static int esquinaXMapa=0;
-    private static int esquinaYMapa=-960;
+    private static int esquinaYMapa=-440;
     /*Animaciones*/
     private SpriteSheet sheetExclamacion;
     private Animation exclamacion;
     private Animation hor,mor,kib;
     private Animation horD,morD,kibD;
     private Animation horS,morS,kibS;
-    private Animation jinete,jineteS,jineteU;
-    private Image wyvern,wyvern1,wyvern2,wyvern3,wyvern4,wyvern5,wyvern6,wyvern7;
+    private Animation horA,horR,morR,kibR;
     private Image fondo;
     /*Imagenes*/
-    private Image ventanaDialogo,avatarDialogo,avatarH,avatarM,avatarK,avatarJ;
+    private Image ventanaDialogo,avatarDialogo,avatarH,avatarM,avatarK;
     /*Sonido*/
     private Sound sonidoSelect;
     private Music battle;
@@ -62,7 +61,7 @@ public class EscenaCardinalMiniBoss1 extends BasicGameState{
     private TrueTypeFont texto;
     private Font letraMenu  = new Font("Arial Black", Font.PLAIN, 15); 
     
-    public EscenaCardinalMiniBoss1(int id) {
+    public EscenaCardinalOpcional(int id) {
         this.idEstado=id;
     }
     @Override
@@ -72,34 +71,29 @@ public class EscenaCardinalMiniBoss1 extends BasicGameState{
 
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-        Image[] horDown={new Image("Imagenes/HeroeMundo/her00.png"),new Image("Imagenes/HeroeMundo/her01.png"),new Image("Imagenes/HeroeMundo/her02.png")};
+        Image[] horDown={new Image("Imagenes/HeroeMundo/her20.png"),new Image("Imagenes/HeroeMundo/her21.png"),new Image("Imagenes/HeroeMundo/her22.png")};
         horD=new Animation(horDown,200);
-        Image[] morDown={new Image("Imagenes/Animaciones/Sprites/mor1.png"),new Image("Imagenes/Animaciones/Sprites/mor2.png"),new Image("Imagenes/Animaciones/Sprites/mor3.png")};
+        Image[] morDown={new Image("Imagenes/Animaciones/Sprites/mor10.png"),new Image("Imagenes/Animaciones/Sprites/mor11.png"),new Image("Imagenes/Animaciones/Sprites/mor12.png")};
         morD=new Animation(morDown,200);
-        Image[] kibDown={new Image("Imagenes/Animaciones/Sprites/kib1.png"),new Image("Imagenes/Animaciones/Sprites/kib2.png"),new Image("Imagenes/Animaciones/Sprites/kib3.png")};
+        Image[] kibDown={new Image("Imagenes/Animaciones/Sprites/kib10.png"),new Image("Imagenes/Animaciones/Sprites/kib11.png"),new Image("Imagenes/Animaciones/Sprites/kib12.png")};
         kibD=new Animation(kibDown,200);
-        Image[] kibF={new Image("Imagenes/Animaciones/Sprites/kib8.png")};
+        Image[] kibF={new Image("Imagenes/Animaciones/Sprites/kib11.png")};
         kibS=new Animation(kibF,200);
-        Image[] morF={new Image("Imagenes/Animaciones/Sprites/mor8.png")};
+        Image[] morF={new Image("Imagenes/Animaciones/Sprites/mor11.png")};
         morS=new Animation(morF,200);
-        Image[] horEnfrente={new Image("Imagenes/HeroeMundo/her11.png")};
+        Image[] horEnfrente={new Image("Imagenes/HeroeMundo/her21.png")};
         horS=new Animation(horEnfrente,200);
         hor=horD;
         kib=kibD;
         mor=morD;
-        Image[] riderUp={new Image("Imagenes/Animaciones/Sprites/riderwalk4.png"),new Image("Imagenes/Animaciones/Sprites/riderwalk5.png"),new Image("Imagenes/Animaciones/Sprites/riderwalk6.png")};
-        jineteU=new Animation(riderUp,200);
-        Image[] riderStop={new Image("Imagenes/Animaciones/Sprites/riderwalk5.png")};
-        jineteS=new Animation(riderStop,200);
-        jinete=jineteS;
-        wyvern = new Image("Imagenes/Animaciones/Sprites/Wyvern1.png");
-        wyvern1 = new Image("Imagenes/Animaciones/Sprites/Wyvern1.png");
-        wyvern2 = new Image("Imagenes/Animaciones/Sprites/Wyvern2.png");
-        wyvern3 = new Image("Imagenes/Animaciones/Sprites/Wyvern3.png");
-        wyvern4 = new Image("Imagenes/Animaciones/Sprites/Wyvern4.png");
-        wyvern5 = new Image("Imagenes/Animaciones/Sprites/Wyvern5.png");
-        wyvern6 = new Image("Imagenes/Animaciones/Sprites/Wyvern6.png");
-        wyvern7 = new Image("Imagenes/Animaciones/Sprites/Wyvern7.png");
+        Image[] kibStop={new Image("Imagenes/Animaciones/Sprites/kib8.png")};
+        kibR=new Animation(kibStop,200);
+        Image[] morStop={new Image("Imagenes/Animaciones/Sprites/mor5.png")};
+        morR=new Animation(morStop,200);
+        Image[] horStop={new Image("Imagenes/HeroeMundo/her01.png")};
+        horA=new Animation(horStop,200);
+        Image[] horRight={new Image("Imagenes/HeroeMundo/her11.png")};
+        horR=new Animation(horRight,200);
         fondo= new Image("Imagenes/Escenas/SalaInicial/Cardinal.png");
         /**/
         this.sheetExclamacion= new SpriteSheet("Imagenes/Animaciones/enfado.png",32,33);
@@ -115,7 +109,6 @@ public class EscenaCardinalMiniBoss1 extends BasicGameState{
         avatarH =  new Image("Imagenes/Personajes/HoraciaA.png");
         avatarM =  new Image("Imagenes/Personajes/MordeimA.png");
         avatarK =  new Image("Imagenes/Personajes/KibitoA.png");
-        avatarJ = new Image("Imagenes/Personajes/Rider.png");
         avatarDialogo = avatarH;
         sonidoSelect=new Sound("Musica/Efectos/select.wav");
         texto= new TrueTypeFont(letraMenu, true);
@@ -132,20 +125,18 @@ public class EscenaCardinalMiniBoss1 extends BasicGameState{
             
             if(estado>=0 && estado<=22){
                 fondo.draw(esquinaXMapa,esquinaYMapa);
-                hor.draw(posicion.x+64, posicion.y+80);
-                mor.draw(posicion.x+96, posicion.y+48);
-                kib.draw(posicion.x+32, posicion.y+48);
-                jinete.draw(posicionE.x+320, posicionE.y+160);
-                wyvern1.draw(posicionL.x+160, posicionL.y+196);
+                hor.draw(posicion.x+272, posicion.y+128);
+                mor.draw(posicion.x+304, posicion.y+128);
+                kib.draw(posicion.x+240, posicion.y+128);
                 
-                if(estado>=2 && estado!=8 && estado!=9 && estado!=10 && estado!=11 && estado!=12 && estado!=13 && estado!=14 && estado!=15 && estado!=16 && estado!=17){
+                if(estado>=1){
                 renderDialogo();
                 }
                 
             }
             
                 
-//            texto.drawString(1000, 0, "" + estado);
+            texto.drawString(1000, 0, "" + estado);
     }
     @Override
     //Muestra la actualización
@@ -155,19 +146,13 @@ public class EscenaCardinalMiniBoss1 extends BasicGameState{
                 sonidoSelect.play(1, 0.2f);
                 time=0;
                 estado++;
-                if(estado>=2){
-                    battle.play();
-                    if(estado==20){
-                        battle.stop();
-                    }
-                }
             }
         
         switch (estado)
         {
             case 0:
-                posicion.y+=0.1f*i;
-                if(posicion.y>=384){
+                posicion.y-=0.1f*i;
+                if(posicion.y<=0){
                     estado++;
                 }
                 break;
@@ -175,175 +160,169 @@ public class EscenaCardinalMiniBoss1 extends BasicGameState{
                 hor=horS;
                 mor=morS;
                 kib=kibS;
-                jinete=jineteU;
-                posicionE.x-=0.1f*i;
-                if(posicionE.x<=(-128)){
-                    estado++;
-                }
+                avatarDialogo=this.avatarM;
+                //////="////////////////////////////////////////////////////////";
+                linea1="¿Esta no era la zona del tesoro?";
+                linea2="";
+                linea3="";
+                linea4="";
                 break;
             case 2:
-                jinete=jineteS;
-                avatarDialogo=this.avatarJ;
+                avatarDialogo=this.avatarK;
                 //////="////////////////////////////////////////////////////////";
-                linea1="Vaya, vaya, vaya.";
-                linea2="Pero si son el Escuadrón F.";
+                linea1="Efectivamente, pero parece ser que sin tesoro.";
+                linea2="";
                 linea3="";
                 linea4="";
                 break;
             case 3:
                 avatarDialogo=this.avatarH;
                 //////="////////////////////////////////////////////////////////";
-                linea1="Es el Jinete Espectral.";
+                linea1="¿Alguien ha robado el tesoro de Cardinal?";
                 linea2="";
                 linea3="";
                 linea4="";
                 break;
             case 4:
-                avatarDialogo=this.avatarJ;
-                linea1="JAJAJAJA, habeís llegado muy lejos pero vuestra";
-                linea2="aventura acabará aquí.";
-                linea3="No podréis contra mi wyvern y yo.";
-                linea4="";
+                avatarDialogo=this.avatarK;
+                linea1="Hay una nota en uno de los cofres.";
+                linea2="'Archi, necesito el oro para pagar a los soldados";
+                linea3="para que podamos capturar al Escuadrón F.";
+                linea4="Firmado: General'";
                 break;
             case 5:
                 avatarDialogo=this.avatarM;
                 //////="////////////////////////////////////////////////////////";
-                linea1="¿Un wyvern? Vaaaaaaaaa, ya matamos a un dragón.";
-                linea2="Esa lagartija no podrá conmigo.";
+                linea1="Maldito cabr*n, el tesoro tenía que ser mio.";
+                linea2="Cuando le vea, pienso sonsacarle todo el oro que tenga.";
                 linea3="";
                 linea4="";
                 break;
             case 6:
-                avatarDialogo=this.avatarJ;
+                avatarDialogo=this.avatarH;
                 //////="////////////////////////////////////////////////////////";
-                linea1="¿Lagartija? Pagarás muy cara tu osadía.";
-                linea2="";
+                linea1="Chicos, ¿os daís cuenta de que hemos";
+                linea2="arruinado Cardinal con nuestra misión?";
                 linea3="";
                 linea4="";
                 break;
             case 7:
                 avatarDialogo=this.avatarK;
                 //////="////////////////////////////////////////////////////////";
-                linea1="Mordeim siempre consigue cabrear al";
-                linea2="enemigo muy fácilmente.";
-                linea3="";
-                linea4="";
-                break;
-            case 8:
-                wyvern1=wyvern2;
-                time+=i;
-                if(time/1000>0.4)
-                {
-                    estado++;
-                    time=0;
-                }
-                break;
-            case 9:
-                wyvern1=wyvern3;
-                time+=i;
-                if(time/1000>0.4)
-                {
-                    estado++;
-                    time=0;
-                }
-                break;
-            case 10:
-                wyvern1=wyvern4;
-                time+=i;
-                if(time/1000>0.4)
-                {
-                    estado++;
-                    time=0;
-                }
-                break;
-            case 11:
-                wyvern1=wyvern5;
-                time+=i;
-                if(time/1000>0.4)
-                {
-                    estado++;
-                    time=0;
-                }
-                break;
-            case 12:
-                wyvern1=wyvern6;
-                time+=i;
-                if(time/1000>0.4)
-                {
-                    estado++;
-                    time=0;
-                }
-                break;
-            case 13:
-                wyvern1=wyvern7;
-                time+=i;
-                if(time/1000>0.4)
-                {
-                    estado++;
-                    time=0;
-                }
-                break;
-            case 14:
-                wyvern1=wyvern5;
-                time+=i;
-                if(time/1000>0.4)
-                {
-                    estado++;
-                    time=0;
-                }
-                break;
-            case 15:
-                wyvern1=wyvern4;
-                time+=i;
-                if(time/1000>0.4)
-                {
-                    estado++;
-                    time=0;
-                }
-                break;
-            case 16:
-                wyvern1=wyvern2;
-                time+=i;
-                if(time/1000>0.4)
-                {
-                    estado++;
-                    time=0;
-                }
-                break;
-            case 17:
-                wyvern1=wyvern;
-                time+=i;
-                if(time/1000>0.4)
-                {
-                    estado++;
-                    time=0;
-                }
-                break;
-            case 18:
-                avatarDialogo=this.avatarM;
-                linea1="No me impresiona tu lagartija.";
+                linea1="Eso me temo Horacia.";
                 linea2="";
                 linea3="";
                 linea4="";
                 break;
-            case 19:
+            case 8:
+                avatarDialogo=this.avatarM;
+                //////="////////////////////////////////////////////////////////";
+                linea1="Alto hay intelectual.";
+                linea2="¿Eso significa que no recibiremos recompensa?";
+                linea3="";
+                linea4="";
+                break;
+            case 9:
+                avatarDialogo=this.avatarK;
+                //////="////////////////////////////////////////////////////////";
+                linea1="Es muy probable Mordeim.";
+                linea2="";
+                linea3="";
+                linea4="";
+                break;
+            case 10:
+                avatarDialogo=this.avatarM;
+                //////="////////////////////////////////////////////////////////";
+                linea1="Pero si os capturo, recibiré vuestra recompensa.";
+                linea2="";
+                linea3="";
+                linea4="";
+                break;
+            case 11:
                 avatarDialogo=this.avatarH;
-                linea1="Yo no... no... ten...tengo...miedo de ti.";
+                //////="////////////////////////////////////////////////////////";
+                linea1="¿No hablarás en serio verdad, después de todas";
+                linea2="las aventuras que hemos pasado todos juntos,";
+                linea3="solo te interesa el oro?";
+                linea4="";
+                break;
+            case 12:
+                avatarDialogo=this.avatarM;
+                //////="////////////////////////////////////////////////////////";
+                linea1="Si.";
+                linea2="";
+                linea3="";
+                linea4="";
+                break;
+            case 13:
+                avatarDialogo=this.avatarK;
+                //////="////////////////////////////////////////////////////////";
+                linea1="Si sigues con nosotros puede que recibas una mayor";
+                linea2="recompensa, ya que la Sacerdotisa Hestia es rica.";
+                linea3="Seguro que nos lo agradece si cumplimos nuestra misión.";
+                linea4="";
+                break;
+            case 14:
+                avatarDialogo=this.avatarM;
+                //////="////////////////////////////////////////////////////////";
+                linea1="Más te vale, sino os entregaré.";
+                linea2="";
+                linea3="";
+                linea4="";
+                break;
+            case 15:
+                avatarDialogo=this.avatarH;
+                //////="////////////////////////////////////////////////////////";
+                linea1="¿En serio crees que a tí no te detendrán por haber";
+                linea2="estado con nosotros en nuestro viaje?";
+                linea3="";
+                linea4="";
+                break;
+            case 16:
+                avatarDialogo=this.avatarM;
+                //////="////////////////////////////////////////////////////////";
+                linea1="JOD*R, ES VERDAD!!!";
+                linea2="ME UTILIZARÍAN COMO AL OSITO DE";
+                linea3="PELUCHE DE HORACIA EN LA ALMOHADA.";
+                linea4="";
+                break;
+            case 17:
+                mor=morR;
+                hor=horR;
+                kib=kibR;
+                avatarDialogo=this.avatarH;
+                //////="////////////////////////////////////////////////////////";
+                linea1="MORDEIM, DIJISTE QUE NO SACARÍAS";
+                linea2="ESE TEMA DE NUEVO.";
+                linea3="PERVERTIDO!!!!";
+                linea4="";
+                break;
+            case 18:
+                avatarDialogo=this.avatarK;
+                //////="////////////////////////////////////////////////////////";
+                linea1="Sigo sin creerme que necesites un";
+                linea2="peluche para poder dormir.";
+                linea3="¿Dónde lo guardas Horacia?";
+                linea4="";
+                break;
+            case 19:
+                hor=horA;
+                avatarDialogo=this.avatarH;
+                linea1="Sigamos con nuestra misión.";
                 linea2="";
                 linea3="";
                 linea4="";
                 break;
             case 20:
-                avatarDialogo=this.avatarJ;
-                linea1="JAJAJAJA, Archi debería de ser el que os sentenciara";
-                linea2="pero seré yo el que le ahorre esa moletia.";
-                linea3="Acabemos con ellos Igneel.";
+                avatarDialogo=this.avatarK;
+                linea1="(Me ha esquivado la pregunta.)";
+                linea2="";
+                linea3="";
                 linea4="";
                 break;
             case 21:
-                //Combate contra Rider
                 estado=0;
-                sbg.enterState(VenganzaBelial.ESCENACARDINALMINIBOSS2);//EDIT:
+                sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);//EDIT:
                 break;
             
         }
