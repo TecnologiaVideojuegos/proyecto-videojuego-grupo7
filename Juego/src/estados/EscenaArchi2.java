@@ -347,7 +347,7 @@ public class EscenaArchi2 extends BasicGameState{
                 break;
             case 23:
                 estado=0;
-                sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);//EDIT:
+                sbg.enterState(VenganzaBelial.ESCENADEYOLICAPOSTMONTANA);
                 break;
             
         }
