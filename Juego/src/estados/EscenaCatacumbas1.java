@@ -140,7 +140,7 @@ public class EscenaCatacumbas1 extends BasicGameState{
                     misterio.draw(posicionE.x+496, posicionE.y+32);
                 }
             }
-            texto.drawString(1000, 0, "" + estado);
+//            texto.drawString(1000, 0, "" + estado);
     }
     @Override
     //Muestra la actualización

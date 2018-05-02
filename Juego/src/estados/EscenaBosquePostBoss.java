@@ -198,9 +198,9 @@ public class EscenaBosquePostBoss extends BasicGameState{
         
         this.renderDialogo();
         
-        texto.drawString(1000, 0, "" + estado);
-        texto.drawString(1000, 50, "" + eleccionJugador);
-        texto.drawString(1000, 100, "Arbolmuerto" + arbolAsesinado);
+//        texto.drawString(1000, 0, "" + estado);
+//        texto.drawString(1000, 50, "" + eleccionJugador);
+//        texto.drawString(1000, 100, "Arbolmuerto" + arbolAsesinado);
         
     }
     @Override

@@ -6,17 +6,11 @@
  <tileset firstgid="705" source="spriteset1.tsx"/>
  <tileset firstgid="801" source="cofres.tsx"/>
  <tileset firstgid="897" source="Behavior2.tsx"/>
+ <tileset firstgid="993" source="Dungeon_B.tsx"/>
+ <tileset firstgid="1249" source="Inside_C.tsx"/>
  <layer name="Suelo" width="86" height="60">
   <data encoding="base64" compression="zlib">
    eJztwwENAAAMw6D6VzC5F3JIWDVVVVVVVVVVVVVVVVVVVVVVVVVV9fUD8+n4Zg==
-  </data>
- </layer>
- <layer name="Bloqueo" width="86" height="60">
-  <properties>
-   <property name="blocked" type="bool" value="true"/>
-  </properties>
-  <data encoding="base64" compression="zlib">
-   eJztm1FuwjAQBeFIiBO0nKDi/ncplRq1jdaoYd9kbeeN9H6iEJuRcHadcDmfThdHmusjt0fegrSOZ889Qm7f+QjSOp499whZvEa0jmfPPQL2yqDyej8za/+oqLxSa/+oqLxSa/+oqLwSZMZXr0lb16xnXr/WzPcNUZPxWlFPr8dvzT9zXQVZr3vXrOvxW/PPXFdB1mslz7xWY68MM3hV3BOJuVV8VjHe4rXHGn4Grz3W8DN4VV9Xgb3a60heM3tkd3ttouwraUbyquwraUbyOhL2ymCvDJTXPfaOew/htfo9iB5CeM3eu2cI4dX8xV4Z7JXBXhlm8ap65qHKTF6r66z185NZvFbXWb8zk9eesFcGe2WwVwZ7ZYi8Vtd+ryR6Tki8mx8lel8/8lpd+yn26fb8HtFvJfJaXfu9mjV7jftfr2Yb9spgrwz2ymCvDPbKQHrtbV95z0Q9idJrdV/QU0+i9FrdF1SG9Gp+sFcGe2WwVwZ7ZbBXBpXXvf/X0ztLn3R15PkER5qGiw==
   </data>
  </layer>
  <layer name="Enemigos" width="86" height="60">
@@ -24,7 +18,7 @@
    <property name="enemigos" type="bool" value="true"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1EEOhDAMQ1HufwKOyx4BUyDG8fRb8q5Sk1fEshBCyHXWgY6em6UVpuuD8//eatfquH1w7dWqvVRx+7hdVbOp9lJEdT+uuCoyi2v1PM53xRXXFFfFbCmu+/sqgyuuX7lenR+xw/Weq3OPN7Ph+tv1aXDFFdd816R5cMU1aR6l6+zBVRM8NFF8rxRXXHOLK64je3SL2wXXnu0at0uFq3uGo3d2z4Frz3bbAVdc011Tc7ab825cc+9Wp6Or+3+UXFxxTemZH641trjimlKl6+zBVRNcNVG6uv9znYorrknFtb8rtrjimlmiywafiizZ
+   eJztVVtuxDAIzP1PsMftR/sRoXlhO4+2HmmVjY0BDwM5jo2NjY01+Pz8Vpz9lPW659aVX+eL+Ucxqu3o/R0+5Yn2zvkgG3dHdRdly2J3alfP38HpVfhN3B7A9s1I7r2a28Q/8/N2pNzMajI5gzR7EPsr4bSAcmGaYX7q2pNz7qr4rB8YF2iv07+pru7CXbyy9ZnvR313Z5/AlfGdPs//HV8d25Rrp/XRXK6C68fuN6Jrn5xROaN15/eOGZTy6jSE/KFznTulNVNP13dXc4vWVO2ZrerRat+ZC2iP5ZbwWvO4Ekk8xImbZ0fTztmzfWXzBK9MXymviU+3dn5HcZh/FnsU6XxwfM1oj/HB4j8Bpde6fn53s61j784gHlVuyA+zcbmeY6I8WRxml+aa6jbVDuI01fMKqPt17+HWHK/MzsV1Wk7Pr0LHl9K0q0W6hnyrPGY4uXJmJv2a+nHz1cVxXLJYLg83V+tZdS6xqbbqvf5XQPfucMVsUH5onfGa1n0Fr+x+aQ1qngyJX3Wu2iv/I7y6M2yP2ajcZrTSQarVdG/jG06v9f9o/TY2UqQzFO1Vm853IznD4qB95cvNQjebkR1bS2d2zV3ZOG5cHgzq++O+YcxHXbsLjFenu2rnuFc1UDFZXVL9s5yZvxXxmV+nFRSH5Zz0B3qO9OLZzuWaat/1sPLtehT5cBphflhslo/i9a2YqbuqAfKPfKB3ZufW3wTV99UO3QPx5uIlvd1ZfytGNMn8pDpO8unwrWZlMjtHe4a9Mx/sTl10ODivVVvlg8Vzd0nmtquHQlrfrh/lH+XH7lV9dPNIa+bsUByWe5pvt7dmauLydHHVefWf5XR+R/+dLbLr/DpIa5TYjvB9flf5sfe6NqrXN+PJO/x1XtH/u3P4zRwyPKWPdI6kvticUnOo2ytufnfmvYpf7diz0xcsX3dWcZqcR/sJF86uw6eqZ32O6q/GdLHYnqtFmk/KB+udROM1d5TrLKcsZ3VmFRJO0vVEg45XpTPVO2lfoTyQfQWbdZ24zpeLj86jvfpEd1+BpM9m/a+Am12qrt15wuK6/FTvrOT0r4L1wuZ2Pdy3F9kfZO8/ItFjtet+s5S2Xf3U+lGeiQ46GkF+1fcSzd8kH3UfhM7313GOYnZ6I627s+3GU7yOaEr5SPZWrKM8K9I7uLsnOlOxVU5Oy2l/uDzTGim+XS+l+kli19xdjE5OzrbjIzmbxE3eE93WPEc1O6tDZevsOn3BdJPeIeU22atAMVRNUn2zPXaO+Vcxkvun2nN7KR8b6/EFpw0XBQ==
   </data>
  </layer>
  <layer name="Escenas" width="86" height="60">
@@ -32,7 +26,15 @@
    <property name="evento" type="bool" value="true"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt2MkNACAIAEHtvwH7sTFrMIrnTMKf7A9SAgAAAJij7F7gUboCAAAncaPE0DWGrtCvDA4AAAAAcD8/PwAAAAB+U/PuDd6kawxdWaEBp2MQjQ==
+   eJzt2MkNACEMBEHIPwHy2cSIAaFZrirJf6t/dikAAPCetnqBS+maoWuGrhm6ZugKAADsxI2SoWuGrjCuTQ4AAAAAcD4/PwAAAABe89XVG9xJ1wxd+UMHMFIS7Q==
+  </data>
+ </layer>
+ <layer name="Bloqueo" width="86" height="60">
+  <properties>
+   <property name="blocked" type="bool" value="true"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztm2lOwzAQhUPVHgj1V9mhEvuqSkApFyhwFLgAgjNxBK7CVGKEYzxJbM/EjuMnPWWpGyefqpexk66vFcV6NqvH4Cl432Bqv2/bPnj66xuDqf2+bftg5GoStd+3bR+UucqIi+tsTSb7uyourlLZ31VxccW8ng95ljfEec1HRfEIXozM27GIiytqOeRZUv0vgd8L+Hlk3kZxZ5JtZlVxXWXmQY0l5ZMDIeppvX/q/G2PxS2fHAhRT+v9U1xtj8UtnxwIfc+r4hpavjkQUl3japMDIYVcOe6JdZoMy8sm56Yr1hzQ+0OubdTwJ8Py0vZcbdT0u1sVdW/VZ3X9IdfDQVEcgY8H5XX9PkW1q7uOB2C5A94F74EXDdi2wfW8gl3VZ3X9IddbYHMHvh+U13VR7equ4wk4XoKvwNfg50i4coniyn1ckzjylfN8dL3C7/PNcTxsmwO6XHNgJdt89Zkjmzlw/QCmn8xcpXPARZzjSkrS9y1fSXDlHFdSkr5vtZEDKatLOdAldSkHuiSpHGh7HjlGm7j65kDo9yBisImrr3zv3SlYgmtWWZmrjDJXGWWuMkqFK9czDy6nxDV0naU/P0mFa+g6S3VKXH01YXzHK3P900nm+k+xXUPmKqPMVUYmrqFrPxebnhO2VdOa3tc3cQ1d+3HM0+G1tVWrNuEauvZztena8LPVs1XudXRTrqlIvS712SrXuqkfdV+qXNXM/Sr411F946pm7nfBv47qG1dT5krIhavNuzR9lQtXm3dp+irJHIhtXrlNU2MSneuG8htV5842K367sc0rxzAm0bmeKvzUubOzGq5YJ2+PyjU0ta3X2no72+OF2qbGJFU58N4wX9VjXPx+B7OZ2kZR7WyPF2rbpPzem4wyVxllrjLKXGWUucqIi6vL/3pSFo6Txtns/gE+BNSh
   </data>
  </layer>
  <layer name="Eventos" width="86" height="60">
@@ -42,6 +44,11 @@
   </properties>
   <data encoding="base64" compression="zlib">
    eJzt3LEJACAMBEDBHV1FcBPBYa0FRTtF7iB94JsvQkIAWGvx9gYkGQAAAAAcK3Ec/pBlCQAAAAAAAAAAPK66cwIAHrTrKH5KAAAw0wE9aQU+
+  </data>
+ </layer>
+ <layer name="decoracion" width="86" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztzkENAAAIBKD72D+TzYzhdJCABAAAAAAAAAAAAAAAAAAAuKZrewAAAAAAfDMmWwDH
   </data>
  </layer>
 </map>

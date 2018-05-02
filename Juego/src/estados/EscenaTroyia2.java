@@ -153,7 +153,7 @@ public class EscenaTroyia2 extends BasicGameState{
                     misterio.draw(posicionE.x+664, posicionE.y+208);
                 }
             }
-            texto.drawString(1000, 0, "" + estado);
+//            texto.drawString(1000, 0, "" + estado);
     }
     @Override
     //Muestra la actualización
