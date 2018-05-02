@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="60" height="35" tilewidth="32" tileheight="32" infinite="0" nextobjectid="1">
+ <tileset firstgid="1" source="Inside_A2.tsx"/>
+ <tileset firstgid="193" source="tiled (2).tsx"/>
+ <tileset firstgid="449" source="tileed.tsx"/>
+ <tileset firstgid="705" source="Actor5.tsx"/>
+ <layer name="suelo" width="60" height="35">
+  <data encoding="base64" compression="zlib">
+   eJztwzENAAAMBKHzv73j2ugACaumqqqqqqqqqvroAVsQpbE=
+  </data>
+ </layer>
+ <layer name="escenas" width="60" height="35">
+  <properties>
+   <property name="evento" type="bool" value="true"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztwzENAAAIA7D5l4NCLOzjoE2aAAAAwA9TBgAAAODeAmlNBvU=
+  </data>
+ </layer>
+ <layer name="enemigos" width="60" height="35">
+  <properties>
+   <property name="enemigos" type="bool" value="true"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt0kEOgCAMAEH+/xxfaDxBjBBMiEKZOXPotqQEAACwj+PvARq+mG3m/lJrzlUayNyTlY3+oxH+fPSG3r7R73jvvtvariPfIHLb5akvenNpp1YAqDkBdYoOmw==
+  </data>
+ </layer>
+ <layer name="NPC" width="60" height="35">
+  <properties>
+   <property name="blocked" type="bool" value="true"/>
+   <property name="evento" type="bool" value="true"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt1jENAEAIBEGCf3WYeAnfooJAMaNgm0suAgAAgKsqtwsAgMu+rwBrnv0BwLgGXkkCtw==
+  </data>
+ </layer>
+ <layer name="blocked" width="60" height="35">
+  <properties>
+   <property name="blocked" type="bool" value="true"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzNWbmOFDEQ7e4v4Q9A4sxAYjn+AEQGZGSASEgQEHHHnAHSBtxopQ1hiZdF2phDcgrRphDxLKY0pZoqu+x2j3jS2+7xUe7nN+W2Z6/0XRIXMvVdP+MMm7g/9R/zeUbP1Uz9Nmme4Wvl/GXntSKmRNS7NtLfEP8U6LXmLzevNTElxvobvd0RZZtK+7ND150Dzw/T+OvtP9bfoJRp/l6Ezkvg5eHf/MmY8fMYfyM8/cf4q3kbofl7HTpvgDeHeUzS3EIrIeexx993qH8PfgA/srbBaJ/LXwJprtG6PaMWMwWPvxuo/yTaWN5GaP5akM/H8zyF0NnznfLY4y+B+2uNFeH1VwPPcws01ztd2mNt7jz+ypgpbyOkvyXrrsxzDcG4l2Nqc+fxV8a0xiBIf7X1uBZyrlMea3Pn8ZfHzHkboeVvK83BWWbBm79BXO+izz3wvtLXyt+xmq25tjzW4PGXx6TxnqDPU/CZ0pf7K9eMMZpDZR1HyfrMY75Gnzfg24y/2ppRovlMP2cqj3I5RvD6SzE/o+0W+KW377m/2prh3WOQzpYo8TfiG9p+B3/09n3q/Vuyn2qtNaLEXw8OINZB8JASs3TvOJXeEn9zOI5YJ8CTI88/U3yXI1Yb+6uh5kwwhdaI9cb+StRqnUpvxFT5W3vWm1JrRPR3L7gP3D9yLJ6/tVqn1hv9PQqugMcmHiuFZWhdnTh/vfBoTe2RqU7b1/Oy9SWszx54fA2OOm1fz8vo/dsqf1P7jRQ0vbLMOgfxc4y2r+dltL9qlb/WfkMDPwtIbdb3OyhxtDILrfdXXqT8lFcO6bF1Jr6FvrfBOyJG6/2zB6lc5XVWu2DcczxE30fgY0Vvy/zNoeR9Y7Ulj1O/Lb1A35fgK8PfZbx/S9+tqfahK8tbQqv8/YkYv8BrwyKpzsLpfk6OlF76/bkU5O9uPNeeof76GzH+gA+GRVKdpdX6POX59zCe68hQf93lIPeRuNYtUmuXYun/9/8CmcsSHw==
+  </data>
+ </layer>
+</map>
