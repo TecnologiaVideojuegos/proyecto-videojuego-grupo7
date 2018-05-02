@@ -1,44 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="30" height="25" tilewidth="32" tileheight="32" infinite="0" nextobjectid="1">
+<map version="1.0" tiledversion="1.1.4" orientation="orthogonal" renderorder="right-down" width="30" height="25" tilewidth="32" tileheight="32" infinite="0" nextobjectid="1">
  <tileset firstgid="1" source="Inside_A4.tsx"/>
  <tileset firstgid="241" source="Dungeon_B.tsx"/>
  <tileset firstgid="497" source="Actor5.tsx"/>
- <layer name="suelo" width="30" height="25">
-  <data encoding="base64" compression="zlib">
-   eJztw0ENAAAMA6GzVf/GZmMPSFg1VVX19QMLaKb/
+ <layer name="suelo" width="30" height="25" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3DQQ0AAAwDobNV/8ZmYw9IWDVVVfX1A5qTzkG4CwAA
   </data>
  </layer>
- <layer name="enemigo" width="30" height="25">
+ <layer name="enemigo" width="30" height="25" visible="0">
   <properties>
    <property name="enemigos" type="bool" value="true"/>
   </properties>
-  <data encoding="base64" compression="zlib">
-   eJztkkEKACAIBP2W//9Yp0DEpQ6tHtoBQSQcrczEDT49AMBBznbuYPWPntOZDqbe34tgOJCXReyf8w7yfuxdkZN9z9Ff1V+6cy/0dzt2RjN18qtbCMFlAWK0CrE=
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu2SQQoAIAgE/Zb//1inQMSlDq0e2gFBJBytzMQNPj0AwEHOdu5g9Y+e05kOpt7fi2A4kJdF7J/zDvJ+7F2Rk33P0V/VX7pzL/R3O3ZGM3Xyq1sIwWUBiIGPL7gLAAA=
   </data>
  </layer>
  <layer name="escenas" width="30" height="25">
   <properties>
    <property name="evento" type="bool" value="true"/>
   </properties>
-  <data encoding="base64" compression="zlib">
-   eJztzUERAAAIA6Dls38gG+yvBwVIAIBmvF7v2feTBcSSAlE=
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3NAREAAAQEMPXoH0iN57YCqwIgTXujjNfrPft+sh8PIES4CwAA
   </data>
  </layer>
- <layer name="NPC" width="30" height="25">
+ <layer name="NPC" width="30" height="25" visible="0">
   <properties>
    <property name="blocked" type="bool" value="true"/>
    <property name="evento" type="bool" value="true"/>
   </properties>
-  <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRQC2gyjTQLhgFo2AUjIKhC9xGy1C8AABV/wBw
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACmNgGAWjYBSMglFALaDKNNAuGAWjYBSMgqEL3EbLULwAAP+DVXq4CwAA
   </data>
  </layer>
  <layer name="blocked" width="30" height="25">
   <properties>
    <property name="blocked" type="bool" value="true"/>
   </properties>
-  <data encoding="base64" compression="zlib">
-   eJy91jsOwjAMBuDmVrlCxXPnOXMErgBLWWEpGx3hgjgSllLLebV/sfQLKXb5REmjWlMFy1KvrqaJTbhLyoqyjsxxfUw4M8qcsjB57p7SUI4Zbqw2dP2Wsst0XbU/G1HvAhdp57onsD3ERdlDXGe2f3YRZqk71ix9fs8G8zu151fbJ27Ngkytmog7lemqDXw3r5eczyVVJ/rufD4Azme5r1IuquS++od7E/eKXbmONp+mb7Ar19FmJQz/PqNt3+RiQ/6/KFszfUPbV2PtmMkV2s9D7RyT3QvNXZVZvj7U13opk+ede6fPh+m/c3ZeuN8p8Xuh91dt/kX5AnTwZNs=
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACr3WOw7CMAwG4ORWvULFc+c5cwSuAEtZYSkbHeGC2BKWUst5m1r6VSlO+6ltGrWxxrRGThPo1Qav7SvsLSEryDowj+pj/ZlB5pCFTXP3kA5yTHBDtYHzt5BdoovV/2yNeme4mnaqe1K2S1wtu8RFs5/Y1TBz3Voz9/s9W537lL5faZ3gWKNkStUF3H+ZWL3n2jSesz/nVBvp4/58UNif+bqKuVrF19UU7o09K3L5uLb5tGODXD6ubRpmuM9Z23ZNKjL4+9WyJdM1pHVVa4dMKt96LrVTTHIvMO8qzKXzfX2pFzNpPrp3OD7s+J9zcEL9QYjb8/2/SvNfkC+lWJMquAsAAA==
   </data>
  </layer>
 </map>
