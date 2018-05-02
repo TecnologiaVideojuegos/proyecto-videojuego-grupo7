@@ -60,13 +60,13 @@ public class VenganzaBelial extends StateBasedGame {
     public static Horacia horacia = new Horacia(atributoGestion.getInv());
     public static Mordeim mordeim = new Mordeim(atributoGestion.getInv());
     public static Kibito kibito= new Kibito(atributoGestion.getInv());
-    public static int MapaActual=1;//Cambiar a gestion
+    
     public static Horacia hori =new Horacia(atributoGestion.getInv());
     public static Mordeim mordi =new Mordeim(atributoGestion.getInv());
     public static Kibito kibi =new Kibito(atributoGestion.getInv());
     
     public static EventosNpcs eventos = new EventosNpcs();
-
+    public static int MapaActual=0;//Cambiar a gestion
     
     /*Atributos de pruebas END*/
     public VenganzaBelial() {

@@ -9,6 +9,7 @@
  <tileset firstgid="851" source="bosque02.tsx"/>
  <tileset firstgid="1076" source="bosque04.tsx"/>
  <tileset firstgid="1268" source="bosque_Behavior2.tsx"/>
+ <tileset firstgid="1364" source="Damage1.tsx"/>
  <layer name="capa_suelo" width="86" height="60">
   <data encoding="base64" compression="zlib">
    eJztwzENAAAMA6Aek1T/2ipkkNBLqqqqqqqqqqqqqqqqqqqqqqqqqqq+Pvi/aP0=
@@ -41,7 +42,7 @@
    <property name="evento" type="bool" value="true"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt2iEKACAQBECDBpPge/z/l6xGg90TnImbri0slxIAwDZK9AUAwC1V7wMAAAAAAAAAwLe6/yEAAAAAeMbMZ9ZseABAkAXqCwF2
+   eJzt2zENACAMBMAuCAA9KMK/AMYuzJSEOwW/Nfl8IwAA0mzVCQCAW5a7DwAAAAAAAAAA3xr2QwAAAADwjNO/X9fhAQBFNrwCAU0=
   </data>
  </layer>
  <layer name="escenas" width="86" height="60">

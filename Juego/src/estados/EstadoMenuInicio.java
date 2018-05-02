@@ -96,14 +96,7 @@ public class EstadoMenuInicio extends BasicGameState {
         if (input.isKeyPressed(Input.KEY_ENTER)) {
             switch (eleccionJugador) {
                 case EMPEZAR:
-                    Gestion ges = new Gestion();
-                    Horacia horacia = new Horacia(ges.getInv());
-                    Kibito kibito = new Kibito(ges.getInv());
-                    Mordeim mordeim = new Mordeim(ges.getInv());
-                    ges.getJugs().add(horacia);
-                    ges.getJugs().add(kibito);
-                    ges.getJugs().add(mordeim);
-                    ges.guardarJugadores(ges.getJugs());
+                    sbg.enterState(VenganzaBelial.ESTADOESCENAPROTOTIPO);
                     break;
                 case CARGAR:
                     //heropos = fileio.loadSave();
@@ -129,7 +122,7 @@ public class EstadoMenuInicio extends BasicGameState {
                     //sbg.enterState(VenganzaBelial.ESCENATROYIA2);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENACATACUMBAS1);//EDIT//Sonido de la armadura un po irritante Xd
                     //sbg.enterState(VenganzaBelial.ESCENAMONTANABOSS);//EDIT
-                    //sbg.enterState(VenganzaBelial.ESCENADEYOLICA);//EDIT
+                    sbg.enterState(VenganzaBelial.ESCENADEYOLICA);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENATROYIAPOSTBOSS);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENAARCHI1);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENATROYIAPOSTBOSS2);//EDIT
@@ -139,7 +132,7 @@ public class EstadoMenuInicio extends BasicGameState {
                     //sbg.enterState(VenganzaBelial.ESCENAPUEBLOMONTANA);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENAMONTANAPOSTBOSS);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENACARDINAL1);//EDIT
-                    sbg.enterState(VenganzaBelial.ESCENACARDINAL2);//EDIT
+                    //sbg.enterState(VenganzaBelial.ESCENACARDINAL2);//EDIT
 
                     break;
                 case PRUEBASDAVID:
