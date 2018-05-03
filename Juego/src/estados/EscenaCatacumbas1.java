@@ -93,7 +93,7 @@ public class EscenaCatacumbas1 extends BasicGameState{
         Image[] misStop={new Image("Imagenes/Animaciones/Sprites/misterio5.png")};
         misterioA=new Animation(misStop,200);
         misterio=misterioI;
-        fondo= new Image("Imagenes/Escenas/EscenaBosque1/mapaBosque.png");
+        fondo= new Image("Imagenes/Escenas/EscenaTroyia/DungeonCatacumbas.png");
         /**/
         this.sheetExclamacion= new SpriteSheet("Imagenes/Animaciones/puntos.png",32,33);
         this.exclamacion = new Animation(sheetExclamacion,200);
@@ -121,7 +121,7 @@ public class EscenaCatacumbas1 extends BasicGameState{
     //Muestra por pantalla
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException { 
         
-            fondo.draw(-1200, -160);
+            fondo.draw(-332, -480);
             
             //EDIT:Rener Mordeim
             if(reproducirExclamacion){
