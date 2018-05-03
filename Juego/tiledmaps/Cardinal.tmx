@@ -9,32 +9,37 @@
  <tileset firstgid="993" source="Dungeon_B.tsx"/>
  <tileset firstgid="1249" source="Inside_C.tsx"/>
  <layer name="Suelo" width="86" height="60">
-  <data encoding="base64" compression="zlib">
-   eJztwwENAAAMw6D6VzC5F3JIWDVVVVVVVVVVVVVVVVVVVVVVVVVV9fUD8+n4Zg==
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3DAQ0AAAzDoPpXMLkXckhYNVVVVVVVVVVVVVVVVVVVVVVVVVX19QPXPPqsoFAAAA==
   </data>
  </layer>
  <layer name="Enemigos" width="86" height="60">
   <properties>
    <property name="enemigos" type="bool" value="true"/>
   </properties>
-  <data encoding="base64" compression="zlib">
-   eJztVVtuxDAIzP1PsMftR/sRoXlhO4+2HmmVjY0BDwM5jo2NjY01+Pz8Vpz9lPW659aVX+eL+Ucxqu3o/R0+5Yn2zvkgG3dHdRdly2J3alfP38HpVfhN3B7A9s1I7r2a28Q/8/N2pNzMajI5gzR7EPsr4bSAcmGaYX7q2pNz7qr4rB8YF2iv07+pru7CXbyy9ZnvR313Z5/AlfGdPs//HV8d25Rrp/XRXK6C68fuN6Jrn5xROaN15/eOGZTy6jSE/KFznTulNVNP13dXc4vWVO2ZrerRat+ZC2iP5ZbwWvO4Ekk8xImbZ0fTztmzfWXzBK9MXymviU+3dn5HcZh/FnsU6XxwfM1oj/HB4j8Bpde6fn53s61j784gHlVuyA+zcbmeY6I8WRxml+aa6jbVDuI01fMKqPt17+HWHK/MzsV1Wk7Pr0LHl9K0q0W6hnyrPGY4uXJmJv2a+nHz1cVxXLJYLg83V+tZdS6xqbbqvf5XQPfucMVsUH5onfGa1n0Fr+x+aQ1qngyJX3Wu2iv/I7y6M2yP2ajcZrTSQarVdG/jG06v9f9o/TY2UqQzFO1Vm853IznD4qB95cvNQjebkR1bS2d2zV3ZOG5cHgzq++O+YcxHXbsLjFenu2rnuFc1UDFZXVL9s5yZvxXxmV+nFRSH5Zz0B3qO9OLZzuWaat/1sPLtehT5cBphflhslo/i9a2YqbuqAfKPfKB3ZufW3wTV99UO3QPx5uIlvd1ZfytGNMn8pDpO8unwrWZlMjtHe4a9Mx/sTl10ODivVVvlg8Vzd0nmtquHQlrfrh/lH+XH7lV9dPNIa+bsUByWe5pvt7dmauLydHHVefWf5XR+R/+dLbLr/DpIa5TYjvB9flf5sfe6NqrXN+PJO/x1XtH/u3P4zRwyPKWPdI6kvticUnOo2ytufnfmvYpf7diz0xcsX3dWcZqcR/sJF86uw6eqZ32O6q/GdLHYnqtFmk/KB+udROM1d5TrLKcsZ3VmFRJO0vVEg45XpTPVO2lfoTyQfQWbdZ24zpeLj86jvfpEd1+BpM9m/a+Am12qrt15wuK6/FTvrOT0r4L1wuZ2Pdy3F9kfZO8/ItFjtet+s5S2Xf3U+lGeiQ46GkF+1fcSzd8kH3UfhM7313GOYnZ6I627s+3GU7yOaEr5SPZWrKM8K9I7uLsnOlOxVU5Oy2l/uDzTGim+XS+l+kli19xdjE5OzrbjIzmbxE3eE93WPEc1O6tDZevsOn3BdJPeIeU22atAMVRNUn2zPXaO+Vcxkvun2nN7KR8b6/EFpw0XBQ==
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu1VW27EMAjM/U+wx+1H+xGheWE7j7YeaZWNjQEPAzmOjY2NjTX4/PxWnP2U9brn1pVf54v5RzGq7ej9HT7lifbO+SAbd0d1F2XLYndqV8/fwelV+E3cHsD2zUjuvZrbxD/z83ak3MxqMjmDNHsQ+yvhtIByYZphfurak3PuqvisHxgXaK/Tv6mu7sJdvLL1me9HfXdnn8CV8Z0+z/8dXx3blGun9dFcroLrx+43omufnFE5o3Xn944ZlPLqNIT8oXOdO6U1U0/Xd1dzi9ZU7Zmt6tFq35kLaI/llvBa87gSSTzEiZtnR9PO2bN9ZfMEr0xfKa+JT7d2fkdxmH8WexTpfHB8zWiP8cHiPwGl17p+fnezrWPvziAeVW7ID7NxuZ5jojxZHGaX5prqNtUO4jTV8wqo+3Xv4dYcr8zOxXVaTs+vQseX0rSrRbqGfKs8Zji5cmYm/Zr6cfPVxXFcslguDzdX61l1LrGptuq9/ldA9+5wxWxQfmid8ZrWfQWv7H5pDWqeDIlfda7aK/8jvLozbI/ZqNxmtNJBqtV0b+MbTq/1/2j9NjZSpDMU7VWbzncjOcPioH3ly81CN5uRHVtLZ3bNXdk4blweDOr7475hzEdduwuMV6e7aue4VzVQMVldUv2znJm/FfGZX6cVFIflnPQHeo704tnO5Zpq3/Ww8u16FPlwGmF+WGyWj+L1rZipu6oB8o98oHdm59bfBNX31Q7dA/Hm4iW93Vl/K0Y0yfykOk7y6fCtZmUyO0d7hr0zH+xOXXQ4OK9VW+WDxXN3Sea2q4dCWt+uH+Uf5cfuVX1080hr5uxQHJZ7mm+3t2Zq4vJ0cdV59Z/ldH5H/50tsuv8OkhrlNiO8H1+V/mx97o2qtc348k7/HVe0f+7c/jNHDI8pY90jqS+2JxSc6jbK25+d+a9il/t2LPTFyxfd1ZxmpxH+wkXzq7Dp6pnfY7qr8Z0sdieq0WaT8oH651E4zV3lOsspyxndWYVEk7S9USDjlelM9U7aV+hPJB9BZt1nbjOl4uPzqO9+kR3X4Gkz2b9r4CbXaqu3XnC4rr8VO+s5PSvgvXC5nY93LcX2R9k7z8i0WO1636zlLZd/dT6UZ6JDjoaQX7V9xLN3yQfdR+EzvfXcY5idnojrbuz7cZTvI5oSvlI9lasozwr0ju4uyc6U7FVTk7LaX+4PNMaKb5dL6X6SWLX3F2MTk7OtuMjOZvETd4T3dY8RzU7q0Nl6+w6fcF0k94h5TbZq0AxVE1SfbM9do75VzGS+6fac3spHxvr8QUKoQYNoFAAAA==
   </data>
  </layer>
  <layer name="Escenas" width="86" height="60">
   <properties>
    <property name="evento" type="bool" value="true"/>
   </properties>
+<<<<<<< HEAD
   <data encoding="base64" compression="zlib">
    eJzt2LENwCAMRUGy/wLsk8XSU/NxZO4k99br7DEAAOA+s3qBpnTN0DVD1wxdM3QFAAD+xI2SoWuGrrDPXAYAAAAA6MsvEAAAAIDbvE/1Bj3pmqErJ3wdHQvN
+=======
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3YyQ0AIQwEQcg/AfLZxIgBoVmuKsl/q392KQAA8J62eoFL6Zqha4auGbpm6AoAAOzEjZKha4auMK5NDgAAAABwPj8/AAAAAF7z1dUb3EnXDF35Qwe8zsMToFAAAA==
+>>>>>>> 0c9e5032a2b115edd4f1a54612dd389726fa5cb4
   </data>
  </layer>
  <layer name="Bloqueo" width="86" height="60">
   <properties>
    <property name="blocked" type="bool" value="true"/>
   </properties>
-  <data encoding="base64" compression="zlib">
-   eJztm2lOwzAQhUPVHgj1V9mhEvuqSkApFyhwFLgAgjNxBK7CVGKEYzxJbM/EjuMnPWWpGyefqpexk66vFcV6NqvH4Cl432Bqv2/bPnj66xuDqf2+bftg5GoStd+3bR+UucqIi+tsTSb7uyourlLZ31VxccW8ng95ljfEec1HRfEIXozM27GIiytqOeRZUv0vgd8L+Hlk3kZxZ5JtZlVxXWXmQY0l5ZMDIeppvX/q/G2PxS2fHAhRT+v9U1xtj8UtnxwIfc+r4hpavjkQUl3japMDIYVcOe6JdZoMy8sm56Yr1hzQ+0OubdTwJ8Py0vZcbdT0u1sVdW/VZ3X9IdfDQVEcgY8H5XX9PkW1q7uOB2C5A94F74EXDdi2wfW8gl3VZ3X9IddbYHMHvh+U13VR7equ4wk4XoKvwNfg50i4coniyn1ckzjylfN8dL3C7/PNcTxsmwO6XHNgJdt89Zkjmzlw/QCmn8xcpXPARZzjSkrS9y1fSXDlHFdSkr5vtZEDKatLOdAldSkHuiSpHGh7HjlGm7j65kDo9yBisImrr3zv3SlYgmtWWZmrjDJXGWWuMkqFK9czDy6nxDV0naU/P0mFa+g6S3VKXH01YXzHK3P900nm+k+xXUPmKqPMVUYmrqFrPxebnhO2VdOa3tc3cQ1d+3HM0+G1tVWrNuEauvZztena8LPVs1XudXRTrqlIvS712SrXuqkfdV+qXNXM/Sr411F946pm7nfBv47qG1dT5krIhavNuzR9lQtXm3dp+irJHIhtXrlNU2MSneuG8htV5842K367sc0rxzAm0bmeKvzUubOzGq5YJ2+PyjU0ta3X2no72+OF2qbGJFU58N4wX9VjXPx+B7OZ2kZR7WyPF2rbpPzem4wyVxllrjLKXGWUucqIi6vL/3pSFo6Txtns/gE+BNSh
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu2baU7DMBCFQ9UeCPVX2aES+6pKQCkXKHAUuACCM3EErsJUYoRjPElsz8SO4yc9ZakbJ5+ql7GTrq8VxXo2q8fgKXjfYGq/b9s+ePrrG4Op/b5t+2DkahK137dtH5S5yoiL62xNJvu7Ki6uUtnfVXFxxbyeD3mWN8R5zUdF8QhejMzbsYiLK2o55FlS/S+B3wv4eWTeRnFnkm1mVXFdZeZBjSXlkwMh6mm9f+r8bY/FLZ8cCFFP6/1TXG2PxS2fHAh9z6viGlq+ORBSXeNqkwMhhVw57ol1mgzLyybnpivWHND7Q65t1PAnw/LS9lxt1PS7WxV1b9Vndf0h18NBURyBjwfldf0+RbWru44HYLkD3gXvgRcN2LbB9byCXdVndf0h11tgcwe+H5TXdVHt6q7jCThegq/A1+DnSLhyieLKfVyTOPKV83x0vcLv881xPGybA7pcc2Al23z1mSObOXD9AKafzFylc8BFnONKStL3LV9JcOUcV1KSvm+1kQMpq0s50CV1KQe6JKkcaHseOUabuPrmQOj3IGKwiauvfO/dKViCa1ZZmauMMlcZZa4ySoUr1zMPLqfENXSdpT8/SYVr6DpLdUpcfTVhfMcrc/3TSeb6T7FdQ+Yqo8xVRiauoWs/F5ueE7ZV05re1zdxDV37cczT4bW1Vas24Rq69nO16drws9WzVe51dFOuqUi9LvXZKte6qR91X6pc1cz9KvjXUX3jqmbud8G/juobV1PmSsiFq827NH2VC1ebd2n6KskciG1euU1TYxKd64byG1XnzjYrfruxzSvHMCbRuZ4q/NS5s7Marlgnb4/KNTS1rdfaejvb44XapsYkVTnw3jBf1WNc/H4Hs5naRlHtbI8Xatuk/N6bjDJXGWWuMspcZZS5yoiLq8v/elIWjpPG2ez+AffTyp+gUAAA
   </data>
  </layer>
  <layer name="Eventos" width="86" height="60">
@@ -42,13 +47,13 @@
    <property name="blocked" type="bool" value="true"/>
    <property name="evento" type="bool" value="true"/>
   </properties>
-  <data encoding="base64" compression="zlib">
-   eJzt3LEJACAMBEDBHV1FcBPBYa0FRTtF7iB94JsvQkIAWGvx9gYkGQAAAAAcK3Ec/pBlCQAAAAAAAAAAPK66cwIAHrTrKH5KAAAw0wE9aQU+
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3csQkAIAwEQMEdXUVwE8FhrQVFO0XuIH3gmy9CQgBYa/H2BiQZAAAAABwrcRz+kGUJAAAAAAAAAAA8rrpzAgAetOsofkoAADDTAUn/7R+gUAAA
   </data>
  </layer>
  <layer name="decoracion" width="86" height="60">
-  <data encoding="base64" compression="zlib">
-   eJztzkENAAAIBKD72D+TzYzhdJCABAAAAAAAAAAAAAAAAAAAuKZrewAAAAAAfDMmWwDH
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3OQQ0AAAgEoPvYP5PNjOF0kIAEAAAAAAAAAAAAAAAAAAC4pmt7AAAAAAB8M8ALKfWgUAAA
   </data>
  </layer>
 </map>

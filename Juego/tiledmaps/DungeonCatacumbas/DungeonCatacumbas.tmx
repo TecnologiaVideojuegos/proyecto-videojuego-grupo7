@@ -9,12 +9,12 @@
    eJztwzENAAAMBKHzv73j2ugACaumqqqqqqqqqvroAVsQpbE=
   </data>
  </layer>
- <layer name="escenas" width="60" height="35">
+ <layer name="escenas" width="60" height="35" visible="0">
   <properties>
    <property name="evento" type="bool" value="true"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztzzERADAMxLDwH4u4GLK0l4+EwK4CAAAANju/Ax7zm236b7ff7yzbfrv8ZvObzW82v9m2/TLPBUmrCtc=
+   eJztz0ERACAMwDD8P1GMCzi6REG7FgAAADDZfh1wmd82v21+2/y2+W3z2+a3bdov/zlneAkh
   </data>
  </layer>
  <layer name="enemigos" width="60" height="35" visible="0">
@@ -31,7 +31,7 @@
    <property name="evento" type="bool" value="true"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1jENAEAIBEGCf3WYeAnfooJAMaNgm0suAgAAgKsqtwsAgMu+rwBrnv0BwLgGXkkCtw==
+   eJzt1rENACAMA7CK/xde4wlOYOWIipbBviAZIiUCAACAX63RnQCASrM7QDF9846vAG22/QHAcxcb4ARq
   </data>
  </layer>
  <layer name="blocked" width="60" height="35">

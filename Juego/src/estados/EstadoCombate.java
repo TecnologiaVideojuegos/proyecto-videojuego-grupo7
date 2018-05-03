@@ -117,6 +117,9 @@ public class EstadoCombate extends BasicGameState{
         avatarMuerto=new Image("Imagenes/Avatar/fondoMuerto.png");
         avatarSeleccionado=new Image("Imagenes/Avatar/fondoSeleccion.png");
         /*EDIT:Test*/
+        Avatar1 =  new Image("Imagenes/Personajes/HoraciaA.png");
+        Avatar2 =  new Image("Imagenes/Personajes/MordeimA.png");
+        Avatar3 =  new Image("Imagenes/Personajes/KibitoA.png");
         //this.sprite= new SpriteSheet("Imagenes/Animaciones/ataque.png",200,200);
         //this.animacion= new Animation(sprite, 200);
     }
@@ -166,7 +169,7 @@ public class EstadoCombate extends BasicGameState{
 //        for (int i = 0; i < NewCombate.getOrdenPersonajes().size(); i++) {
 //            mensajePantalla.drawString(1100, 20*i, " "+NewCombate.getOrdenPersonajes().get(i).getNombre());  
 //        }
-        //mensajePantalla.drawString(0, 80, "Mapa Actual "+VenganzaBelial.MapaActual);
+        mensajePantalla.drawString(0, 80, "Mapa Actual "+VenganzaBelial.MapaActual);
     }
 
     @Override
@@ -174,6 +177,19 @@ public class EstadoCombate extends BasicGameState{
     {
         if(NuevoCombate)//Ejecutar Con Cada nuevo combate
         {
+            /*Eleccion mapa*/
+            if(VenganzaBelial.MapaActual==1 || VenganzaBelial.MapaActual==10)
+                fondo = new Image("Imagenes/BackBattle/Bosque.jpg");
+            else if(VenganzaBelial.MapaActual==11 || VenganzaBelial.MapaActual==12)
+                fondo = new Image("Imagenes/BackBattle/Barco.png");
+            else if(VenganzaBelial.MapaActual==4 || VenganzaBelial.MapaActual==13|| VenganzaBelial.MapaActual==14)
+                fondo = new Image("Imagenes/BackBattle/Catacumbas.png");
+            else if(VenganzaBelial.MapaActual==6 || VenganzaBelial.MapaActual==15|| VenganzaBelial.MapaActual==16)
+                fondo = new Image("Imagenes/BackBattle/Montaña.png");
+            else if(VenganzaBelial.MapaActual==7 || VenganzaBelial.MapaActual==17|| VenganzaBelial.MapaActual==18)
+                fondo = new Image("Imagenes/BackBattle/Cardinal.png");
+            
+            /*Resetea tasa huida*/
             this.tasaHuida=0.35f;
             /*Genera Nuevo Combate*/
             ArrayList<Personaje> party= new ArrayList<Personaje>();
@@ -203,6 +219,24 @@ public class EstadoCombate extends BasicGameState{
                     if(NewCombate.getEnemigos().get(j).getNombre().equals("Bandido"))
                         NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Puerto/Bandido.png"); 
                     this.tasaHuida=0;
+                }
+            }
+            if(VenganzaBelial.MapaActual==13)//Bandidos Normales
+            {
+                for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
+                    if(NewCombate.getEnemigos().get(j).getNombre().equals("Fanatico"))
+                        NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Catacumbas/Fanatic.png");
+                }
+            }
+            if(VenganzaBelial.MapaActual==14)//Bandidos Normales
+            {
+                for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
+                    if(NewCombate.getEnemigos().get(j).getNombre().equals("Fanatico"))
+                        NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Catacumbas/Fanatic.png");
+                    if(NewCombate.getEnemigos().get(j).getNombre().equals("Muerte"))
+                        NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Catacumbas/Fanatic.png");
+                    if(NewCombate.getEnemigos().get(j).getNombre().equals("LiderFanatico"))
+                        NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Catacumbas/Fanatic.png");
                 }
             }
             //NewCombate= new Combate(VenganzaBelial.Party, VenganzaBelial.MapaActual);//
@@ -705,7 +739,11 @@ public class EstadoCombate extends BasicGameState{
     
     private void renderSelObjetivo()
     {
-        opcionesJugadorTTF.drawString(10,20+400, NewCombate.getEnemigos().get(this.eleccionJugador).getNombre());
+        Enemigo enem= (Enemigo)NewCombate.getEnemigos().get(this.eleccionJugador);
+        if(enem.getId()!=0)
+            opcionesJugadorTTF.drawString(10,20+400, enem.getNombre()+" "+enem.getId());
+        else 
+            opcionesJugadorTTF.drawString(10,20+400, enem.getNombre());
     }/*private void renderSelObjetivo()*/
     
     private void renderEnemigos() throws SlickException
@@ -733,12 +771,10 @@ public class EstadoCombate extends BasicGameState{
          /*Update Grafico*/
         float porcentajeBarra=1;//Auxuliar de calculo
         /*Imagenes del fondo*/
-            fondo = new Image("Imagenes/BackBattle/Bosque.jpg");
             
             /*EDIT:Imagenes de los personajes*/
-            Avatar1 =  new Image("Imagenes/Personajes/HoraciaA.png");
-            Avatar2 =  new Image("Imagenes/Personajes/MordeimA.png");
-            Avatar3 =  new Image("Imagenes/Personajes/KibitoA.png");
+            
+            
             fondo.draw(0, 0, 1366, 768);
             /*EDIT END*/
             /*Horacia status update*/

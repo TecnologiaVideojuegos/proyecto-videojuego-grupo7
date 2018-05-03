@@ -27,7 +27,7 @@ public class EventosNpcs {
     private final int BOSSPUERTO = 12;
     private final int FANATICOS = 13;
     private final int BOSSCATACUMBAS = 14;
-    private final int GRIFO = 15;
+    private final int MINIBOSSMONTANA = 15;
     private final int BOSSMONTANA = 16;
     private final int BOSSBELIAL = 17;
     private final int BOSSARCHIE = 18;
@@ -269,7 +269,8 @@ public class EventosNpcs {
                         tipo=10;
                 }
                 else if(y==0 && x>0 && x<6){
-                nextEstado=VenganzaBelial.ESCENAFANATICO;
+                    nextEstado=VenganzaBelial.ESCENAFANATICO;
+                    tipo=3;
                 }
                 break;
                 /*******************************************************************/
@@ -308,6 +309,7 @@ public class EventosNpcs {
                 }
                 else if(x==59 && y>20 && y<22){
                  nextEstado=VenganzaBelial.ESCENACATACUMBASPREBOSS;
+                 tipo=3;
                 }
                 break;
             /**********************************************************************/

@@ -332,7 +332,7 @@ public class EscenaMontanaMiniBoss extends BasicGameState{
                 break;
             case 19:
                 estado=0;
-                VenganzaBelial.MapaActual=10;//MINIBOSSMONTAÑA //EDIT
+                VenganzaBelial.MapaActual=15;//MINIBOSSMONTAÑA //EDIT
                 sbg.enterState(VenganzaBelial.ESTADOCOMBATE);
                 //Deberiamos entrar en estado Combate contra Pegasus
                 break;
