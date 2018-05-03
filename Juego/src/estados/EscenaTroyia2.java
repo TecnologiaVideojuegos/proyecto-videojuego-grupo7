@@ -293,7 +293,7 @@ public class EscenaTroyia2 extends BasicGameState{
                 break;
             case 14:
                 estado=0;
-                sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);//EDIT:
+                sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);//EDIT:
                 break;
 
         }

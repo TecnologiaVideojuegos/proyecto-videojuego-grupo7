@@ -96,10 +96,11 @@ public class EstadoMapaJuego extends BasicGameState {
                     break;
                 case 3://Ciudad Catacumbas: ID=3
                     map = new TiledMap("tiledmaps/MapaCiudadCatacumbas/CiudadCatacumbas.tmx");
+                    this.player.setpos(new Vector2f(24*this.tileWidth,12*this.tileHeight));
                     break;
                 case 4://Dungeon Catacumbas: ID=4
                     VenganzaBelial.atributoGestion.setEnem(VenganzaBelial.atributoGestion.cargarGrupoEnemigos("BaseDatos/enemigosCatacumba.dat"));
-                    map = new TiledMap("tiledmaps/mapaCatacumba.tmx");
+                    map = new TiledMap("tiledmaps/DungeonCatacumbas/DungeonCatacumbas.tmx");
                     for (int i = 0; i < VenganzaBelial.atributoGestion.getEnem().size(); i++) {
                         for (int j = 0; j < VenganzaBelial.atributoGestion.getEnem().get(i).size(); j++) {
                             if(VenganzaBelial.atributoGestion.getEnem().get(i).get(j).getNombre().equals("Esqueleto"))
@@ -115,22 +116,25 @@ public class EstadoMapaJuego extends BasicGameState {
 
                     break;
                 case 5: //Ciudad Montañas: ID=5
+                    map = new TiledMap("tiledmaps/PuebloMontana.tmx");
+                    this.player.setpos(new Vector2f(2*this.tileWidth,11*this.tileHeight));
                     break;
                 case 6://Dungeon Montañas: ID=6
-                    VenganzaBelial.atributoGestion.setEnem(VenganzaBelial.atributoGestion.cargarGrupoEnemigos("BaseDatos/enemigosMontana.dat"));
+//                    VenganzaBelial.atributoGestion.setEnem(VenganzaBelial.atributoGestion.cargarGrupoEnemigos("BaseDatos/enemigosMontana.dat"));
                     map = new TiledMap("tiledmaps/Montana.tmx");
-                    for (int i = 0; i < VenganzaBelial.atributoGestion.getEnem().size(); i++) {
-                        for (int j = 0; j < VenganzaBelial.atributoGestion.getEnem().get(i).size(); j++) {
-                            if(VenganzaBelial.atributoGestion.getEnem().get(i).get(j).getNombre().equals("Slime"))
-                                VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Catacumbas/Slime1.png");
-                            else if(VenganzaBelial.atributoGestion.getEnem().get(i).get(j).getNombre().equals("MiniGrifo"))
-                                VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Catacumbas/Griffin.png");
-                            else if(VenganzaBelial.atributoGestion.getEnem().get(i).get(j).getNombre().equals("Minotauro"))
-                                VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Catacumbas/Minotaur.png");
-                            else if(VenganzaBelial.atributoGestion.getEnem().get(i).get(j).getNombre().equals("Murciegalo"))
-                                VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Catacumbas/Imp.png");
-                        }
-                    }   
+                    this.player.setpos(new Vector2f(2*this.tileWidth,3*this.tileHeight));
+//                    for (int i = 0; i < VenganzaBelial.atributoGestion.getEnem().size(); i++) {
+//                        for (int j = 0; j < VenganzaBelial.atributoGestion.getEnem().get(i).size(); j++) {
+//                            if(VenganzaBelial.atributoGestion.getEnem().get(i).get(j).getNombre().equals("Slime"))
+//                                VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Catacumbas/Slime1.png");
+//                            else if(VenganzaBelial.atributoGestion.getEnem().get(i).get(j).getNombre().equals("MiniGrifo"))
+//                                VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Catacumbas/Griffin.png");
+//                            else if(VenganzaBelial.atributoGestion.getEnem().get(i).get(j).getNombre().equals("Minotauro"))
+//                                VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Catacumbas/Minotaur.png");
+//                            else if(VenganzaBelial.atributoGestion.getEnem().get(i).get(j).getNombre().equals("Murciegalo"))
+//                                VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Catacumbas/Imp.png");
+//                        }
+//                    }   
                     break;
                 case 7: //Mapa Boss: ID=6(Posible cambio en este identificador)
                     break;

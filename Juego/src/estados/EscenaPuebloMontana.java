@@ -185,7 +185,9 @@ public class EscenaPuebloMontana extends BasicGameState{
                 break;
             case 6:
                 estado=0;
-                sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);//EDIT:
+                VenganzaBelial.MapaActual=5;
+                sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);//EDIT:
+                
                 break;
 
         }

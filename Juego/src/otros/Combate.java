@@ -328,7 +328,7 @@ public final class Combate {
                 break;
             case 11://Bandidos Puerto
                 Bandido ban1=new Bandido(1,6,300,90,40);
-                Bandido ban2= new Bandido(1,6,300,90,40);
+                Bandido ban2= new Bandido(2,6,300,90,40);
                 Bandido ban3= new Bandido(3,6,300,90,40);
                 GeneraEnemigos.add(ban1);
                 GeneraEnemigos.add(ban2);
@@ -338,7 +338,7 @@ public final class Combate {
                 break;
             case 12:
                 Bandido ban11=new Bandido(1,6,300,90,40);
-                Bandido banBoss=new Bandido(1,6,2000,90,40);
+                Bandido banBoss=new Bandido(0,6,2000,90,40);
                 banBoss.setNombre("Gran Bandido Crow");
                 Bandido ban12=new Bandido(2,6,300,90,40);
                 dinerototal=140;

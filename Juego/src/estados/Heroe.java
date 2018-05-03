@@ -119,7 +119,7 @@ public class Heroe {
             }
         }/*else*/
         //EDIT:Pruebas
-        ApareceEnemigo( gc,  sbg,  delta,  gps,  input);
+        //ApareceEnemigo( gc,  sbg,  delta,  gps,  input);
         ApareceEvento( gc,  sbg,  delta,  gps,  input);
     }
 
