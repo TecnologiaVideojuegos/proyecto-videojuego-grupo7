@@ -347,6 +347,29 @@ public final class Combate {
                 GeneraEnemigos.add(banBoss);
                 GeneraEnemigos.add(ban12);
                 break;
+            case 13:
+                Fanatico fan=new Fanatico(1,6,300,90,40);
+                //Corrupto corrup= new Corrupto(1,6,300,90,40);
+                Fanatico fan1=new Fanatico(2,6,300,90,40);
+                dinerototal=240;
+                exptotal=(int) (150+150*(new Random().nextFloat()));
+                GeneraEnemigos.add(fan);
+                //GeneraEnemigos.add(corrup);
+                GeneraEnemigos.add(fan1);
+                break;
+            case 14:
+                Fanatico fan11=new Fanatico(1,6,300,90,40);
+                //Muerte muerte= new Muerte(1,6,300,90,40);
+                //LiderFanatico fan12=new LiderFanatico(2,6,300,90,40);
+                dinerototal=240;
+                exptotal=(int) (150+150*(new Random().nextFloat()));
+                GeneraEnemigos.add(fan11);
+                //GeneraEnemigos.add(corrup);
+                //GeneraEnemigos.add(fan12);
+                break;
+            case 15:
+//                Pegaso peg=new Pegaso(1,6,300,90,40);
+                break;
         }/*switch (Mapa)*/
         this.setOroCombate(dinerototal);
         this.setExpCombate(exptotal);

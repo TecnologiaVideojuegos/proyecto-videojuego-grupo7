@@ -142,7 +142,7 @@ public class EventosNpcs {
                     tipo = 2;
                 }
                 else if(x==45 && y>9 && y<19){
-                    if(controlEventos==0)
+                    if(controlEventos==1)
                     {
                         controlEventos++;
                         nextEstado=VenganzaBelial.ESCENABOSQUE2;
@@ -152,7 +152,7 @@ public class EventosNpcs {
                         tipo=10;//No ocurre nada, asi se salta el case de opciones de evento   
                 }
                 else if(x==66 && y>50 && y<58){
-                    if(controlEventos==1)
+                    if(controlEventos==2)
                     {
                         controlEventos++;
                         nextEstado=VenganzaBelial.ESCENABOSQUEPREBOSS;
@@ -259,17 +259,17 @@ public class EventosNpcs {
                     tipo = 2;
                 }
                 else if(x==9 && y>=15 && y<=22){
-                    if (controlEventos==0)
+                    if (controlEventos==3)
                     {
                         controlEventos++;
-                        // La escena que corresponda
+                        nextEstado=VenganzaBelial.ESCENATROYIA2;
                         tipo=3;
                     } 
                     else
                         tipo=10;
                 }
-                else if(x==29 && y>10 && y<14){
-                //nextEstado=VenganzaBelial.ESCENABOSQUE2; Salida al mapa que toque
+                else if(y==0 && x>0 && x<6){
+                nextEstado=VenganzaBelial.ESCENAFANATICO;
                 }
                 break;
                 /*******************************************************************/
@@ -296,11 +296,18 @@ public class EventosNpcs {
                             + " los peligros de Reynos", "Healer", "Hola amigo"); 
                     tipo = 2;    
                 }
-                else if(x>1 && x<11 && y == 16){
-                //Escena    
+                else if(x==11 && y<33 && y>16){
+                    if (controlEventos==4)
+                    {
+                        controlEventos++;
+                        nextEstado=VenganzaBelial.ESCENACATACUMBAS1;
+                        tipo=3;
+                    } 
+                    else
+                        tipo=10;
                 }
                 else if(x==59 && y>20 && y<22){
-                //nextEstado=VenganzaBelial.ESCENABOSQUE2; Salida al mapa que toque    
+                 nextEstado=VenganzaBelial.ESCENACATACUMBASPREBOSS;
                 }
                 break;
             /**********************************************************************/
@@ -342,7 +349,8 @@ public class EventosNpcs {
                 }
                 else if (x==39 && (y==19 || y==20)) {
                     VenganzaBelial.MapaActual = MAPADUNGEONMONTANA;
-                    tipo = 3;
+                    //nextEstado=VenganzaBelial.ESTADOMAPAJUEGO;
+                    //tipo = 3;
                 }
                 break;
                 //***********************************************************
@@ -382,7 +390,23 @@ public class EventosNpcs {
                     , "Rogelio", "xD");
                     tipo = 0;
                 }
+                else if(x==32){
+                    if (controlEventos==5)
+                    {
+                        controlEventos++;
+                        nextEstado=VenganzaBelial.ESCENAMONTANAMINIBOSS;
+                        tipo=3;
+                    } 
+                    else
+                        tipo=10;
+                }
+                else if(x>61 && x<78 && y>45 && y<58){
+
+                        nextEstado=VenganzaBelial.ESCENAMONTANABOSS;
+                        tipo=3;
+                }
                 break;
+                
         }
         posicionEvento.x=x;
         posicionEvento.y=y;
@@ -399,6 +423,14 @@ public class EventosNpcs {
 
     public Vector2f getPosicionEvento() {
         return posicionEvento;
+    }
+
+    public int getControlEventos() {
+        return controlEventos;
+    }
+
+    public void setControlEventos(int controlEventos) {
+        this.controlEventos = controlEventos;
     }
 
     

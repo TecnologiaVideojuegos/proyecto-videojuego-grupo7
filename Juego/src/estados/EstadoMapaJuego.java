@@ -95,7 +95,7 @@ public class EstadoMapaJuego extends BasicGameState {
                     this.player.setpos(new Vector2f(2*this.tileWidth,12*this.tileHeight));
                     break;
                 case 3://Ciudad Catacumbas: ID=3
-                    //map = new TiledMap("tiledmaps/Catacumbas.tmx");
+                    map = new TiledMap("tiledmaps/MapaCiudadCatacumbas/CiudadCatacumbas.tmx");
                     break;
                 case 4://Dungeon Catacumbas: ID=4
                     VenganzaBelial.atributoGestion.setEnem(VenganzaBelial.atributoGestion.cargarGrupoEnemigos("BaseDatos/enemigosCatacumba.dat"));

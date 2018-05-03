@@ -374,9 +374,11 @@ public class EscenaInicio extends BasicGameState{
                 posicion.x+=1f*i;
                 esquinaXMapa+=1f*i;
                 if(esquinaXMapa>=1350){
-                    estado=0;
-                    sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
+                    estado++;
                 }
+                break;
+            case 23:
+                sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
                 break;
         }
         

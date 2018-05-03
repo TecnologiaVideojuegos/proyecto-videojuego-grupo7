@@ -10,17 +10,17 @@
  <tileset firstgid="1329" source="ecefdb550aa03b421d1a6b7051259391.tsx"/>
  <tileset firstgid="1585" source="PuebloMontanaBehavior2.tsx"/>
  <tileset firstgid="1681" source="Damage1.tsx"/>
- <layer name="Suelo" width="40" height="25">
+ <layer name="Suelo" width="40" height="25" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAACpNlZGDgQ8JyQIwMZNHkSVVHKdZF4+uh2YsuT6o6erpPl0h1A+E+dDeMug+CKxhIwxxE4lH3jbpv1H2j7iPWPlLxqPtG3TfqvlH3DSb30cot1HAfPd1GTX8NtHsIhflgid+hkD+wYQD4K7vFoA8AAA==
   </data>
  </layer>
- <layer name="Sin colisiones" width="40" height="25">
+ <layer name="Sin colisiones" width="40" height="25" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAACs2WWxKDMAhF/chmtd20tRvQuoCOMzKlDLfGSoDzlWSiITwu6br8rOUzfhS874hJfDuK+bDPb8oZS/ne05pX5Tm9gT2r0Z3Ilhn8j/u1/zOmNbbKuG4sypqF765y5u5eubfxPDiL23IP9OMIciojVNMyF6Xdmv60AsWZr2t55+1rqd0IzxpBcFtJr7xrZAb6qmmjRNPKKKJqmvL/ynvDCxlTVCvcl54aQ2TKK+JXn8veTyRDYC/Ucq5Ws1uAdK5G/7Jj9V5viUe/m070tQi9s+ANyiMOmaAPAAA=
   </data>
  </layer>
- <layer name="Colisiones" width="40" height="25">
+ <layer name="Colisiones" width="40" height="25" visible="0">
   <properties>
    <property name="blocked" type="bool" value="true"/>
   </properties>
