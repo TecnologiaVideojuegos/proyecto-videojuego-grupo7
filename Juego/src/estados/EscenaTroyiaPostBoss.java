@@ -48,8 +48,8 @@ public class EscenaTroyiaPostBoss extends BasicGameState{
     private boolean reproducirExclamacion=false;
     /*Mapa*/
     private Vector2f posicion,posicionE,posicionL,posicionP,posicionX,posicionX1,posicionM;
-    private static int esquinaXMapa=-1800;
-    private static int esquinaYMapa=-1184;
+    private static int esquinaXMapa=-1232;
+    private static int esquinaYMapa=-160;
     private static int esquinaXMapa2=0;
     private static int esquinaYMapa2=0;
     /*Animaciones*/
@@ -118,7 +118,7 @@ public class EscenaTroyiaPostBoss extends BasicGameState{
         parca=new Image("Imagenes/Animaciones/Sprites/parca13.png");
         Image[] antorchaMove = {new Image("Imagenes/Animaciones/Sprites/antorcha1.png"),new Image("Imagenes/Animaciones/Sprites/antorcha2.png"),new Image("Imagenes/Animaciones/Sprites/antorcha3.png"),new Image("Imagenes/Animaciones/Sprites/antorcha4.png")};
         ant=new Animation(antorchaMove,200);
-        fondo= new Image("Imagenes/Escenas/EscenaBosque1/mapaBosque.png");
+        fondo= new Image("Imagenes/Escenas/EscenaTroyia/DungeonCatacumbas.png");
         fondoFanatico = new Image("Imagenes/Escenas/EscenaFanatico/fanatico.png");
         /**/
         this.sheetExclamacion= new SpriteSheet("Imagenes/Animaciones/puntos.png",32,33);

@@ -107,7 +107,7 @@ public class EscenaTroyia2 extends BasicGameState{
         Image[] misDer={new Image("Imagenes/Animaciones/Sprites/misterio7.png"),new Image("Imagenes/Animaciones/Sprites/misterio8.png"),new Image("Imagenes/Animaciones/Sprites/misterio9.png")};
         misterioD=new Animation(misDer,200);
         misterio=misterioI;
-        fondo= new Image("Imagenes/Escenas/EscenaBosque1/mapaBosque.png");
+        fondo= new Image("Imagenes/Escenas/EscenaTroyia/CiudadCatacumbas.png");
         /**/
         this.sheetExclamacion= new SpriteSheet("Imagenes/Animaciones/puntos.png",32,33);
         this.exclamacion = new Animation(sheetExclamacion,200);
@@ -135,22 +135,22 @@ public class EscenaTroyia2 extends BasicGameState{
     //Muestra por pantalla
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException { 
         
-            fondo.draw(-1800, -1184);
+            fondo.draw(0, 0);
             
             //EDIT:Rener Mordeim
             if(reproducirExclamacion){
                 this.exclamacion.draw(posicion.x-64, posicion.y+176);
             }
             if(estado>=0){
-                hor.draw(posicion.x, posicion.y+240);
-                mor.draw(posicion.x, posicion.y+272);
-                kib.draw(posicion.x, posicion.y+208);
-                sac.draw(posicionS.x+364, posicionS.y+240);
+                hor.draw(posicion.x+64, posicion.y+208);
+                mor.draw(posicion.x+64, posicion.y+240);
+                kib.draw(posicion.x+64, posicion.y+176);
+                sac.draw(posicionS.x+364, posicionS.y+208);
                 if(estado>=1 && estado!=6 && estado!=10 && estado!=13){
                 renderDialogo();
                 }
                 if(estado>=6){
-                    misterio.draw(posicionE.x+664, posicionE.y+208);
+                    misterio.draw(posicionE.x+664, posicionE.y+176);
                 }
             }
 //            texto.drawString(1000, 0, "" + estado);
@@ -172,7 +172,7 @@ public class EscenaTroyia2 extends BasicGameState{
         {
             case 0:
                 posicion.x+=0.1f*i;
-                if(posicion.x>=256){
+                if(posicion.x>=192){
                     estado++;
                 }
                 break;

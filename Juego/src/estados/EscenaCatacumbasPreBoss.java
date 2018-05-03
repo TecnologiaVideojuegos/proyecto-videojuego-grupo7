@@ -108,7 +108,7 @@ public class EscenaCatacumbasPreBoss extends BasicGameState{
         Image[] parcaStop={new Image("Imagenes/Animaciones/Sprites/parca5.png")};
         parcaS=new Animation(parcaStop,200);
         parca=parcaI;
-        fondo= new Image("Imagenes/Escenas/EscenaBosque1/mapaBosque.png");
+        fondo= new Image("Imagenes/Escenas/EscenaTroyia/DungeonCatacumbas.png");
         /**/
         this.sheetExclamacion= new SpriteSheet("Imagenes/Animaciones/puntos.png",32,33);
         this.exclamacion = new Animation(sheetExclamacion,200);
@@ -139,7 +139,7 @@ public class EscenaCatacumbasPreBoss extends BasicGameState{
     //Muestra por pantalla
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException { 
         
-            fondo.draw(-1800, -1184);
+            fondo.draw(-1232, -160);
             
             //EDIT:Rener Mordeim
             if(reproducirExclamacion){
