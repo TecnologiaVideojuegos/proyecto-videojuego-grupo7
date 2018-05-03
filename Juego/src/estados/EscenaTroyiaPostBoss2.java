@@ -64,7 +64,6 @@ public class EscenaTroyiaPostBoss2 extends BasicGameState{
     private Image avatarN,avatarA,avatarCaballero,avatarPueblo;
     /*Sonido*/
     private Sound sonidoSelect;
-    private Music battle;
     int time;//EDIT
     private TrueTypeFont texto;
     private Font letraMenu  = new Font("Arial Black", Font.PLAIN, 15); 
@@ -141,7 +140,6 @@ public class EscenaTroyiaPostBoss2 extends BasicGameState{
         avatarDialogo = avatarH;
         sonidoSelect=new Sound("Musica/Efectos/select.wav");
         texto= new TrueTypeFont(letraMenu, true);
-        battle = new Music("Musica/BSO/FanaticBattle.wav");
         
     }
 

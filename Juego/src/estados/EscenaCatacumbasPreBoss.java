@@ -63,7 +63,6 @@ public class EscenaCatacumbasPreBoss extends BasicGameState{
     private Image salidaEscena;
     /*Sonido*/
     private Sound sonidoSelect;
-    private Music battle;
     int time;//EDIT
     private TrueTypeFont texto;
     private Font letraMenu  = new Font("Arial Black", Font.PLAIN, 15); 
@@ -130,7 +129,6 @@ public class EscenaCatacumbasPreBoss extends BasicGameState{
         avatarDialogo = avatarH;
         sonidoSelect=new Sound("Musica/Efectos/select.wav");
         texto= new TrueTypeFont(letraMenu, true);
-        battle = new Music("Musica/BSO/FanaticBattle.wav");
         /**/
         
     }
@@ -173,12 +171,6 @@ public class EscenaCatacumbasPreBoss extends BasicGameState{
                 sonidoSelect.play(1, 0.2f);
                 time=0;
                 estado++;
-                if(estado>=6){
-                    battle.play(1, 0.2f);
-                }
-                if(estado<=19){
-                        battle.stop();
-                }
                 
             }
             

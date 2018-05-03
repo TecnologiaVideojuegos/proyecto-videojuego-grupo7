@@ -69,7 +69,6 @@ public class EscenaTroyiaPostBoss extends BasicGameState{
     private Image avatarSello;
     /*Sonido*/
     private Sound sonidoSelect,sonidoSello;
-    private Music battle;
     int time;//EDIT
     private TrueTypeFont texto;
     private Font letraMenu  = new Font("Arial Black", Font.PLAIN, 15); 
@@ -143,7 +142,6 @@ public class EscenaTroyiaPostBoss extends BasicGameState{
         sonidoSelect=new Sound("Musica/Efectos/select.wav");
         sonidoSello= new Sound("Musica/Efectos/selloApagado.wav");
         texto= new TrueTypeFont(letraMenu, true);
-        battle = new Music("Musica/BSO/FanaticBattle.wav");
         /*Elcciones y menus*/
         opciones[0]="Yo-sama + abdula dorito dorito";
         opciones[1]="Josue Yrion-sama + abdula dorito dorito";

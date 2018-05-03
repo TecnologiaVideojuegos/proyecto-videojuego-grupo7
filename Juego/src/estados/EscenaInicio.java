@@ -64,7 +64,6 @@ public class EscenaInicio extends BasicGameState{
     private Font letraMenu  = new Font("Arial Black", Font.PLAIN, 15);    
     private Font letraMenu1  = new Font("Verdana", Font.PLAIN, 15);
     private Color rojo = new Color (160,64,0);
-    private Music musicaIntro;
     private Sound efecto;
     private Sound sonidoSelect;
     private Sound sonidoPuerta;
@@ -114,7 +113,6 @@ public class EscenaInicio extends BasicGameState{
         texto1= new TrueTypeFont(letraMenu1, true);
         posicion = new Vector2f(esquinaXMapa+TILESIZE*2,esquinaYMapa+TILESIZE*2);
         posicionE = new Vector2f(esquinaXMapa+TILESIZE*2,esquinaYMapa+TILESIZE*2);
-        this.musicaIntro = new Music("Musica/BSO/Intro.wav");
         this.efecto = new Sound("Musica/Efectos/Cry2.wav");
         sonidoSelect=new Sound("Musica/Efectos/select.wav");
         sonidoPuerta=new Sound("Musica/Efectos/Door.wav");
@@ -177,12 +175,8 @@ public class EscenaInicio extends BasicGameState{
     @Override
     //Muestra la actualización
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
-        musicaIntro.play();
         if (input.isKeyPressed(Input.KEY_ENTER)){
             sonidoSelect.play(1, 0.2f);
-            if(estado==4){
-                musicaIntro.stop();
-            }
             estado++;
             time=0;
         }

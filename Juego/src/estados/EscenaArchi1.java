@@ -55,7 +55,6 @@ public class EscenaArchi1 extends BasicGameState{
     private Image ventanaDialogo,avatarDialogo, avatarH,avatarA, avatarN;
     /*Sonido*/
     private Sound sonidoSelect,sonidoPuerta;
-    private Music battle;
     int time;//EDIT
     private TrueTypeFont texto;
     private Font letraMenu  = new Font("Arial Black", Font.PLAIN, 15); 
@@ -112,7 +111,6 @@ public class EscenaArchi1 extends BasicGameState{
         sonidoSelect=new Sound("Musica/Efectos/select.wav");
         sonidoPuerta=new Sound("Musica/Efectos/Door.wav");
         texto= new TrueTypeFont(letraMenu, true);
-        battle = new Music("Musica/BSO/Archi.wav");
         /**/
         
     }
@@ -159,12 +157,6 @@ public class EscenaArchi1 extends BasicGameState{
                 sonidoSelect.play(1, 0.2f);
                 time=0;
                 estado++;
-                if(estado>=1){
-                    battle.play();
-                }
-                if(estado==19){
-                    battle.stop();
-                }
             }
         
         switch (estado)

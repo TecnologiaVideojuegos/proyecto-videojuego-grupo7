@@ -56,7 +56,6 @@ public class EscenaCardinal1 extends BasicGameState{
     private Image ventanaDialogo,avatarDialogo,avatarH,avatarM,avatarK,avatarCap;
     /*Sonido*/
     private Sound sonidoSelect;
-    private Music battle;
     int time;//EDIT
     private TrueTypeFont texto;
     private Font letraMenu  = new Font("Arial Black", Font.PLAIN, 15); 
@@ -107,7 +106,6 @@ public class EscenaCardinal1 extends BasicGameState{
         avatarDialogo = avatarH;
         sonidoSelect=new Sound("Musica/Efectos/select.wav");
         texto= new TrueTypeFont(letraMenu, true);
-        battle = new Music("Musica/BSO/Archi.wav");
         /**/
         
     }

@@ -64,7 +64,6 @@ public class EscenaMontanaPostBoss extends BasicGameState{
     private Image ventanaDialogo,avatarDialogo, avatarH,avatarM, avatarK,avatarSello,avatarNarrador;
     /*Sonido*/
     private Sound sonidoSelect,sonidoAtaque,sonidoSello;
-    private Music battle;
     int time;//EDIT
     private TrueTypeFont texto;
     private Font letraMenu  = new Font("Arial Black", Font.PLAIN, 15); 
@@ -120,7 +119,6 @@ public class EscenaMontanaPostBoss extends BasicGameState{
         sonidoAtaque=new Sound("Musica/Efectos/Sword4.wav");
         sonidoSello= new Sound("Musica/Efectos/selloApagado.wav");
         texto= new TrueTypeFont(letraMenu, true);
-        battle = new Music("Musica/BSO/DragonTheme.wav");
         /*Elcciones y menus*/
         opciones[0]="Acaba en tragedia + Abdula dorito dorito";
         opciones[1]="Comienza con calor y termina con frío + Abdula dorito dorito";
@@ -134,7 +132,7 @@ public class EscenaMontanaPostBoss extends BasicGameState{
     //Muestra por pantalla
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException { 
         
-            fondo.draw(esquinaXMapa, esquinaYMapa);
+            fondo.draw(-1200, -1100);
             
             //EDIT:Rener Mordeim
             if(reproducirExclamacion){
@@ -142,13 +140,13 @@ public class EscenaMontanaPostBoss extends BasicGameState{
             }
             
             if(this.reproducirAtaque)
-            this.ataque.draw(posicion.x+304, posicion.y+152);
+            this.ataque.draw(posicion.x+916, posicion.y+152);
             
             if(estado>=0){
-                hor.draw(posicion.x+320, posicion.y+240);
-                mor.draw(posicion.x+288, posicion.y+272);
-                kib.draw(posicion.x+288, posicion.y+208);
-                dragon.draw(posicionE.x+352, posicionE.y+200);
+                hor.draw(posicion.x+932, posicion.y+240);
+                mor.draw(posicion.x+900, posicion.y+272);
+                kib.draw(posicion.x+900, posicion.y+208);
+                dragon.draw(posicionE.x+964, posicionE.y+200);
                 
                 if(estado==15)
                     renderOpcionesJugador();

@@ -60,7 +60,6 @@ public class EscenaBosquePreBoss extends BasicGameState{
     private Image ventanaDialogo,avatarDialogo, avatarH,avatarM, avatarK, avatarDesconocido;
     /*Sonido*/
     private Sound sonidoSelect,rugido;
-    private Music battle;
     int time;//EDIT
     private TrueTypeFont texto;
     private Font letraMenu  = new Font("Arial Black", Font.PLAIN, 15); 
@@ -116,7 +115,6 @@ public class EscenaBosquePreBoss extends BasicGameState{
         sonidoSelect=new Sound("Musica/Efectos/select.wav");
         rugido=new Sound("Musica/Efectos/rugido1.wav");
         texto= new TrueTypeFont(letraMenu, true);
-        this.battle = new Music("Musica/BSO/Escena_Yggdrasil.wav");
         /**/
         
     }
@@ -156,12 +154,6 @@ public class EscenaBosquePreBoss extends BasicGameState{
                 sonidoSelect.play(1, 0.2f);
                 time=0;
                 estado++;
-                if(estado>=6){
-                    battle.play();
-                    if(estado<=13){
-                        battle.stop();
-                }
-                }
             }
             
         }

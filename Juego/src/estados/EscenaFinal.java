@@ -71,8 +71,6 @@
 //    /*Sonido*/
 //    private Sound sonidoSelect,sonidoSello;
 //    private Sound sonidoExplosion;
-//    private Music musicaBelial;
-//    private Music musicaArchi;
 //    int time=0;//EDIT
 //    private TrueTypeFont texto;
 //    private Font letraMenu  = new Font("Arial Black", Font.PLAIN, 15); 
@@ -178,8 +176,6 @@
 //        avatarDialogo = avatarH;
 //        sonidoSelect=new Sound("Musica/Efectos/select.wav");
 //        sonidoSello= new Sound("Musica/Efectos/selloApagado.wav");
-//        musicaArchi= new Music("Musica/BSO/Archi.wav");
-//        musicaBelial=new Music("Musica/BSO/Belial.wav");
 //        
 //        texto= new TrueTypeFont(letraMenu, true);
 //        /*Elcciones y menus*/

@@ -64,7 +64,6 @@ public class EscenaCarreta extends BasicGameState{
     /*Sonido*/
     private Sound sonidoSelect;
     private Sound sonidoExplosion;
-    private Music ost;
     int time;//EDIT
     
     public EscenaCarreta(int id) {

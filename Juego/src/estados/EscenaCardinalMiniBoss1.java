@@ -57,7 +57,6 @@ public class EscenaCardinalMiniBoss1 extends BasicGameState{
     private Image ventanaDialogo,avatarDialogo,avatarH,avatarM,avatarK,avatarJ;
     /*Sonido*/
     private Sound sonidoSelect;
-    private Music battle;
     int time;//EDIT
     private TrueTypeFont texto;
     private Font letraMenu  = new Font("Arial Black", Font.PLAIN, 15); 
@@ -119,7 +118,6 @@ public class EscenaCardinalMiniBoss1 extends BasicGameState{
         avatarDialogo = avatarH;
         sonidoSelect=new Sound("Musica/Efectos/select.wav");
         texto= new TrueTypeFont(letraMenu, true);
-        battle = new Music("Musica/BSO/FanaticBattle.wav");
         /**/
         
     }
@@ -155,12 +153,6 @@ public class EscenaCardinalMiniBoss1 extends BasicGameState{
                 sonidoSelect.play(1, 0.2f);
                 time=0;
                 estado++;
-                if(estado>=2){
-                    battle.play();
-                    if(estado==20){
-                        battle.stop();
-                    }
-                }
             }
         
         switch (estado)

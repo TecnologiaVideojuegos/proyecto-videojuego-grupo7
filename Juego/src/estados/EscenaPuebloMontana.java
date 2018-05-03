@@ -1,4 +1,4 @@
-    package estados;
+package estados;
 
 import java.awt.Font;
 import java.util.Vector;
@@ -54,7 +54,6 @@ public class EscenaPuebloMontana extends BasicGameState{
     private Image ventanaDialogo,avatarDialogo, avatarH,avatarM, avatarK;
     /*Sonido*/
     private Sound sonidoSelect;
-    private Music battle;
     int time;//EDIT
     private TrueTypeFont texto;
     private Font letraMenu  = new Font("Arial Black", Font.PLAIN, 15); 
@@ -97,7 +96,6 @@ public class EscenaPuebloMontana extends BasicGameState{
         avatarDialogo = avatarH;
         sonidoSelect=new Sound("Musica/Efectos/select.wav");
         texto= new TrueTypeFont(letraMenu, true);
-        battle = new Music("Musica/BSO/DragonTheme.wav");
         /**/
         
     }

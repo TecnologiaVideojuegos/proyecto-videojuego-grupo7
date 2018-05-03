@@ -57,7 +57,6 @@ public class EscenaMontanaBoss extends BasicGameState{
     private Image ventanaDialogo,avatarDialogo, avatarH,avatarM, avatarK, avatarDragon;
     /*Sonido*/
     private Sound sonidoSelect,vuelo,roar,dragonSonido;
-    private Music battle;
     int time;//EDIT
     private TrueTypeFont texto;
     private Font letraMenu  = new Font("Arial Black", Font.PLAIN, 15); 
@@ -117,7 +116,6 @@ public class EscenaMontanaBoss extends BasicGameState{
         roar = new Sound("Musica/Efectos/Grito_dragon.wav");
         dragonSonido = new Sound("Musica/Efectos/Dragon.wav");
         texto= new TrueTypeFont(letraMenu, true);
-        battle = new Music("Musica/BSO/DragonTheme.wav");
         /**/
         
     }
@@ -126,7 +124,7 @@ public class EscenaMontanaBoss extends BasicGameState{
     //Muestra por pantalla
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException { 
         
-            fondo.draw(0, 0);
+            fondo.draw(-1200, -1100);
             
             //EDIT:Rener Mordeim
             if(reproducirExclamacion){
@@ -134,9 +132,9 @@ public class EscenaMontanaBoss extends BasicGameState{
             }
             
             if(estado>=0){
-                hor.draw(posicion.x+320, posicion.y+240);
-                mor.draw(posicion.x+288, posicion.y+272);
-                kib.draw(posicion.x+288, posicion.y+208);
+                hor.draw(posicion.x+632, posicion.y+240);
+                mor.draw(posicion.x+600, posicion.y+272);
+                kib.draw(posicion.x+600, posicion.y+208);
                 if(estado>=1 && estado!=3 && estado!=7 && estado!=11 &&estado!=16){
                 renderDialogo();
                 }
@@ -160,12 +158,6 @@ public class EscenaMontanaBoss extends BasicGameState{
                 sonidoSelect.play(1, 0.2f);
                 time=0;
                 estado++;
-                if(estado>=7){
-                    battle.play(1, 0.2f);
-                }
-                if(estado==19){
-                        battle.stop();
-                }
                 
             }
             
@@ -242,10 +234,9 @@ public class EscenaMontanaBoss extends BasicGameState{
                 linea4="";
                 break;
             case 7:
-                battle.play();
                 vuelo.play();
                 posicionE.x-=0.25f*i;
-                if(posicionE.x<=(-704)){
+                if(posicionE.x<=(-404)){
                     estado++;
                 }
                 break;

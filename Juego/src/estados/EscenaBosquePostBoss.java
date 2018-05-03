@@ -75,7 +75,6 @@ public class EscenaBosquePostBoss extends BasicGameState{
     private Image ventanaDialogo,avatarDialogo, avatarH,avatarM, avatarK, avatarDesconocido, avatarSello, narrador, fuego, arbolBoss;
     /*Sonido*/
     private Sound sonidoSelect,sonidoAtaque, sonidoSello;
-    private Music battle;
     int time=0;//EDIT
     private TrueTypeFont texto;
     private Font letraMenu  = new Font("Arial Black", Font.PLAIN, 15); 

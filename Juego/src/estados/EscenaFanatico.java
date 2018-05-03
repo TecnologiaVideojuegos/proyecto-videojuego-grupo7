@@ -65,7 +65,6 @@ public class EscenaFanatico extends BasicGameState{
     private Image ventanaDialogo,avatarDialogo, avatarLider,avatarMisterio, avatarE;
     /*Sonido*/
     private Sound sonidoSelect;
-    private Music ost;
     int time;//EDIT
     private TrueTypeFont texto;
     private Font letraMenu  = new Font("Arial Black", Font.PLAIN, 15); 

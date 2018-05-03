@@ -26,7 +26,7 @@
    <property name="evento" type="bool" value="true"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt2MkNACEMBEHIPwHy2cSIAaFZrirJf6t/dikAAPCetnqBS+maoWuGrhm6ZugKAADsxI2SoWuGrjCuTQ4AAAAAcD4/PwAAAABe89XVG9xJ1wxd+UMHMFIS7Q==
+   eJzt2LENwCAMRUGy/wLsk8XSU/NxZO4k99br7DEAAOA+s3qBpnTN0DVD1wxdM3QFAAD+xI2SoWuGrrDPXAYAAAAA6MsvEAAAAIDbvE/1Bj3pmqErJ3wdHQvN
   </data>
  </layer>
  <layer name="Bloqueo" width="86" height="60">

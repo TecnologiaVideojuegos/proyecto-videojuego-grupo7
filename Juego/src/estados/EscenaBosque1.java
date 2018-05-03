@@ -61,7 +61,6 @@ public class EscenaBosque1 extends BasicGameState{
     private Image salidaEscena;
     /*Sonido*/
     private Sound sonidoSelect;
-    private Music ost;
     int time;//EDIT
     
     public EscenaBosque1(int id) {
