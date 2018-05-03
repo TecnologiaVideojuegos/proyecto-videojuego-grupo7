@@ -54,6 +54,7 @@ public class EscenaTroyia2 extends BasicGameState{
     private Animation horD,kibD,morD;
     private Animation horS,kibS,morS;
     private Animation horI,kibI,morI;
+    private Animation horS1,morS1,kibS1;
     private Animation sac,sacI;
     private Animation misterio,misterioI,misterioD,misterioA;
     private Image fondo;
@@ -94,17 +95,23 @@ public class EscenaTroyia2 extends BasicGameState{
         morI=new Animation(morIzq,200);
         Image[] kibIzq={new Image("Imagenes/Animaciones/Sprites/kib4.png"),new Image("Imagenes/Animaciones/Sprites/kib5.png"),new Image("Imagenes/Animaciones/Sprites/kib6.png")};
         kibI=new Animation(kibIzq,200);
-        hor=horD;
-        kib=kibD;
-        mor=morD;
-        Image[] fanIzq={new Image("Imagenes/Animaciones/Sprites/fanatic5.png")};
+        Image[] kibSt={new Image("Imagenes/Animaciones/Sprites/kib5.png")};
+        kibS1=new Animation(kibSt,200);
+        Image[] morSt={new Image("Imagenes/Animaciones/Sprites/mor5.png")};
+        morS1=new Animation(morSt,200);
+        Image[] horSt={new Image("Imagenes/HeroeMundo/her31.png")};
+        horS1=new Animation(horSt,200);
+        hor=horI;
+        kib=kibI;
+        mor=morI;
+        Image[] fanIzq={new Image("Imagenes/Animaciones/Sprites/fanatic8.png")};
         sacI=new Animation(fanIzq,200);
         sac=sacI;
-        Image[] misIzq={new Image("Imagenes/Animaciones/Sprites/misterio4.png"),new Image("Imagenes/Animaciones/Sprites/misterio5.png"),new Image("Imagenes/Animaciones/Sprites/misterio6.png")};
+        Image[] misIzq={new Image("Imagenes/Animaciones/Sprites/misterio7.png"),new Image("Imagenes/Animaciones/Sprites/misterio8.png"),new Image("Imagenes/Animaciones/Sprites/misterio9.png")};
         misterioI=new Animation(misIzq,200);
         Image[] misStop={new Image("Imagenes/Animaciones/Sprites/misterio2.png")};
         misterioA=new Animation(misStop,200);
-        Image[] misDer={new Image("Imagenes/Animaciones/Sprites/misterio7.png"),new Image("Imagenes/Animaciones/Sprites/misterio8.png"),new Image("Imagenes/Animaciones/Sprites/misterio9.png")};
+        Image[] misDer={new Image("Imagenes/Animaciones/Sprites/misterio4.png"),new Image("Imagenes/Animaciones/Sprites/misterio5.png"),new Image("Imagenes/Animaciones/Sprites/misterio6.png")};
         misterioD=new Animation(misDer,200);
         misterio=misterioI;
         fondo= new Image("Imagenes/Escenas/EscenaTroyia/CiudadCatacumbas.png");
@@ -142,15 +149,15 @@ public class EscenaTroyia2 extends BasicGameState{
                 this.exclamacion.draw(posicion.x-64, posicion.y+176);
             }
             if(estado>=0){
-                hor.draw(posicion.x+64, posicion.y+208);
-                mor.draw(posicion.x+64, posicion.y+240);
-                kib.draw(posicion.x+64, posicion.y+176);
-                sac.draw(posicionS.x+364, posicionS.y+208);
+                hor.draw(posicion.x+364, posicion.y+208);
+                mor.draw(posicion.x+364, posicion.y+240);
+                kib.draw(posicion.x+364, posicion.y+176);
+                sac.draw(posicionS.x+64, posicionS.y+208);
                 if(estado>=1 && estado!=6 && estado!=10 && estado!=13){
                 renderDialogo();
                 }
                 if(estado>=6){
-                    misterio.draw(posicionE.x+664, posicionE.y+176);
+                    misterio.draw(posicionE.x-64, posicionE.y+176);
                 }
             }
 //            texto.drawString(1000, 0, "" + estado);
@@ -171,15 +178,15 @@ public class EscenaTroyia2 extends BasicGameState{
         switch (estado)
         {
             case 0:
-                posicion.x+=0.1f*i;
-                if(posicion.x>=192){
+                posicion.x-=0.1f*i;
+                if(posicion.x<=(-192)){
                     estado++;
                 }
                 break;
             case 1:
-                hor=horS;
-                kib=kibS;
-                mor=morS;
+                hor=horS1;
+                kib=kibS1;
+                mor=morS1;
                 avatarDialogo=this.avatarSacerdote;
                 //////="////////////////////////////////////////////////////////";
                 linea1="Bienvenidos a Troyia jóvenes aventureros,";
@@ -219,8 +226,8 @@ public class EscenaTroyia2 extends BasicGameState{
                 linea4="";
                 break;
             case 6:
-                posicionE.x-=0.1f*i;
-                if(posicionE.x<=(-300)){
+                posicionE.x+=0.1f*i;
+                if(posicionE.x>=128){
                     estado++;
                 }
                 break;
@@ -250,15 +257,18 @@ public class EscenaTroyia2 extends BasicGameState{
                 linea4="";
                 break;
             case 10:
-                hor=horI;
-                mor=morI;
-                kib=kibI;
-                posicion.x-=0.1f*i;
-                if(posicion.x<=(-256)){
+                hor=horD;
+                mor=morD;
+                kib=kibD;
+                posicion.x+=0.1f*i;
+                if(posicion.x>=256){
                     estado++;
                 }
                 break;
             case 11:
+                hor=horS;
+                kib=kibS;
+                mor=morS;
                 avatarDialogo=this.avatarSacerdote;
                 linea1="Así que estos idiotas son lo de Cardinal.";
                 linea2="Veo que saben lo de los muertos vivientes pero nada";
@@ -276,8 +286,8 @@ public class EscenaTroyia2 extends BasicGameState{
                 break;
             case 13:
                 misterio=misterioD;
-                posicionE.x+=0.1f*i;
-                if(posicionE.x>=100){
+                posicionE.x-=0.1f*i;
+                if(posicionE.x<=(-128)){
                     estado++;
                 }
                 break;

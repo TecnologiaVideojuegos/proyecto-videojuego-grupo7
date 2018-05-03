@@ -123,19 +123,19 @@ public class EscenaCardinal2 extends BasicGameState{
                 hor.draw(posicion.x+544, posicion.y+96);
                 mor.draw(posicion.x+512, posicion.y+128);
                 kib.draw(posicion.x+512, posicion.y+64);
-                cap.draw(posicionE.x+808, posicionE.y+64);
-                cap.draw(posicionE.x+808, posicionE.y+96);
-                cap.draw(posicionE.x+808, posicionE.y+32);
+                cap.draw(posicionE.x+776, posicionE.y+64);
+                cap.draw(posicionE.x+776, posicionE.y+96);
+                cap.draw(posicionE.x+776, posicionE.y+32);
+                sol.draw(posicionE.x+808, posicionE.y+128);
+                sol.draw(posicionE.x+808, posicionE.y+96);
+                sol.draw(posicionE.x+808, posicionE.y+64);
+                sol.draw(posicionE.x+808, posicionE.y+32);
+                sol.draw(posicionE.x+808, posicionE.y);
                 sol.draw(posicionE.x+840, posicionE.y+128);
                 sol.draw(posicionE.x+840, posicionE.y+96);
                 sol.draw(posicionE.x+840, posicionE.y+64);
                 sol.draw(posicionE.x+840, posicionE.y+32);
                 sol.draw(posicionE.x+840, posicionE.y);
-                sol.draw(posicionE.x+872, posicionE.y+128);
-                sol.draw(posicionE.x+872, posicionE.y+96);
-                sol.draw(posicionE.x+872, posicionE.y+64);
-                sol.draw(posicionE.x+872, posicionE.y+32);
-                sol.draw(posicionE.x+872, posicionE.y);
                 
                 if(estado>=1){
                 renderDialogo();

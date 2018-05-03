@@ -98,7 +98,7 @@ public class EscenaMontanaMiniBoss2 extends BasicGameState{
         Image[] cabStop={new Image("Imagenes/Animaciones/Sprites/pegaso8.png")};
         pegasoS=new Animation(cabStop,200);
         pegaso=pegasoS;
-        fondo= new Image("Imagenes/Escenas/EscenaBosque1/mapaBosque.png");
+        fondo= new Image("Imagenes/Escenas/EscenaMontana/Montana.png");
         /**/
         this.sheetExclamacion= new SpriteSheet("Imagenes/Animaciones/exclamacion.png",32,33);
         this.exclamacion = new Animation(sheetExclamacion,200);

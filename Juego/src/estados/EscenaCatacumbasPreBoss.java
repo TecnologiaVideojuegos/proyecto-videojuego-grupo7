@@ -339,7 +339,8 @@ public class EscenaCatacumbasPreBoss extends BasicGameState{
                 break;
             case 19:
                 estado=0;
-                sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);//EDIT:
+                VenganzaBelial.MapaActual=14;//BOSSESCATACUMBAS
+                sbg.enterState(VenganzaBelial.ESTADOCOMBATE);
                 //Deberiamos entrar en estado Combate contra los 3 Bosses
                 //Darklord, Death y fanático
                 break;

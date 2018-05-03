@@ -105,7 +105,7 @@ public class EscenaMontanaMiniBoss extends BasicGameState{
         Image[] cabStop={new Image("Imagenes/Animaciones/Sprites/pegaso8.png")};
         pegasoS=new Animation(cabStop,200);
         pegaso=pegasoV;
-        fondo= new Image("Imagenes/Escenas/EscenaBosque1/mapaBosque.png");
+        fondo= new Image("Imagenes/Escenas/EscenaMontana/Montana.png");
         /**/
         this.sheetExclamacion= new SpriteSheet("Imagenes/Animaciones/exclamacion.png",32,33);
         this.exclamacion = new Animation(sheetExclamacion,200);
@@ -340,7 +340,8 @@ public class EscenaMontanaMiniBoss extends BasicGameState{
                 break;
             case 19:
                 estado=0;
-                sbg.enterState(VenganzaBelial.ESCENAMONTANAMINIBOSS2);//EDIT:
+                VenganzaBelial.MapaActual=10;//MINIBOSSMONTAÑA //EDIT
+                sbg.enterState(VenganzaBelial.ESTADOCOMBATE);
                 //Deberiamos entrar en estado Combate contra Pegasus
                 break;
 

@@ -94,7 +94,7 @@ public class EscenaMontanaBoss extends BasicGameState{
         dragon=dragonV;
         Image[] dragonSombra={new Image("Imagenes/Animaciones/Sprites/sombra.png")};
         sombra=new Animation(dragonSombra,200);
-        fondo= new Image("Imagenes/Escenas/EscenaBosque1/mapaBosque.png");
+        fondo= new Image("Imagenes/Escenas/EscenaMontana/Montana.png");
         /**/
         this.sheetExclamacion= new SpriteSheet("Imagenes/Animaciones/exclamacion.png",32,33);
         this.exclamacion = new Animation(sheetExclamacion,200);
@@ -349,7 +349,8 @@ public class EscenaMontanaBoss extends BasicGameState{
                 break;
             case 19:
                 estado=0;
-                sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);//EDIT:
+                VenganzaBelial.MapaActual=10;//BOSSMONTAÑA //EDIT
+                sbg.enterState(VenganzaBelial.ESTADOCOMBATE);
                 //Deberiamos entrar en estado Combate contra el Dragon
                 break;
 

@@ -72,7 +72,7 @@
 //    private Sound sonidoSelect,sonidoSello;
 //    private Sound sonidoExplosion;
 //    private Music musicaBelial;
-//    private Music misicaArchi;
+//    private Music musicaArchi;
 //    int time=0;//EDIT
 //    private TrueTypeFont texto;
 //    private Font letraMenu  = new Font("Arial Black", Font.PLAIN, 15); 
@@ -103,6 +103,11 @@
 //        kib=kibI;
 //        mor=morI;
 //        /**/
+//        Image[] archiDer={new Image("Imagenes/Animaciones/Sprites/archi7.png"),new Image("Imagenes/Animaciones/Sprites/archi8.png"),new Image("Imagenes/Animaciones/Sprites/archi9.png")};
+//        archiD=new Animation(archiDer,200);
+//        Image[] archiStop={new Image("Imagenes/Animaciones/Sprites/mor4.png"),new Image("Imagenes/Animaciones/Sprites/mor5.png"),new Image("Imagenes/Animaciones/Sprites/mor6.png")};
+//        archiS=new Animation(archiStop,200);
+//        /**/
 //        horKO= new Image("Imagenes/HeroeMundo/her21.png");
 //        horKO.rotate(90);
 //        horU= new Image("Imagenes/HeroeMundo/her21.png");
@@ -123,9 +128,28 @@
 //        generalU = new Image("Imagenes/Animaciones/Sprites/general11.png");
 //        hestiaU = new Image("Imagenes/Animaciones/Sprites/archi11.png");
 //        /**/
-//        
 //        fondo1= new Image("Imagenes/Escenas/SalaInicial/SalaCardinal.png");
 //        fondoBelial= new Image("Imagenes/Escenas/SalaInicial/SalaCardinalB.png");
+//        /**/
+//        Image[] belialDown1={new Image("Imagenes/Animaciones/Sprites/belial1.png"),new Image("Imagenes/Animaciones/Sprites/belial2.png"),new Image("Imagenes/Animaciones/Sprites/belial3.png")};
+//        belialDown = new Animation(belialDown1,200);
+//        Image[] belialStop1={new Image("Imagenes/Animaciones/Sprites/belial2.png")};
+//        belialDownS= new Animation(belialStop1,200);
+//        Image[] belialDer={new Image("Imagenes/Animaciones/Sprites/belial7.png"),new Image("Imagenes/Animaciones/Sprites/belial8.png"),new Image("Imagenes/Animaciones/Sprites/belial9.png")};
+//        belialD = new Animation(belialDer,200);
+//        Image[] belialDerS={new Image("Imagenes/Animaciones/Sprites/belial8.png")};
+//        belialDS = new Animation(belialDerS,200);
+//        Image[] belialIzq={new Image("Imagenes/Animaciones/Sprites/belial4.png"),new Image("Imagenes/Animaciones/Sprites/belial5.png"),new Image("Imagenes/Animaciones/Sprites/belial6.png")};
+//        belialI = new Animation(belialIzq,200);
+//        Image[] belialIzqS={new Image("Imagenes/Animaciones/Sprites/belial5.png")};
+//        belialIS = new Animation(belialIzqS,200);
+//        Image[] belialDownS={new Image("Imagenes/Animaciones/Sprites/belial2.png")};
+//        belialE= new Animation(belialDownS,200);
+//        belial=belialE;
+//        /**/
+//        Image[] portalB={new Image("Imagenes/Animaciones/portal1.png"),new Image("Imagenes/Animaciones/portal2.png"),new Image("Imagenes/Animaciones/portal3.png")};
+//        portal1= new Animation(portalB,200);
+//        portal=portal1;
 //        /**/
 //        this.sheetExclamacion= new SpriteSheet("Imagenes/Animaciones/exclamacion.png",32,33);
 //        this.exclamacion = new Animation(sheetExclamacion,200);
@@ -154,8 +178,8 @@
 //        avatarDialogo = avatarH;
 //        sonidoSelect=new Sound("Musica/Efectos/select.wav");
 //        sonidoSello= new Sound("Musica/Efectos/selloApagado.wav");
-//        musicaArchi= new Music("Musica/Efectos/select.wav");
-//        musicaBelial=new Music("Musica/Efectos/select.wav");
+//        musicaArchi= new Music("Musica/BSO/Archi.wav");
+//        musicaBelial=new Music("Musica/BSO/Belial.wav");
 //        
 //        texto= new TrueTypeFont(letraMenu, true);
 //        /*Elcciones y menus*/

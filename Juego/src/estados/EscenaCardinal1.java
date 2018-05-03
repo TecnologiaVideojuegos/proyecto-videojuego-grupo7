@@ -124,7 +124,7 @@ public class EscenaCardinal1 extends BasicGameState{
                 mor.draw(posicion.x+512, posicion.y+112);
                 kib.draw(posicion.x+512, posicion.y+80);
                 cap.draw(posicionE.x+808, posicionE.y+96);
-                sol.draw(posicionE.x+840, posicionE.y+112);
+                sol.draw(posicionE.x+840, posicionE.y+128);
                 sol.draw(posicionE.x+840, posicionE.y+96);
                 sol.draw(posicionE.x+840, posicionE.y+64);
                 
