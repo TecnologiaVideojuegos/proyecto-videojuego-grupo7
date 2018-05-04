@@ -50,7 +50,7 @@ public class EscenaFinal extends BasicGameState{
     /*Mapa*/
     private Vector2f posicion,posicionE,posicionH,posicionHestia;
     private Vector2f posicionPortal,posicionHeroes,posicionArchi,posicionBelial;
-    private static final int esquinaXMapa=320;
+    private static int esquinaXMapa=320;
     private static final int esquinaYMapa=144;
     private static final int esquinaXMapa2=320;
     private static final int esquinaYMapa2=144;
@@ -63,20 +63,20 @@ public class EscenaFinal extends BasicGameState{
     private Animation horS,kibS,morS;
     private Animation archi,archiD,archiS;
     private Animation hestia,hestiaD,hestiaS,hestiaUp,hestiaE;
-    private Animation hes,hesV,hesS,hesDown;
     private Animation general,generalD,generalS;
     private Animation portal,portal1;
-    private Animation belial,belialDown,belialDownS,belialD,belialDS,belialI,belialIS,belialE;
+    private Animation belial,belialDownS,belialD,belialDS,belialI,belialIS,belialE;
+    private Image hes,hesV,hesS,hesDown;
     private Image horKO,kibKO,morKO,archiKO,generalKO;
     private Image horU,kibU,morU,archiU,generalU,hestiaU;
-    private Image horD,kibD,morD;
+    private Image horD,kibD,morD,horIzquierda;
     private Image fondo1,fondoBelial;
     /*Imagenes*/
     private Image ventanaDialogo,avatarDialogo,avatarH,avatarM,avatarK,avatarArchi;
     private Image avatarGeneral,avatarHestia,avatarHestiaMal,avatarBelial;
     private Image avatarHestiaDem;
     /*Sonido*/
-    private Sound sonidoSelect,sonidoSello;
+    private Sound sonidoSelect;
     private Sound sonidoExplosion;
     int time=0;//EDIT
     private TrueTypeFont texto;
@@ -132,6 +132,7 @@ public class EscenaFinal extends BasicGameState{
         horKO.rotate(90);
         horU= new Image("Imagenes/HeroeMundo/her21.png");
         horD= new Image("Imagenes/HeroeMundo/her01.png");
+        horIzquierda= new Image("Imagenes/HeroeMundo/her31.png");
         kibKO= new Image("Imagenes/Animaciones/Sprites/kib11.png");
         kibKO.rotate(90);
         kibU= new Image("Imagenes/Animaciones/Sprites/kib11.png");
@@ -151,8 +152,6 @@ public class EscenaFinal extends BasicGameState{
         fondo1= new Image("Imagenes/Escenas/SalaInicial/SalaCardinal.png");
         fondoBelial= new Image("Imagenes/Escenas/SalaInicial/SalaCardinalB.png");
         /**/
-        Image[] belialDown1={new Image("Imagenes/Animaciones/Sprites/belial1.png"),new Image("Imagenes/Animaciones/Sprites/belial2.png"),new Image("Imagenes/Animaciones/Sprites/belial3.png")};
-        belialDown = new Animation(belialDown1,200);
         Image[] belialStop1={new Image("Imagenes/Animaciones/Sprites/belial2.png")};
         belialDownS= new Animation(belialStop1,200);
         Image[] belialDer={new Image("Imagenes/Animaciones/Sprites/belial7.png"),new Image("Imagenes/Animaciones/Sprites/belial8.png"),new Image("Imagenes/Animaciones/Sprites/belial9.png")};
@@ -170,12 +169,10 @@ public class EscenaFinal extends BasicGameState{
         Image[] portalB={new Image("Imagenes/Animaciones/portal1.png"),new Image("Imagenes/Animaciones/portal2.png"),new Image("Imagenes/Animaciones/portal3.png")};
         portal1= new Animation(portalB,200);
         portal=portal1;
-        Image[] hesVol={new Image("Imagenes/Animaciones/Sprites/hestia4.png"),new Image("Imagenes/Animaciones/Sprites/hestia5.png"),new Image("Imagenes/Animaciones/Sprites/hestia6.png")};
-        hesV=new Animation(hesVol,200);
-        Image[] hesStop={new Image("Imagenes/Animaciones/Sprites/hestia5.png")};
-        hesS=new Animation(hesStop,200);
-        Image[] hestiaMirando={new Image("Imagenes/Animaciones/Sprites/hestia2.png")};
-        hesDown=new Animation(hestiaMirando,200);
+        hesV=new Image("Imagenes/Animaciones/Sprites/hestia5.png");
+        hesV.rotate(-30);
+        hesS=new Image("Imagenes/Animaciones/Sprites/hestia5.png");
+        hesDown=new Image("Imagenes/Animaciones/Sprites/hestia2.png");
         hes=hesV;
         /**/
         this.sheetExclamacion= new SpriteSheet("Imagenes/Animaciones/exclamacion.png",32,33);
@@ -206,7 +203,6 @@ public class EscenaFinal extends BasicGameState{
         avatarBelial = new Image("Imagenes/Personajes/Belial.png");
         avatarDialogo = avatarH;
         sonidoSelect=new Sound("Musica/Efectos/select.wav");
-        sonidoSello= new Sound("Musica/Efectos/selloApagado.wav");
         
         texto= new TrueTypeFont(letraMenu, true);
     }
@@ -250,6 +246,9 @@ public class EscenaFinal extends BasicGameState{
         }
         if(estado>=59){
             hes.draw(posicionHestia.x+1350, posicionHestia.y-128);
+        }
+        if(estado==77){
+            renderDecisionJugador();
         }
         texto.drawString(1000, 0, "" + estado);
         texto.drawString(1000, 100, "EleccionBuena" + eleccionBuena);
@@ -472,7 +471,7 @@ public class EscenaFinal extends BasicGameState{
                 linea2="(Creo que esto ya lo he vivido antes.)";
                 linea3="";
                 linea4="";
-                if(time/1000>0.3f)
+                if(time/1000>1f)
                 {
                     estado++;
                     time=0;
@@ -817,235 +816,251 @@ public class EscenaFinal extends BasicGameState{
                 linea3="";
                 linea4="";
                 break;
+            case 62:
+                avatarDialogo=this.avatarK;
+                //////="////////////////////////////////////////////////////////";
+                linea1="No puedo creer que trabajaramos para un demonio.";
+                linea2="Tengo que anotarlo en mi diario.";
+                linea3="";
+                linea4="";
+                break;
+            case 63:
+                avatarDialogo=this.avatarM;
+                //////="////////////////////////////////////////////////////////";
+                linea1="Sinceramente no me parece nada impresionante";
+                linea2="que esa sea tu verdadera forma.";
+                linea3="Hasta el osito de Horacia da más miedo.";
+                linea4="";
+                break;
+            case 64:
+                horKO=horIzquierda;
+                avatarDialogo=this.avatarH;
+                //////="////////////////////////////////////////////////////////";
+                linea1="¡¡¡MORDEIM, ESO NO DEBÍAN DE SABERLO!!!";
+                linea2="¡¡¡PERVERTIDO!!!";
+                linea3="";
+                linea4="";
+                break;
+            case 65:
+                horKO=horU;
+                avatarDialogo=this.avatarBelial;
+                //////="////////////////////////////////////////////////////////";
+                linea1="JAJAJAJAJAJA, me recuerda a mi hija antes de irse de";
+                linea2="casa. Le escondí su peluche favorito para que no se";
+                linea3="fuera JAJAJAJAJAJA.";
+                linea4="";
+                break;
+            case 66:
+                hes=hesS;
+                avatarDialogo=this.avatarHestiaDem;
+                //////="////////////////////////////////////////////////////////";
+                linea1="¡¡¡PAPA, ESO NO DEBÍAN DE SABERLO!!!";
+                linea2="¡¡¡IMBECIL!!!";
+                linea3="";
+                linea4="";
+                break;
+            case 67:
+                avatarDialogo=this.avatarH;
+                //////="////////////////////////////////////////////////////////";
+                linea1="Te comprendo Hestia.";
+                linea2="Pero, ¿por qué nos utilizaste?";
+                linea3="";
+                linea4="";
+                break;
+            case 68:
+                hes=hesDown;
+                avatarDialogo=this.avatarHestiaDem;
+                //////="////////////////////////////////////////////////////////";
+                linea1="Mi pobre capitana Labelle, os utilice básicamente";
+                linea2="porque sabía que podríais completar la misión de";
+                linea3="liberar a Belial.";
+                linea4="(En realidad fue porque sois idiotas.)";
+                break;
+            case 69:
+                avatarDialogo=this.avatarGeneral;
+                //////="////////////////////////////////////////////////////////";
+                linea1="Y pensar que nos engañaste a todos todo este tiempo.";
+                linea2="Esto no te lo perdonaré Hestia.";
+                linea3="";
+                linea4="";
+                break;
             case 70:
+                avatarDialogo=this.avatarHestiaDem;
+                //////="////////////////////////////////////////////////////////";
+                linea1="JAJAJAJAJAJA, me da igual si me perdonas o no General.";
+                linea2="Solo tengo que destruirte a tí y a Archi para que mi";
+                linea3="padre y yo gobernemos este mundo.";
+                linea4="";
+                break;
+            case 71:
+                horKO=horD;
+                morKO=morD;
+                kibKO=kibD;
+                avatarDialogo=this.avatarArchi;
+                //////="////////////////////////////////////////////////////////";
+                linea1="Maldito demonio, os destruiré a ti y a Belial para";
+                linea2="poner fin a vuestra existencia.";
+                linea3="Siento pediros esto chicos pero necesitamos vuestra";
+                linea4="ayuda.";
+                break;
+            case 72:
+                horKO=horU;
+                morKO=morU;
+                kibKO=kibU;
+                avatarDialogo=this.avatarBelial;
+                //////="////////////////////////////////////////////////////////";
+                linea1="JAJAJAJAJAJA, ¿en serio quereís enfrentaros a mi y a";
+                linea2="mi hija? JAJAJAJAJAJA";
+                linea3="Si os unís a nosotros, os daremos lo que más deseaís.";
+                linea4="";
+                break;
+            case 73:
+                horKO=horD;
+                morKO=morD;
+                kibKO=kibD;
+                avatarDialogo=this.avatarGeneral;
+                //////="////////////////////////////////////////////////////////";
+                linea1="Chicos, no caigais en su trampa, os quiere utilizar.";
+                linea2="Sabeís que lo correcto es detener a Belial de";
+                linea3="una vez y para siempre.";
+                linea4="Por eso os pedimos que nos ayudeis.";
+                break;
+            case 74:
+                horKO=horU;
+                morKO=morU;
+                kibKO=kibU;
+                avatarDialogo=this.avatarHestiaDem;
+                //////="////////////////////////////////////////////////////////";
+                linea1="¿En serio os uniríais a los que querían vuestras";
+                linea2="cabezas separadas de vuestros cuerpos?";
+                linea3="Uniros a nosotros, sabeis que yo siempre cumplo mis";
+                linea4="promesas y os prometo lo que pidaís.";
+                break;
+            case 75:
+                horKO=horD;
+                morKO=morD;
+                kibKO=kibD;
+                avatarDialogo=this.avatarArchi;
+                //////="////////////////////////////////////////////////////////";
+                linea1="Chicos, no os dejeís engañar por ellos.";
+                linea2="Ayudadnos y os prometo cumplir cualquier deseo por";
+                linea3="imposible que parezca.";
+                linea4="Por favor.";
+                break;
+            case 76:
+                horKO=horU;
+                morKO=morU;
+                kibKO=kibU;
+                avatarDialogo=this.avatarBelial;
+                //////="////////////////////////////////////////////////////////";
+                linea1="¿Os fiáis de él después de lo que os ha hecho pasar?";
+                linea2="Se que sois más listos que esto.";
+                linea3="Uniros a nosotros, al bando ganador.";
+                linea4="¿Qué contestaís?";
+                
+                opciones[0]="Pienso destruirte Belial.";
+                opciones[1]="Como ordene señor Belial.";
+                eleccionJugador=0;
+                break;
+            case 77:
                 normalEnter=false;
                 tomaDecision();
                 break;
-//            case 24:
-//                normalEnter=true;
-//                if(arbolAsesinado)
-//                {
-//                    mor=morD;
-//                    avatarDialogo=this.avatarM;
-//                    //////="////////////////////////////////////////////////////////";
-//                    linea1="Quedate tu a averiguarlo.";
-//                    linea2="";
-//                    linea3="";
-//                    linea4="";
-//                    posicionMordeim.x+=0.1f*i;
-//                    posicionMordeim.y+=0.05f*i;
-//                    if(posicion.x>=900){
-//                        estado++;
-//                    }
-//                }
-//                else{
-//                   avatarDialogo=this.avatarM;
-//                    //////="////////////////////////////////////////////////////////";
-//                    linea1="Te hago caso capi, pero como mate a Kibito te mato.";
-//                    linea2="";
-//                    linea3="";
-//                    linea4=""; 
-//                }
-//                
-//                break;
-//            case 25:
-//                if(arbolAsesinado)
-//                {
-//                    avatarDialogo=this.avatarH;
-//                    //////="////////////////////////////////////////////////////////";
-//                    linea1="¡¿Mordeim donde vas?!";
-//                    linea2="";
-//                    linea3="";
-//                    linea4="";
-//                }
-//                else{
-//                   avatarDialogo=this.avatarK;
-//                    //////="////////////////////////////////////////////////////////";
-//                    linea1="Espera, ¿Porque tengo que ser yo el que muera si Horacia";
-//                    linea2="la caga con sus decisiones?";
-//                    linea3="";
-//                    linea4=""; 
-//                }
-//                break;
-//            case 26:
-//                if(arbolAsesinado)
-//                {
-//                    avatarDialogo=this.avatarK;
-//                    //////="////////////////////////////////////////////////////////";
-//                    linea1="...¿Eso del suelo no son...?";
-//                    linea2="¡BOMBAS! maldito piromano. ";
-//                    linea3="";
-//                    linea4="";
-//                }
-//                else{
-//                    this.arbolBoss=new Image("Imagenes/Animaciones/Sprites/arbolbueno4.png");
-//                   avatarDialogo=this.avatarDesconocido;
-//                    //////="////////////////////////////////////////////////////////";
-//                    linea1="Uuughh, ¿Que ha pasado? ¿donde estoy? ¿Quienes soys?";
-//                    linea2="";
-//                    linea3="";
-//                    linea4=""; 
-//                }
-//                break;
-//            case 27:
-//                if(arbolAsesinado)
-//                {
-//                    kib=kibD;
-//                    hor=horD;
-//                    avatarDialogo=this.avatarH;
-//                    //////="////////////////////////////////////////////////////////";
-//                    linea1="¡Mierda siempre igual!";
-//                    linea2="";
-//                    linea3="";
-//                    linea4="";
-//                    posicion.x+=0.1f*i;
-//                    if(posicion.x>=1000)
-//                        estado++;
-//                }
-//                else{
-//                   avatarDialogo=this.avatarH;
-//                    //////="////////////////////////////////////////////////////////";
-//                    linea1="(Parece que se ha calmado)";
-//                    linea2="Esto...somos miembros de Cardinal en misión.";
-//                    linea3="";
-//                    linea4=""; 
-//                }
-//                time=0;
-//                break;
-//            case 28:
-//                if(arbolAsesinado)
-//                {
-//                    reproducirExplosion=true;
-//                    time+=i;
-//                    if(time/1000>1f)
-//                    {
-//                        time=0;
-//                        estado++;
-//                    }
-//                }
-//                else{
-//                   avatarDialogo=this.avatarDesconocido;
-//                    //////="////////////////////////////////////////////////////////";
-//                    linea1="¿Cardinal?, yo ayude a fundar Cardinal, lo recuerdo ";
-//                    linea2="como si fuese ayer, los heroes antiguos y yo luchando";
-//                    linea3="contra las horadas demoniacas y ...";
-//                    linea4=""; 
-//                }
-//                break;
-//            case 29:
-//                if(arbolAsesinado)
-//                {
-//                    reproducirExplosion=false;
-//                    avatarDialogo=this.narrador;
-//                    //////="////////////////////////////////////////////////////////";
-//                    linea1="Y así, nuestros poco heroicos amigos, habían dado el";
-//                    linea2="paso en su aventura, ¿Habrían tomado las decisiones";
-//                    linea3="correctas? Solo el tiempo lo diría...";
-//                    linea4="Pero sí sabemos unas cosa";
-//                }
-//                else{
-//                   avatarDialogo=this.avatarM;
-//                    //////="////////////////////////////////////////////////////////";
-//                    linea1="Oh, mierda el jefe de zona se ha convertido en un viejo";
-//                    linea2="cuenta batallitas.";
-//                    linea3="";
-//                    linea4=""; 
-//                }
-//                break;
-//            case 30:
-//                if(arbolAsesinado)
-//                {
-//                    avatarDialogo=this.narrador;
-//                    //////="////////////////////////////////////////////////////////";
-//                    linea1="Desde ahora hay un bosque menos en este mundo...";
-//                    linea2="";
-//                    linea3="";
-//                    linea4="";
-//                }
-//                else{
-//                   avatarDialogo=this.avatarDesconocido;
-//                    //////="////////////////////////////////////////////////////////";
-//                    linea1="Y entonces descubrimos el gran temos de Belial: los";
-//                    linea2="pimientos verdes. Si, fue sin duda uno de los hallazgos";
-//                    linea3="más importantes durante la guerra junto con muchos otros";
-//                    linea4="como ...."; 
-//                }
-//                break;
-//            case 31:
-//                if(arbolAsesinado){
-//                    sbg.enterState(VenganzaBelial.ESCENAPUERTO1);
-//                }
-//                else{
-//                   avatarDialogo=this.avatarM;
-//                    //////="////////////////////////////////////////////////////////";
-//                    linea1="Hubiera preferido la muerte de Kibito a aguantar este ";
-//                    linea2="tostón. Me largo.";
-//                    linea3="";
-//                    linea4=""; 
-//                    mor=morD;
-//                    posicionMordeim.x+=0.1f*i;
-//                    posicionMordeim.y+=0.05f*i;
-//                    if(posicion.x>=900){
-//                        estado++;
-//                    }
-//                }
-//                break;
-//            case 32:
-//                   avatarDialogo=this.avatarK;
-//                    //////="////////////////////////////////////////////////////////";
-//                    linea1="¿Estas segura de dejar solo a ese?";
-//                    linea2="Su seguridad realmente me preocupa poco, por otra parte";
-//                    linea3="su historial de trifulcas en ciudades es...bastante largo";
-//                    linea4=""; 
-//                break;
-//            case 33:
-//                   avatarDialogo=this.avatarH;
-//                    //////="////////////////////////////////////////////////////////";
-//                    linea1="Oh no, Archi me a echar la bronca si hay otra de esas.";
-//                    linea2="";
-//                    linea3="";
-//                    linea4=""; 
-//                break;
-//            case 34:
-//                    kib=kibD;
-//                    hor=horD;
-//                    posicion.x+=0.1f*i;
-//                    if(posicion.x>=1000){
-//                        estado++;
-//                    }
-//                break;
-//            case 35:
-//                    avatarDialogo=this.avatarDesconocido;
-//                    //////="////////////////////////////////////////////////////////";
-//                    linea1="Y entonces el nigromante cojo utilizo su pie para...";
-//                    linea2="¿Chicos?...¿A donde han ido?";
-//                    linea3="¿Mm? ¿Que hace el sello tan al borde del bosque?";
-//                    linea4=""; 
-//                break;
-//            case 36:
-//                    avatarDialogo=this.avatarDesconocido;
-//                    //////="////////////////////////////////////////////////////////";
-//                    linea1="¡¡!!";
-//                    linea2="¡¿Pero que puñetas?!";
-//                    linea3="¡Vostros volved aquí!";
-//                    linea4="Ay mierda, estoy muy viejo para correr."; 
-//                break;
-//            case 37:
-//                    avatarDialogo=this.narrador;
-//                    //////="////////////////////////////////////////////////////////";
-//                    linea1="Y así, nuestros poco heroicos amigos, habían dado el";
-//                    linea2="paso en su aventura, ¿Habrían tomado las decisiones";
-//                    linea3="correctas? Solo el tiempo lo diría...";
-//                    linea4="Pero sí sabemos unas cosa";
-//                break;
-//            case 38:
-//                    avatarDialogo=this.narrador;
-//                    //////="////////////////////////////////////////////////////////";
-//                    linea1="Este anciano Dios del Bosque vivirá para contar sus";
-//                    linea2="batallitas un día más.";
-//                    linea3="";
-//                    linea4="";
-//                break;
+            case 78:
+                normalEnter=true;
+                if(eleccionBuena){
+                    avatarDialogo=this.avatarH;
+                    //////="////////////////////////////////////////////////////////";
+                    linea1="Os ayudaremos Archi a detener a estos monstruos.";
+                    linea2="No quiero un mundo lleno de tinieblas.";
+                    linea3="";
+                    linea4="";
+                }
+                else{
+                    horKO=horD;
+                    morKO=morD;
+                    kibKO=kibD;
+                    avatarDialogo=this.avatarH;
+                    //////="////////////////////////////////////////////////////////";
+                    linea1="Muy bien señor Belial, os ayudaremos a destruir";
+                    linea2="a vuestros enemigos de una vez y para siempre.";
+                    linea3="";
+                    linea4="";
+                }
+                break;
+            case 79:
+                if(eleccionBuena){
+                    avatarDialogo=this.avatarArchi;
+                    //////="////////////////////////////////////////////////////////";
+                    linea1="Sabía que podía contar con vosotros chicos.";
+                    linea2="";
+                    linea3="";
+                    linea4="";
+                }
+                else{
+                    avatarDialogo=this.avatarBelial;
+                    //////="////////////////////////////////////////////////////////";
+                    linea1="Habeis elegido la elección correcta mortales.";
+                    linea2="";
+                    linea3="";
+                    linea4="";
+                }
+                break;
+            case 80:
+                if(eleccionBuena){
+                    horKO=horU;
+                    morKO=morU;
+                    kibKO=kibU;
+                    avatarDialogo=this.avatarHestiaDem;
+                    //////="////////////////////////////////////////////////////////";
+                    linea1="¿Osaís desafiarnos a mi y a Belial?";
+                    linea2="¡¡¡IDIOTAS, OS DESTRUIRÉ PERSONALMENTE!!!";
+                    linea3="";
+                    linea4="";
+                }
+                else{
+                    avatarDialogo=this.avatarGeneral;
+                    //////="////////////////////////////////////////////////////////";
+                    linea1="No puedo creerlo, sois unos viles traidores.";
+                    linea2="¡¡¡PIENSO ACABAR CON VOSOTROS AUNQUE";
+                    linea3="SEA LO ÚLTIMO QUE HAGA!!!";
+                    linea4="";
+                }
+                break;
+            case 81:
+                if(eleccionBuena){
+                    avatarDialogo=this.avatarBelial;
+                    //////="////////////////////////////////////////////////////////";
+                    linea1="¡¡¡OS ANIQUILAREMOS!!!";
+                    linea2="¡¡¡NO QUEDARÁ NADA DE VOSOTROS!!!";
+                    linea3="";
+                    linea4="";
+                }
+                else{
+                    avatarDialogo=this.avatarArchi;
+                    //////="////////////////////////////////////////////////////////";
+                    linea1="¡¿CÓMO OSAÍS ENFRENTAROS A NOSOTROS?!";
+                    linea2="¡¡¡NO SALDREIS IMPUNE DE ESTA";
+                    linea3="TRAICIÓN MALDITOS IDIOTAS!!!";
+                    linea4="";
+                }
+                break;
+            case 82:
+                if(eleccionBuena){
+                    estado=0;
+                    //ENTRAMOS EN COMBATE CONTRA EL BOSS
+                    //APLICAMOS IDENTIFICADOR DE MAPA ESPECIAL Y ENTRAMOS EN COMBATE
+                    VenganzaBelial.MapaActual=17;//BOSSFINAL BELIAL Y HESTIA;
+                    sbg.enterState(VenganzaBelial.ESTADOCOMBATE);
+                }
+                else{
+                    estado=0;
+                    //ENTRAMOS EN COMBATE CONTRA EL BOSS
+                    //APLICAMOS IDENTIFICADOR DE MAPA ESPECIAL Y ENTRAMOS EN COMBATE
+                    VenganzaBelial.MapaActual=18;//BOSSFINAL ARCHI Y GENERAL;
+                    sbg.enterState(VenganzaBelial.ESTADOCOMBATE);
+                }
+                break;
 
         }
     }

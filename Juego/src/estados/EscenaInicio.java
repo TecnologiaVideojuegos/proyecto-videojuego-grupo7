@@ -63,7 +63,7 @@ public class EscenaInicio extends BasicGameState{
     private TrueTypeFont texto, texto1;
     private Font letraMenu  = new Font("Arial Black", Font.PLAIN, 15);    
     private Font letraMenu1  = new Font("Verdana", Font.PLAIN, 15);
-    private Color rojo = new Color (160,64,0);
+    private Color rojo = new Color (0,255,0);
     private Sound efecto;
     private Sound sonidoSelect;
     private Sound sonidoPuerta;
