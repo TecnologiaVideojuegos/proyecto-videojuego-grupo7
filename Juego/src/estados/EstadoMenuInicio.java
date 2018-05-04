@@ -127,7 +127,7 @@ public class EstadoMenuInicio extends BasicGameState {
                     //sbg.enterState(VenganzaBelial.ESCENAARCHI1);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENATROYIAPOSTBOSS2);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENAMONTANAMINIBOSS);//EDIT
-                    sbg.enterState(VenganzaBelial.ESCENAMONTANAMINIBOSS2);//EDIT
+                    //sbg.enterState(VenganzaBelial.ESCENAMONTANAMINIBOSS2);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENAARCHI2);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENAPUEBLOMONTANA);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENAMONTANAPOSTBOSS);//EDIT
@@ -137,6 +137,7 @@ public class EstadoMenuInicio extends BasicGameState {
                     //sbg.enterState(VenganzaBelial.ESCENACARDINALMINIBOSS1);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENACARDINALMINIBOSS2);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENACARDINALOPCIONAL);//EDIT
+                    sbg.enterState(VenganzaBelial.ESCENAFINAL);//EDIT
 
 
                     break;

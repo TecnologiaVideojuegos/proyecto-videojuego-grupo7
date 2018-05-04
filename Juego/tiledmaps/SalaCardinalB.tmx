@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" tiledversion="1.1.4" orientation="orthogonal" renderorder="right-down" width="20" height="10" tilewidth="32" tileheight="32" infinite="0" nextobjectid="1">
  <tileset firstgid="1" source="Dungeon_A2.tsx"/>
- <layer name="Capa de Patrones 1" width="20" height="10">
+ <layer name="Capa de Patrones 1" width="20" height="10" offsetx="33" offsety="-23">
   <data encoding="base64" compression="zlib">
-   eJxjYBjcIAuKMynEyObMoAJGNy8LDZNrJq3Mm0GhWdjMIxQ2hOzE5kdc5hMTHuhqcKUdUtQBAD1ZUZc=
+   eJzLYmBgyALiTApxFhKeQQWcRWUzYW7MpLL7MtH4lLiXlubNoNAsbOYRChtCdmLzIy7ziQkPdDXIcYQrrRJSBwDW/GgU
   </data>
  </layer>
 </map>

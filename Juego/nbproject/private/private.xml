@@ -3,23 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
             <file>file:/C:/Users/Dolores/Desktop/proyecto-videojuego-grupo7/Juego/src/estados/EstadoMenuInicio.java</file>
             <file>file:/C:/Users/Dolores/Desktop/proyecto-videojuego-grupo7/Juego/src/otros/EventosNpcs.java</file>
+            <file>file:/C:/Users/Dolores/Desktop/proyecto-videojuego-grupo7/Juego/src/estados/EscenaBosque1.java</file>
             <file>file:/C:/Users/Dolores/Desktop/proyecto-videojuego-grupo7/Juego/src/estados/EscenaFinal.java</file>
             <file>file:/C:/Users/Dolores/Desktop/proyecto-videojuego-grupo7/Juego/src/estados/VenganzaBelial.java</file>
-=======
-            <file>file:/C:/Users/David/Desktop/proyecto-videojuego-grupo7/Juego/src/personajes/Personaje.java</file>
-            <file>file:/C:/Users/David/Desktop/proyecto-videojuego-grupo7/Juego/src/estados/EscenaMontanaMiniBoss.java</file>
-            <file>file:/C:/Users/David/Desktop/proyecto-videojuego-grupo7/Juego/src/estados/EscenaMontanaMiniBoss2.java</file>
-            <file>file:/C:/Users/David/Desktop/proyecto-videojuego-grupo7/Juego/src/otros/EventosNpcs.java</file>
-            <file>file:/C:/Users/David/Desktop/proyecto-videojuego-grupo7/Juego/src/estados/EscenaPuerto2.java</file>
-            <file>file:/C:/Users/David/Desktop/proyecto-videojuego-grupo7/Juego/src/otros/Combate.java</file>
-            <file>file:/C:/Users/David/Desktop/proyecto-videojuego-grupo7/Juego/src/estados/EstadoMenuInicio.java</file>
-            <file>file:/C:/Users/David/Desktop/proyecto-videojuego-grupo7/Juego/src/estados/EscenaPuebloMontana.java</file>
-            <file>file:/C:/Users/David/Desktop/proyecto-videojuego-grupo7/Juego/src/estados/EstadoCombate.java</file>
-            <file>file:/C:/Users/David/Desktop/proyecto-videojuego-grupo7/Juego/src/estados/EstadoMapaJuego.java</file>
->>>>>>> 0c9e5032a2b115edd4f1a54612dd389726fa5cb4
         </group>
     </open-files>
 </project-private>
