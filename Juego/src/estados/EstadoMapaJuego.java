@@ -87,6 +87,16 @@ public class EstadoMapaJuego extends BasicGameState {
                     break;
                 case 1://Dungeon Bosque: ID=1
                     map = new TiledMap("tiledmaps/mapaBosque.tmx");
+                    for (int i = 0; i < VenganzaBelial.atributoGestion.getEnem().size(); i++) {
+                        for (int j = 0; j < VenganzaBelial.atributoGestion.getEnem().get(i).size(); j++) {
+                            if(VenganzaBelial.atributoGestion.getEnem().get(i).get(j).getNombre().equals("Rata"))
+                                VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Bosque/Rata.png");
+                            else if(VenganzaBelial.atributoGestion.getEnem().get(i).get(j).getNombre().equals("Goblin"))
+                                VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Bosque/Goblin.png");
+                            else if(VenganzaBelial.atributoGestion.getEnem().get(i).get(j).getNombre().equals("Araña"))
+                                VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Bosque/Spider.png");
+                        }
+                    }
                     this.player.setpos(new Vector2f(2*this.tileWidth,2*this.tileHeight));
                     /**/
                     break;

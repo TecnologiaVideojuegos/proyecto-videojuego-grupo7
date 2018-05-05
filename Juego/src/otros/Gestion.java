@@ -6,15 +6,18 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import personajes.Jugador;
 
-public class Gestion {
+public class Gestion implements Serializable{
     private ArrayList<Jugador> jugs;
     private ArrayList<ArrayList<Enemigo>> enem;
     private Inventario inv = new Inventario();
     private int mapaActual;
     private int controlEscenas;
+    
+    private static final long serialVersionUID = 10L;
     
     public Gestion(){
         jugs = new ArrayList<>();
