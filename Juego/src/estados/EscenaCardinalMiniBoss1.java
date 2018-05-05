@@ -335,7 +335,8 @@ public class EscenaCardinalMiniBoss1 extends BasicGameState{
             case 21:
                 //Combate contra Rider
                 estado=0;
-                VenganzaBelial.MapaActual=10;//MINIBOSSCARDINAL //EDIT
+                //VenganzaBelial.MapaActual=10;//MINIBOSSCARDINAL //EDIT
+                VenganzaBelial.atributoGestion.setMapaActual(10);
                 sbg.enterState(VenganzaBelial.ESTADOCOMBATE);
                 break;
             

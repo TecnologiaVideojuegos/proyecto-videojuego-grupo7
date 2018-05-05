@@ -30,6 +30,7 @@ public class NewMain {
     public static void main(String[] args) throws SlickException {
 
           BaseDatosEnemigos base = new BaseDatosEnemigos();
+          BaseDatosCatacumba base1 = new BaseDatosCatacumba();
 //        Gestion ges= new Gestion();
 //        ArrayList<ArrayList<Enemigo>> enem;
 //        enem= ges.cargarGrupoEnemigos();

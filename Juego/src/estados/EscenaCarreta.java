@@ -357,7 +357,8 @@ public class EscenaCarreta extends BasicGameState{
                 }
                 break;
             case 25:
-                VenganzaBelial.MapaActual=1;
+                //VenganzaBelial.MapaActual=1;
+                VenganzaBelial.atributoGestion.setMapaActual(1);
                 sbg.enterState(VenganzaBelial.ESCENABOSQUE1);//EDIT:Cambio de escena
                 break;
         }

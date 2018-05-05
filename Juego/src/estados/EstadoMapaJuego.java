@@ -44,7 +44,7 @@ public class EstadoMapaJuego extends BasicGameState {
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
         //EDIT: Hacer un Switch de carga de mapa en funcion del alguun indicador
-        mapaCargado=VenganzaBelial.MapaActual;
+        mapaCargado=VenganzaBelial.atributoGestion.getMapaActual();
         //map = new TiledMap("tiledmaps/mapaBosque.tmx");
         map = new TiledMap("tiledmaps/MapaTutorial/MapaTutorial.tmx");
         //map = new TiledMap("tiledmaps/MapaTutorial/MapaTutorial.tmx");
@@ -80,9 +80,9 @@ public class EstadoMapaJuego extends BasicGameState {
     @Override
     public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
         
-        if(VenganzaBelial.MapaActual>this.mapaCargado && VenganzaBelial.MapaActual<10){
-            this.mapaCargado=VenganzaBelial.MapaActual;
-            switch(VenganzaBelial.MapaActual){
+        if(VenganzaBelial.atributoGestion.getMapaActual()>this.mapaCargado && VenganzaBelial.atributoGestion.getMapaActual()<10){
+            this.mapaCargado=VenganzaBelial.atributoGestion.getMapaActual();
+            switch(VenganzaBelial.atributoGestion.getMapaActual()){
                 case 0://Mapa Tutorial: ID=0
                     break;
                 case 1://Dungeon Bosque: ID=1
@@ -120,21 +120,21 @@ public class EstadoMapaJuego extends BasicGameState {
                     this.player.setpos(new Vector2f(2*this.tileWidth,11*this.tileHeight));
                     break;
                 case 6://Dungeon Montañas: ID=6
-//                    VenganzaBelial.atributoGestion.setEnem(VenganzaBelial.atributoGestion.cargarGrupoEnemigos("BaseDatos/enemigosMontana.dat"));
+                    VenganzaBelial.atributoGestion.setEnem(VenganzaBelial.atributoGestion.cargarGrupoEnemigos("BaseDatos/enemigosMontana.dat"));
                     map = new TiledMap("tiledmaps/Montana.tmx");
                     this.player.setpos(new Vector2f(2*this.tileWidth,3*this.tileHeight));
-//                    for (int i = 0; i < VenganzaBelial.atributoGestion.getEnem().size(); i++) {
-//                        for (int j = 0; j < VenganzaBelial.atributoGestion.getEnem().get(i).size(); j++) {
-//                            if(VenganzaBelial.atributoGestion.getEnem().get(i).get(j).getNombre().equals("Slime"))
-//                                VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Catacumbas/Slime1.png");
-//                            else if(VenganzaBelial.atributoGestion.getEnem().get(i).get(j).getNombre().equals("MiniGrifo"))
-//                                VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Catacumbas/Griffin.png");
-//                            else if(VenganzaBelial.atributoGestion.getEnem().get(i).get(j).getNombre().equals("Minotauro"))
-//                                VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Catacumbas/Minotaur.png");
-//                            else if(VenganzaBelial.atributoGestion.getEnem().get(i).get(j).getNombre().equals("Murciegalo"))
-//                                VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Catacumbas/Imp.png");
-//                        }
-//                    }   
+                    for (int i = 0; i < VenganzaBelial.atributoGestion.getEnem().size(); i++) {
+                        for (int j = 0; j < VenganzaBelial.atributoGestion.getEnem().get(i).size(); j++) {
+                            if(VenganzaBelial.atributoGestion.getEnem().get(i).get(j).getNombre().equals("Slime"))
+                                VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Catacumbas/Slime1.png");
+                            else if(VenganzaBelial.atributoGestion.getEnem().get(i).get(j).getNombre().equals("MiniGrifo"))
+                                VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Catacumbas/Griffin.png");
+                            else if(VenganzaBelial.atributoGestion.getEnem().get(i).get(j).getNombre().equals("Minotauro"))
+                                VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Catacumbas/Minotaur.png");
+                            else if(VenganzaBelial.atributoGestion.getEnem().get(i).get(j).getNombre().equals("Murciegalo"))
+                                VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Catacumbas/Imp.png");
+                        }
+                    }   
                     break;
                 case 7: //Mapa Boss: ID=6(Posible cambio en este identificador)
                     break;

@@ -17,15 +17,15 @@
    eJztz0ERACAMwDD8P1GMCzi6REG7FgAAADDZfh1wmd82v21+2/y2+W3z2+a3bdov/zlneAkh
   </data>
  </layer>
- <layer name="enemigos" width="60" height="35" visible="0">
+ <layer name="enemigos" width="60" height="35">
   <properties>
    <property name="enemigos" type="bool" value="true"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt0kEOgCAMAEH+/xxfaDxBjBBMiEKZOXPotqQEAACwj+PvARq+mG3m/lJrzlUayNyTlY3+oxH+fPSG3r7R73jvvtvariPfIHLb5akvenNpp1YAqDkBdYoOmw==
+   eJztVluKwzAMzP1vkSv4hMvCfgQxL9lOui0dCDS2PNJYj/Q4vvjis3D+Pa/y63yf5ElsO5x3APGnet1a5epo2K03uW+2prShe0h9du06SHLI4nD123ln/Lsxm99T7CPeVO8TM6urOe1zVfez97gLqV5Uy4nexN9Mj6/AzVal051D68r/3d8jFQurX5fjrt4r55N13ZmtiaaZb+9d/zmS702iP72Tjt4ayw6wWN2jOJj2uj6CuHbWtapFt8fuYJgzSUzIfkeO2ZxN5xB6T+edq5OkjzpAmtharbur35pPpze1TWZEiqRWduV3NV9Of3IPnfmazisWw6xe1cMzXJXjinFo7m5sbIY5TuajoxfVnss34hrGbnX2oPNsjfGp2H6BNFQb5ec621iukX8GldMk3+y+05nAztX4O/2dIskBigvFpnQ6u65vtqbgepPVOrKvM0XFktxhMgvu0Fu565lB7BK/7u4Up+JgPjv5TXtT/XdXsareZrZ1PfWpnsqPeFZ8u3jqvvrtfKp+PMQ+40h8M3vlM5lviV+35+ZTfU/61uXJ6XV3MQPke2YeIl5Vr6yXUGzsfSW2GseTcP3WnRnvjlfl4b/hB4mhZ1Y=
   </data>
  </layer>
- <layer name="NPC" width="60" height="35">
+ <layer name="NPC" width="60" height="35" visible="0">
   <properties>
    <property name="blocked" type="bool" value="true"/>
    <property name="evento" type="bool" value="true"/>

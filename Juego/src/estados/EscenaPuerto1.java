@@ -363,7 +363,8 @@ public class EscenaPuerto1 extends BasicGameState{
                 break;
             case 23:
                 estado=0;
-                VenganzaBelial.MapaActual=2;//Entramos a Mapa puerto
+//                VenganzaBelial.MapaActual=2;//Entramos a Mapa puerto
+                VenganzaBelial.atributoGestion.setMapaActual(2);
                 sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
                 break;
         }

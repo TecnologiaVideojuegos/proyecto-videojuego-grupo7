@@ -1050,14 +1050,16 @@ public class EscenaFinal extends BasicGameState{
                     estado=0;
                     //ENTRAMOS EN COMBATE CONTRA EL BOSS
                     //APLICAMOS IDENTIFICADOR DE MAPA ESPECIAL Y ENTRAMOS EN COMBATE
-                    VenganzaBelial.MapaActual=17;//BOSSFINAL BELIAL Y HESTIA;
+//                    VenganzaBelial.MapaActual=17;//BOSSFINAL BELIAL Y HESTIA;
+                    VenganzaBelial.atributoGestion.setMapaActual(17);
                     sbg.enterState(VenganzaBelial.ESTADOCOMBATE);
                 }
                 else{
                     estado=0;
                     //ENTRAMOS EN COMBATE CONTRA EL BOSS
                     //APLICAMOS IDENTIFICADOR DE MAPA ESPECIAL Y ENTRAMOS EN COMBATE
-                    VenganzaBelial.MapaActual=18;//BOSSFINAL ARCHI Y GENERAL;
+//                    VenganzaBelial.MapaActual=18;//BOSSFINAL ARCHI Y GENERAL;
+                    VenganzaBelial.atributoGestion.setMapaActual(18);
                     sbg.enterState(VenganzaBelial.ESTADOCOMBATE);
                 }
                 break;

@@ -315,7 +315,25 @@ public final class Combate {
                     dinerototal+=enemaux.getOro();
                 }          
                 break;
-            case 2:
+//            case 2 y 3:
+//                //No existe, enemigos por evento
+//                break;
+            case 4:
+                if (nivel <= 8)
+                    ini = 0;
+                else if (nivel <= 11)
+                    ini = 6;
+                else
+                    ini = 12;
+                 ArrayEnemigosUsado = ini + fin;
+                 regeneraEnemigos();
+                 
+                for (int i = 0; i < VenganzaBelial.atributoGestion.getEnem().get(ArrayEnemigosUsado).size(); i++) {
+                    GeneraEnemigos.add((Personaje)VenganzaBelial.atributoGestion.getEnem().get(ArrayEnemigosUsado).get(i));
+                    Enemigo enemaux=(Enemigo)GeneraEnemigos.get(i);
+                    exptotal+=enemaux.getExpAportada();
+                    dinerototal+=enemaux.getOro();
+                }     
                 break;
             case 10://Boss del Bosque
                 BossBosque ygg= new BossBosque(0, 5, 3300, 80, 30);

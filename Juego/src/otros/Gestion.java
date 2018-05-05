@@ -13,10 +13,14 @@ public class Gestion {
     private ArrayList<Jugador> jugs;
     private ArrayList<ArrayList<Enemigo>> enem;
     private Inventario inv = new Inventario();
+    private int mapaActual;
+    private int controlEscenas;
     
     public Gestion(){
         jugs = new ArrayList<>();
         enem = new ArrayList<ArrayList<Enemigo>>();
+        this.mapaActual=0;
+        this.controlEscenas=0;
     }
 
     public ArrayList<Jugador> getJugs() {
@@ -42,6 +46,25 @@ public class Gestion {
     public void setInv(Inventario inv) {
         this.inv = inv;
     }
+
+    public int getMapaActual() {
+        return mapaActual;
+    }
+
+    public void setMapaActual(int mapaActual) {
+        this.mapaActual = mapaActual;
+    }
+
+    public int getControlEscenas() {
+        return controlEscenas;
+    }
+
+    public void setControlEscenas(int controlEscenas) {
+        this.controlEscenas = controlEscenas;
+    }
+    
+    
+    
     
     public ArrayList<Jugador> cargarJugadores() {
         ArrayList<Jugador> jugadores = new ArrayList<Jugador>();

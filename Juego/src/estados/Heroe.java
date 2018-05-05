@@ -119,7 +119,7 @@ public class Heroe {
             }
         }/*else*/
         //EDIT:Pruebas
-        //ApareceEnemigo( gc,  sbg,  delta,  gps,  input);
+        ApareceEnemigo( gc,  sbg,  delta,  gps,  input);
         ApareceEvento( gc,  sbg,  delta,  gps,  input);
     }
 
@@ -218,7 +218,7 @@ public class Heroe {
             }
         }
         if(evento){
-            tipo = VenganzaBelial.eventos.comprobarEvento(posicion[0], posicion[1], VenganzaBelial.MapaActual);
+            tipo = VenganzaBelial.eventos.comprobarEvento(posicion[0], posicion[1], VenganzaBelial.atributoGestion.getMapaActual());
             switch (tipo) {
                 case 0://Renderizar dialogo simple
                     renderizarEvento=true;

@@ -314,8 +314,10 @@ public class EscenaFanatico extends BasicGameState{
                 break;
             case 16:
                 estado=0;
+                VenganzaBelial.atributoGestion.setMapaActual(4);
                 sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
-                VenganzaBelial.MapaActual=4;
+//                VenganzaBelial.MapaActual=4;
+                
                 break;
         }
     }

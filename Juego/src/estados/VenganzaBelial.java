@@ -71,7 +71,8 @@ public class VenganzaBelial extends StateBasedGame {
     public static Kibito kibi =new Kibito(atributoGestion.getInv());
     
     public static EventosNpcs eventos = new EventosNpcs();
-    public static int MapaActual=0;//Cambiar a gestion
+    public static Musica controlMusica;
+    //public static int MapaActual=0;//Cambiar a gestion
     
     /*Atributos de pruebas END*/
     public VenganzaBelial() {
@@ -181,6 +182,8 @@ public class VenganzaBelial extends StateBasedGame {
         requisitos.add("Mordeim");
         arma.setRequisitoCategoria(requisitos);
         /*ATRIBUTOS DE PRUEBA FIN*/
+        controlMusica= new Musica();
+        controlMusica.loopMusica();
         AppGameContainer app = new AppGameContainer(new VenganzaBelial());
         app.setDisplayMode(WIDTH, HEIGHT, FULLSCREEN);
         app.start();

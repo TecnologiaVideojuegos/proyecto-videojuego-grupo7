@@ -340,7 +340,8 @@ public class EscenaMontanaBoss extends BasicGameState{
                 break;
             case 19:
                 estado=0;
-                VenganzaBelial.MapaActual=10;//BOSSMONTAÑA //EDIT
+//                VenganzaBelial.MapaActual=10;//BOSSMONTAÑA //EDIT
+                VenganzaBelial.atributoGestion.setMapaActual(16);
                 sbg.enterState(VenganzaBelial.ESTADOCOMBATE);
                 //Deberiamos entrar en estado Combate contra el Dragon
                 break;

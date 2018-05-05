@@ -95,6 +95,7 @@ public class EventosNpcs {
                     if (controlEventos==0)
                     {
                         controlEventos++;
+                        VenganzaBelial.atributoGestion.setControlEscenas(controlEventos);
                         nextEstado=VenganzaBelial.ESCENADEYOLICA;
                         tipo=3;
                     }
@@ -145,6 +146,7 @@ public class EventosNpcs {
                     if(controlEventos==1)
                     {
                         controlEventos++;
+                        VenganzaBelial.atributoGestion.setControlEscenas(controlEventos);
                         nextEstado=VenganzaBelial.ESCENABOSQUE2;
                         tipo=3;
                     }
@@ -155,6 +157,7 @@ public class EventosNpcs {
                     if(controlEventos==2)
                     {
                         controlEventos++;
+                        VenganzaBelial.atributoGestion.setControlEscenas(controlEventos);
                         nextEstado=VenganzaBelial.ESCENABOSQUEPREBOSS;
                         tipo=3;
                     }
@@ -224,17 +227,20 @@ public class EventosNpcs {
                     tipo = 0;
                 }
                 else if (x==43 && y==18) {
-                    VenganzaBelial.MapaActual = BANDIDOSPUERTO;
+//                    VenganzaBelial.MapaActual = BANDIDOSPUERTO;
+                    VenganzaBelial.atributoGestion.setMapaActual(BANDIDOSPUERTO);
                     nextEstado=VenganzaBelial.ESTADOCOMBATE;
                     tipo = 3;
                 }
                 else if (x==44 && y==12) {
-                    VenganzaBelial.MapaActual = BANDIDOSPUERTO;
+//                    VenganzaBelial.MapaActual = BANDIDOSPUERTO;
+                    VenganzaBelial.atributoGestion.setMapaActual(BANDIDOSPUERTO);
                     nextEstado=VenganzaBelial.ESTADOCOMBATE;
                     tipo = 3;
                 }
                 else if (x==49 && y==11) {
-                    VenganzaBelial.MapaActual = BOSSPUERTO;
+//                    VenganzaBelial.MapaActual = BOSSPUERTO;
+                    VenganzaBelial.atributoGestion.setMapaActual(BOSSPUERTO);
                     nextEstado=VenganzaBelial.ESTADOCOMBATE;
                     tipo = 3;
                 }
@@ -262,6 +268,7 @@ public class EventosNpcs {
                     if (controlEventos==3)
                     {
                         controlEventos++;
+                        VenganzaBelial.atributoGestion.setControlEscenas(controlEventos);
                         nextEstado=VenganzaBelial.ESCENATROYIA2;
                         tipo=3;
                     } 
@@ -301,6 +308,7 @@ public class EventosNpcs {
                     if (controlEventos==4)
                     {
                         controlEventos++;
+                        VenganzaBelial.atributoGestion.setControlEscenas(controlEventos);
                         nextEstado=VenganzaBelial.ESCENACATACUMBAS1;
                         tipo=3;
                     } 
@@ -350,7 +358,8 @@ public class EventosNpcs {
                     tipo = 0;
                 }
                 else if (x==39 && (y==19 || y==20)) {
-                    VenganzaBelial.MapaActual = MAPADUNGEONMONTANA;
+//                    VenganzaBelial.MapaActual = MAPADUNGEONMONTANA;
+                    VenganzaBelial.atributoGestion.setMapaActual(MAPADUNGEONMONTANA);
                     //nextEstado=VenganzaBelial.ESTADOMAPAJUEGO;
                     //tipo = 3;
                 }
@@ -396,6 +405,7 @@ public class EventosNpcs {
                     if (controlEventos==5)
                     {
                         controlEventos++;
+                        VenganzaBelial.atributoGestion.setControlEscenas(controlEventos);
                         nextEstado=VenganzaBelial.ESCENAMONTANAMINIBOSS;
                         tipo=3;
                     } 

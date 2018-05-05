@@ -238,8 +238,10 @@ public class EscenaTroyia1 extends BasicGameState{
                 break;
             case 11:
                 estado=0;
+                VenganzaBelial.atributoGestion.setMapaActual(3);
                 sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
-                VenganzaBelial.MapaActual=3;
+//                VenganzaBelial.MapaActual=3;
+                
                 break;
         }
     }

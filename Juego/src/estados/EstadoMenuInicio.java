@@ -126,7 +126,7 @@ public class EstadoMenuInicio extends BasicGameState {
                     //sbg.enterState(VenganzaBelial.ESCENATROYIAPOSTBOSS);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENAARCHI1);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENATROYIAPOSTBOSS2);//EDIT
-                    //sbg.enterState(VenganzaBelial.ESCENAMONTANAMINIBOSS);//EDIT
+                    sbg.enterState(VenganzaBelial.ESCENAMONTANAMINIBOSS);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENAMONTANAMINIBOSS2);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENAARCHI2);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENAPUEBLOMONTANA);//EDIT
@@ -137,7 +137,7 @@ public class EstadoMenuInicio extends BasicGameState {
                     //sbg.enterState(VenganzaBelial.ESCENACARDINALMINIBOSS1);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENACARDINALMINIBOSS2);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENACARDINALOPCIONAL);//EDIT
-                    sbg.enterState(VenganzaBelial.ESCENAFINAL);//EDIT
+                    //sbg.enterState(VenganzaBelial.ESCENAFINAL);//EDIT
 
 
                     break;
@@ -148,8 +148,8 @@ public class EstadoMenuInicio extends BasicGameState {
                     //sbg.enterState(VenganzaBelial.ESTADOCOMBATETUT);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENABOSQUEPOSTBOSS);//EDIT
                     //sbg.enterState(VenganzaBelial.ESTADOTIENDA);//EDIT
-                    VenganzaBelial.eventos.setControlEventos(5);
-                    sbg.enterState(VenganzaBelial.ESCENAPUEBLOMONTANA);//EDIt
+                    VenganzaBelial.eventos.setControlEventos(3);
+                    sbg.enterState(VenganzaBelial.ESCENATROYIA1);//EDIt
                     break;
                 case PRUEBASANGEL:
                     break;

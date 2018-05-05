@@ -169,7 +169,7 @@ public class EstadoCombate extends BasicGameState{
 //        for (int i = 0; i < NewCombate.getOrdenPersonajes().size(); i++) {
 //            mensajePantalla.drawString(1100, 20*i, " "+NewCombate.getOrdenPersonajes().get(i).getNombre());  
 //        }
-        mensajePantalla.drawString(0, 80, "Mapa Actual "+VenganzaBelial.MapaActual);
+        mensajePantalla.drawString(0, 80, "Mapa Actual "+VenganzaBelial.atributoGestion.getMapaActual());
     }
 
     @Override
@@ -178,15 +178,15 @@ public class EstadoCombate extends BasicGameState{
         if(NuevoCombate)//Ejecutar Con Cada nuevo combate
         {
             /*Eleccion mapa*/
-            if(VenganzaBelial.MapaActual==1 || VenganzaBelial.MapaActual==10)
+            if(VenganzaBelial.atributoGestion.getMapaActual()==1 || VenganzaBelial.atributoGestion.getMapaActual()==10)
                 fondo = new Image("Imagenes/BackBattle/Bosque.jpg");
-            else if(VenganzaBelial.MapaActual==11 || VenganzaBelial.MapaActual==12)
+            else if(VenganzaBelial.atributoGestion.getMapaActual()==11 || VenganzaBelial.atributoGestion.getMapaActual()==12)
                 fondo = new Image("Imagenes/BackBattle/Barco.png");
-            else if(VenganzaBelial.MapaActual==4 || VenganzaBelial.MapaActual==13|| VenganzaBelial.MapaActual==14)
+            else if(VenganzaBelial.atributoGestion.getMapaActual()==4 || VenganzaBelial.atributoGestion.getMapaActual()==13|| VenganzaBelial.atributoGestion.getMapaActual()==14)
                 fondo = new Image("Imagenes/BackBattle/Catacumbas.png");
-            else if(VenganzaBelial.MapaActual==6 || VenganzaBelial.MapaActual==15|| VenganzaBelial.MapaActual==16)
+            else if(VenganzaBelial.atributoGestion.getMapaActual()==6 || VenganzaBelial.atributoGestion.getMapaActual()==15|| VenganzaBelial.atributoGestion.getMapaActual()==16)
                 fondo = new Image("Imagenes/BackBattle/Montaña.png");
-            else if(VenganzaBelial.MapaActual==7 || VenganzaBelial.MapaActual==17|| VenganzaBelial.MapaActual==18)
+            else if(VenganzaBelial.atributoGestion.getMapaActual()==7 || VenganzaBelial.atributoGestion.getMapaActual()==17|| VenganzaBelial.atributoGestion.getMapaActual()==18)
                 fondo = new Image("Imagenes/BackBattle/Cardinal.png");
             
             /*Resetea tasa huida*/
@@ -196,22 +196,22 @@ public class EstadoCombate extends BasicGameState{
             party.add(VenganzaBelial.atributoGestion.getJugs().get(0));
             party.add(VenganzaBelial.atributoGestion.getJugs().get(1));
             party.add(VenganzaBelial.atributoGestion.getJugs().get(2));
-            NewCombate= new Combate(party, VenganzaBelial.MapaActual);//
+            NewCombate= new Combate(party, VenganzaBelial.atributoGestion.getMapaActual());//
             mensajeSistema="";
             //Cragar Imagenes especiales
-            if(VenganzaBelial.MapaActual==10)//Boss Bosque
+            if(VenganzaBelial.atributoGestion.getMapaActual()==10)//Boss Bosque
                 for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
                 NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Bosque/Arbol_Boss.png"); 
                 this.tasaHuida=0;
             }
-            if(VenganzaBelial.MapaActual==11)//Bandidos Normales
+            if(VenganzaBelial.atributoGestion.getMapaActual()==11)//Bandidos Normales
             {
                 for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
                     NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Puerto/Bandido.png"); 
                     //this.tasaHuida=0;
                 }
             }
-            if(VenganzaBelial.MapaActual==12)//Bandidos Normales
+            if(VenganzaBelial.atributoGestion.getMapaActual()==12)//Bandidos Normales
             {
                 for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
                     if(NewCombate.getEnemigos().get(j).getNombre().equals("Gran Bandido Crow"))
@@ -221,14 +221,14 @@ public class EstadoCombate extends BasicGameState{
                     this.tasaHuida=0;
                 }
             }
-            if(VenganzaBelial.MapaActual==13)//Bandidos Normales
+            if(VenganzaBelial.atributoGestion.getMapaActual()==13)//Bandidos Normales
             {
                 for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
                     if(NewCombate.getEnemigos().get(j).getNombre().equals("Fanatico"))
                         NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Catacumbas/Fanatic.png");
                 }
             }
-            if(VenganzaBelial.MapaActual==14)//Bandidos Normales
+            if(VenganzaBelial.atributoGestion.getMapaActual()==14)//Bandidos Normales
             {
                 for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
                     if(NewCombate.getEnemigos().get(j).getNombre().equals("Fanatico"))
@@ -284,7 +284,6 @@ public class EstadoCombate extends BasicGameState{
                     //EDIT: 
                     Enemigo enem=(Enemigo)NewCombate.getOrdenPersonajes().get(NewCombate.getTurno());
                     mensajeSistema=enem.estrategiaAtacar(VenganzaBelial.atributoGestion.getJugs());
-                    //VenganzaBelial.horacia.setHpActual(50);
                     estadoAnterior=TURNOENEMIGO;
                     Estado=FINTURNO;
                     break;
@@ -652,15 +651,17 @@ public class EstadoCombate extends BasicGameState{
     private void retornoAlMapa(StateBasedGame sbg)//Origen sera de un id de donde proviene el combate(mapax o eventox)
     {
         //Edit, Comprobar casos especiales como Bosses
-        switch(VenganzaBelial.MapaActual){
+        switch(VenganzaBelial.atributoGestion.getMapaActual()){
             case 0:
-                VenganzaBelial.MapaActual=1;//MapaBosque
+//                VenganzaBelial.MapaActual=1;//MapaBosque
+                VenganzaBelial.atributoGestion.setMapaActual(1);
                 break;
             case 10:
                 sbg.enterState(VenganzaBelial.ESCENABOSQUEPOSTBOSS);
                 break;
             case 11: 
-                VenganzaBelial.MapaActual=2;//Mapa Puerto
+//                VenganzaBelial.MapaActual=2;//Mapa Puerto
+                VenganzaBelial.atributoGestion.setMapaActual(2);
                 sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
                 break;
             case 12:
@@ -668,7 +669,8 @@ public class EstadoCombate extends BasicGameState{
                 break;
             case 13:
                 //Escena despues de los fanaticos??
-                VenganzaBelial.MapaActual=4;
+//                VenganzaBelial.MapaActual=4;
+                VenganzaBelial.atributoGestion.setMapaActual(4);
                 sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
                 break;
             case 14:
@@ -677,7 +679,8 @@ public class EstadoCombate extends BasicGameState{
                 break;
             case 15:
                 //Derrotado MiniBoss Montaña
-                VenganzaBelial.MapaActual=6;
+//                VenganzaBelial.MapaActual=6;
+                VenganzaBelial.atributoGestion.setMapaActual(6);
                 sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
                 break;
             case 16:
@@ -778,91 +781,92 @@ public class EstadoCombate extends BasicGameState{
             fondo.draw(0, 0, 1366, 768);
             /*EDIT END*/
             /*Horacia status update*/
-            if(VenganzaBelial.horacia.estaVivo()){
+            //if(VenganzaBelial.horacia.estaVivo()){
+            if(VenganzaBelial.atributoGestion.getJugs().get(0).estaVivo()){
                 if(NewCombate.getTurno()>=NewCombate.getOrdenPersonajes().size())
                 {
                    this.avatarVivo.draw(0, 618, 300, 150); 
                 }
-                else if(NewCombate.getOrdenPersonajes().get(NewCombate.getTurno())==VenganzaBelial.horacia)
+                else if(NewCombate.getOrdenPersonajes().get(NewCombate.getTurno())==VenganzaBelial.atributoGestion.getJugs().get(0))
                 {
                    this.avatarSeleccionado.draw(0, 618, 300, 150);
                 }
                 else{
                     this.avatarVivo.draw(0, 618, 300, 150);
                 }                
-                mensajePantalla.drawString(110, 658, "HP"+VenganzaBelial.horacia.getHpActual()+ "/"+VenganzaBelial.horacia.getHp(),rojo);
+                mensajePantalla.drawString(110, 658, "HP"+VenganzaBelial.atributoGestion.getJugs().get(0).getHpActual()+ "/"+VenganzaBelial.atributoGestion.getJugs().get(0).getHp(),rojo);
             }
             else{
                 this.avatarMuerto.draw(0, 618, 300, 150);
-                mensajePantalla.drawString(110, 658, "HP"+0+ "/"+VenganzaBelial.horacia.getHp(),rojo);
+                mensajePantalla.drawString(110, 658, "HP"+0+ "/"+VenganzaBelial.atributoGestion.getJugs().get(0).getHp(),rojo);
             }
             this.contenedor.draw(110, 638, 100, 20);
-            porcentajeBarra=(float)VenganzaBelial.horacia.getHpActual()/(float)VenganzaBelial.horacia.getHp();
+            porcentajeBarra=(float)VenganzaBelial.atributoGestion.getJugs().get(0).getHpActual()/(float)VenganzaBelial.atributoGestion.getJugs().get(0).getHp();
             porcentajeBarra=compruebaPorcentajeBarra(porcentajeBarra);
             this.hp.draw(111, 643, 97*porcentajeBarra, 10);
             this.contenedor.draw(110, 688, 100, 20);
-            porcentajeBarra=(float)VenganzaBelial.horacia.getMpActual()/(float)VenganzaBelial.horacia.getMp();
+            porcentajeBarra=(float)VenganzaBelial.atributoGestion.getJugs().get(0).getMpActual()/(float)VenganzaBelial.atributoGestion.getJugs().get(0).getMp();
             porcentajeBarra=compruebaPorcentajeBarra(porcentajeBarra);
             this.mp.draw(111, 693, 97*porcentajeBarra, 10);
-            mensajePantalla.drawString(110, 708, "MP "+VenganzaBelial.horacia.getMpActual()+ "/"+VenganzaBelial.horacia.getMp(),azul);
+            mensajePantalla.drawString(110, 708, "MP "+VenganzaBelial.atributoGestion.getJugs().get(0).getMpActual()+ "/"+VenganzaBelial.atributoGestion.getJugs().get(0).getMp(),azul);
             Avatar1.draw(0, 618, 100, 150);        
             /*MORDEIM STATUS UPDATE*/
-            if(VenganzaBelial.mordeim.estaVivo()){
+            if(VenganzaBelial.atributoGestion.getJugs().get(1).estaVivo()){
                 if(NewCombate.getTurno()>=NewCombate.getOrdenPersonajes().size())//If de seguridad para coordeinar render y update
                 {
                    this.avatarVivo.draw(300, 618, 300, 150);
                 }
-                else if(NewCombate.getOrdenPersonajes().get(NewCombate.getTurno())==VenganzaBelial.mordeim)
+                else if(NewCombate.getOrdenPersonajes().get(NewCombate.getTurno())==VenganzaBelial.atributoGestion.getJugs().get(1))
                 {
                    this.avatarSeleccionado.draw(300, 618, 300, 150);
                 }
                 else{
                     this.avatarVivo.draw(300, 618, 300, 150);
                 }                
-                mensajePantalla.drawString(410, 658, "HP"+VenganzaBelial.mordeim.getHpActual()+ "/"+VenganzaBelial.mordeim.getHp(),rojo);
+                mensajePantalla.drawString(410, 658, "HP"+VenganzaBelial.atributoGestion.getJugs().get(1).getHpActual()+ "/"+VenganzaBelial.atributoGestion.getJugs().get(1).getHp(),rojo);
             }
             else{
                 this.avatarMuerto.draw(300, 618, 300, 150);
-                mensajePantalla.drawString(410, 658, "HP"+0+ "/"+VenganzaBelial.mordeim.getHp(),rojo);
+                mensajePantalla.drawString(410, 658, "HP"+0+ "/"+VenganzaBelial.atributoGestion.getJugs().get(1).getHp(),rojo);
             }
             this.contenedor.draw(410, 638, 100, 20);
-            porcentajeBarra=(float)VenganzaBelial.mordeim.getHpActual()/(float)VenganzaBelial.mordeim.getHp();
+            porcentajeBarra=(float)VenganzaBelial.atributoGestion.getJugs().get(1).getHpActual()/(float)VenganzaBelial.atributoGestion.getJugs().get(1).getHp();
             porcentajeBarra=compruebaPorcentajeBarra(porcentajeBarra);
             this.hp.draw(411, 643, 97*porcentajeBarra, 10);
             this.contenedor.draw(410, 688, 100, 20);
-            porcentajeBarra=(float)VenganzaBelial.mordeim.getMpActual()/(float)VenganzaBelial.mordeim.getMp();
+            porcentajeBarra=(float)VenganzaBelial.atributoGestion.getJugs().get(1).getMpActual()/(float)VenganzaBelial.atributoGestion.getJugs().get(1).getMp();
             porcentajeBarra=compruebaPorcentajeBarra(porcentajeBarra);
             this.mp.draw(411, 693, 97*porcentajeBarra, 10);
-            mensajePantalla.drawString(410, 708, "MP "+VenganzaBelial.mordeim.getMpActual()+ "/"+VenganzaBelial.mordeim.getMp(),azul);
+            mensajePantalla.drawString(410, 708, "MP "+VenganzaBelial.atributoGestion.getJugs().get(1).getMpActual()+ "/"+VenganzaBelial.atributoGestion.getJugs().get(1).getMp(),azul);
             Avatar2.draw(300, 618, 100, 150);
             /*Kibito Status update*/
-            if(VenganzaBelial.kibito.estaVivo()){
+            if(VenganzaBelial.atributoGestion.getJugs().get(2).estaVivo()){
                 if(NewCombate.getTurno()>=NewCombate.getOrdenPersonajes().size())//If de seguridad para coordeinar render y update
                 {
                    this.avatarVivo.draw(600, 618, 300, 150);
                 }
-                else if(NewCombate.getOrdenPersonajes().get(NewCombate.getTurno())==VenganzaBelial.kibito)
+                else if(NewCombate.getOrdenPersonajes().get(NewCombate.getTurno())==VenganzaBelial.atributoGestion.getJugs().get(2))
                 {
                    this.avatarSeleccionado.draw(600, 618, 300, 150);
                 }
                 else{
                     this.avatarVivo.draw(600, 618, 300, 150);
                 }                
-                mensajePantalla.drawString(710, 658, "HP"+VenganzaBelial.kibito.getHpActual()+ "/"+VenganzaBelial.kibito.getHp(),rojo);
+                mensajePantalla.drawString(710, 658, "HP"+VenganzaBelial.atributoGestion.getJugs().get(2).getHpActual()+ "/"+VenganzaBelial.atributoGestion.getJugs().get(2).getHp(),rojo);
             }
             else{
                 this.avatarMuerto.draw(600, 618, 300, 150);
-                mensajePantalla.drawString(710, 658, "HP"+0+ "/"+VenganzaBelial.kibito.getHp(),rojo);
+                mensajePantalla.drawString(710, 658, "HP"+0+ "/"+VenganzaBelial.atributoGestion.getJugs().get(2).getHp(),rojo);
             }
             this.contenedor.draw(710, 638, 100, 20);
-            porcentajeBarra=(float)VenganzaBelial.kibito.getHpActual()/(float)VenganzaBelial.kibito.getHp();
+            porcentajeBarra=(float)VenganzaBelial.atributoGestion.getJugs().get(2).getHpActual()/(float)VenganzaBelial.atributoGestion.getJugs().get(2).getHp();
             porcentajeBarra=compruebaPorcentajeBarra(porcentajeBarra);
             this.hp.draw(711, 643, 97*porcentajeBarra, 10);
             this.contenedor.draw(710, 688, 100, 20);
-            porcentajeBarra=(float)VenganzaBelial.kibito.getMpActual()/(float)VenganzaBelial.kibito.getMp();
+            porcentajeBarra=(float)VenganzaBelial.atributoGestion.getJugs().get(2).getMpActual()/(float)VenganzaBelial.atributoGestion.getJugs().get(2).getMp();
             porcentajeBarra=compruebaPorcentajeBarra(porcentajeBarra);
             this.mp.draw(711, 693, 97*porcentajeBarra, 10);
-            mensajePantalla.drawString(710, 708, "MP "+VenganzaBelial.kibito.getMpActual()+ "/"+VenganzaBelial.kibito.getMp(),azul);        
+            mensajePantalla.drawString(710, 708, "MP "+VenganzaBelial.atributoGestion.getJugs().get(2).getMpActual()+ "/"+VenganzaBelial.atributoGestion.getJugs().get(2).getMp(),azul);        
             Avatar3.draw(600, 618, 100, 150);
             //Marco Avatar Complaeto
             marco.draw(0,605,920,15);
