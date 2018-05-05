@@ -958,8 +958,8 @@ public class EscenaFinal extends BasicGameState{
                 linea3="Uniros a nosotros, al bando ganador.";
                 linea4="¿Qué contestaís?";
                 
-                opciones[0]="Pienso destruirte Belial.";
-                opciones[1]="Como ordene señor Belial.";
+                opciones[0]="Apoyar a Archi";
+                opciones[1]="Apoyar a Belial.";
                 eleccionJugador=0;
                 break;
             case 77:
@@ -972,19 +972,19 @@ public class EscenaFinal extends BasicGameState{
                     avatarDialogo=this.avatarH;
                     //////="////////////////////////////////////////////////////////";
                     linea1="Os ayudaremos Archi a detener a estos monstruos.";
-                    linea2="No quiero un mundo lleno de tinieblas.";
-                    linea3="";
+                    linea2="No quiero un mundo lleno de tinieblas gobernado";
+                    linea3="por estos monstruos.";
                     linea4="";
                 }
                 else{
                     horKO=horD;
                     morKO=morD;
                     kibKO=kibD;
-                    avatarDialogo=this.avatarH;
+                    avatarDialogo=this.avatarM;
                     //////="////////////////////////////////////////////////////////";
-                    linea1="Muy bien señor Belial, os ayudaremos a destruir";
-                    linea2="a vuestros enemigos de una vez y para siempre.";
-                    linea3="";
+                    linea1="Yo estoy del lado de un tío casí tan poderoso como yo.";
+                    linea2="Al menos él no quiere mi cabeza y como mando yo, mis";
+                    linea3="esclavos me ayudarán.";
                     linea4="";
                 }
                 break;

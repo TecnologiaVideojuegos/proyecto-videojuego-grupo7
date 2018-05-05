@@ -20,7 +20,7 @@ public final class Fanatico extends Enemigo implements Serializable{
     public void inicializarEnemigo(){
         this.setNombre("Fanatico");
         habilidades = new ArrayList<>();  
-        Habilidad hab = new Habilidad("PuÃ±etazo demoledor", 1, 45, 0, "Fuerte puÃ±etazo", 2);
+        Habilidad hab = new Habilidad("Puñetazo demoledor", 1, 45, 0, "Fuerte puñetazo", 2);
         habilidades.add(hab);
         this.setHabilidad(habilidades);
         this.setOro(this.getNivel() * 3);
