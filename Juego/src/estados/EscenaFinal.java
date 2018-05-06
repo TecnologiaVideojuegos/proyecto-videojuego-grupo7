@@ -170,7 +170,7 @@ public class EscenaFinal extends BasicGameState{
         portal1= new Animation(portalB,200);
         portal=portal1;
         hesV=new Image("Imagenes/Animaciones/Sprites/hestia5.png");
-        hesV.rotate(-30);
+        hesV.rotate(-20);
         hesS=new Image("Imagenes/Animaciones/Sprites/hestia5.png");
         hesDown=new Image("Imagenes/Animaciones/Sprites/hestia2.png");
         hes=hesV;

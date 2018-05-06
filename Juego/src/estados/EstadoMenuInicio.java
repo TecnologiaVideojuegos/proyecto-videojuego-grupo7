@@ -2,6 +2,12 @@
 package estados;
 
 import java.awt.Font;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -12,7 +18,9 @@ import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import otros.Gestion;
+import otros.Inventario;
 import personajes.Horacia;
+import personajes.Jugador;
 import personajes.Kibito;
 import personajes.Mordeim;
 
@@ -96,10 +104,50 @@ public class EstadoMenuInicio extends BasicGameState {
         if (input.isKeyPressed(Input.KEY_ENTER)) {
             switch (eleccionJugador) {
                 case EMPEZAR:
+<<<<<<< HEAD
                     VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Intro.wav");
+=======
+                    ArrayList<Jugador> jugadores = new ArrayList<>();
+                    Inventario inv = new Inventario();
+                    Horacia horacia = new Horacia(inv);
+                    horacia.setPJ(true);
+                    Mordeim mordeim = new Mordeim(inv);
+                    mordeim.setPJ(true);
+                    Kibito kibito= new Kibito(inv);
+                    kibito.setPJ(true);
+                    jugadores.add(horacia);
+                    jugadores.add(mordeim);
+                    jugadores.add(kibito);
+                    VenganzaBelial.atributoGestion.setInv(inv);
+                    VenganzaBelial.atributoGestion.setJugs(jugadores);
+                    VenganzaBelial.atributoGestion.setEnem(VenganzaBelial.atributoGestion.cargarGrupoEnemigos("BaseDatos/enemigosBosque.dat"));
+                    try{
+                        FileOutputStream ostreamPar = new FileOutputStream("BaseDatos/partida.dat");
+                        ObjectOutputStream oosPar = new ObjectOutputStream(ostreamPar);
+                        oosPar.writeObject(VenganzaBelial.atributoGestion);
+                        ostreamPar.close();
+                    } catch (IOException ioe) {
+                    System.out.println("Error de IO: " + ioe.getMessage());
+                    } catch (Exception e) {
+                        System.out.println("Error: " + e.getMessage());
+                    }
+>>>>>>> 1a4152a7985cfe50e7002b2622eacf9d91eaba77
                     sbg.enterState(VenganzaBelial.ESTADOESCENAPROTOTIPO);
                     break;
                 case CARGAR:
+                    try {
+                        FileInputStream istreamPar = new FileInputStream("BaseDatos/partida.dat");
+                        ObjectInputStream oisPar = new ObjectInputStream(istreamPar);            
+                        VenganzaBelial.atributoGestion = (Gestion) oisPar.readObject();
+                        istreamPar.close();
+                    } catch (IOException ioe) {
+                        System.out.println("Error de IO: " + ioe.getMessage());
+                    } catch (ClassNotFoundException cnfe) {
+                        System.out.println("Error de clase no encontrada: " + cnfe.getMessage());
+                    } catch (Exception e) {
+                        System.out.println("Error: " + e.getMessage());
+                    }  
+                    sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
                     //heropos = fileio.loadSave();
                     //sbg.enterState(VenganzaBelial.ESTADOESCENAPROTOTIPO);//EDIT
                     //((GamePlayState)sbg.getState(IceAdventure.GAMEPLAYSTATE)).setHeroPosition(heropos);
