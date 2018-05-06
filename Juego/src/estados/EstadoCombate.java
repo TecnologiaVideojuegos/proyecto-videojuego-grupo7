@@ -226,7 +226,7 @@ public class EstadoCombate extends BasicGameState{
                 for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
                 NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Bosque/Arbol_Boss.png"); 
                 this.tasaHuida=0;
-                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Music_Battle_Boss.wav");
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Yggdrasil_Battle.wav");
             }
             if(VenganzaBelial.atributoGestion.getMapaActual()==11)//Bandidos Normales
             {
