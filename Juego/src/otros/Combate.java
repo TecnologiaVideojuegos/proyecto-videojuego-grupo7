@@ -335,6 +335,23 @@ public final class Combate {
                     dinerototal+=enemaux.getOro();
                 }     
                 break;
+            case 6:
+                if (nivel <= 16)
+                    ini = 0;
+                else if (nivel <= 18)
+                    ini = 6;
+                else
+                    ini = 12;
+                 ArrayEnemigosUsado = ini + fin;
+                 regeneraEnemigos();
+                 
+                for (int i = 0; i < VenganzaBelial.atributoGestion.getEnem().get(ArrayEnemigosUsado).size(); i++) {
+                    GeneraEnemigos.add((Personaje)VenganzaBelial.atributoGestion.getEnem().get(ArrayEnemigosUsado).get(i));
+                    Enemigo enemaux=(Enemigo)GeneraEnemigos.get(i);
+                    exptotal+=enemaux.getExpAportada();
+                    dinerototal+=enemaux.getOro();
+                }     
+                break;
             case 10://Boss del Bosque
                 BossBosque ygg= new BossBosque(0, 5, 3300, 80, 30);
                 GeneraEnemigos.add(ygg);
@@ -386,7 +403,22 @@ public final class Combate {
                 //GeneraEnemigos.add(fan12);
                 break;
             case 15:
+                //EDIT
+                Fanatico fan151=new Fanatico(1,6,300,90,40);
+                fan151.setNombre("Bellafonte");
 //                Pegaso peg=new Pegaso(1,6,300,90,40);
+                dinerototal=240;
+                exptotal=(int) (150+150*(new Random().nextFloat()));
+                GeneraEnemigos.add(fan151);
+                break;
+            case 16:
+                //EDIT
+                Fanatico fan161=new Fanatico(1,6,300,90,40);
+                fan161.setNombre("Dragón");
+//                Pegaso peg=new Pegaso(1,6,300,90,40);
+                dinerototal=240;
+                exptotal=(int) (150+150*(new Random().nextFloat()));
+                GeneraEnemigos.add(fan161);
                 break;
         }/*switch (Mapa)*/
         this.setOroCombate(dinerototal);

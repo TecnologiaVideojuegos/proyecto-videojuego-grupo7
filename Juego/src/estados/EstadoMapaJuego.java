@@ -136,17 +136,20 @@ public class EstadoMapaJuego extends BasicGameState {
                     for (int i = 0; i < VenganzaBelial.atributoGestion.getEnem().size(); i++) {
                         for (int j = 0; j < VenganzaBelial.atributoGestion.getEnem().get(i).size(); j++) {
                             if(VenganzaBelial.atributoGestion.getEnem().get(i).get(j).getNombre().equals("Slime"))
-                                VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Catacumbas/Slime1.png");
+                                VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Montaña/Slime1.png");
                             else if(VenganzaBelial.atributoGestion.getEnem().get(i).get(j).getNombre().equals("MiniGrifo"))
-                                VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Catacumbas/Griffin.png");
+                                VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Montaña/Griffin.png");
                             else if(VenganzaBelial.atributoGestion.getEnem().get(i).get(j).getNombre().equals("Minotauro"))
-                                VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Catacumbas/Minotaur.png");
+                                VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Montaña/Minotaur.png");
                             else if(VenganzaBelial.atributoGestion.getEnem().get(i).get(j).getNombre().equals("Murciegalo"))
-                                VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Catacumbas/Imp.png");
+                                VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Montaña/Imp.png");
                         }
                     }   
                     break;
-                case 7: //Mapa Boss: ID=6(Posible cambio en este identificador)
+                case 7: //
+                    VenganzaBelial.atributoGestion.setEnem(VenganzaBelial.atributoGestion.cargarGrupoEnemigos("BaseDatos/enemigosMontana.dat"));
+                    map = new TiledMap("tiledmaps/Cardinal.tmx");
+                    this.player.setpos(new Vector2f(2*this.tileWidth,3*this.tileHeight));
                     break;
             }
             mapWidth = map.getWidth() * map.getTileWidth();

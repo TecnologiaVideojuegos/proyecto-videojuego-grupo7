@@ -30,7 +30,7 @@ public class Heroe {
     private static final int ANIMATIONSPEED = 500;
     private static final float SPEED = 0.1f;//0.1f
     private int w, h;
-    private float tasaAparicion=0.02f;//0-1(0-100%)
+    private float tasaAparicion=0.00f;//0-1(0-100%)
     private int offset=6;//Original=-4
     //EDIT
     private float aparicion=1;
@@ -64,10 +64,10 @@ public class Heroe {
 
         hero = stillDown;
         //EDIT
-        ventanaDialogo= new Image("Imagenes/Avatar/bocadillo.png");
+        ventanaDialogo= new Image("Imagenes/Avatar/bocadillo2.png");
     }
 
-    public void update(GameContainer gc, StateBasedGame sbg, int delta, EstadoMapaJuego gps) {
+    public void update(GameContainer gc, StateBasedGame sbg, int delta, EstadoMapaJuego gps) throws SlickException {
         Input input = gc.getInput();
         controlaEvento(input);
         if (input.isKeyDown(Input.KEY_UP)) {
@@ -189,7 +189,7 @@ public class Heroe {
         }
     }/**/
     
-    private void ApareceEvento(GameContainer gc, StateBasedGame sbg, int delta, EstadoMapaJuego gps, Input input)
+    private void ApareceEvento(GameContainer gc, StateBasedGame sbg, int delta, EstadoMapaJuego gps, Input input) throws SlickException
     {
         //EDIT: Llamada a clase eventos, ajustar colision
         int tipo;
@@ -255,13 +255,21 @@ public class Heroe {
         if(renderizarEvento)
         {       
             Vector2f posicionEvento= VenganzaBelial.eventos.getPosicionEvento();
-            this.ventanaDialogo.draw(posicionEvento.x*this.w+10, posicionEvento.y*this.h+10, 1);
+//            this.ventanaDialogo.draw((posicionEvento.x*this.w)+10, (posicionEvento.y*this.h)+10, 1);
+//    //      ///////////////////////////////////,"////////////////////////////////////////////////////////"/;
+//            //mensajePantalla.drawString(100, 200,""+posicionEvento,new Color(255,0,0));
+//            mensajePantalla.drawString((posicionEvento.x*this.w)+30, (posicionEvento.y*this.h)+110,linea1,new Color(0,0,0));
+//            mensajePantalla.drawString((posicionEvento.x*this.w)+30, (posicionEvento.y*this.h)+125,linea2,new Color(0,0,0));
+//            mensajePantalla.drawString((posicionEvento.x*this.w)+30, (posicionEvento.y*this.h)+140,linea3,new Color(0,0,0));
+//            mensajePantalla.drawString((posicionEvento.x*this.w)+30, (posicionEvento.y*this.h)+155,linea4,new Color(0,0,0));
+            this.ventanaDialogo.draw((pos.x)-20, (pos.y)-100, 0.4f);
     //      ///////////////////////////////////,"////////////////////////////////////////////////////////"/;
             //mensajePantalla.drawString(100, 200,""+posicionEvento,new Color(255,0,0));
-            mensajePantalla.drawString(posicionEvento.x*this.w+30, posicionEvento.y*this.h+110,linea1,new Color(0,0,0));
-            mensajePantalla.drawString(posicionEvento.x*this.w+30, posicionEvento.y*this.h+125,linea2,new Color(0,0,0));
-            mensajePantalla.drawString(posicionEvento.x*this.w+30, posicionEvento.y*this.h+140,linea3,new Color(0,0,0));
-            mensajePantalla.drawString(posicionEvento.x*this.w+30, posicionEvento.y*this.h+155,linea4,new Color(0,0,0));
+            mensajePantalla.drawString((pos.x)-20+30, (pos.y)-100+30+10,linea1,new Color(255,255,255));
+            mensajePantalla.drawString((pos.x)-20+30, (pos.y)-100+30+25,linea2,new Color(255,255,255));
+            mensajePantalla.drawString((pos.x)-20+30, (pos.y)-100+30+40,linea3,new Color(255,255,255));
+            mensajePantalla.drawString((pos.x)-20+30, (pos.y)-100+30+55,linea4,new Color(255,255,255));
+            
         }
     }
     private void controlaEvento(Input input)

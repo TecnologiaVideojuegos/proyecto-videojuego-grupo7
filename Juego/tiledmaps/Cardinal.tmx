@@ -25,13 +25,10 @@
   <properties>
    <property name="evento" type="bool" value="true"/>
   </properties>
-<<<<<<< HEAD
-  <data encoding="base64" compression="zlib">
-   eJzt2LENwCAMRUGy/wLsk8XSU/NxZO4k99br7DEAAOA+s3qBpnTN0DVD1wxdM3QFAAD+xI2SoWuGrrDPXAYAAAAA6MsvEAAAAIDbvE/1Bj3pmqErJ3wdHQvN
-=======
+
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAACu3YyQ0AIQwEQcg/AfLZxIgBoVmuKsl/q392KQAA8J62eoFL6Zqha4auGbpm6AoAAOzEjZKha4auMK5NDgAAAABwPj8/AAAAAF7z1dUb3EnXDF35Qwe8zsMToFAAAA==
->>>>>>> 0c9e5032a2b115edd4f1a54612dd389726fa5cb4
+
   </data>
  </layer>
  <layer name="Bloqueo" width="86" height="60">

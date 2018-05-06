@@ -187,7 +187,7 @@ public class EstadoCombate extends BasicGameState{
             else if(VenganzaBelial.atributoGestion.getMapaActual()==4 || VenganzaBelial.atributoGestion.getMapaActual()==13|| VenganzaBelial.atributoGestion.getMapaActual()==14)
                 fondo = new Image("Imagenes/BackBattle/Catacumbas.png");
             else if(VenganzaBelial.atributoGestion.getMapaActual()==6 || VenganzaBelial.atributoGestion.getMapaActual()==15|| VenganzaBelial.atributoGestion.getMapaActual()==16)
-                fondo = new Image("Imagenes/BackBattle/Montaña.png");
+                fondo = new Image("Imagenes/BackBattle/Montana.png");
             else if(VenganzaBelial.atributoGestion.getMapaActual()==7 || VenganzaBelial.atributoGestion.getMapaActual()==17|| VenganzaBelial.atributoGestion.getMapaActual()==18)
                 fondo = new Image("Imagenes/BackBattle/Cardinal.png");
             
@@ -242,6 +242,22 @@ public class EstadoCombate extends BasicGameState{
                         NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Catacumbas/Fanatic.png");
                     if(NewCombate.getEnemigos().get(j).getNombre().equals("LiderFanatico"))
                         NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Catacumbas/Fanatic.png");
+                }
+            }
+            if(VenganzaBelial.atributoGestion.getMapaActual()==15)//Bandidos Normales
+            {
+                //VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/FanaticBattle.wav");
+                for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
+                    if(NewCombate.getEnemigos().get(j).getNombre().equals("Bellafonte"))
+                        NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Montaña/Pegasus.png");
+                }
+            }
+            if(VenganzaBelial.atributoGestion.getMapaActual()==16)//Bandidos Normales
+            {
+                //VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/FanaticBattle.wav");
+                for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
+                    if(NewCombate.getEnemigos().get(j).getNombre().equals("Dragón"))
+                        NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Montaña/dragon.png");
                 }
             }
             //NewCombate= new Combate(VenganzaBelial.Party, VenganzaBelial.MapaActual);//
@@ -688,11 +704,11 @@ public class EstadoCombate extends BasicGameState{
                 break;
             case 15:
                 //Derrotado MiniBoss Montaña
-//                VenganzaBelial.MapaActual=6;
-                VenganzaBelial.atributoGestion.setMapaActual(6);
-                sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
+                VenganzaBelial.controlMusica.pararMusica();
+                sbg.enterState(VenganzaBelial.ESCENAMONTANAMINIBOSS2);
                 break;
-            case 16:
+            case 16://Derrotado Boss de montaña
+                sbg.enterState(VenganzaBelial.ESCENAMONTANAPOSTBOSS);
                 break;
             default:
                 VenganzaBelial.controlMusica.cambiaMusicaMapa(VenganzaBelial.atributoGestion.getMapaActual());

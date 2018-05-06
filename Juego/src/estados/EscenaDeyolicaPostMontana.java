@@ -202,7 +202,9 @@ public class EscenaDeyolicaPostMontana extends BasicGameState{
             case 8:
                 //Combate contra dos soldados y un capitán
                 estado=0;
-                sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);//EDIT:
+                VenganzaBelial.atributoGestion.setMapaActual(7);
+                sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
+//                sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);//EDIT:
                 break;
 
         }
