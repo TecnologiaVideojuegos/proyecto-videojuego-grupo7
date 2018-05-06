@@ -420,6 +420,14 @@ public final class Combate {
                 exptotal=(int) (150+150*(new Random().nextFloat()));
                 GeneraEnemigos.add(fan161);
                 break;
+            case 17:
+                Fanatico fan171=new Fanatico(1,6,300,90,40);
+                fan171.setNombre("Jinete Espectral");
+//                Pegaso peg=new Pegaso(1,6,300,90,40);
+                dinerototal=240;
+                exptotal=(int) (150+150*(new Random().nextFloat()));
+                GeneraEnemigos.add(fan171);
+                break;
         }/*switch (Mapa)*/
         this.setOroCombate(dinerototal);
         this.setExpCombate(exptotal);

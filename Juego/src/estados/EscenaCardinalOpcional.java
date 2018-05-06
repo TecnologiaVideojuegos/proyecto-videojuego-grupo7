@@ -321,7 +321,7 @@ public class EscenaCardinalOpcional extends BasicGameState{
                 break;
             case 21:
                 estado=0;
-                sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);//EDIT:
+                sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);//EDIT:
                 break;
             
         }

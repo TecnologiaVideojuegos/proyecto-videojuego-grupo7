@@ -31,9 +31,11 @@ public class EventosNpcs {
     private final int BOSSCATACUMBAS = 14;
     private final int MINIBOSSMONTANA = 15;
     private final int BOSSMONTANA = 16;
-    private final int BOSSBELIAL = 17;
-    private final int BOSSARCHIE = 18;
+    private final int MINIBOSSCardinal=17;
+    private final int BOSSBELIAL = 18;
+    private final int BOSSARCHIE = 19;
     //EDIT
+    private boolean flagOpcional=true;
     private int controlEventos=0;//Controla la aparición de escenas y "puntos de control" para que no se repitan
                                 //las escenas al pasar por el mismo lugar
     /*
@@ -419,6 +421,63 @@ public class EventosNpcs {
 
                         nextEstado=VenganzaBelial.ESCENAMONTANABOSS;
                         tipo=3;
+                }
+                break;
+            case MAPACARDINAL:
+                if (x==7 && y==3) {
+                    evento = new Evento("Voy a curarte para que puedas seguir luchando con"
+                            + " los peligros de Reynos", "Healer", "Hola amigo"); 
+                    tipo = 2;
+                }
+                else if(x==18 && y>7 && y<14){
+                    if (controlEventos==6)
+                    {
+                        controlEventos++;
+                        VenganzaBelial.atributoGestion.setControlEscenas(controlEventos);
+                        nextEstado=VenganzaBelial.ESCENACARDINAL1;
+                        tipo=3;
+                    } 
+                    else
+                        tipo=10;
+                }
+                else if(x==53 && y>21 && y<25){
+                    if (controlEventos==7)
+                    {
+                        controlEventos++;
+                        VenganzaBelial.atributoGestion.setControlEscenas(controlEventos);
+                        nextEstado=VenganzaBelial.ESCENACARDINAL2;
+                        tipo=3;
+                    } 
+                    else
+                        tipo=10;
+                }
+                
+                else if(y==42 && x>0 && x<4){
+                    if (controlEventos==8)
+                    {
+                        controlEventos++;
+                        VenganzaBelial.atributoGestion.setControlEscenas(controlEventos);
+                        nextEstado=VenganzaBelial.ESCENACARDINALMINIBOSS1;
+                        tipo=3;
+                    } 
+                    else
+                        tipo=10;
+                }
+                else if(x==18 && y>55 && y<59){
+                        VenganzaBelial.atributoGestion.setControlEscenas(controlEventos);
+                        nextEstado=VenganzaBelial.ESCENAFINAL;
+                        tipo=3;
+                }
+                
+                else if(y==27 && x>0 && x<17){
+                    if (flagOpcional==true)
+                    {
+                        flagOpcional=false;
+                        nextEstado=VenganzaBelial.ESCENACARDINALOPCIONAL;
+                        tipo=3;
+                    } 
+                    else
+                        tipo=10;
                 }
                 break;
                 

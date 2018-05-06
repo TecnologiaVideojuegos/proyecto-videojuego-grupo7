@@ -246,7 +246,6 @@ public class EstadoCombate extends BasicGameState{
             }
             if(VenganzaBelial.atributoGestion.getMapaActual()==15)//Bandidos Normales
             {
-                //VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/FanaticBattle.wav");
                 for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
                     if(NewCombate.getEnemigos().get(j).getNombre().equals("Bellafonte"))
                         NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Montaña/Pegasus.png");
@@ -254,12 +253,19 @@ public class EstadoCombate extends BasicGameState{
             }
             if(VenganzaBelial.atributoGestion.getMapaActual()==16)//Bandidos Normales
             {
-                //VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/FanaticBattle.wav");
                 for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
                     if(NewCombate.getEnemigos().get(j).getNombre().equals("Dragón"))
                         NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Montaña/dragon.png");
                 }
             }
+            if(VenganzaBelial.atributoGestion.getMapaActual()==17)//Bandidos Normales
+            {
+                for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
+                    if(NewCombate.getEnemigos().get(j).getNombre().equals("Jinete Espectral"))
+                        NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Cardinal/Rider.png");
+                }
+            }
+            
             //NewCombate= new Combate(VenganzaBelial.Party, VenganzaBelial.MapaActual);//
             if(NewCombate.GestionaPrimerTurno())
             {
@@ -709,6 +715,14 @@ public class EstadoCombate extends BasicGameState{
                 break;
             case 16://Derrotado Boss de montaña
                 sbg.enterState(VenganzaBelial.ESCENAMONTANAPOSTBOSS);
+                break;
+            case 17:
+                VenganzaBelial.atributoGestion.setMapaActual(7);
+                sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
+                break;
+            case 18:
+                break;
+            case 19:
                 break;
             default:
                 VenganzaBelial.controlMusica.cambiaMusicaMapa(VenganzaBelial.atributoGestion.getMapaActual());

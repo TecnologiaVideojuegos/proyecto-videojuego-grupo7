@@ -196,7 +196,7 @@ public class EstadoMenuInicio extends BasicGameState {
                     //sbg.enterState(VenganzaBelial.ESTADOTIENDA);//EDIT
                     //Pueblo MOntana=5
                     
-                    VenganzaBelial.eventos.setControlEventos(5);
+                    VenganzaBelial.eventos.setControlEventos(6);
                     sbg.enterState(VenganzaBelial.ESCENADEYOLICAPOSTMONTANA);//EDIt
                     break;
                 case PRUEBASANGEL:

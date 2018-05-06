@@ -215,7 +215,8 @@ public class EscenaCardinal2 extends BasicGameState{
                 break;
             case 7:
                 estado=0;
-                sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);//EDIT:
+                VenganzaBelial.atributoGestion.setMapaActual(7);
+                sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);//EDIT:
                 break;
             
         }
