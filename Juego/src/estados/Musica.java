@@ -12,7 +12,7 @@ public class Musica {
 
     public Musica() throws SlickException {
         //Musica de inicio
-        //music= new Music("Musica/BSO/Archi.wav");
+        music= new Music("Musica/BSO/Archi.wav");
     }
     
     public void pararMusica()

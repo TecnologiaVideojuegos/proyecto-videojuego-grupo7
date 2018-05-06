@@ -74,6 +74,15 @@ public class EstadoCombate extends BasicGameState{
     private Music OST;
     private Sound sonidoAtaque,sonidoSelect, sonidoError, sonidoMuerto;
     private String mensajeSistema= "";
+    //Animaciones combate
+    private Vector2f posicionSkill;
+    private boolean renderSkill=false;
+     private boolean renderAE=false;//Ataque Enemigo
+      private boolean renderAA=false;//AtaqueAliado
+    private Image skill;
+    private Animation ataqueEnemigo;
+    private Animation ataqueAliado;
+    int time=0;
     
     //
     private boolean flagHuida=false;
@@ -120,6 +129,12 @@ public class EstadoCombate extends BasicGameState{
         Avatar1 =  new Image("Imagenes/Personajes/HoraciaA.png");
         Avatar2 =  new Image("Imagenes/Personajes/MordeimA.png");
         Avatar3 =  new Image("Imagenes/Personajes/KibitoA.png");
+        //Animaciones
+        SpriteSheet sheetEnemigo= new SpriteSheet("Imagenes/Animaciones/Combate/ataqueEnemigo.png",180,192);//EDIT
+        SpriteSheet sheetAliado= new SpriteSheet("Imagenes/Animaciones/Combate/ataqueAliado.png",190,183);//EDIT
+        this.ataqueAliado= new Animation(sheetAliado,200);
+        this.ataqueEnemigo= new Animation(sheetEnemigo,200);
+        posicionSkill= new Vector2f(0,0);
         //this.sprite= new SpriteSheet("Imagenes/Animaciones/ataque.png",200,200);
         //this.animacion= new Animation(sprite, 200);
     }
@@ -131,6 +146,7 @@ public class EstadoCombate extends BasicGameState{
         renderEnemigos();
         /*Switch Case para visualizar opciones en funcion del estado*/
         switch (Estado)
+            
         {
             case OPCIONESBASE:
                 renderOpcionesJugador();
@@ -158,6 +174,11 @@ public class EstadoCombate extends BasicGameState{
                 renderMensajeSistema();
                 break;
         }
+        //Animaciones combate
+        this.renderAtaqueAliado();
+        this.renderAtaqueEnemigo();
+        this.renderSkill();
+        
         //Debug Prints
 //        mensajePantalla.drawString(0, 80, "Turno "+NewCombate.getTurno());
 //        mensajePantalla.drawString(0, 100, "Enemigos "+NewCombate.getEnemigosRestantes());
@@ -311,6 +332,7 @@ public class EstadoCombate extends BasicGameState{
                     //EDIT: 
                     Enemigo enem=(Enemigo)NewCombate.getOrdenPersonajes().get(NewCombate.getTurno());
                     mensajeSistema=enem.estrategiaAtacar(VenganzaBelial.atributoGestion.getJugs());
+                    this.renderAE=true;
                     estadoAnterior=TURNOENEMIGO;
                     Estado=FINTURNO;
                     break;
@@ -336,6 +358,9 @@ public class EstadoCombate extends BasicGameState{
             }
             /*Escape vuelve al estado inicial*/
             ReiniciarSeleccion();
+            this.controlRenderAtaqueAliado(i);
+            this.controlRenderSkill(i);
+            this.controlRenderAtaqueEnemigo(i);
         }
     }
     
@@ -420,6 +445,7 @@ public class EstadoCombate extends BasicGameState{
             /*Cambio de estado a turno final*/
             eleccionJugador=0;//Resetea el indice de seleccion de opciones para el nuevo estado*/
             estadoAnterior=ATACANDO;
+            renderAA=true;
             Estado=FINTURNO; 
         }/**/       
     }/*private void Atacando()*/
@@ -456,6 +482,7 @@ public class EstadoCombate extends BasicGameState{
                     case Habilidad.TIPOAOE:
                         //Ejecuta Habilidad contra todos los enemigos y pasa al siguiente turno
                         pj.usarHabilidad(habilidadSeleccionada, NewCombate.getEnemigos());
+                        this.renderSkill=true;
                         this.mensajeSistema=(pj.getNombre()+" ha usado "+pj.getHabilidades().get(habilidadSeleccionada).getNombre());
                         Estado=FINTURNO;
                         break;
@@ -493,6 +520,7 @@ public class EstadoCombate extends BasicGameState{
             //pj.getHabilidades().get(this.habilidadSeleccionada).usarHabilidad(pj, NewCombate.getEnemigos().get(eleccionJugador));
             eleccionJugador=0;
             estadoAnterior=SELOBJETIVO;
+            renderSkill=true;
             Estado=FINTURNO;
         }
     }/*private void selObjetivo()*/
@@ -938,5 +966,67 @@ public class EstadoCombate extends BasicGameState{
     private void renderMensajeSistema()
     {
         opcionesJugadorTTF.drawString(10,20, this.mensajeSistema);
+    }
+    
+    private void controlRenderSkill(int delta)
+    {
+        if(renderSkill==true)
+        {
+            posicionSkill.x+=delta;
+            if(posicionSkill.x>1200)
+            {
+                posicionSkill.x=0;
+                renderSkill=false;
+            }
+        }
+    }
+    private void renderSkill() throws SlickException
+    {
+        if(renderSkill==true){
+            if(NewCombate.getOrdenPersonajes().get(NewCombate.getTurno())==VenganzaBelial.atributoGestion.getJugs().get(0))
+            this.skill= new Image("Imagenes/Animaciones/Combate/SkillHoracia.png");
+            if(NewCombate.getOrdenPersonajes().get(NewCombate.getTurno())==VenganzaBelial.atributoGestion.getJugs().get(1))
+                this.skill= new Image("Imagenes/Animaciones/Combate/SkillMordeim.png");
+            if(NewCombate.getOrdenPersonajes().get(NewCombate.getTurno())==VenganzaBelial.atributoGestion.getJugs().get(2))
+                this.skill= new Image("Imagenes/Animaciones/Combate/SkillKibito.png");
+            skill.draw(posicionSkill.x, posicionSkill.y);
+        }
+                   
+    }
+    
+    private void controlRenderAtaqueEnemigo(int i)
+    {
+        if(renderAE==true)
+        {
+            time+=i;
+            if(time/1000>0.4f)//
+            {
+                renderAE=false;
+                time=0;
+            }
+        }
+    }
+    private void renderAtaqueEnemigo()
+    {
+        if(renderAE)
+            this.ataqueEnemigo.draw(300, 578);
+    }
+    
+    private void controlRenderAtaqueAliado(int i)
+    {
+        if(renderAA==true)
+        {
+            time+=i;
+            if(time/1000>0.4f)//
+            {
+                renderAA=false;
+                time=0;
+            }
+        }
+    }
+    private void renderAtaqueAliado()
+    {
+        if(renderAA)
+            this.ataqueAliado.draw(500, 218);
     }
 }
