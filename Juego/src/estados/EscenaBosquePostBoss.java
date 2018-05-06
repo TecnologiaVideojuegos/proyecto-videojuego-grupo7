@@ -649,6 +649,7 @@ public class EscenaBosquePostBoss extends BasicGameState{
                     linea4="";
                 break;
             case 39:
+                    VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Music_City.wav");
                     sbg.enterState(VenganzaBelial.ESCENAPUERTO1);
                 break;
                 

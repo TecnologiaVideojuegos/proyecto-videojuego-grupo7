@@ -183,7 +183,7 @@ public class VenganzaBelial extends StateBasedGame {
         arma.setRequisitoCategoria(requisitos);
         /*ATRIBUTOS DE PRUEBA FIN*/
         controlMusica= new Musica();
-        controlMusica.loopMusica();
+        //controlMusica.loopMusica();
         AppGameContainer app = new AppGameContainer(new VenganzaBelial());
         app.setDisplayMode(WIDTH, HEIGHT, FULLSCREEN);
         app.start();

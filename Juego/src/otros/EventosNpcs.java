@@ -8,6 +8,7 @@ import items.Item;
 import java.util.ArrayList;
 import npcs.Evento;
 import npcs.Vendedor;
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
 public class EventosNpcs {
@@ -22,6 +23,7 @@ public class EventosNpcs {
     private final int MAPADUNGEONCATACUMBAS = 4;
     private final int MAPACIUDADMONTANA = 5;
     private final int MAPADUNGEONMONTANA = 6;
+    private final int MAPACARDINAL=7;
     private final int BOSSBOSQUE = 10;
     private final int BANDIDOSPUERTO = 11;
     private final int BOSSPUERTO = 12;
@@ -54,7 +56,7 @@ public class EventosNpcs {
         return vendedor;
     }
     
-    public int comprobarEvento(int x, int y, int mapa){
+    public int comprobarEvento(int x, int y, int mapa) throws SlickException{
         int tipo = 10;//0
         ArrayList<Item> items;
         ArrayList<String> requisitoCategoria;
@@ -157,6 +159,7 @@ public class EventosNpcs {
                     if(controlEventos==2)
                     {
                         controlEventos++;
+                        VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Escena_Yggdrasil.wav");
                         VenganzaBelial.atributoGestion.setControlEscenas(controlEventos);
                         nextEstado=VenganzaBelial.ESCENABOSQUEPREBOSS;
                         tipo=3;

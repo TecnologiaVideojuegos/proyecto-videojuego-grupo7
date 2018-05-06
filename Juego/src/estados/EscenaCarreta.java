@@ -258,6 +258,7 @@ public class EscenaCarreta extends BasicGameState{
                 linea4="";
                 break;
             case 12:
+                VenganzaBelial.controlMusica.pararMusica();
                 avatarDialogo=this.avatarK;
                 //////="////////////////////////////////////////////////////////";
                 linea1="...";

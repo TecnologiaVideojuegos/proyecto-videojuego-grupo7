@@ -137,6 +137,7 @@ public class EscenaPuebloMontana extends BasicGameState{
         switch (estado)
         {
             case 0:
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Music_City.wav");
                 avatarDialogo=this.avatarH;
                 //////="////////////////////////////////////////////////////////";
                 linea1="Bueno, hemos llegado a Olimpio.";

@@ -292,6 +292,7 @@ public class EscenaBosque1 extends BasicGameState{
                 linea4="";
                 break;
             case 16:
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/BattleOst.wav");
                 sbg.enterState(VenganzaBelial.ESTADOCOMBATETUT);
                 break;
 

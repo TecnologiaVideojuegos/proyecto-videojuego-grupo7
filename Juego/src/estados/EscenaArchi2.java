@@ -153,6 +153,7 @@ public class EscenaArchi2 extends BasicGameState{
         switch (estado)
         {
             case 0:
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Cardinal.wav");
                 posicionL.x+=0.1f*i;
                 posicion.x+=0.1f*i;
                 if(posicionL.x>=224){

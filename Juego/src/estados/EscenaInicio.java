@@ -183,6 +183,7 @@ public class EscenaInicio extends BasicGameState{
         switch (estado)
         {
             case 0:
+                    
                 avatarDialogo=this.avatarE;
                 linea5 = "El mundo de nuestros protegonistas se llama Reynos.";
                 linea6 = "Hace muchos años había un demonio, Belial, que engaño";
@@ -212,6 +213,7 @@ public class EscenaInicio extends BasicGameState{
                 break;
             //Primera escena introducción
             case 4:
+                VenganzaBelial.controlMusica.pararMusica();
                 reproducirExclamacion2=true;
                 avatarDialogo=this.avatarHestia;
                 //////="////////////////////////////////////////////////////////";
@@ -372,6 +374,7 @@ public class EscenaInicio extends BasicGameState{
                 }
                 break;
             case 23:
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Music_City.wav");
                 sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
                 break;
         }

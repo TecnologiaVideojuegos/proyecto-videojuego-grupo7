@@ -162,6 +162,7 @@ public class EscenaArchi1 extends BasicGameState{
         switch (estado)
         {
             case 0:
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Cardinal.wav");
                 avatarDialogo=this.avatarA;
                 //////="////////////////////////////////////////////////////////";
                 linea1="...";

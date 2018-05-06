@@ -298,6 +298,7 @@ public class EscenaBosquePreBoss extends BasicGameState{
                 //ENTRAMOS EN COMBATE CONTRA EL BOSS
                 //APLICAMOS IDENTIFICADOR DE MAPA ESPECIAL Y ENTRAMOS EN COMBATE
                 //VenganzaBelial.MapaActual=10;//BOSSBOSQUE;
+                
                 VenganzaBelial.atributoGestion.setMapaActual(10);
                 sbg.enterState(VenganzaBelial.ESTADOCOMBATE);
                 break;

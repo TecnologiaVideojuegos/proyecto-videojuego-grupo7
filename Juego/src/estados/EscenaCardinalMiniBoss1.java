@@ -158,6 +158,7 @@ public class EscenaCardinalMiniBoss1 extends BasicGameState{
         switch (estado)
         {
             case 0:
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Cardinal.wav");
                 posicion.y+=0.1f*i;
                 if(posicion.y>=384){
                     estado++;

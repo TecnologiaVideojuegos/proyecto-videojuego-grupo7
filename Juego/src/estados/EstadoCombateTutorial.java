@@ -526,7 +526,7 @@ public class EstadoCombateTutorial extends BasicGameState{
         }/*if(input.isKeyPressed(Input.KEY_ENTER))*/
     }/*private void FinTurno()*/
     
-    private void FinCombate(GameContainer gc, StateBasedGame sbg)
+    private void FinCombate(GameContainer gc, StateBasedGame sbg) throws SlickException
     {
         /*Comprobar quien ha ganado el combate y actuar concorde*/
         if(NewCombate.CombateGanado())
@@ -555,6 +555,7 @@ public class EstadoCombateTutorial extends BasicGameState{
                 NuevoCombate=true;
                 //EDIT:Volver al mapa
 //                VenganzaBelial.MapaActual=1;//Mapa Bosque
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Music_Forest.wav");
                 VenganzaBelial.atributoGestion.setMapaActual(1);
                 sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
                 //gc.exit();  

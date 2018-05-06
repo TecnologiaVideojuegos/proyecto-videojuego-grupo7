@@ -338,6 +338,7 @@ public class EscenaPuerto2 extends BasicGameState{
                 break;
             case 19:
                 estado=0;
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Catacumbas.wav");
                 sbg.enterState(VenganzaBelial.ESCENATROYIA1);
                 //EDIT enlazar escena con la siguiente
                 break;

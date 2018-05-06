@@ -149,6 +149,7 @@ public class EscenaCardinalOpcional extends BasicGameState{
         switch (estado)
         {
             case 0:
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Cardinal.wav");
                 posicion.y-=0.1f*i;
                 if(posicion.y<=0){
                     estado++;
