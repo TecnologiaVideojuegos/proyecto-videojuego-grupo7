@@ -188,20 +188,20 @@ public class EventosNpcs {
                     items = new ArrayList<>();
                     ArrayList<String> requisitos = new ArrayList<>();
                     requisitos.add("Horacia");
-                    Arma arma2 = new Arma(20, 1, "Espada de bronce", "No muy afilada, pero es mejor que un garrote", requisitos, 5, 51, 25);
-                    Armadura armadura2 = new Armadura(20, "Armadura de bronce", "Por fin algo de protección", requisitos, 5, 52, 25);
+                    Arma arma2 = new Arma(30, 1, "Espada de bronce", "No muy afilada, pero es mejor que un garrote", requisitos, 5, 51, 25);
+                    Armadura armadura2 = new Armadura(30, "Armadura de bronce", "Por fin algo de protección", requisitos, 5, 52, 25);
                     //
                     requisitos.remove(0);
                     requisitos.add("Mordeim");
-                    Arma arma3 = new Arma(20, 1, "Navaja", "Para atracar a ancianitas y ser el más malo del barrio", requisitos, 5, 53, 25);
-                    Armadura armadura3 = new Armadura(20, "Capa de cuero", "No protege mucho pero abriga contra el frio", requisitos, 5, 54, 25);
+                    Arma arma3 = new Arma(30, 1, "Navaja", "Para atracar a ancianitas y ser el más malo del barrio", requisitos, 5, 53, 25);
+                    Armadura armadura3 = new Armadura(30, "Capa de cuero", "No protege mucho pero abriga contra el frio", requisitos, 5, 54, 25);
                     requisitos.remove(0);
                     requisitos.add("Kibito");
-                    Arma arma4 = new Arma(20, 1, "Vara de olivo", "Serás el terror de los alérgicos al olivo", requisitos, 5, 55, 25);
-                    Armadura armadura4 = new Armadura(20, "Capa de tela", "La normas impiden llevar al mago algo que proteja demasiado", requisitos, 5, 56, 25);
+                    Arma arma4 = new Arma(30, 1, "Vara de olivo", "Serás el terror de los alérgicos al olivo", requisitos, 5, 55, 25);
+                    Armadura armadura4 = new Armadura(30, "Capa de tela", "La normas impiden llevar al mago algo que proteja demasiado", requisitos, 5, 56, 25);
                     Consumible pocionVida = new Consumible(20, 0, 5, "PocionVida", "Pocion que sirve para curar tu vida",
                         requisitos, 1, 60, 20);
-                    Consumible pocionMana = new Consumible(0, 20, 5, "PocionMana", "Pocion que sirve para curar tu mana",
+                    Consumible pocionMana = new Consumible(0, 20, 5, "PocionMana", "Pocion que sirve para restaurar tu mana",
                         requisitos, 1, 55, 20);
                     Consumible pocionRes = new Consumible(50, 0, 2, "PocionResucitar", "Pocion que sirve para resucitar un jugador",
                         requisitos, 1, 200, 80);
@@ -256,11 +256,34 @@ public class EventosNpcs {
                 if(x == 11 && y == 11){
                     //Vendedor
                     items = new ArrayList<>();
-                    requisitoCategoria = new ArrayList<>();
-                    requisitoCategoria.add("Mordeim");
+                    ArrayList<String> requisitos = new ArrayList<>();
+                    requisitos.add("Horacia");
+                    Arma arma2 = new Arma(60, 2, "Maza de Hierro", "Si puedes con ella, puedes con los enemigos", requisitos, 5, 51, 25);
+                    Armadura armadura2 = new Armadura(30, "Armadura de bronce", "Por fin algo de protección", requisitos, 5, 52, 25);
+                    //
+                    requisitos.remove(0);
+                    requisitos.add("Mordeim");
+                    Arma arma3 = new Arma(60, 2, "Cuchillo jamonero", "La joya culinaria", requisitos, 5, 53, 25);
+                    Armadura armadura3 = new Armadura(30, "Capa de cuero", "No protege mucho pero abriga contra el frio", requisitos, 5, 54, 25);
+                    requisitos.remove(0);
+                    requisitos.add("Kibito");
+                    Arma arma4 = new Arma(60, 2, "Bastón del abuelo", "Para meter las toñas que mete el abuelo", requisitos, 5, 55, 25);
+                    Armadura armadura4 = new Armadura(30, "Capa de tela", "La normas impiden llevar al mago algo que proteja demasiado", requisitos, 5, 56, 25);
                     Consumible pocionVida = new Consumible(20, 0, 5, "PocionVida", "Pocion que sirve para curar tu vida",
-                    requisitoCategoria, 1, 50, 20);
+                        requisitos, 1, 60, 20);
+                    Consumible pocionMana = new Consumible(0, 20, 5, "PocionMana", "Pocion que sirve para restaurar tu mana",
+                        requisitos, 1, 55, 20);
+                    Consumible pocionRes = new Consumible(50, 0, 2, "PocionResucitar", "Pocion que sirve para resucitar un jugador",
+                        requisitos, 1, 200, 80);
                     items.add(pocionVida);
+                    items.add(pocionMana);
+                    items.add(pocionRes);
+                    items.add(arma2);
+                    items.add(arma3);
+                    items.add(arma4);
+                    items.add(armadura2);
+                    items.add(armadura3);
+                    items.add(armadura4);
                     vendedor = new Vendedor(items, "Luis", "que tal");
                     tipo = 1;
                 }
@@ -335,11 +358,34 @@ public class EventosNpcs {
                 }
                 else if (x==13 && y==16) {
                     items = new ArrayList<>();
-                    requisitoCategoria = new ArrayList<>();
-                    requisitoCategoria.add("Mordeim");
+                    ArrayList<String> requisitos = new ArrayList<>();
+                    requisitos.add("Horacia");
+                    Arma arma2 = new Arma(90, 3, "Hacha de luz", "Tu primer arma para mayores", requisitos, 5, 51, 25);
+                    Armadura armadura2 = new Armadura(30, "Armadura de bronce", "Por fin algo de protección", requisitos, 5, 52, 25);
+                    //
+                    requisitos.remove(0);
+                    requisitos.add("Mordeim");
+                    Arma arma3 = new Arma(90, 3, "Puñal metalSlime", "El nombre esta bien", requisitos, 5, 53, 25);
+                    Armadura armadura3 = new Armadura(30, "Capa de cuero", "No protege mucho pero abriga contra el frio", requisitos, 5, 54, 25);
+                    requisitos.remove(0);
+                    requisitos.add("Kibito");
+                    Arma arma4 = new Arma(90, 3, "Bastón del arcangel", "Desde la grieta hasta tu casa", requisitos, 5, 55, 25);
+                    Armadura armadura4 = new Armadura(30, "Capa de tela", "La normas impiden llevar al mago algo que proteja demasiado", requisitos, 5, 56, 25);
                     Consumible pocionVida = new Consumible(20, 0, 5, "PocionVida", "Pocion que sirve para curar tu vida",
-                    requisitoCategoria, 1, 50, 20);
+                        requisitos, 1, 60, 20);
+                    Consumible pocionMana = new Consumible(0, 20, 5, "PocionMana", "Pocion que sirve para restaurar tu mana",
+                        requisitos, 1, 55, 20);
+                    Consumible pocionRes = new Consumible(50, 0, 2, "PocionResucitar", "Pocion que sirve para resucitar un jugador",
+                        requisitos, 1, 200, 80);
                     items.add(pocionVida);
+                    items.add(pocionMana);
+                    items.add(pocionRes);
+                    items.add(arma2);
+                    items.add(arma3);
+                    items.add(arma4);
+                    items.add(armadura2);
+                    items.add(armadura3);
+                    items.add(armadura4);
                     vendedor = new Vendedor(items, "Luis", "que tal");
                     tipo = 1;
                 }
