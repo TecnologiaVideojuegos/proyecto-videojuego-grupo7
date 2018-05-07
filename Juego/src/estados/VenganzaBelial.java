@@ -60,17 +60,14 @@ public class VenganzaBelial extends StateBasedGame {
     public static final boolean FULLSCREEN = false;
     /*EDIT:Atributos de pruebas*/
     public static Gestion atributoGestion = new Gestion();//EDIT:Importante comprobar esta inicializacion
-    public static ArrayList<String> St = new ArrayList<String>();
-    public static Arma arma = new Arma(5, 0, "Arma1","Descripcion" , St, 1, 1, 1);
-    public static Armadura armadura = new Armadura(5, "Armadura1", "Descripcion", St, 1, 1, 1);
-    public static ArrayList<Habilidad> habilidades= new ArrayList<Habilidad>();
-    public static Horacia horacia = new Horacia(atributoGestion.getInv());
-    public static Mordeim mordeim = new Mordeim(atributoGestion.getInv());
-    public static Kibito kibito= new Kibito(atributoGestion.getInv());
+//    public static ArrayList<String> St = new ArrayList<String>();
+//    public static Arma arma = new Arma(5, 0, "Arma1","Descripcion" , St, 1, 1, 1);
+//    public static Armadura armadura = new Armadura(5, "Armadura1", "Descripcion", St, 1, 1, 1);
+//    public static ArrayList<Habilidad> habilidades= new ArrayList<Habilidad>();
+//    public static Horacia horacia = new Horacia(atributoGestion.getInv());
+//    public static Mordeim mordeim = new Mordeim(atributoGestion.getInv());
+//    public static Kibito kibito= new Kibito(atributoGestion.getInv());
     
-    public static Horacia hori =new Horacia(atributoGestion.getInv());
-    public static Mordeim mordi =new Mordeim(atributoGestion.getInv());
-    public static Kibito kibi =new Kibito(atributoGestion.getInv());
     
     public static EventosNpcs eventos = new EventosNpcs();
     public static Musica controlMusica;
@@ -175,17 +172,17 @@ public class VenganzaBelial extends StateBasedGame {
         //mordeim.setPJ(true);
         //kibito.setPJ(true);
         /*Party mediante Gestion*/
-        atributoGestion.getJugs().add(horacia);
-        atributoGestion.getJugs().add(mordeim);
-        atributoGestion.getJugs().add(kibito);
-        /*Inventario de Gestion*/
-        atributoGestion.getInv().addItem(arma);
-        atributoGestion.getInv().addItem(armadura);
-        atributoGestion.setEnem(atributoGestion.cargarGrupoEnemigos("BaseDatos/enemigosBosque.dat"));
+//        atributoGestion.getJugs().add(horacia);
+//        atributoGestion.getJugs().add(mordeim);
+//        atributoGestion.getJugs().add(kibito);
+//        /*Inventario de Gestion*/
+//        atributoGestion.getInv().addItem(arma);
+//        atributoGestion.getInv().addItem(armadura);
+//        atributoGestion.setEnem(atributoGestion.cargarGrupoEnemigos("BaseDatos/enemigosBosque.dat"));
         //Combate com = new Combate(VenganzaBelial.Party, VenganzaBelial.MapaActual);
         //Edit: Pruebas de Cambio de armas/armadura con requisitos
-        ArrayList<String> requisitos =new ArrayList<String>();
-        requisitos.add("Mordeim");
+//        ArrayList<String> requisitos =new ArrayList<String>();
+//        requisitos.add("Mordeim");
 //        arma.setRequisitoCategoria(requisitos);
         /*ATRIBUTOS DE PRUEBA FIN*/
         controlMusica= new Musica();

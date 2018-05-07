@@ -5,6 +5,12 @@ import items.Armadura;
 import items.Consumible;
 import items.Item;
 import java.awt.Font;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -14,6 +20,7 @@ import org.newdawn.slick.Sound;
 import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import otros.Gestion;
 import otros.Habilidad;
 import otros.Inventario;
 import personajes.Jugador;
@@ -159,7 +166,7 @@ public class EstadoMenu extends BasicGameState{
                 break;
             case CARGANDO:
                 OpcionControl(2);
-                cargando();
+                cargando(sbg);
                 break;
             case CAMBIARARMA:
                 OpcionControl(VenganzaBelial.atributoGestion.getInv().getItems().size());
@@ -430,6 +437,22 @@ public class EstadoMenu extends BasicGameState{
            if(eleccionJugador==0)
            {
                //EDIT:Guardar Partida
+                    try{
+                        File file = new File("BaseDatos/partida.dat");
+                        file.delete();
+                        VenganzaBelial.atributoGestion.setEnem(null);
+                        FileOutputStream ostreamPar = new FileOutputStream("BaseDatos/partida.dat");
+                        ObjectOutputStream oosPar = new ObjectOutputStream(ostreamPar);
+                        oosPar.writeObject(VenganzaBelial.atributoGestion);
+                        ostreamPar.close();
+                    } catch (IOException ioe) {
+                    System.out.println("Error de IO: " + ioe.getMessage());
+                    } catch (Exception e) {
+                        System.out.println("Error: " + e.getMessage());
+                    }
+                    VenganzaBelial.atributoGestion.setRecargaEnemigos(true);
+                    estado=MENUBASE;
+                    eleccionJugador=0;
            }
            if(eleccionJugador==1)
            {
@@ -439,13 +462,26 @@ public class EstadoMenu extends BasicGameState{
        }
     }/*private void guardando()*/
     
-    private void cargando()
+    private void cargando(StateBasedGame sbg)
     {
         if(input.isKeyPressed(Input.KEY_ENTER))
        { 
            if(eleccionJugador==0)
            {
                //EDIT:Cargar Partida
+               try {
+                        FileInputStream istreamPar = new FileInputStream("BaseDatos/partida.dat");
+                        ObjectInputStream oisPar = new ObjectInputStream(istreamPar);            
+                        VenganzaBelial.atributoGestion = (Gestion) oisPar.readObject();
+                        istreamPar.close();
+                    } catch (IOException ioe) {
+                        System.out.println("Error de IO: " + ioe.getMessage());
+                    } catch (ClassNotFoundException cnfe) {
+                        System.out.println("Error de clase no encontrada: " + cnfe.getMessage());
+                    } catch (Exception e) {
+                        System.out.println("Error: " + e.getMessage());
+                    } 
+               sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
            }
            if(eleccionJugador==1)
            {

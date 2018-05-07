@@ -2,9 +2,6 @@ package estados;
 
 import enemigos.Enemigo;
 import static estados.VenganzaBelial.ESTADOMENUINICIO;
-import static estados.VenganzaBelial.hori;
-import static estados.VenganzaBelial.kibi;
-import static estados.VenganzaBelial.mordi;
 import items.Consumible;
 import java.awt.Font;
 import java.util.ArrayList;

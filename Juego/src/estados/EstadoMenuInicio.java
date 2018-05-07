@@ -2,6 +2,7 @@
 package estados;
 
 import java.awt.Font;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -120,6 +121,8 @@ public class EstadoMenuInicio extends BasicGameState {
                     VenganzaBelial.atributoGestion.setJugs(jugadores);
                     VenganzaBelial.atributoGestion.setEnem(VenganzaBelial.atributoGestion.cargarGrupoEnemigos("BaseDatos/enemigosBosque.dat"));
                     try{
+                        File file = new File("BaseDatos/partida.dat");
+                        file.delete();
                         FileOutputStream ostreamPar = new FileOutputStream("BaseDatos/partida.dat");
                         ObjectOutputStream oosPar = new ObjectOutputStream(ostreamPar);
                         oosPar.writeObject(VenganzaBelial.atributoGestion);
