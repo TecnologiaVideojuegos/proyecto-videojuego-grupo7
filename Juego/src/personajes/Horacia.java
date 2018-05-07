@@ -64,12 +64,12 @@ public final class Horacia extends Jugador{
     //Metodo que cambia las estadicticas basicas del Personaje al subir nivel
     @Override
     public void subirNivelEstadisticas(){
-        this.setHp((int)(this.getHp()*1.20));
-        this.setDefensaBase((int)(this.getDefensaBase()*1.20));
+        this.setHp((this.getHp()+100));
+        this.setDefensaBase((this.getDefensaBase()+15));
         this.setDefensa(this.getDefensaBase() + this.getArmadura().getDefensa());
-        this.setAtaqueBase((int)(this.getAtaque()*1.10));
+        this.setAtaqueBase((this.getAtaque()+10));
         this.setAtaque(this.getAtaqueBase() + this.getArma().getDanyo());
-        this.setMp((int)(this.getMp()*1.05));
+        this.setMp((this.getMp()+20));
     }
     //toString
     @Override

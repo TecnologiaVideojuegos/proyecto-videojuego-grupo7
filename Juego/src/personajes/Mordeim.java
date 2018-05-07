@@ -60,12 +60,12 @@ public final class Mordeim extends Jugador{
     //Metodo que cambia las estadicticas basicas del Personaje al subir nivel
     @Override
     public void subirNivelEstadisticas(){
-        this.setHp((int)(this.getHp()*1.05));
-        this.setDefensaBase((int)(this.getDefensaBase()*1.10));
+        this.setHp((this.getHp()+60));
+        this.setDefensaBase((this.getDefensaBase()+10));
         this.setDefensa(this.getDefensaBase() + this.getArmadura().getDefensa());
-        this.setAtaqueBase((int)(this.getAtaque()*1.20));
+        this.setAtaqueBase((this.getAtaque()+25));
         this.setAtaque(this.getAtaqueBase() + this.getArma().getDanyo());
-        this.setMp((int)(this.getMp()*1.10));
+        this.setMp((this.getMp()+40));
     }
     //toString
     @Override
