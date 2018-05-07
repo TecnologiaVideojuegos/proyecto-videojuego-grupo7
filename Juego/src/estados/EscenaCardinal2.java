@@ -158,6 +158,7 @@ public class EscenaCardinal2 extends BasicGameState{
         switch (estado)
         {
             case 0:
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Cardinal.wav");
                 posicion.x+=0.1f*i;
                 if(posicion.x>=128){
                     estado++;
@@ -214,6 +215,7 @@ public class EscenaCardinal2 extends BasicGameState{
                 linea4="";
                 break;
             case 7:
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/BattleOst.wav");
                 estado=0;
                 VenganzaBelial.atributoGestion.setMapaActual(7);
                 sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);//EDIT:

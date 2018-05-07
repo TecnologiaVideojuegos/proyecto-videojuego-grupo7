@@ -336,6 +336,7 @@ public class EscenaCardinalMiniBoss1 extends BasicGameState{
             case 21:
                 //Combate contra Rider
                 estado=0;
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/JineteEspectralBattle.wav");
                 //VenganzaBelial.MapaActual=10;//MINIBOSSCARDINAL //EDIT
                 VenganzaBelial.atributoGestion.setMapaActual(17);
                 sbg.enterState(VenganzaBelial.ESTADOCOMBATE);

@@ -146,6 +146,7 @@ public class EscenaBosque1 extends BasicGameState{
         switch (estado)
         {
             case 0:
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Music_Forest.wav");
                 time+=i;
                 //ost.loop(1, 0.05f);
                 if(time/1000>2)//3 segundos de ejecución

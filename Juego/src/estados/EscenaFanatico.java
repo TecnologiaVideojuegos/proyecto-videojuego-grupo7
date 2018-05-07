@@ -182,6 +182,7 @@ public class EscenaFanatico extends BasicGameState{
         switch (estado)
         {
             case 0:
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/FanaticBattle.wav");
                 time+=i;
                 if(time/1000>0.4f)//
                 {

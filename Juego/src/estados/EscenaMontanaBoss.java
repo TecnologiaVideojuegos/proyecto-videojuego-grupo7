@@ -56,7 +56,7 @@ public class EscenaMontanaBoss extends BasicGameState{
     /*Imagenes*/
     private Image ventanaDialogo,avatarDialogo, avatarH,avatarM, avatarK, avatarDragon;
     /*Sonido*/
-    private Sound sonidoSelect,vuelo,roar,dragonSonido;
+    private Sound sonidoSelect,roar,dragonSonido;
     int time;//EDIT
     private TrueTypeFont texto;
     private Font letraMenu  = new Font("Arial Black", Font.PLAIN, 15); 
@@ -112,7 +112,6 @@ public class EscenaMontanaBoss extends BasicGameState{
         avatarDragon = new Image("Imagenes/Personajes/Dragon.png");
         avatarDialogo = avatarH;
         sonidoSelect=new Sound("Musica/Efectos/select.wav");
-        vuelo = new Sound("Musica/Efectos/Vuelo.wav");
         roar = new Sound("Musica/Efectos/Grito_dragon.wav");
         dragonSonido = new Sound("Musica/Efectos/Dragon.wav");
         texto= new TrueTypeFont(letraMenu, true);
@@ -207,9 +206,9 @@ public class EscenaMontanaBoss extends BasicGameState{
                 break;
             case 4:
                 time+=i;
-                if(!dragonSonido.playing())
+                if(!roar.playing())
                 {
-                    dragonSonido.play();
+                    roar.play();
                 }
                 avatarDialogo=this.avatarH;
                 linea1="¡¡¡NO ME HACE NINGUNA GRACIA!!!";
@@ -234,7 +233,7 @@ public class EscenaMontanaBoss extends BasicGameState{
                 linea4="";
                 break;
             case 7:
-                vuelo.play();
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/DragonTheme.wav");
                 posicionE.x-=0.25f*i;
                 if(posicionE.x<=(-404)){
                     estado++;
