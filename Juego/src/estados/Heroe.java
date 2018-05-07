@@ -285,11 +285,11 @@ public class Heroe {
             if(renderizarEvento)
                 renderizarEvento=false;
         if(renderizarEvento){
-            linea1 = "Hola mi nombre es " + VenganzaBelial.eventos.getEvento().getNombre();
-            linea2 = VenganzaBelial.eventos.getEvento().getSaludo();
-            linea3 = VenganzaBelial.eventos.getEvento().getHistoria();
-            linea4="";
-            linea5="";
+            linea1 = VenganzaBelial.eventos.getEvento().getLinea1();
+            linea2 = VenganzaBelial.eventos.getEvento().getLinea2();
+            linea3 = VenganzaBelial.eventos.getEvento().getLinea3();
+            linea4 = VenganzaBelial.eventos.getEvento().getLinea4();
+            linea5 = VenganzaBelial.eventos.getEvento().getLinea5();
         }
     }
 

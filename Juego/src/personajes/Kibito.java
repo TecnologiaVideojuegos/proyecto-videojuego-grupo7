@@ -61,12 +61,12 @@ public final class Kibito extends Jugador{
     //Metodo que cambia las estadicticas basicas del Personaje al subir nivel
     @Override
     public void subirNivelEstadisticas(){
-        this.setHp((int)(this.getHp()*1.10));
-        this.setDefensaBase((int)(this.getDefensaBase()*1.05));
+        this.setHp((this.getHp()+50));
+        this.setDefensaBase((this.getDefensaBase()+10));
         this.setDefensa(this.getDefensaBase() + this.getArmadura().getDefensa());
-        this.setAtaqueBase((int)(this.getAtaque()*1.05));
+        this.setAtaqueBase((this.getAtaque()+10));
         this.setAtaque(this.getAtaqueBase() + this.getArma().getDanyo());
-        this.setMp((int)(this.getMp()*1.20));
+        this.setMp((this.getMp()+80));
     }
     //toString
     @Override
