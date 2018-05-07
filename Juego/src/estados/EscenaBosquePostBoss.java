@@ -217,8 +217,9 @@ public class EscenaBosquePostBoss extends BasicGameState{
         switch (estado)
         {
             case 0:
-                    time=0;
-                    estado++;
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Music_Forest.wav");
+                time=0;
+                estado++;
                 break;
             case 1:
                 avatarDialogo=this.avatarH;

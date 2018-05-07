@@ -218,6 +218,7 @@ public class EscenaCatacumbasPreBoss extends BasicGameState{
                 linea4="ABRAN Y VENGA NUESTRO SEÑOR BELIAL.";
                 break;
             case 5:
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/FanaticBattle.wav");
                 avatarDialogo=this.avatarM;
                 //////="////////////////////////////////////////////////////////";
                 linea1="Yo sabía que estabas loco, pero no a esos niveles.";

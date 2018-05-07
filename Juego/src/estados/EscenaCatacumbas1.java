@@ -245,6 +245,7 @@ public class EscenaCatacumbas1 extends BasicGameState{
             case 11:
                 //Batalla contra dos fanáticos y corruptedknight
                 estado=0;
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/BattleOst.wav");
 //                VenganzaBelial.MapaActual=13;//MINIBOSSCATACUMBAS //EDIT
                 VenganzaBelial.atributoGestion.setMapaActual(13);
                 sbg.enterState(VenganzaBelial.ESTADOCOMBATE);

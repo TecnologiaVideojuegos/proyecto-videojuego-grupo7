@@ -206,9 +206,9 @@ public class EscenaMontanaBoss extends BasicGameState{
                 break;
             case 4:
                 time+=i;
-                if(!dragonSonido.playing())
+                if(!roar.playing())
                 {
-                    dragonSonido.play();
+                    roar.play();
                 }
                 avatarDialogo=this.avatarH;
                 linea1="¡¡¡NO ME HACE NINGUNA GRACIA!!!";
@@ -233,6 +233,7 @@ public class EscenaMontanaBoss extends BasicGameState{
                 linea4="";
                 break;
             case 7:
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/DragonTheme.wav");
                 posicionE.x-=0.25f*i;
                 if(posicionE.x<=(-404)){
                     estado++;
