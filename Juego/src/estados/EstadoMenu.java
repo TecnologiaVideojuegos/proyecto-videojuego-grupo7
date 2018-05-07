@@ -438,6 +438,7 @@ public class EstadoMenu extends BasicGameState{
            }
        }
     }/*private void guardando()*/
+    
     private void cargando()
     {
         if(input.isKeyPressed(Input.KEY_ENTER))

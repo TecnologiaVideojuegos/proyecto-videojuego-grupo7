@@ -8,6 +8,7 @@ import items.Item;
 import java.util.ArrayList;
 import npcs.Evento;
 import npcs.Vendedor;
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
 public class EventosNpcs {
@@ -22,23 +23,27 @@ public class EventosNpcs {
     private final int MAPADUNGEONCATACUMBAS = 4;
     private final int MAPACIUDADMONTANA = 5;
     private final int MAPADUNGEONMONTANA = 6;
+    private final int MAPACARDINAL=7;
     private final int BOSSBOSQUE = 10;
     private final int BANDIDOSPUERTO = 11;
     private final int BOSSPUERTO = 12;
     private final int FANATICOS = 13;
     private final int BOSSCATACUMBAS = 14;
-    private final int GRIFO = 15;
+    private final int MINIBOSSMONTANA = 15;
     private final int BOSSMONTANA = 16;
-    private final int BOSSBELIAL = 17;
-    private final int BOSSARCHIE = 18;
+    private final int MINIBOSSCardinal=17;
+    private final int BOSSBELIAL = 18;
+    private final int BOSSARCHIE = 19;
     //EDIT
+    private boolean flagOpcional=true;
     private int controlEventos=0;//Controla la aparición de escenas y "puntos de control" para que no se repitan
                                 //las escenas al pasar por el mismo lugar
     /*
-    *0= llegando a EscenaBosque2
+    *0= llegando a EscenaDelyolica(En Mapa tutoria)
     *1=Llegando a EscenaBosquePreBoss
     */
     private int nextEstado;
+    String medida="Para ello solo chocate ypara dejar de hablar con ellos";//Medida de la linea
     
     public EventosNpcs(){
         posicionEvento= new Vector2f(0,0);
@@ -54,13 +59,60 @@ public class EventosNpcs {
         return vendedor;
     }
     
-    public int comprobarEvento(int x, int y, int mapa){
+    public int comprobarEvento(int x, int y, int mapa) throws SlickException{
         int tipo = 10;//0
         ArrayList<Item> items;
         ArrayList<String> requisitoCategoria;
         switch(mapa){
             //bosque
             case MAPATUTORIAL:
+                if(x == 13 && y == 4){
+                    //Charla ini
+                    evento = new Evento("Para ello solo chocate ypara dejar de hablar con ellos pulsa intro."
+                    , "Manolo", "Deberias hablar con la gente.");
+                    tipo = 0;
+                }
+                if(x == 18 && y == 8){
+                    //Charla ini
+                    evento = new Evento("Se dice que ella y su ayudante se aparecen en cualquier lugar"
+                    + "para hacer negocios", "Alfina", "¿Ves a aquella chica durmiendo?");
+                    tipo = 0;
+                }
+                else if(x == 29 & y ==3){
+                    //Healer
+                    evento = new Evento("Voy a curarte para que puedas seguir luchando con"
+                    + " los peligros de Reynos", "Healer", "Hola amigo");
+                    tipo = 2;
+                }
+                else if(x== 22 & y ==4){
+                    //Vendedor
+                    items = new ArrayList<>();
+                    requisitoCategoria = new ArrayList<>();
+                    requisitoCategoria.add("Mordeim");
+                    Consumible pocionVida = new Consumible(20, 0, 5, "PocionVida", "Pocion que sirve para curar tu vida",
+                    requisitoCategoria, 1, 50, 20);
+                    items.add(pocionVida);
+                    vendedor = new Vendedor(items, "Hola", "que tal");
+                    tipo = 1;
+                }
+                else if(x== 5 & y>= 4 && y<=9){
+                    //Escena Delyolica
+                    if (controlEventos==0)
+                    {
+                        controlEventos++;
+                        VenganzaBelial.atributoGestion.setControlEscenas(controlEventos);
+                        nextEstado=VenganzaBelial.ESCENADEYOLICA;
+                        tipo=3;
+                    }
+                    else
+                        tipo=10;
+                }
+                else if(x==34 && y>=5 && y<=7){
+                    //Salida de Mapa 
+                    nextEstado=VenganzaBelial.ESCENACARRETA;
+                    tipo=3;
+                    
+                }
                 break;
             case MAPABOSQUE:
                 //Vendedor
@@ -96,9 +148,10 @@ public class EventosNpcs {
                     tipo = 2;
                 }
                 else if(x==45 && y>9 && y<19){
-                    if(controlEventos==0)
+                    if(controlEventos==1)
                     {
                         controlEventos++;
+                        VenganzaBelial.atributoGestion.setControlEscenas(controlEventos);
                         nextEstado=VenganzaBelial.ESCENABOSQUE2;
                         tipo=3;
                     }
@@ -106,9 +159,11 @@ public class EventosNpcs {
                         tipo=10;//No ocurre nada, asi se salta el case de opciones de evento   
                 }
                 else if(x==66 && y>50 && y<58){
-                    if(controlEventos==1)
+                    if(controlEventos==2)
                     {
                         controlEventos++;
+                        VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Escena_Yggdrasil.wav");
+                        VenganzaBelial.atributoGestion.setControlEscenas(controlEventos);
                         nextEstado=VenganzaBelial.ESCENABOSQUEPREBOSS;
                         tipo=3;
                     }
@@ -178,22 +233,100 @@ public class EventosNpcs {
                     tipo = 0;
                 }
                 else if (x==43 && y==18) {
-                    VenganzaBelial.MapaActual = BANDIDOSPUERTO;
+//                    VenganzaBelial.MapaActual = BANDIDOSPUERTO;
+                    VenganzaBelial.atributoGestion.setMapaActual(BANDIDOSPUERTO);
                     nextEstado=VenganzaBelial.ESTADOCOMBATE;
                     tipo = 3;
                 }
                 else if (x==44 && y==12) {
-                    VenganzaBelial.MapaActual = BANDIDOSPUERTO;
+//                    VenganzaBelial.MapaActual = BANDIDOSPUERTO;
+                    VenganzaBelial.atributoGestion.setMapaActual(BANDIDOSPUERTO);
                     nextEstado=VenganzaBelial.ESTADOCOMBATE;
                     tipo = 3;
                 }
                 else if (x==49 && y==11) {
-                    VenganzaBelial.MapaActual = BOSSPUERTO;
+//                    VenganzaBelial.MapaActual = BOSSPUERTO;
+                    VenganzaBelial.atributoGestion.setMapaActual(BOSSPUERTO);
                     nextEstado=VenganzaBelial.ESTADOCOMBATE;
                     tipo = 3;
                 }
                 break;
                 //***********************************************************
+            case MAPACIUDADCATACUMBAS:
+                if(x == 11 && y == 11){
+                    //Vendedor
+                    items = new ArrayList<>();
+                    requisitoCategoria = new ArrayList<>();
+                    requisitoCategoria.add("Mordeim");
+                    Consumible pocionVida = new Consumible(20, 0, 5, "PocionVida", "Pocion que sirve para curar tu vida",
+                    requisitoCategoria, 1, 50, 20);
+                    items.add(pocionVida);
+                    vendedor = new Vendedor(items, "Luis", "que tal");
+                    tipo = 1;
+                }
+                else if(x == 18 && y == 22){
+                    //Healer
+                    evento = new Evento("Voy a curarte para que puedas seguir luchando con"
+                            + " los peligros de Reynos", "Healer", "Hola amigo"); 
+                    tipo = 2;
+                }
+                else if(x==9 && y>=15 && y<=22){
+                    if (controlEventos==3)
+                    {
+                        controlEventos++;
+                        VenganzaBelial.atributoGestion.setControlEscenas(controlEventos);
+                        nextEstado=VenganzaBelial.ESCENATROYIA2;
+                        tipo=3;
+                    } 
+                    else
+                        tipo=10;
+                }
+                else if(y==0 && x>0 && x<6){
+                    nextEstado=VenganzaBelial.ESCENAFANATICO;
+                    tipo=3;
+                }
+                break;
+                /*******************************************************************/
+            case MAPADUNGEONCATACUMBAS:
+                if(x == 37 && y == 14){
+                    evento = new Evento("Estas catacumbas están inhóspitas"
+                            + "o eso creo....","quien sabe","comprúebalo tu mismo"); 
+                    tipo = 0;    
+                }
+                else if(x == 4 && y == 27){
+                //Vendedor
+                    items = new ArrayList<>();
+                    requisitoCategoria = new ArrayList<>();
+                    requisitoCategoria.add("Mordeim");
+                    Consumible pocionVida = new Consumible(20, 0, 5, "PocionVida", "Pocion que sirve para curar tu vida",
+                            requisitoCategoria, 1, 50, 20);
+                    items.add(pocionVida);
+                    vendedor = new Vendedor(items, "Luis", "que tal");                   
+                    tipo = 1;    
+                }
+                else if(x == 20 && y == 23){
+                //Healer
+                    evento = new Evento("Voy a curarte para que puedas seguir luchando con"
+                            + " los peligros de Reynos", "Healer", "Hola amigo"); 
+                    tipo = 2;    
+                }
+                else if(x==11 && y<33 && y>16){
+                    if (controlEventos==4)
+                    {
+                        controlEventos++;
+                        VenganzaBelial.atributoGestion.setControlEscenas(controlEventos);
+                        nextEstado=VenganzaBelial.ESCENACATACUMBAS1;
+                        tipo=3;
+                    } 
+                    else
+                        tipo=10;
+                }
+                else if(x==59 && y>20 && y<22){
+                 nextEstado=VenganzaBelial.ESCENACATACUMBASPREBOSS;
+                 tipo=3;
+                }
+                break;
+            /**********************************************************************/
             case MAPACIUDADMONTANA:
                 if (x==8 && y==10) {
                     evento = new Evento("Voy a curarte para que puedas seguir luchando con"
@@ -231,8 +364,10 @@ public class EventosNpcs {
                     tipo = 0;
                 }
                 else if (x==39 && (y==19 || y==20)) {
-                    VenganzaBelial.MapaActual = MAPADUNGEONMONTANA;
-                    tipo = 3;
+//                    VenganzaBelial.MapaActual = MAPADUNGEONMONTANA;
+                    VenganzaBelial.atributoGestion.setMapaActual(MAPADUNGEONMONTANA);
+                    //nextEstado=VenganzaBelial.ESTADOMAPAJUEGO;
+                    //tipo = 3;
                 }
                 break;
                 //***********************************************************
@@ -272,7 +407,81 @@ public class EventosNpcs {
                     , "Rogelio", "xD");
                     tipo = 0;
                 }
+                else if(x==32){
+                    if (controlEventos==5)
+                    {
+                        controlEventos++;
+                        VenganzaBelial.atributoGestion.setControlEscenas(controlEventos);
+                        nextEstado=VenganzaBelial.ESCENAMONTANAMINIBOSS;
+                        tipo=3;
+                    } 
+                    else
+                        tipo=10;
+                }
+                else if(x>61 && x<78 && y>45 && y<58){
+
+                        nextEstado=VenganzaBelial.ESCENAMONTANABOSS;
+                        tipo=3;
+                }
                 break;
+            case MAPACARDINAL:
+                if (x==7 && y==3) {
+                    evento = new Evento("Voy a curarte para que puedas seguir luchando con"
+                            + " los peligros de Reynos", "Healer", "Hola amigo"); 
+                    tipo = 2;
+                }
+                else if(x==18 && y>7 && y<14){
+                    if (controlEventos==6)
+                    {
+                        controlEventos++;
+                        VenganzaBelial.atributoGestion.setControlEscenas(controlEventos);
+                        nextEstado=VenganzaBelial.ESCENACARDINAL1;
+                        tipo=3;
+                    } 
+                    else
+                        tipo=10;
+                }
+                else if(x==53 && y>21 && y<25){
+                    if (controlEventos==7)
+                    {
+                        controlEventos++;
+                        VenganzaBelial.atributoGestion.setControlEscenas(controlEventos);
+                        nextEstado=VenganzaBelial.ESCENACARDINAL2;
+                        tipo=3;
+                    } 
+                    else
+                        tipo=10;
+                }
+                
+                else if(y==42 && x>0 && x<4){
+                    if (controlEventos==8)
+                    {
+                        controlEventos++;
+                        VenganzaBelial.atributoGestion.setControlEscenas(controlEventos);
+                        nextEstado=VenganzaBelial.ESCENACARDINALMINIBOSS1;
+                        tipo=3;
+                    } 
+                    else
+                        tipo=10;
+                }
+                else if(x==18 && y>55 && y<59){
+                        VenganzaBelial.atributoGestion.setControlEscenas(controlEventos);
+                        nextEstado=VenganzaBelial.ESCENAFINAL;
+                        tipo=3;
+                }
+                
+                else if(y==27 && x>0 && x<17){
+                    if (flagOpcional==true)
+                    {
+                        flagOpcional=false;
+                        nextEstado=VenganzaBelial.ESCENACARDINALOPCIONAL;
+                        tipo=3;
+                    } 
+                    else
+                        tipo=10;
+                }
+                break;
+                
         }
         posicionEvento.x=x;
         posicionEvento.y=y;
@@ -289,6 +498,14 @@ public class EventosNpcs {
 
     public Vector2f getPosicionEvento() {
         return posicionEvento;
+    }
+
+    public int getControlEventos() {
+        return controlEventos;
+    }
+
+    public void setControlEventos(int controlEventos) {
+        this.controlEventos = controlEventos;
     }
 
     

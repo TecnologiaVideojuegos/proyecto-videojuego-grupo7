@@ -44,8 +44,8 @@ public class EscenaTroyiaPostBoss2 extends BasicGameState{
     private boolean reproducirExclamacion=false;
     /*Mapa*/
     private Vector2f posicion,posicionP,posicionA,posicionC;
-    private static int esquinaXMapa=0;
-    private static int esquinaYMapa=0;
+    private static int esquinaXMapa=96;
+    private static int esquinaYMapa=160;
     private static int esquinaXMapa2=-100;
     private static int esquinaYMapa2=0;
     /*Animaciones*/
@@ -64,7 +64,6 @@ public class EscenaTroyiaPostBoss2 extends BasicGameState{
     private Image avatarN,avatarA,avatarCaballero,avatarPueblo;
     /*Sonido*/
     private Sound sonidoSelect;
-    private Music battle;
     int time;//EDIT
     private TrueTypeFont texto;
     private Font letraMenu  = new Font("Arial Black", Font.PLAIN, 15); 
@@ -117,7 +116,7 @@ public class EscenaTroyiaPostBoss2 extends BasicGameState{
         joven2 = new Image("Imagenes/Animaciones/Sprites/joven2.png");
         adulto1 = new Image("Imagenes/Animaciones/Sprites/aldeano1.png");
         adulto2 = new Image("Imagenes/Animaciones/Sprites/aldeana1.png");
-        fondo= new Image("Imagenes/Escenas/EscenaPuerto/Puerto.png");
+        fondo= new Image("Imagenes/Escenas/EscenaTroyia/CiudadCatacumbas.png");
         fondoFanatico = new Image("Imagenes/Escenas/SalaInicial/MapaTutorial.png");
         /**/
         this.sheetExclamacion= new SpriteSheet("Imagenes/Animaciones/puntos.png",32,33);
@@ -141,7 +140,6 @@ public class EscenaTroyiaPostBoss2 extends BasicGameState{
         avatarDialogo = avatarH;
         sonidoSelect=new Sound("Musica/Efectos/select.wav");
         texto= new TrueTypeFont(letraMenu, true);
-        battle = new Music("Musica/BSO/FanaticBattle.wav");
         
     }
 
@@ -186,7 +184,7 @@ public class EscenaTroyiaPostBoss2 extends BasicGameState{
                     }
             }
             
-            texto.drawString(1000, 0, "" + estado);
+//            texto.drawString(1000, 0, "" + estado);
     }
     @Override
     //Muestra la actualización
@@ -320,7 +318,7 @@ public class EscenaTroyiaPostBoss2 extends BasicGameState{
                 break;
             case 15:
                 estado=0;
-                sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);//EDIT:
+                sbg.enterState(VenganzaBelial.ESCENAPUEBLOMONTANA);
                 break;
 
         }

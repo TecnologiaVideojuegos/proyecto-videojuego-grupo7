@@ -56,8 +56,7 @@ public class EscenaMontanaBoss extends BasicGameState{
     /*Imagenes*/
     private Image ventanaDialogo,avatarDialogo, avatarH,avatarM, avatarK, avatarDragon;
     /*Sonido*/
-    private Sound sonidoSelect,vuelo,roar,dragonSonido;
-    private Music battle;
+    private Sound sonidoSelect,roar,dragonSonido;
     int time;//EDIT
     private TrueTypeFont texto;
     private Font letraMenu  = new Font("Arial Black", Font.PLAIN, 15); 
@@ -94,7 +93,7 @@ public class EscenaMontanaBoss extends BasicGameState{
         dragon=dragonV;
         Image[] dragonSombra={new Image("Imagenes/Animaciones/Sprites/sombra.png")};
         sombra=new Animation(dragonSombra,200);
-        fondo= new Image("Imagenes/Escenas/EscenaBosque1/mapaBosque.png");
+        fondo= new Image("Imagenes/Escenas/EscenaMontana/Montana.png");
         /**/
         this.sheetExclamacion= new SpriteSheet("Imagenes/Animaciones/exclamacion.png",32,33);
         this.exclamacion = new Animation(sheetExclamacion,200);
@@ -113,11 +112,9 @@ public class EscenaMontanaBoss extends BasicGameState{
         avatarDragon = new Image("Imagenes/Personajes/Dragon.png");
         avatarDialogo = avatarH;
         sonidoSelect=new Sound("Musica/Efectos/select.wav");
-        vuelo = new Sound("Musica/Efectos/Vuelo.wav");
         roar = new Sound("Musica/Efectos/Grito_dragon.wav");
         dragonSonido = new Sound("Musica/Efectos/Dragon.wav");
         texto= new TrueTypeFont(letraMenu, true);
-        battle = new Music("Musica/BSO/DragonTheme.wav");
         /**/
         
     }
@@ -126,7 +123,7 @@ public class EscenaMontanaBoss extends BasicGameState{
     //Muestra por pantalla
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException { 
         
-            fondo.draw(0, 0);
+            fondo.draw(-1200, -1100);
             
             //EDIT:Rener Mordeim
             if(reproducirExclamacion){
@@ -134,9 +131,9 @@ public class EscenaMontanaBoss extends BasicGameState{
             }
             
             if(estado>=0){
-                hor.draw(posicion.x+320, posicion.y+240);
-                mor.draw(posicion.x+288, posicion.y+272);
-                kib.draw(posicion.x+288, posicion.y+208);
+                hor.draw(posicion.x+632, posicion.y+240);
+                mor.draw(posicion.x+600, posicion.y+272);
+                kib.draw(posicion.x+600, posicion.y+208);
                 if(estado>=1 && estado!=3 && estado!=7 && estado!=11 &&estado!=16){
                 renderDialogo();
                 }
@@ -148,7 +145,7 @@ public class EscenaMontanaBoss extends BasicGameState{
                 }
                 
             }
-            texto.drawString(1000, 0, "" + estado);
+//            texto.drawString(1000, 0, "" + estado);
     }
     @Override
     //Muestra la actualización
@@ -160,12 +157,6 @@ public class EscenaMontanaBoss extends BasicGameState{
                 sonidoSelect.play(1, 0.2f);
                 time=0;
                 estado++;
-                if(estado>=7){
-                    battle.play(1, 0.2f);
-                }
-                if(estado==19){
-                        battle.stop();
-                }
                 
             }
             
@@ -215,9 +206,9 @@ public class EscenaMontanaBoss extends BasicGameState{
                 break;
             case 4:
                 time+=i;
-                if(!dragonSonido.playing())
+                if(!roar.playing())
                 {
-                    dragonSonido.play();
+                    roar.play();
                 }
                 avatarDialogo=this.avatarH;
                 linea1="¡¡¡NO ME HACE NINGUNA GRACIA!!!";
@@ -242,10 +233,9 @@ public class EscenaMontanaBoss extends BasicGameState{
                 linea4="";
                 break;
             case 7:
-                battle.play();
-                vuelo.play();
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/DragonTheme.wav");
                 posicionE.x-=0.25f*i;
-                if(posicionE.x<=(-704)){
+                if(posicionE.x<=(-404)){
                     estado++;
                 }
                 break;
@@ -349,7 +339,9 @@ public class EscenaMontanaBoss extends BasicGameState{
                 break;
             case 19:
                 estado=0;
-                sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);//EDIT:
+//                VenganzaBelial.MapaActual=10;//BOSSMONTAÑA //EDIT
+                VenganzaBelial.atributoGestion.setMapaActual(16);
+                sbg.enterState(VenganzaBelial.ESTADOCOMBATE);
                 //Deberiamos entrar en estado Combate contra el Dragon
                 break;
 

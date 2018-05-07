@@ -63,8 +63,7 @@ public class EscenaInicio extends BasicGameState{
     private TrueTypeFont texto, texto1;
     private Font letraMenu  = new Font("Arial Black", Font.PLAIN, 15);    
     private Font letraMenu1  = new Font("Verdana", Font.PLAIN, 15);
-    private Color rojo = new Color (160,64,0);
-    private Music musicaIntro;
+    private Color rojo = new Color (0,255,0);
     private Sound efecto;
     private Sound sonidoSelect;
     private Sound sonidoPuerta;
@@ -114,7 +113,6 @@ public class EscenaInicio extends BasicGameState{
         texto1= new TrueTypeFont(letraMenu1, true);
         posicion = new Vector2f(esquinaXMapa+TILESIZE*2,esquinaYMapa+TILESIZE*2);
         posicionE = new Vector2f(esquinaXMapa+TILESIZE*2,esquinaYMapa+TILESIZE*2);
-        this.musicaIntro = new Music("Musica/BSO/Intro.wav");
         this.efecto = new Sound("Musica/Efectos/Cry2.wav");
         sonidoSelect=new Sound("Musica/Efectos/select.wav");
         sonidoPuerta=new Sound("Musica/Efectos/Door.wav");
@@ -177,18 +175,15 @@ public class EscenaInicio extends BasicGameState{
     @Override
     //Muestra la actualización
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
-        musicaIntro.play();
         if (input.isKeyPressed(Input.KEY_ENTER)){
             sonidoSelect.play(1, 0.2f);
-            if(estado==4){
-                musicaIntro.stop();
-            }
             estado++;
             time=0;
         }
         switch (estado)
         {
             case 0:
+                    
                 avatarDialogo=this.avatarE;
                 linea5 = "El mundo de nuestros protegonistas se llama Reynos.";
                 linea6 = "Hace muchos años había un demonio, Belial, que engaño";
@@ -218,6 +213,7 @@ public class EscenaInicio extends BasicGameState{
                 break;
             //Primera escena introducción
             case 4:
+                VenganzaBelial.controlMusica.pararMusica();
                 reproducirExclamacion2=true;
                 avatarDialogo=this.avatarHestia;
                 //////="////////////////////////////////////////////////////////";
@@ -374,9 +370,12 @@ public class EscenaInicio extends BasicGameState{
                 posicion.x+=1f*i;
                 esquinaXMapa+=1f*i;
                 if(esquinaXMapa>=1350){
-                    estado=0;
-                    sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);
+                    estado++;
                 }
+                break;
+            case 23:
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Music_City.wav");
+                sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
                 break;
         }
         

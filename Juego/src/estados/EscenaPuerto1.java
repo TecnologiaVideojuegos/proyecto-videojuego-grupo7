@@ -66,7 +66,6 @@ public class EscenaPuerto1 extends BasicGameState{
     private Image salidaEscena;
     /*Sonido*/
     private Sound sonidoSelect,help;
-    private Music ost;
     int time;//EDIT
     private TrueTypeFont texto;
     private Font letraMenu  = new Font("Arial Black", Font.PLAIN, 15); 
@@ -160,7 +159,7 @@ public class EscenaPuerto1 extends BasicGameState{
                 }
             }
                 
-            texto.drawString(1000, 0, "" + estado);
+//            texto.drawString(1000, 0, "" + estado);
     }
     @Override
     //Muestra la actualización
@@ -364,7 +363,8 @@ public class EscenaPuerto1 extends BasicGameState{
                 break;
             case 23:
                 estado=0;
-                VenganzaBelial.MapaActual=2;//Entramos a Mapa puerto
+//                VenganzaBelial.MapaActual=2;//Entramos a Mapa puerto
+                VenganzaBelial.atributoGestion.setMapaActual(2);
                 sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
                 break;
         }

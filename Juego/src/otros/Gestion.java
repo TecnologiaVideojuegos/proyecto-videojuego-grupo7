@@ -6,17 +6,24 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import personajes.Jugador;
 
-public class Gestion {
+public class Gestion implements Serializable{
     private ArrayList<Jugador> jugs;
     private ArrayList<ArrayList<Enemigo>> enem;
     private Inventario inv = new Inventario();
+    private int mapaActual;
+    private int controlEscenas;
+    
+    private static final long serialVersionUID = 10L;
     
     public Gestion(){
         jugs = new ArrayList<>();
         enem = new ArrayList<ArrayList<Enemigo>>();
+        this.mapaActual=0;
+        this.controlEscenas=0;
     }
 
     public ArrayList<Jugador> getJugs() {
@@ -42,6 +49,25 @@ public class Gestion {
     public void setInv(Inventario inv) {
         this.inv = inv;
     }
+
+    public int getMapaActual() {
+        return mapaActual;
+    }
+
+    public void setMapaActual(int mapaActual) {
+        this.mapaActual = mapaActual;
+    }
+
+    public int getControlEscenas() {
+        return controlEscenas;
+    }
+
+    public void setControlEscenas(int controlEscenas) {
+        this.controlEscenas = controlEscenas;
+    }
+    
+    
+    
     
     public ArrayList<Jugador> cargarJugadores() {
         ArrayList<Jugador> jugadores = new ArrayList<Jugador>();

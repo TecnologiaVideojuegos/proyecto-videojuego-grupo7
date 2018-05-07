@@ -60,7 +60,6 @@ public class EscenaBosquePreBoss extends BasicGameState{
     private Image ventanaDialogo,avatarDialogo, avatarH,avatarM, avatarK, avatarDesconocido;
     /*Sonido*/
     private Sound sonidoSelect,rugido;
-    private Music battle;
     int time;//EDIT
     private TrueTypeFont texto;
     private Font letraMenu  = new Font("Arial Black", Font.PLAIN, 15); 
@@ -116,7 +115,6 @@ public class EscenaBosquePreBoss extends BasicGameState{
         sonidoSelect=new Sound("Musica/Efectos/select.wav");
         rugido=new Sound("Musica/Efectos/rugido1.wav");
         texto= new TrueTypeFont(letraMenu, true);
-        this.battle = new Music("Musica/BSO/Escena_Yggdrasil.wav");
         /**/
         
     }
@@ -144,7 +142,7 @@ public class EscenaBosquePreBoss extends BasicGameState{
                     boss.draw(posicionE.x+664, posicionE.y+212);
                 }
             }
-            texto.drawString(1000, 0, "" + estado);
+            //texto.drawString(1000, 0, "" + estado);
     }
     @Override
     //Muestra la actualización
@@ -156,18 +154,13 @@ public class EscenaBosquePreBoss extends BasicGameState{
                 sonidoSelect.play(1, 0.2f);
                 time=0;
                 estado++;
-                if(estado>=6){
-                    battle.play();
-                    if(estado<=13){
-                        battle.stop();
-                }
-                }
             }
             
         }
         switch (estado)
         {
             case 0:
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Music_Forest.wav");
                 posicion.x+=0.1f*i;
                 if(posicion.x>=300){
                     estado++;
@@ -218,6 +211,7 @@ public class EscenaBosquePreBoss extends BasicGameState{
                 linea4="";
                 break;
             case 5:
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Escena_Yggdrasil.wav");
                 reproducirExclamacion=true;
                 avatarDialogo=this.avatarK;
                 //////="////////////////////////////////////////////////////////";
@@ -305,7 +299,9 @@ public class EscenaBosquePreBoss extends BasicGameState{
                 estado=0;
                 //ENTRAMOS EN COMBATE CONTRA EL BOSS
                 //APLICAMOS IDENTIFICADOR DE MAPA ESPECIAL Y ENTRAMOS EN COMBATE
-                VenganzaBelial.MapaActual=10;//BOSSBOSQUE;
+                //VenganzaBelial.MapaActual=10;//BOSSBOSQUE;
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Yggdrasil_Battle.wav");
+                VenganzaBelial.atributoGestion.setMapaActual(10);
                 sbg.enterState(VenganzaBelial.ESTADOCOMBATE);
                 break;
 

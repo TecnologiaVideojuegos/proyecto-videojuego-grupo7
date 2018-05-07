@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.1.4" orientation="orthogonal" renderorder="right-down" width="30" height="25" tilewidth="32" tileheight="32" infinite="0" nextobjectid="1">
+ <tileset firstgid="1" source="Inside_A4.tsx"/>
+ <tileset firstgid="241" source="Dungeon_B.tsx"/>
+ <tileset firstgid="497" source="Actor5.tsx"/>
+ <layer name="suelo" width="30" height="25" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3DQQ0AAAwDobNV/8ZmYw9IWDVVVfX1A5qTzkG4CwAA
+  </data>
+ </layer>
+ <layer name="enemigo" width="30" height="25" visible="0">
+  <properties>
+   <property name="enemigos" type="bool" value="true"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3BMQEAAADCoPVPbQ0PoAAAgHcDDVuG2rgLAAA=
+  </data>
+ </layer>
+ <layer name="escenas" width="30" height="25">
+  <properties>
+   <property name="evento" type="bool" value="true"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3NQQ0AIAzAwNqaBfwLQgECRu6Svls1jwCAOr6+vmu/P7lNv3iKuAsAAA==
+  </data>
+ </layer>
+ <layer name="NPC" width="30" height="25" visible="0">
+  <properties>
+   <property name="blocked" type="bool" value="true"/>
+   <property name="evento" type="bool" value="true"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACmNgGAWjYBSMglFALaDKNNAuGAWjYBSMgqEL3EbLULwAAP+DVXq4CwAA
+  </data>
+ </layer>
+ <layer name="blocked" width="30" height="25">
+  <properties>
+   <property name="blocked" type="bool" value="true"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACr3WSw6CMBAGYHqregTic+9z7RG8gm50qxvcyVIv6DRhkjKZ6YuBSf6QtANfgNJgTSWWhbm6Gic24q4ga8gm0If1M3LmkAVkadLcA+QOOSW4odrC+TvIPtF11XS2Rn0zXE071T0r2yWull3iOrOZ2NUwc92hZu73ezE698l9v9w6cWNWyaQ1664vuWOY6DbCtXE8Z3/OcetIj9ufjwr7M11XMVer6Lqawn2QZ4UuHdc236ZvoEvHtc2KGP5z1rZ9EwsN+n61bM70DW5dDbVDJpa0nkvtFBPdK/TdmF48X5rn5mIm9jv3CceX6f9ztl5wvmXiz0n/r1z/B/IHS+/n+rgLAAA=
+  </data>
+ </layer>
+</map>

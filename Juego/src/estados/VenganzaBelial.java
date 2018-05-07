@@ -42,6 +42,17 @@ public class VenganzaBelial extends StateBasedGame {
     public static final int ESCENAMONTANAMINIBOSS=25;
     public static final int ESCENAMONTANAMINIBOSS2=26;
     public static final int ESCENAARCHI2=27;
+    public static final int ESCENAPUEBLOMONTANA=28;
+    public static final int ESCENAMONTANAPOSTBOSS=29;
+    public static final int ESCENADEYOLICAPOSTMONTANA=30;
+    public static final int ESCENACARDINAL1=31;
+    public static final int ESCENACARDINAL2=32;
+    public static final int ESCENACARDINALMINIBOSS1=33;
+    public static final int ESCENACARDINALMINIBOSS2=34;
+    public static final int ESCENACARDINALOPCIONAL=35;
+    public static final int ESCENAFINAL=36;
+    public static final int ESCENAFINALBUENO=37;
+    public static final int ESCENAFINALMALO=38;
 
 
     public static final int WIDTH = 1366;
@@ -56,13 +67,14 @@ public class VenganzaBelial extends StateBasedGame {
     public static Horacia horacia = new Horacia(atributoGestion.getInv());
     public static Mordeim mordeim = new Mordeim(atributoGestion.getInv());
     public static Kibito kibito= new Kibito(atributoGestion.getInv());
-    public static int MapaActual=1;//Cambiar a gestion
+    
     public static Horacia hori =new Horacia(atributoGestion.getInv());
     public static Mordeim mordi =new Mordeim(atributoGestion.getInv());
     public static Kibito kibi =new Kibito(atributoGestion.getInv());
     
     public static EventosNpcs eventos = new EventosNpcs();
-
+    public static Musica controlMusica;
+    //public static int MapaActual=0;//Cambiar a gestion
     
     /*Atributos de pruebas END*/
     public VenganzaBelial() {
@@ -97,6 +109,17 @@ public class VenganzaBelial extends StateBasedGame {
         addState(new EscenaMontanaMiniBoss(ESCENAMONTANAMINIBOSS));
         addState(new EscenaMontanaMiniBoss2(ESCENAMONTANAMINIBOSS2));
         addState(new EscenaArchi2(ESCENAARCHI2));
+        addState(new EscenaPuebloMontana(ESCENAPUEBLOMONTANA));
+        addState(new EscenaMontanaPostBoss(ESCENAMONTANAPOSTBOSS));
+        addState(new EscenaDeyolicaPostMontana(ESCENADEYOLICAPOSTMONTANA));
+        addState(new EscenaCardinal1(ESCENACARDINAL1));
+        addState(new EscenaCardinal2(ESCENACARDINAL2));
+        addState(new EscenaCardinalMiniBoss1(ESCENACARDINALMINIBOSS1));
+        addState(new EscenaCardinalMiniBoss2(ESCENACARDINALMINIBOSS2));
+        addState(new EscenaCardinalOpcional(ESCENACARDINALOPCIONAL));
+        addState(new EscenaFinal(ESCENAFINAL));
+        addState(new EscenaFinalBueno(ESCENAFINALBUENO));
+        addState(new EscenaFinalMalo(ESCENAFINALMALO));
         //
         this.enterState(ESTADOMENUINICIO);
     }
@@ -133,13 +156,24 @@ public class VenganzaBelial extends StateBasedGame {
         getState(ESCENAMONTANAMINIBOSS).init(gc, this);
         getState(ESCENAMONTANAMINIBOSS2).init(gc, this);
         getState(ESCENAARCHI2).init(gc, this);
+        getState(ESCENAPUEBLOMONTANA).init(gc, this);
+        getState(ESCENAMONTANAPOSTBOSS).init(gc, this);
+        getState(ESCENADEYOLICAPOSTMONTANA).init(gc, this);
+        getState(ESCENACARDINAL1).init(gc, this);
+        getState(ESCENACARDINAL2).init(gc, this);
+        getState(ESCENACARDINALMINIBOSS1).init(gc, this);
+        getState(ESCENACARDINALMINIBOSS2).init(gc, this);
+        getState(ESCENACARDINALOPCIONAL).init(gc, this);
+        getState(ESCENAFINAL).init(gc, this);
+        getState(ESCENAFINALBUENO).init(gc, this);
+        getState(ESCENAFINALMALO).init(gc, this);
     }
 
     public static void main(String[] args) throws SlickException {
         /*ATRIBUTOS DE PRUEBA*/
-        horacia.setPJ(true);
-        mordeim.setPJ(true);
-        kibito.setPJ(true);
+        //horacia.setPJ(true);
+        //mordeim.setPJ(true);
+        //kibito.setPJ(true);
         /*Party mediante Gestion*/
         atributoGestion.getJugs().add(horacia);
         atributoGestion.getJugs().add(mordeim);
@@ -152,8 +186,10 @@ public class VenganzaBelial extends StateBasedGame {
         //Edit: Pruebas de Cambio de armas/armadura con requisitos
         ArrayList<String> requisitos =new ArrayList<String>();
         requisitos.add("Mordeim");
-        arma.setRequisitoCategoria(requisitos);
+//        arma.setRequisitoCategoria(requisitos);
         /*ATRIBUTOS DE PRUEBA FIN*/
+        controlMusica= new Musica();
+        //controlMusica.loopMusica();
         AppGameContainer app = new AppGameContainer(new VenganzaBelial());
         app.setDisplayMode(WIDTH, HEIGHT, FULLSCREEN);
         app.start();

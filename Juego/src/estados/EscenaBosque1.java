@@ -61,7 +61,6 @@ public class EscenaBosque1 extends BasicGameState{
     private Image salidaEscena;
     /*Sonido*/
     private Sound sonidoSelect;
-    private Music ost;
     int time;//EDIT
     
     public EscenaBosque1(int id) {
@@ -147,6 +146,7 @@ public class EscenaBosque1 extends BasicGameState{
         switch (estado)
         {
             case 0:
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Music_Forest.wav");
                 time+=i;
                 //ost.loop(1, 0.05f);
                 if(time/1000>2)//3 segundos de ejecución
@@ -293,6 +293,7 @@ public class EscenaBosque1 extends BasicGameState{
                 linea4="";
                 break;
             case 16:
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/BattleOst.wav");
                 sbg.enterState(VenganzaBelial.ESTADOCOMBATETUT);
                 break;
 

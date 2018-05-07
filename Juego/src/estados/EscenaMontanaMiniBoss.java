@@ -58,7 +58,6 @@ public class EscenaMontanaMiniBoss extends BasicGameState{
     private Image ventanaDialogo,avatarDialogo, avatarH,avatarM, avatarK, avatarPegaso;
     /*Sonido*/
     private Sound sonidoSelect;
-    private Music battle;
     int time;//EDIT
     private TrueTypeFont texto;
     private Font letraMenu  = new Font("Arial Black", Font.PLAIN, 15); 
@@ -105,7 +104,7 @@ public class EscenaMontanaMiniBoss extends BasicGameState{
         Image[] cabStop={new Image("Imagenes/Animaciones/Sprites/pegaso8.png")};
         pegasoS=new Animation(cabStop,200);
         pegaso=pegasoV;
-        fondo= new Image("Imagenes/Escenas/EscenaBosque1/mapaBosque.png");
+        fondo= new Image("Imagenes/Escenas/EscenaMontana/Montana.png");
         /**/
         this.sheetExclamacion= new SpriteSheet("Imagenes/Animaciones/exclamacion.png",32,33);
         this.exclamacion = new Animation(sheetExclamacion,200);
@@ -125,7 +124,6 @@ public class EscenaMontanaMiniBoss extends BasicGameState{
         avatarDialogo = avatarH;
         sonidoSelect=new Sound("Musica/Efectos/select.wav");
         texto= new TrueTypeFont(letraMenu, true);
-        battle = new Music("Musica/BSO/DragonTheme.wav");
         /**/
         
     }
@@ -134,7 +132,7 @@ public class EscenaMontanaMiniBoss extends BasicGameState{
     //Muestra por pantalla
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException { 
         
-            fondo.draw(0, 0);
+            fondo.draw(-800, -932);
             
             //EDIT:Rener Mordeim
             if(reproducirExclamacion){
@@ -153,7 +151,7 @@ public class EscenaMontanaMiniBoss extends BasicGameState{
                 }
                 
             }
-            texto.drawString(1000, 0, "" + estado);
+//            texto.drawString(1000, 0, "" + estado);
     }
     @Override
     //Muestra la actualización
@@ -165,12 +163,6 @@ public class EscenaMontanaMiniBoss extends BasicGameState{
                 sonidoSelect.play(1, 0.2f);
                 time=0;
                 estado++;
-                if(estado>=7){
-                    battle.play(1, 0.2f);
-                }
-                if(estado==19){
-                        battle.stop();
-                }
                 
             }
             
@@ -340,7 +332,9 @@ public class EscenaMontanaMiniBoss extends BasicGameState{
                 break;
             case 19:
                 estado=0;
-                sbg.enterState(VenganzaBelial.ESCENAMONTANAMINIBOSS2);//EDIT:
+//                VenganzaBelial.MapaActual=15;//MINIBOSSMONTAÑA //EDIT
+                VenganzaBelial.atributoGestion.setMapaActual(15);
+                sbg.enterState(VenganzaBelial.ESTADOCOMBATE);
                 //Deberiamos entrar en estado Combate contra Pegasus
                 break;
 

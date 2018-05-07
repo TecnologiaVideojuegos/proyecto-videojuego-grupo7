@@ -58,7 +58,6 @@ public class EscenaTroyia1 extends BasicGameState{
     private Image salidaEscena;
     /*Sonido*/
     private Sound sonidoSelect;
-    private Music ost;
     int time;//EDIT
     private TrueTypeFont texto;
     private Font letraMenu  = new Font("Arial Black", Font.PLAIN, 15); 
@@ -95,7 +94,7 @@ public class EscenaTroyia1 extends BasicGameState{
         Image[] misStop={new Image("Imagenes/Animaciones/Sprites/misterio11.png")};
         misS=new Animation(misStop,200);
         mis=misU;
-        fondo= new Image("Imagenes/Escenas/EscenaPuerto/Puerto.png");
+        fondo= new Image("Imagenes/Escenas/EscenaTroyia/CiudadCatacumbas.png");
         /**/
         estado=0;
         this.input = gc.getInput();
@@ -120,7 +119,7 @@ public class EscenaTroyia1 extends BasicGameState{
     //Muestra por pantalla
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException { 
         
-            fondo.draw(0,0);
+            fondo.draw(64,-16);
             
             //EDIT:Rener Mordeim
             if(estado>=0){
@@ -131,11 +130,11 @@ public class EscenaTroyia1 extends BasicGameState{
                 renderDialogo();
                 }
                 if(estado>=7){
-                    mis.draw(posicionE.x+640, posicionE.y+500);
+                    mis.draw(posicionE.x+608, posicionE.y+500);
                 }
             }
                 
-            texto.drawString(1000, 0, "" + estado);
+//            texto.drawString(1000, 0, "" + estado);
     }
     @Override
     //Muestra la actualización
@@ -204,18 +203,16 @@ public class EscenaTroyia1 extends BasicGameState{
                 hor=horI;
                 mor=morI;
                 kib=kibI;
-                posicion.x-=0.2f*i;
-                if(posicion.x<=(-1184)){
+                posicion.x-=0.1f*i;
+                if(posicion.x<=(-576)){
                     estado++;
                 }
                 break;
             case 7:
-                time+=i;
-                if(time/1000>0.4)
-                {
-                    estado++;
-                    time=0;
-                }
+                hor=horS;
+                mor=morS;
+                kib=kibS;
+                estado++;
                 break;
             case 8:
                 posicionE.y-=0.1f*i;
@@ -241,7 +238,10 @@ public class EscenaTroyia1 extends BasicGameState{
                 break;
             case 11:
                 estado=0;
-                sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);
+                VenganzaBelial.atributoGestion.setMapaActual(3);
+                sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
+//                VenganzaBelial.MapaActual=3;
+                
                 break;
         }
     }

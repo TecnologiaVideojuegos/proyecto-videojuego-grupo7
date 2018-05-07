@@ -65,7 +65,6 @@ public class EscenaFanatico extends BasicGameState{
     private Image ventanaDialogo,avatarDialogo, avatarLider,avatarMisterio, avatarE;
     /*Sonido*/
     private Sound sonidoSelect;
-    private Music ost;
     int time;//EDIT
     private TrueTypeFont texto;
     private Font letraMenu  = new Font("Arial Black", Font.PLAIN, 15); 
@@ -166,7 +165,7 @@ public class EscenaFanatico extends BasicGameState{
                 }
             }
                 
-            texto.drawString(1000, 0, "" + estado);
+//            texto.drawString(1000, 0, "" + estado);
     }
     @Override
     //Muestra la actualización
@@ -183,6 +182,7 @@ public class EscenaFanatico extends BasicGameState{
         switch (estado)
         {
             case 0:
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/FanaticBattle.wav");
                 time+=i;
                 if(time/1000>0.4f)//
                 {
@@ -315,7 +315,10 @@ public class EscenaFanatico extends BasicGameState{
                 break;
             case 16:
                 estado=0;
-                sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);
+                VenganzaBelial.atributoGestion.setMapaActual(4);
+                sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
+//                VenganzaBelial.MapaActual=4;
+                
                 break;
         }
     }

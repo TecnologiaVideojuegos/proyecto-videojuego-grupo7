@@ -75,7 +75,6 @@ public class EscenaBosquePostBoss extends BasicGameState{
     private Image ventanaDialogo,avatarDialogo, avatarH,avatarM, avatarK, avatarDesconocido, avatarSello, narrador, fuego, arbolBoss;
     /*Sonido*/
     private Sound sonidoSelect,sonidoAtaque, sonidoSello;
-    private Music battle;
     int time=0;//EDIT
     private TrueTypeFont texto;
     private Font letraMenu  = new Font("Arial Black", Font.PLAIN, 15); 
@@ -198,9 +197,9 @@ public class EscenaBosquePostBoss extends BasicGameState{
         
         this.renderDialogo();
         
-        texto.drawString(1000, 0, "" + estado);
-        texto.drawString(1000, 50, "" + eleccionJugador);
-        texto.drawString(1000, 100, "Arbolmuerto" + arbolAsesinado);
+//        texto.drawString(1000, 0, "" + estado);
+//        texto.drawString(1000, 50, "" + eleccionJugador);
+//        texto.drawString(1000, 100, "Arbolmuerto" + arbolAsesinado);
         
     }
     @Override
@@ -218,8 +217,9 @@ public class EscenaBosquePostBoss extends BasicGameState{
         switch (estado)
         {
             case 0:
-                    time=0;
-                    estado++;
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Music_Forest.wav");
+                time=0;
+                estado++;
                 break;
             case 1:
                 avatarDialogo=this.avatarH;
@@ -650,6 +650,7 @@ public class EscenaBosquePostBoss extends BasicGameState{
                     linea4="";
                 break;
             case 39:
+                    VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Music_City.wav");
                     sbg.enterState(VenganzaBelial.ESCENAPUERTO1);
                 break;
                 
@@ -761,7 +762,7 @@ public class EscenaBosquePostBoss extends BasicGameState{
             if (eleccionJugador == i) {
                 opcionesJugadorTTF.drawString(10, i * 20 + 400, opciones[i]);
             } else {
-                opcionesJugadorTTF.drawString(10, i * 20 + 400, opciones[i], new Color(153, 204, 255));
+                opcionesJugadorTTF.drawString(10, i * 20 + 400, opciones[i], new Color(211,84,0));
             }
         }
     }/*private void renderOpcionesJugador()*/

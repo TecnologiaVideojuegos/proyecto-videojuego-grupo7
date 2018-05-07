@@ -65,7 +65,6 @@ public class EscenaPuerto2 extends BasicGameState{
     private Image salidaEscena;
     /*Sonido*/
     private Sound sonidoSelect,rugido;
-    private Music ost;
     int time;//EDIT
     private TrueTypeFont texto;
     private Font letraMenu  = new Font("Arial Black", Font.PLAIN, 15); 
@@ -98,7 +97,7 @@ public class EscenaPuerto2 extends BasicGameState{
         narE=new Animation(narEnfrente,200);
         nar=narI;
         alcalde=new Image("Imagenes/Animaciones/Sprites/alcalde8.png");
-        fondo= new Image("Imagenes/Escenas/EscenaPuerto/Puerto.png");
+        fondo= new Image("Imagenes/Escenas/EscenaPuerto/Puerto1.png");
         /**/
         this.sheetExclamacion= new SpriteSheet("Imagenes/Animaciones/puntos.png",32,33);
         this.exclamacion = new Animation(sheetExclamacion,200);
@@ -155,7 +154,7 @@ public class EscenaPuerto2 extends BasicGameState{
                 }
             }
                 
-            texto.drawString(1000, 0, "" + estado);
+//            texto.drawString(1000, 0, "" + estado);
     }
     @Override
     //Muestra la actualización
@@ -339,7 +338,8 @@ public class EscenaPuerto2 extends BasicGameState{
                 break;
             case 19:
                 estado=0;
-                sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Catacumbas.wav");
+                sbg.enterState(VenganzaBelial.ESCENATROYIA1);
                 //EDIT enlazar escena con la siguiente
                 break;
 

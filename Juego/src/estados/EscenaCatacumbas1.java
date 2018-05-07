@@ -55,7 +55,7 @@ public class EscenaCatacumbas1 extends BasicGameState{
     /*Imagenes*/
     private Image ventanaDialogo,avatarDialogo, avatarH,avatarM, avatarK, avatarCorrupto;
     /*Sonido*/
-    private Sound sonidoSelect,grito;
+    private Sound sonidoSelect;
     int time;//EDIT
     private TrueTypeFont texto;
     private Font letraMenu  = new Font("Arial Black", Font.PLAIN, 15); 
@@ -93,7 +93,7 @@ public class EscenaCatacumbas1 extends BasicGameState{
         Image[] misStop={new Image("Imagenes/Animaciones/Sprites/misterio5.png")};
         misterioA=new Animation(misStop,200);
         misterio=misterioI;
-        fondo= new Image("Imagenes/Escenas/EscenaBosque1/mapaBosque.png");
+        fondo= new Image("Imagenes/Escenas/EscenaTroyia/DungeonCatacumbas.png");
         /**/
         this.sheetExclamacion= new SpriteSheet("Imagenes/Animaciones/puntos.png",32,33);
         this.exclamacion = new Animation(sheetExclamacion,200);
@@ -111,7 +111,6 @@ public class EscenaCatacumbas1 extends BasicGameState{
         avatarCorrupto = new Image("Imagenes/Avatar/Caras/corrupted.png");
         avatarDialogo = avatarH;
         sonidoSelect=new Sound("Musica/Efectos/select.wav");
-        grito = new Sound("Musica/Efectos/Grito_corrupto.wav");
         texto= new TrueTypeFont(letraMenu, true);
         /**/
         
@@ -121,7 +120,7 @@ public class EscenaCatacumbas1 extends BasicGameState{
     //Muestra por pantalla
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException { 
         
-            fondo.draw(-1200, -160);
+            fondo.draw(-332, -480);
             
             //EDIT:Rener Mordeim
             if(reproducirExclamacion){
@@ -140,7 +139,7 @@ public class EscenaCatacumbas1 extends BasicGameState{
                     misterio.draw(posicionE.x+496, posicionE.y+32);
                 }
             }
-            texto.drawString(1000, 0, "" + estado);
+//            texto.drawString(1000, 0, "" + estado);
     }
     @Override
     //Muestra la actualización
@@ -183,7 +182,6 @@ public class EscenaCatacumbas1 extends BasicGameState{
                 linea4="";
                 break;
             case 3:
-                grito.play();
                 avatarDialogo=this.avatarCorrupto;
                 //////="////////////////////////////////////////////////////////";
                 linea1="GRRRRRRRRRRRRRRRRRRRR!!!!!!!";
@@ -192,7 +190,6 @@ public class EscenaCatacumbas1 extends BasicGameState{
                 linea4="";
                 break;
             case 4:
-                grito.stop();
                 avatarDialogo=this.avatarH;
                 linea1="Esta vivo.";
                 linea2="";
@@ -248,7 +245,10 @@ public class EscenaCatacumbas1 extends BasicGameState{
             case 11:
                 //Batalla contra dos fanáticos y corruptedknight
                 estado=0;
-                sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);//EDIT:
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/BattleOst.wav");
+//                VenganzaBelial.MapaActual=13;//MINIBOSSCATACUMBAS //EDIT
+                VenganzaBelial.atributoGestion.setMapaActual(13);
+                sbg.enterState(VenganzaBelial.ESTADOCOMBATE);
                 break;
 
         }

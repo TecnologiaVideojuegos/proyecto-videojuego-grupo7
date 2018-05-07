@@ -63,7 +63,6 @@ public class EscenaCatacumbasPreBoss extends BasicGameState{
     private Image salidaEscena;
     /*Sonido*/
     private Sound sonidoSelect;
-    private Music battle;
     int time;//EDIT
     private TrueTypeFont texto;
     private Font letraMenu  = new Font("Arial Black", Font.PLAIN, 15); 
@@ -108,7 +107,7 @@ public class EscenaCatacumbasPreBoss extends BasicGameState{
         Image[] parcaStop={new Image("Imagenes/Animaciones/Sprites/parca5.png")};
         parcaS=new Animation(parcaStop,200);
         parca=parcaI;
-        fondo= new Image("Imagenes/Escenas/EscenaBosque1/mapaBosque.png");
+        fondo= new Image("Imagenes/Escenas/EscenaTroyia/DungeonCatacumbas.png");
         /**/
         this.sheetExclamacion= new SpriteSheet("Imagenes/Animaciones/puntos.png",32,33);
         this.exclamacion = new Animation(sheetExclamacion,200);
@@ -130,7 +129,6 @@ public class EscenaCatacumbasPreBoss extends BasicGameState{
         avatarDialogo = avatarH;
         sonidoSelect=new Sound("Musica/Efectos/select.wav");
         texto= new TrueTypeFont(letraMenu, true);
-        battle = new Music("Musica/BSO/FanaticBattle.wav");
         /**/
         
     }
@@ -139,7 +137,7 @@ public class EscenaCatacumbasPreBoss extends BasicGameState{
     //Muestra por pantalla
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException { 
         
-            fondo.draw(-1800, -1184);
+            fondo.draw(-1232, -160);
             
             //EDIT:Rener Mordeim
             if(reproducirExclamacion){
@@ -161,7 +159,7 @@ public class EscenaCatacumbasPreBoss extends BasicGameState{
                 }
                 
             }
-            texto.drawString(1000, 0, "" + estado);
+//            texto.drawString(1000, 0, "" + estado);
     }
     @Override
     //Muestra la actualización
@@ -173,12 +171,6 @@ public class EscenaCatacumbasPreBoss extends BasicGameState{
                 sonidoSelect.play(1, 0.2f);
                 time=0;
                 estado++;
-                if(estado>=6){
-                    battle.play(1, 0.2f);
-                }
-                if(estado<=19){
-                        battle.stop();
-                }
                 
             }
             
@@ -226,6 +218,7 @@ public class EscenaCatacumbasPreBoss extends BasicGameState{
                 linea4="ABRAN Y VENGA NUESTRO SEÑOR BELIAL.";
                 break;
             case 5:
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/FanaticBattle.wav");
                 avatarDialogo=this.avatarM;
                 //////="////////////////////////////////////////////////////////";
                 linea1="Yo sabía que estabas loco, pero no a esos niveles.";
@@ -339,7 +332,9 @@ public class EscenaCatacumbasPreBoss extends BasicGameState{
                 break;
             case 19:
                 estado=0;
-                sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);//EDIT:
+//                VenganzaBelial.MapaActual=14;//BOSSESCATACUMBAS
+                VenganzaBelial.atributoGestion.setMapaActual(14);
+                sbg.enterState(VenganzaBelial.ESTADOCOMBATE);
                 //Deberiamos entrar en estado Combate contra los 3 Bosses
                 //Darklord, Death y fanático
                 break;

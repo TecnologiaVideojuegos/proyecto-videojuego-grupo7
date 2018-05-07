@@ -64,7 +64,6 @@ public class EscenaCarreta extends BasicGameState{
     /*Sonido*/
     private Sound sonidoSelect;
     private Sound sonidoExplosion;
-    private Music ost;
     int time;//EDIT
     
     public EscenaCarreta(int id) {
@@ -259,6 +258,7 @@ public class EscenaCarreta extends BasicGameState{
                 linea4="";
                 break;
             case 12:
+                VenganzaBelial.controlMusica.pararMusica();
                 avatarDialogo=this.avatarK;
                 //////="////////////////////////////////////////////////////////";
                 linea1="...";
@@ -358,6 +358,8 @@ public class EscenaCarreta extends BasicGameState{
                 }
                 break;
             case 25:
+                //VenganzaBelial.MapaActual=1;
+                VenganzaBelial.atributoGestion.setMapaActual(1);
                 sbg.enterState(VenganzaBelial.ESCENABOSQUE1);//EDIT:Cambio de escena
                 break;
         }

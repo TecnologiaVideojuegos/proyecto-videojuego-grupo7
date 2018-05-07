@@ -2,6 +2,12 @@
 package estados;
 
 import java.awt.Font;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -12,7 +18,9 @@ import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import otros.Gestion;
+import otros.Inventario;
 import personajes.Horacia;
+import personajes.Jugador;
 import personajes.Kibito;
 import personajes.Mordeim;
 
@@ -96,16 +104,47 @@ public class EstadoMenuInicio extends BasicGameState {
         if (input.isKeyPressed(Input.KEY_ENTER)) {
             switch (eleccionJugador) {
                 case EMPEZAR:
-                    Gestion ges = new Gestion();
-                    Horacia horacia = new Horacia(ges.getInv());
-                    Kibito kibito = new Kibito(ges.getInv());
-                    Mordeim mordeim = new Mordeim(ges.getInv());
-                    ges.getJugs().add(horacia);
-                    ges.getJugs().add(kibito);
-                    ges.getJugs().add(mordeim);
-                    ges.guardarJugadores(ges.getJugs());
+                    VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Intro_EscenaInicio.wav");
+                    ArrayList<Jugador> jugadores = new ArrayList<>();
+                    Inventario inv = new Inventario();
+                    Horacia horacia = new Horacia(inv);
+                    horacia.setPJ(true);
+                    Mordeim mordeim = new Mordeim(inv);
+                    mordeim.setPJ(true);
+                    Kibito kibito= new Kibito(inv);
+                    kibito.setPJ(true);
+                    jugadores.add(horacia);
+                    jugadores.add(mordeim);
+                    jugadores.add(kibito);
+                    VenganzaBelial.atributoGestion.setInv(inv);
+                    VenganzaBelial.atributoGestion.setJugs(jugadores);
+                    VenganzaBelial.atributoGestion.setEnem(VenganzaBelial.atributoGestion.cargarGrupoEnemigos("BaseDatos/enemigosBosque.dat"));
+                    try{
+                        FileOutputStream ostreamPar = new FileOutputStream("BaseDatos/partida.dat");
+                        ObjectOutputStream oosPar = new ObjectOutputStream(ostreamPar);
+                        oosPar.writeObject(VenganzaBelial.atributoGestion);
+                        ostreamPar.close();
+                    } catch (IOException ioe) {
+                    System.out.println("Error de IO: " + ioe.getMessage());
+                    } catch (Exception e) {
+                        System.out.println("Error: " + e.getMessage());
+                    }
+                    sbg.enterState(VenganzaBelial.ESTADOESCENAPROTOTIPO);
                     break;
                 case CARGAR:
+                    try {
+                        FileInputStream istreamPar = new FileInputStream("BaseDatos/partida.dat");
+                        ObjectInputStream oisPar = new ObjectInputStream(istreamPar);            
+                        VenganzaBelial.atributoGestion = (Gestion) oisPar.readObject();
+                        istreamPar.close();
+                    } catch (IOException ioe) {
+                        System.out.println("Error de IO: " + ioe.getMessage());
+                    } catch (ClassNotFoundException cnfe) {
+                        System.out.println("Error de clase no encontrada: " + cnfe.getMessage());
+                    } catch (Exception e) {
+                        System.out.println("Error: " + e.getMessage());
+                    }  
+                    sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
                     //heropos = fileio.loadSave();
                     //sbg.enterState(VenganzaBelial.ESTADOESCENAPROTOTIPO);//EDIT
                     //((GamePlayState)sbg.getState(IceAdventure.GAMEPLAYSTATE)).setHeroPosition(heropos);
@@ -135,7 +174,18 @@ public class EstadoMenuInicio extends BasicGameState {
                     //sbg.enterState(VenganzaBelial.ESCENATROYIAPOSTBOSS2);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENAMONTANAMINIBOSS);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENAMONTANAMINIBOSS2);//EDIT
-                    sbg.enterState(VenganzaBelial.ESCENAARCHI2);//EDIT
+                    //sbg.enterState(VenganzaBelial.ESCENAARCHI2);//EDIT
+                    //sbg.enterState(VenganzaBelial.ESCENAPUEBLOMONTANA);//EDIT
+                    //sbg.enterState(VenganzaBelial.ESCENAMONTANAPOSTBOSS);//EDIT
+                    //sbg.enterState(VenganzaBelial.ESCENADEYOLICAPOSTMONTANA);//EDIT
+                    //sbg.enterState(VenganzaBelial.ESCENACARDINAL1);//EDIT
+                    //sbg.enterState(VenganzaBelial.ESCENACARDINAL2);//EDIT
+                    //sbg.enterState(VenganzaBelial.ESCENACARDINALMINIBOSS1);//EDIT
+                    //sbg.enterState(VenganzaBelial.ESCENACARDINALMINIBOSS2);//EDIT
+                    //sbg.enterState(VenganzaBelial.ESCENACARDINALOPCIONAL);//EDIT
+                    //sbg.enterState(VenganzaBelial.ESCENAFINAL);//EDIT
+                    //sbg.enterState(VenganzaBelial.ESCENAFINALBUENO);//EDIT
+                    sbg.enterState(VenganzaBelial.ESCENAFINALMALO);//EDIT
 
                     break;
                 case PRUEBASDAVID:
@@ -145,7 +195,10 @@ public class EstadoMenuInicio extends BasicGameState {
                     //sbg.enterState(VenganzaBelial.ESTADOCOMBATETUT);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENABOSQUEPOSTBOSS);//EDIT
                     //sbg.enterState(VenganzaBelial.ESTADOTIENDA);//EDIT
-                    sbg.enterState(VenganzaBelial.ESCENABOSQUEPREBOSS);//EDIt
+                    //Pueblo MOntana=5
+                    
+                    VenganzaBelial.eventos.setControlEventos(6);
+                    sbg.enterState(VenganzaBelial.ESCENADEYOLICAPOSTMONTANA);//EDIt
                     break;
                 case PRUEBASANGEL:
                     break;

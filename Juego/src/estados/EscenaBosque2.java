@@ -68,7 +68,6 @@ public class EscenaBosque2 extends BasicGameState{
     private Image salidaEscena;
     /*Sonido*/
     private Sound sonidoSelect,rugido;
-    private Music ost;
     int time;//EDIT
     private TrueTypeFont texto;
     private Font letraMenu  = new Font("Arial Black", Font.PLAIN, 15); 
@@ -164,6 +163,7 @@ public class EscenaBosque2 extends BasicGameState{
         switch (estado)
         {
             case 0:
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Music_Forest.wav");
                 posicion.x+=0.1f*i;
                 if(posicion.x>=300){
                     estado++;

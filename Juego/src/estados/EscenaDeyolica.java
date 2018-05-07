@@ -115,7 +115,7 @@ public class EscenaDeyolica extends BasicGameState{
                 renderDialogo();
                 }
             }
-            texto.drawString(1000, 0, "" + estado);
+//            texto.drawString(1000, 0, "" + estado);
     }
     @Override
     //Muestra la actualización
@@ -173,7 +173,7 @@ public class EscenaDeyolica extends BasicGameState{
                 break;
             case 5:
                 estado=0;
-                sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);//EDIT:
+                sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);//:
                 break;
 
         }

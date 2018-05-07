@@ -315,7 +315,42 @@ public final class Combate {
                     dinerototal+=enemaux.getOro();
                 }          
                 break;
-            case 2:
+//            case 2 y 3:
+//                //No existe, enemigos por evento
+//                break;
+            case 4:
+                if (nivel <= 8)
+                    ini = 0;
+                else if (nivel <= 11)
+                    ini = 6;
+                else
+                    ini = 12;
+                 ArrayEnemigosUsado = ini + fin;
+                 regeneraEnemigos();
+                 
+                for (int i = 0; i < VenganzaBelial.atributoGestion.getEnem().get(ArrayEnemigosUsado).size(); i++) {
+                    GeneraEnemigos.add((Personaje)VenganzaBelial.atributoGestion.getEnem().get(ArrayEnemigosUsado).get(i));
+                    Enemigo enemaux=(Enemigo)GeneraEnemigos.get(i);
+                    exptotal+=enemaux.getExpAportada();
+                    dinerototal+=enemaux.getOro();
+                }     
+                break;
+            case 6:
+                if (nivel <= 16)
+                    ini = 0;
+                else if (nivel <= 18)
+                    ini = 6;
+                else
+                    ini = 12;
+                 ArrayEnemigosUsado = ini + fin;
+                 regeneraEnemigos();
+                 
+                for (int i = 0; i < VenganzaBelial.atributoGestion.getEnem().get(ArrayEnemigosUsado).size(); i++) {
+                    GeneraEnemigos.add((Personaje)VenganzaBelial.atributoGestion.getEnem().get(ArrayEnemigosUsado).get(i));
+                    Enemigo enemaux=(Enemigo)GeneraEnemigos.get(i);
+                    exptotal+=enemaux.getExpAportada();
+                    dinerototal+=enemaux.getOro();
+                }     
                 break;
             case 10://Boss del Bosque
                 BossBosque ygg= new BossBosque(0, 5, 3300, 80, 30);
@@ -328,7 +363,7 @@ public final class Combate {
                 break;
             case 11://Bandidos Puerto
                 Bandido ban1=new Bandido(1,6,300,90,40);
-                Bandido ban2= new Bandido(1,6,300,90,40);
+                Bandido ban2= new Bandido(2,6,300,90,40);
                 Bandido ban3= new Bandido(3,6,300,90,40);
                 GeneraEnemigos.add(ban1);
                 GeneraEnemigos.add(ban2);
@@ -338,7 +373,7 @@ public final class Combate {
                 break;
             case 12:
                 Bandido ban11=new Bandido(1,6,300,90,40);
-                Bandido banBoss=new Bandido(1,6,2000,90,40);
+                Bandido banBoss=new Bandido(0,6,2000,90,40);
                 banBoss.setNombre("Gran Bandido Crow");
                 Bandido ban12=new Bandido(2,6,300,90,40);
                 dinerototal=140;
@@ -346,6 +381,52 @@ public final class Combate {
                 GeneraEnemigos.add(ban11);
                 GeneraEnemigos.add(banBoss);
                 GeneraEnemigos.add(ban12);
+                break;
+            case 13:
+                Fanatico fan=new Fanatico(1,6,300,90,40);
+                //Corrupto corrup= new Corrupto(1,6,300,90,40);
+                Fanatico fan1=new Fanatico(2,6,300,90,40);
+                dinerototal=240;
+                exptotal=(int) (150+150*(new Random().nextFloat()));
+                GeneraEnemigos.add(fan);
+                //GeneraEnemigos.add(corrup);
+                GeneraEnemigos.add(fan1);
+                break;
+            case 14:
+                Fanatico fan11=new Fanatico(1,6,300,90,40);
+                //Muerte muerte= new Muerte(1,6,300,90,40);
+                //LiderFanatico fan12=new LiderFanatico(2,6,300,90,40);
+                dinerototal=240;
+                exptotal=(int) (150+150*(new Random().nextFloat()));
+                GeneraEnemigos.add(fan11);
+                //GeneraEnemigos.add(corrup);
+                //GeneraEnemigos.add(fan12);
+                break;
+            case 15:
+                //EDIT
+                Fanatico fan151=new Fanatico(1,6,300,90,40);
+                fan151.setNombre("Bellafonte");
+//                Pegaso peg=new Pegaso(1,6,300,90,40);
+                dinerototal=240;
+                exptotal=(int) (150+150*(new Random().nextFloat()));
+                GeneraEnemigos.add(fan151);
+                break;
+            case 16:
+                //EDIT
+                Fanatico fan161=new Fanatico(1,6,300,90,40);
+                fan161.setNombre("Dragón");
+//                Pegaso peg=new Pegaso(1,6,300,90,40);
+                dinerototal=240;
+                exptotal=(int) (150+150*(new Random().nextFloat()));
+                GeneraEnemigos.add(fan161);
+                break;
+            case 17:
+                Fanatico fan171=new Fanatico(1,6,300,90,40);
+                fan171.setNombre("Jinete Espectral");
+//                Pegaso peg=new Pegaso(1,6,300,90,40);
+                dinerototal=240;
+                exptotal=(int) (150+150*(new Random().nextFloat()));
+                GeneraEnemigos.add(fan171);
                 break;
         }/*switch (Mapa)*/
         this.setOroCombate(dinerototal);
