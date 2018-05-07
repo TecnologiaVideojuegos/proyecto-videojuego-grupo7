@@ -22,6 +22,7 @@ public class Heroe {
     private String linea2="";
     private String linea3="";
     private String linea4="";
+    private String linea5="";
     ///////////////////////////////////////////
     private Animation hero, movementUp, movementDown, movementLeft, movementRight, stillUp, stillDown, stillLeft, stillRight;
     private char ultimaDireccion;
@@ -269,11 +270,15 @@ public class Heroe {
             mensajePantalla.drawString((pos.x)-20+30, (pos.y)-100+30+25,linea2,new Color(255,255,255));
             mensajePantalla.drawString((pos.x)-20+30, (pos.y)-100+30+40,linea3,new Color(255,255,255));
             mensajePantalla.drawString((pos.x)-20+30, (pos.y)-100+30+55,linea4,new Color(255,255,255));
-            
+            mensajePantalla.drawString((pos.x)-20+30, (pos.y)-100+30+70,linea5,new Color(255,255,255));
         }
     }
     private void controlaEvento(Input input)
     {
+        linea1="";
+        linea2="";
+        linea3="";
+        linea4="";
         if(input.isKeyPressed(Input.KEY_ENTER))
             if(renderizarEvento)
                 renderizarEvento=false;
@@ -281,6 +286,8 @@ public class Heroe {
             linea1 = "Hola mi nombre es " + VenganzaBelial.eventos.getEvento().getNombre();
             linea2 = VenganzaBelial.eventos.getEvento().getSaludo();
             linea3 = VenganzaBelial.eventos.getEvento().getHistoria();
+            linea4="";
+            linea5="";
         }
     }
 

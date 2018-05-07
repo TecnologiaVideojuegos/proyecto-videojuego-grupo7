@@ -43,6 +43,7 @@ public class EventosNpcs {
     *1=Llegando a EscenaBosquePreBoss
     */
     private int nextEstado;
+    String medida="Para ello solo chocate ypara dejar de hablar con ellos";//Medida de la linea
     
     public EventosNpcs(){
         posicionEvento= new Vector2f(0,0);
