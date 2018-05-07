@@ -55,7 +55,7 @@ public class EscenaCatacumbas1 extends BasicGameState{
     /*Imagenes*/
     private Image ventanaDialogo,avatarDialogo, avatarH,avatarM, avatarK, avatarCorrupto;
     /*Sonido*/
-    private Sound sonidoSelect,grito;
+    private Sound sonidoSelect;
     int time;//EDIT
     private TrueTypeFont texto;
     private Font letraMenu  = new Font("Arial Black", Font.PLAIN, 15); 
@@ -111,7 +111,6 @@ public class EscenaCatacumbas1 extends BasicGameState{
         avatarCorrupto = new Image("Imagenes/Avatar/Caras/corrupted.png");
         avatarDialogo = avatarH;
         sonidoSelect=new Sound("Musica/Efectos/select.wav");
-        grito = new Sound("Musica/Efectos/Grito_corrupto.wav");
         texto= new TrueTypeFont(letraMenu, true);
         /**/
         
@@ -183,7 +182,6 @@ public class EscenaCatacumbas1 extends BasicGameState{
                 linea4="";
                 break;
             case 3:
-                grito.play();
                 avatarDialogo=this.avatarCorrupto;
                 //////="////////////////////////////////////////////////////////";
                 linea1="GRRRRRRRRRRRRRRRRRRRR!!!!!!!";
@@ -192,7 +190,6 @@ public class EscenaCatacumbas1 extends BasicGameState{
                 linea4="";
                 break;
             case 4:
-                grito.stop();
                 avatarDialogo=this.avatarH;
                 linea1="Esta vivo.";
                 linea2="";
