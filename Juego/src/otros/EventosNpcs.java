@@ -63,6 +63,7 @@ public class EventosNpcs {
         int tipo = 10;//0
         ArrayList<Item> items;
         ArrayList<String> requisitoCategoria;
+        this.controlEventos=VenganzaBelial.atributoGestion.getControlEscenas();
         switch(mapa){
             //bosque
             case MAPATUTORIAL:

@@ -31,7 +31,7 @@ public class Heroe {
     private static final int ANIMATIONSPEED = 500;
     private static final float SPEED = 0.1f;//0.1f
     private int w, h;
-    private float tasaAparicion=0.1f;//0-1(0-100%)
+    private float tasaAparicion=0.001f;//0-1(0-100%)
     private int offset=6;//Original=-4
     //EDIT
     private float aparicion=1;
@@ -122,6 +122,7 @@ public class Heroe {
         //EDIT:Pruebas
         ApareceEnemigo( gc,  sbg,  delta,  gps,  input);
         ApareceEvento( gc,  sbg,  delta,  gps,  input);
+//        VenganzaBelial.atributoGestion.setPosicionHeroe(this.pos);
     }
 
     public void render() {
@@ -130,6 +131,7 @@ public class Heroe {
         java.awt.Font letra  =new java.awt.Font("Verdana", java.awt.Font.PLAIN, 12); 
         textoDebug= new TrueTypeFont(letra,true);
         textoDebug.drawString(500, 30, "Tasa: "+this.aparicion);
+        textoDebug.drawString(pos.x, pos.y, "Poscion: "+ VenganzaBelial.atributoGestion.getControlEscenas());
         //
         hero.draw(pos.x, pos.y);
         renderEvento();
