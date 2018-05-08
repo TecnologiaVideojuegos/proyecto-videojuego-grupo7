@@ -8,6 +8,7 @@ import java.awt.Font;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
@@ -50,11 +51,15 @@ public class EstadoMenu extends BasicGameState{
     private Font letraMenu;
     private TrueTypeFont opcionesJugadorTTF,textoStatus;
     private int eleccionJugador, idEstado;
-    private Color notChosen = new Color(153, 204, 255);
+//    private Color notChosen = new Color(153, 204, 255);
+    private Color notChosen = new Color(0, 0, 0);//EDIT
     private Color amarillo = new Color(255, 255, 0);
     /*Sonido*/
     private Sound sonidoSelect, sonidoError;
-
+    /*Fondos*/
+    private Image fondoMenu,fondoInventory,fondoPersonaje,fondoPJ;
+    private Image fondoHab,fondoObj;
+    
     public EstadoMenu(int id) {
         idEstado = id;
     }
@@ -87,7 +92,12 @@ public class EstadoMenu extends BasicGameState{
         /*cARGAR sONIDO*/
         sonidoSelect=new Sound("Musica/Efectos/select.wav");
         sonidoError=new Sound("Musica/Efectos/error.wav");
-        
+        fondoMenu=new Image("Imagenes/Fondos/Inventory.png");
+        fondoInventory=new Image("Imagenes/Fondos/Book.png");
+        fondoPersonaje=new Image("Imagenes/Fondos/Gates.png");
+        fondoPJ = new Image("Imagenes/Fondos/Fountain.png");
+        fondoHab = new Image("Imagenes/Fondos/Crystal.png");
+        fondoObj = new Image("Imagenes/Fondos/Plain.png");
         
     }/*init*/
 
@@ -97,16 +107,20 @@ public class EstadoMenu extends BasicGameState{
         switch(estado)
         {
             case MENUBASE:
+                fondoMenu.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
                 renderOpcionesJugador();
                 break;
             case SELPERSONAJE:
+                fondoPersonaje.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
                 renderSelPersonaje();
                 break;
             case MENUPJ:
+                fondoPJ.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
                 renderMenuPJ();
                 renderStatusPJ();
                 break;
             case MENUINVENTARIO:
+                fondoInventory.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
                 renderInventario();
                 break;
             case GUARDANDO:
@@ -123,9 +137,11 @@ public class EstadoMenu extends BasicGameState{
                 renderCambioEquipo();
                 break;
             case SELHABILIDAD:
+                fondoHab.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
                 renderHabilidades();
                 break;
             case SELOBJETIVO:
+                fondoObj.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
                 renderSelPersonaje();
                 break;
         }/*switch*/
@@ -465,15 +481,18 @@ public class EstadoMenu extends BasicGameState{
         }
     }
     
-    private void renderSelPersonaje()
+    private void renderSelPersonaje() throws SlickException
     {
         int offsetX=1000;
         int offsetY=50;
         String nombre= "";
+        Image fondo;
         for(int i=0; i<3;i++)
         {
            nombre=VenganzaBelial.atributoGestion.getJugs().get(i).getNombre();
            if (eleccionJugador == i) {
+                fondo = new Image("Imagenes/Fondos/" + nombre +".png");
+                fondo.draw(500, 0);
                 opcionesJugadorTTF.drawString(100, i * 50 + 200,nombre );
             } else {
                 opcionesJugadorTTF.drawString(100, i * 50 + 200, nombre, notChosen);
