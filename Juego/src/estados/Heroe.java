@@ -127,11 +127,11 @@ public class Heroe {
 
     public void render() {
         //EDIT:Debug Param
-        TrueTypeFont textoDebug;
-        java.awt.Font letra  =new java.awt.Font("Verdana", java.awt.Font.PLAIN, 12); 
-        textoDebug= new TrueTypeFont(letra,true);
-        textoDebug.drawString(500, 30, "Tasa: "+this.aparicion);
-        textoDebug.drawString(pos.x, pos.y, "Poscion: "+ VenganzaBelial.atributoGestion.getControlEscenas());
+//        TrueTypeFont textoDebug;
+//        java.awt.Font letra  =new java.awt.Font("Verdana", java.awt.Font.PLAIN, 12); 
+//        textoDebug= new TrueTypeFont(letra,true);
+//        textoDebug.drawString(500, 30, "Tasa: "+this.aparicion);
+//        textoDebug.drawString(pos.x, pos.y, "Poscion: "+ VenganzaBelial.atributoGestion.getControlEscenas());
         //
         hero.draw(pos.x, pos.y);
         renderEvento();

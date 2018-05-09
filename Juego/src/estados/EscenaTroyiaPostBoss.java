@@ -487,10 +487,12 @@ public class EscenaTroyiaPostBoss extends BasicGameState{
         mensajePantalla.drawString(160, 670,linea4);
     }
     
-    private void renderOpcionesJugador()
+    private void renderOpcionesJugador() throws SlickException
     {
         Font letra = new Font("Verdana", Font.ROMAN_BASELINE, 25);
         TrueTypeFont opcionesJugadorTTF = new TrueTypeFont(letra, true);
+        Image fondoDecision= new Image("Imagenes/Avatar/decisionFondo.png");
+        fondoDecision.draw(-50, 380, 750, 150);
         for (int i = 0; i < 4; i++) 
         {
             if (eleccionJugador == i) {

@@ -147,6 +147,7 @@ public class EstadoMenuInicio extends BasicGameState {
                     } catch (Exception e) {
                         System.out.println("Error: " + e.getMessage());
                     }  
+                    VenganzaBelial.controlMusica.cambiaMusicaMapa(VenganzaBelial.atributoGestion.getMapaActual());
                     sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
                     //heropos = fileio.loadSave();
                     //sbg.enterState(VenganzaBelial.ESTADOESCENAPROTOTIPO);//EDIT
@@ -196,12 +197,15 @@ public class EstadoMenuInicio extends BasicGameState {
                     //sbg.enterState(VenganzaBelial.ESTADOMENU);//EDIT
                     //sbg.enterState(VenganzaBelial.ESTADOCOMBATE);//EDIT
                     //sbg.enterState(VenganzaBelial.ESTADOCOMBATETUT);//EDIT
-                    //sbg.enterState(VenganzaBelial.ESCENABOSQUEPOSTBOSS);//EDIT
+//                    sbg.enterState(VenganzaBelial.ESCENATROYIAPOSTBOSS);
+                    sbg.enterState(VenganzaBelial.ESCENAMONTANAPOSTBOSS);
+//                    sbg.enterState(VenganzaBelial.ESCENAFINAL);
+//                    sbg.enterState(VenganzaBelial.ESCENABOSQUEPOSTBOSS);//EDIT
                     //sbg.enterState(VenganzaBelial.ESTADOTIENDA);//EDIT
                     //Pueblo MOntana=5
                     
-                    VenganzaBelial.eventos.setControlEventos(6);
-                    sbg.enterState(VenganzaBelial.ESCENADEYOLICAPOSTMONTANA);//EDIt
+//                    VenganzaBelial.eventos.setControlEventos(6);
+//                    sbg.enterState(VenganzaBelial.ESCENADEYOLICAPOSTMONTANA);//EDIt
                     break;
                 case PRUEBASANGEL:
                     break;

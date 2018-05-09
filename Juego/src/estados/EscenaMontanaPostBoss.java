@@ -417,16 +417,18 @@ public class EscenaMontanaPostBoss extends BasicGameState{
         }
     }
     
-    private void renderOpcionesJugador()
+    private void renderOpcionesJugador() throws SlickException
     {
         Font letra = new Font("Verdana", Font.ROMAN_BASELINE, 25);
         TrueTypeFont opcionesJugadorTTF = new TrueTypeFont(letra, true);
+        Image fondoDecision= new Image("Imagenes/Avatar/decisionFondo.png");
+        fondoDecision.draw(-50, 380, 850, 150);
         for (int i = 0; i < 4; i++) 
         {
             if (eleccionJugador == i) {
                 opcionesJugadorTTF.drawString(10, i * 20 + 400, opciones[i]);
             } else {
-                opcionesJugadorTTF.drawString(10, i * 20 + 400, opciones[i], new Color(211,84,0));
+                opcionesJugadorTTF.drawString(10, i * 20 + 400, opciones[i], new Color(153, 204, 255));
             }
         }
     }
