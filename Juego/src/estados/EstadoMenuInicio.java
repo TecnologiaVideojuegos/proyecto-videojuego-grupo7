@@ -120,18 +120,18 @@ public class EstadoMenuInicio extends BasicGameState {
                     VenganzaBelial.atributoGestion.setInv(inv);
                     VenganzaBelial.atributoGestion.setJugs(jugadores);
                     VenganzaBelial.atributoGestion.setEnem(VenganzaBelial.atributoGestion.cargarGrupoEnemigos("BaseDatos/enemigosBosque.dat"));
-                    try{
-                        File file = new File("BaseDatos/partida.dat");
-                        file.delete();
-                        FileOutputStream ostreamPar = new FileOutputStream("BaseDatos/partida.dat");
-                        ObjectOutputStream oosPar = new ObjectOutputStream(ostreamPar);
-                        oosPar.writeObject(VenganzaBelial.atributoGestion);
-                        ostreamPar.close();
-                    } catch (IOException ioe) {
-                    System.out.println("Error de IO: " + ioe.getMessage());
-                    } catch (Exception e) {
-                        System.out.println("Error: " + e.getMessage());
-                    }
+//                    try{
+//                        File file = new File("BaseDatos/partida.dat");
+//                        file.delete();
+//                        FileOutputStream ostreamPar = new FileOutputStream("BaseDatos/partida.dat");
+//                        ObjectOutputStream oosPar = new ObjectOutputStream(ostreamPar);
+//                        oosPar.writeObject(VenganzaBelial.atributoGestion);
+//                        ostreamPar.close();
+//                    } catch (IOException ioe) {
+//                    System.out.println("Error de IO: " + ioe.getMessage());
+//                    } catch (Exception e) {
+//                        System.out.println("Error: " + e.getMessage());
+//                    }
                     sbg.enterState(VenganzaBelial.ESTADOESCENAPROTOTIPO);
                     break;
                 case CARGAR:

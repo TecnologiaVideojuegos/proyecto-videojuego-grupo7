@@ -58,13 +58,13 @@ public class EstadoMenu extends BasicGameState{
     private Font letraMenu;
     private TrueTypeFont opcionesJugadorTTF,textoStatus;
     private int eleccionJugador, idEstado;
-//    private Color notChosen = new Color(153, 204, 255);
-    private Color notChosen = new Color(0, 0, 0);//EDIT
+   private Color notChosen = new Color(153, 204, 255);
+    //private Color notChosen = new Color(0, 0, 0);//EDIT
     private Color amarillo = new Color(255, 255, 0);
     /*Sonido*/
     private Sound sonidoSelect, sonidoError;
     /*Fondos*/
-    private Image fondoMenu,fondoInventory,fondoPersonaje,fondoPJ;
+    private Image fondoMenu;//,fondoInventory,fondoPersonaje,fondoPJ;
     private Image fondoHab,fondoObj,fondoArm;
     
     public EstadoMenu(int id) {
@@ -99,36 +99,37 @@ public class EstadoMenu extends BasicGameState{
         /*cARGAR sONIDO*/
         sonidoSelect=new Sound("Musica/Efectos/select.wav");
         sonidoError=new Sound("Musica/Efectos/error.wav");
-        fondoMenu=new Image("Imagenes/Fondos/Inventory.png");
-        fondoInventory=new Image("Imagenes/Fondos/Book.png");
-        fondoPersonaje=new Image("Imagenes/Fondos/Gates.png");
-        fondoPJ = new Image("Imagenes/Fondos/Fountain.png");
-        fondoHab = new Image("Imagenes/Fondos/Crystal.png");
-        fondoObj = new Image("Imagenes/Fondos/Plain.png");
-        fondoArm = new Image("Imagenes/Fondos/Sword.png");
+//        fondoMenu=new Image("Imagenes/Fondos/Inventory.png");
+//        fondoInventory=new Image("Imagenes/Fondos/Book.png");
+//        fondoPersonaje=new Image("Imagenes/Fondos/Gates.png");
+//        fondoPJ = new Image("Imagenes/Fondos/Fountain.png");
+//        fondoHab = new Image("Imagenes/Fondos/Crystal.png");
+//        fondoObj = new Image("Imagenes/Fondos/Plain.png");
+//        fondoArm = new Image("Imagenes/Fondos/Sword.png");
+        fondoMenu=new Image("Imagenes/Fondos/fondoMenu.png");
         
     }/*init*/
 
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException 
     {
+        fondoMenu.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
         switch(estado)
         {
             case MENUBASE:
-                fondoMenu.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
                 renderOpcionesJugador();
                 break;
             case SELPERSONAJE:
-                fondoPersonaje.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
+//                fondoPersonaje.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
                 renderSelPersonaje();
                 break;
             case MENUPJ:
-                fondoPJ.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
+//                fondoPJ.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
                 renderMenuPJ();
                 renderStatusPJ();
                 break;
             case MENUINVENTARIO:
-                fondoInventory.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
+//                fondoInventory.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
                 renderInventario();
                 break;
             case GUARDANDO:
@@ -138,20 +139,20 @@ public class EstadoMenu extends BasicGameState{
                 renderCargando();
                 break;
             case CAMBIARARMA:
-                fondoArm.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
+//                fondoArm.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
                 //renderInventario();
                 renderCambioEquipo();
                 break;
             case CAMBIARARMADURA:
-                fondoArm.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
+//                fondoArm.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
                 renderCambioEquipo();
                 break;
             case SELHABILIDAD:
-                fondoHab.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
+//                fondoHab.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
                 renderHabilidades();
                 break;
             case SELOBJETIVO:
-                fondoObj.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
+//                fondoObj.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
                 renderSelPersonaje();
                 break;
         }/*switch*/
@@ -638,8 +639,13 @@ public class EstadoMenu extends BasicGameState{
             else
                 opcionesJugadorTTF.drawString(100,i*50+100,"---");
         }
-        /*Render Descripcion de Habilidad Bajo Seleccion*/
+        /*Render Descripcion de Objeto Bajo Seleccion*/
         this.textoStatus.drawString(800, 100, inven.getItems().get(eleccionJugador).getDescripcion());
+        if(inven.getItems().get(eleccionJugador).getTipoItem()!=0)//Consumible=0/Arma=1//Armadura=2
+        {
+            this.textoStatus.drawString(800, 120, "Requ. Nivel: "+inven.getItems().get(eleccionJugador).getRequisitoNivel());
+            this.textoStatus.drawString(800, 140, "Usable por: "+inven.getItems().get(eleccionJugador).getRequisitoCategoria().get(0));
+        }
         //
         textoStatus.drawString(650, 0, "Inventario");
         textoStatus.drawString(100, 50, "Dinero: "+VenganzaBelial.atributoGestion.getInv().getDinero(), amarillo);
@@ -652,12 +658,12 @@ public class EstadoMenu extends BasicGameState{
         if(eleccionJugador==0)
             opcionesJugadorTTF.drawString(560,350,"SÍ");
         else
-          opcionesJugadorTTF.drawString(560,350,"SÍ", notChosen);
+          opcionesJugadorTTF.drawString(560,350,"SÍ", new Color(153, 204, 255));
         
         if(eleccionJugador==1)
             opcionesJugadorTTF.drawString(560,380,"NO");
         else
-          opcionesJugadorTTF.drawString(560,380,"NO", notChosen);
+          opcionesJugadorTTF.drawString(560,380,"NO", new Color(153, 204, 255));
     }
     private void renderCargando()
     {
@@ -666,12 +672,12 @@ public class EstadoMenu extends BasicGameState{
         if(eleccionJugador==0)
             opcionesJugadorTTF.drawString(560,350,"SÍ");
         else
-          opcionesJugadorTTF.drawString(560,350,"SÍ", notChosen);
+          opcionesJugadorTTF.drawString(560,350,"SÍ", new Color(153, 204, 255));
         
         if(eleccionJugador==1)
             opcionesJugadorTTF.drawString(560,380,"NO");
         else
-          opcionesJugadorTTF.drawString(560,380,"NO", notChosen);
+          opcionesJugadorTTF.drawString(560,380,"NO", new Color(153, 204, 255));
     }
     
     
