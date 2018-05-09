@@ -65,7 +65,7 @@ public class EstadoMenu extends BasicGameState{
     private Sound sonidoSelect, sonidoError;
     /*Fondos*/
     private Image fondoMenu,fondoInventory,fondoPersonaje,fondoPJ;
-    private Image fondoHab,fondoObj;
+    private Image fondoHab,fondoObj,fondoArm;
     
     public EstadoMenu(int id) {
         idEstado = id;
@@ -105,6 +105,7 @@ public class EstadoMenu extends BasicGameState{
         fondoPJ = new Image("Imagenes/Fondos/Fountain.png");
         fondoHab = new Image("Imagenes/Fondos/Crystal.png");
         fondoObj = new Image("Imagenes/Fondos/Plain.png");
+        fondoArm = new Image("Imagenes/Fondos/Sword.png");
         
     }/*init*/
 
@@ -137,10 +138,12 @@ public class EstadoMenu extends BasicGameState{
                 renderCargando();
                 break;
             case CAMBIARARMA:
+                fondoArm.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
                 //renderInventario();
                 renderCambioEquipo();
                 break;
             case CAMBIARARMADURA:
+                fondoArm.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
                 renderCambioEquipo();
                 break;
             case SELHABILIDAD:

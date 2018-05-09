@@ -290,7 +290,7 @@ public class EscenaFinalMalo extends BasicGameState{
             case 11:
                 avatarDialogo=this.avatarH;
                 //////="////////////////////////////////////////////////////////";
-                linea1="F de 'Fracasados'.";
+                linea1="...";
                 linea2="";
                 linea3="";
                 linea4="";
