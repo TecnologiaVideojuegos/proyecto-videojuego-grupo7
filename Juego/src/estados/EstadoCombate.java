@@ -750,8 +750,8 @@ public class EstadoCombate extends BasicGameState{
                 sbg.enterState(VenganzaBelial.ESCENAMONTANAPOSTBOSS);
                 break;
             case 17:
-                VenganzaBelial.atributoGestion.setMapaActual(7);
-                sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
+                //VenganzaBelial.atributoGestion.setMapaActual(7);
+                sbg.enterState(VenganzaBelial.ESCENACARDINALMINIBOSS2);
                 break;
             case 18:
                 break;

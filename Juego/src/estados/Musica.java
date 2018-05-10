@@ -12,7 +12,7 @@ public class Musica {
 
     public Musica() throws SlickException {
         //Musica de inicio
-        music= new Music("Musica/BSO/Archi.wav");
+        music= new Music("Musica/BSO/Intro_EscenaInicio.wav");
     }
     
     public void pararMusica()
@@ -44,6 +44,7 @@ public class Musica {
                 music= new Music("Musica/BSO/Music_Forest.wav");
                 break;
             case 2:
+                music= new Music("Musica/BSO/Music_City.wav");
                 break;
             case 3:
                 music= new Music("Musica/BSO/Catacumbas.wav");
@@ -52,8 +53,10 @@ public class Musica {
                 music= new Music("Musica/BSO/Catacumbas.wav");
                 break;
             case 5:
+                music= new Music("Musica/BSO/Music_City.wav");
                 break;
             case 6:
+                music= new Music("Musica/BSO/Montana.wav");
                 break;
             case 7:
                 music= new Music("Musica/BSO/Cardinal.wav");
