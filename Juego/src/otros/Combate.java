@@ -421,12 +421,26 @@ public final class Combate {
                 GeneraEnemigos.add(fan161);
                 break;
             case 17:
-                Fanatico fan171=new Fanatico(1,6,300,90,40);
+                Fanatico fan171=new Fanatico(1,23,15000,450,160);
                 fan171.setNombre("Jinete Espectral");
 //                Pegaso peg=new Pegaso(1,6,300,90,40);
                 dinerototal=240;
                 exptotal=(int) (150+150*(new Random().nextFloat()));
                 GeneraEnemigos.add(fan171);
+                break;
+            case 18:
+                Archi Archi = new Archi(1,25,20000,400,200);
+                Archi.setNombre("Archi");
+                dinerototal=10000;
+                exptotal=(int) (150+150*(new Random().nextFloat()));
+                GeneraEnemigos.add(Archi);
+                break;
+            case 19:
+                Belial Belial = new Belial(1,25,20000,100,100);
+                Belial.setNombre("Belial");
+                dinerototal=10000;
+                exptotal=(int) (150+150*(new Random().nextFloat()));
+                GeneraEnemigos.add(Belial);
                 break;
         }/*switch (Mapa)*/
         this.setOroCombate(dinerototal);

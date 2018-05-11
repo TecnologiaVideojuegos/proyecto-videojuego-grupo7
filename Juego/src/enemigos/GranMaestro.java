@@ -7,7 +7,7 @@ import personajes.Jugador;
 public final class GranMaestro extends Enemigo{
     private ArrayList<Habilidad> habilidades;
     private static final long serialVersionUID = 4L;
-    private int danoEspadazo = (int) (GranMaestro.super.getAtaque()*1.3);
+    
     
     public GranMaestro(int id, int nivel, int hp, int ataque, int defensa) {
         super(id, nivel, hp, ataque, defensa); 
@@ -17,6 +17,7 @@ public final class GranMaestro extends Enemigo{
     
     @Override
     public void inicializarEnemigo(){
+        int danoEspadazo = (int) (this.getAtaque()*1.3);
         Random rand = new Random();
         this.setNombre("LiderFanatico");
         habilidades = new ArrayList<>();

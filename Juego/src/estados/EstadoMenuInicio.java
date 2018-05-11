@@ -189,7 +189,7 @@ public class EstadoMenuInicio extends BasicGameState {
                     //sbg.enterState(VenganzaBelial.ESCENACARDINALOPCIONAL);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENAFINAL);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENAFINALBUENO);//EDIT
-                    //sbg.enterState(VenganzaBelial.ESCENAFINALMALO);//EDIT
+                    sbg.enterState(VenganzaBelial.ESCENAFINALMALO);//EDIT
 
                     break;
                 case PRUEBASDAVID:
@@ -215,9 +215,9 @@ public class EstadoMenuInicio extends BasicGameState {
                     } catch (Exception e) {
                         System.out.println("Error: " + e.getMessage());
                     }  
-                    VenganzaBelial.atributoGestion.setMapaActual(4);
-                    VenganzaBelial.atributoGestion.setControlEscenas(4);
-                    sbg.enterState(VenganzaBelial.ESCENACATACUMBASPREBOSS);//EDIt
+                    VenganzaBelial.atributoGestion.setMapaActual(19);
+                    VenganzaBelial.atributoGestion.setControlEscenas(7);
+                    sbg.enterState(VenganzaBelial.ESCENAFINAL);//EDIt
                     break;
                 case PRUEBASANGEL:
                     break;

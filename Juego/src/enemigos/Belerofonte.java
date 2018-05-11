@@ -5,13 +5,13 @@ import java.util.Random;
 import otros.Habilidad;
 import personajes.Jugador;
 
-public final class Artorias extends Enemigo {
+public final class Belerofonte extends Enemigo {
 
     private ArrayList<Habilidad> habilidades;
     private static final long serialVersionUID = 4L;
     
 
-    public Artorias(int id, int nivel, int hp, int ataque, int defensa) {
+    public Belerofonte(int id, int nivel, int hp, int ataque, int defensa) {
         super(id, nivel, hp, ataque, defensa);
         inicializarEnemigo();
     }
@@ -21,11 +21,11 @@ public final class Artorias extends Enemigo {
     public void inicializarEnemigo() {
         int danoEspadazo = (int) (this.getAtaque() * 1.3);
         Random rand = new Random();
-        this.setNombre("Artorias");
+        this.setNombre("Belerofonte");
         habilidades = new ArrayList<>();
-        Habilidad hab1 = new Habilidad("Espadazo maldito", 1, danoEspadazo, 0, "Blande su espada con fuerza", 2);
+        Habilidad hab1 = new Habilidad("Estocada Justa", 1, danoEspadazo, 0, "Ataca con su lanza a", 2);
         habilidades.add(hab1);
-        Habilidad hab2 = new Habilidad("Corrupcion", 1, 0, 0, "Maldice a todos los enemigos", 4);
+        Habilidad hab2 = new Habilidad("Multiestocada", 1, 600, 0, "Golpea a todos los enemigos", 4);
         habilidades.add(hab2);
         this.setHabilidad(habilidades);
         this.setOro(200);
@@ -38,10 +38,9 @@ public final class Artorias extends Enemigo {
     public String estrategiaAtacar(ArrayList<Jugador> jugadores) {
         String msg="";
         Random rand = new Random();
-        float probHab = rand.nextFloat();
         int at = this.getAtaque();
         int danyo, total, danyoInflingido;
-        boolean habilidad = false;
+        boolean habilidad;
         int indice;
         ArrayList<Jugador> jugadoresAux = new ArrayList<>();
 
