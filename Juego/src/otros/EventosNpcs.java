@@ -128,7 +128,7 @@ public class EventosNpcs {
                 }
                 //Evento con algo de historia opcional pa rellenar zona mapa opcional
                 else if(x == 81 && y == 38){
-                    evento = new Evento("Parece estar muerto","Malditas setas alucinógenas","","",""
+                    evento = new Evento("Estoy en la droga...","Malditas setas alucinógenas","","",""
                     , "Setillo");
                     tipo = 0;
                 }
@@ -173,7 +173,7 @@ public class EventosNpcs {
                 }
                 //EDIT:Pruebas
                 else if(x==3 && y==6){
-                    evento = new Evento("No soy parte del la historia colega","Aqui estoy para tu pruebas","recuerda eliminarme despues","","", "Tripi"); 
+                    evento = new Evento("No soy parte del la historia colega","Aqui estoy para las pruebas de los programadores","recuerda eliminarme despues","","", "Tripi"); 
                     tipo = 0;
                 }
                 break;

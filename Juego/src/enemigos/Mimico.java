@@ -3,7 +3,6 @@ package enemigos;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
-import org.newdawn.slick.SlickException;
 import otros.Habilidad;
 import personajes.Jugador;
 

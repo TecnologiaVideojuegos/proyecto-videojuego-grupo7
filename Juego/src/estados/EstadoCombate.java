@@ -140,8 +140,9 @@ public class EstadoCombate extends BasicGameState{
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException 
     {
-        renderAvatars();
         renderEnemigos();
+        renderAvatars();
+        
         /*Switch Case para visualizar opciones en funcion del estado*/
         switch (Estado)
             

@@ -6,44 +6,44 @@ import java.util.Random;
 import otros.Habilidad;
 import personajes.Jugador;
 
-public final class Soldado extends Enemigo implements Serializable{
+public final class Caronte extends Enemigo implements Serializable{
     private ArrayList<Habilidad> habilidades;
     private static final long serialVersionUID = 4L;
     
-    public Soldado(int id, int nivel, int hp, int ataque, int defensa) {
+    public Caronte(int id, int nivel, int hp, int ataque, int defensa) {
         super(id, nivel, hp, ataque, defensa); 
+
         inicializarEnemigo();
     }
     
     @Override
     public void inicializarEnemigo(){
-        this.setNombre("Soldado");
-        habilidades = new ArrayList<>();  
-        Habilidad hab = new Habilidad("Ataque infernal", 1, 70, 0, "Ataque infernal contra aliado", 2);
-        habilidades.add(hab);
+        this.setNombre("Mimico");
+        habilidades = new ArrayList<>();
         this.setHabilidad(habilidades);
         this.setOro(this.getNivel() * 3);
         this.setExpAportada(this.getNivel() * 5);
-        this.setVelocidad(10);
+        this.setVelocidad(12);
         this.setHpActual(this.getHp());    
+        //this.setImagen("Imagenes/Monstruos/Bosque/Rata.png");
     }
 
     @Override
     public String estrategiaAtacar(ArrayList<Jugador> jugadores) {
-        //Ataca aleatorio
+        //Ataca aleatorio y quita 1 o lo mata directamente
         String msg;
         Random rand = new Random();
         float probHab = rand.nextFloat();
         int at = this.getAtaque();
-        int danyo, total, indice, danyoInflingido;
+        int indice, danyoInfligido;
         boolean habilidad = false;
         ArrayList<Jugador> jugadoresAux = new ArrayList<>();
         
-        if (probHab > 0.9){
+        if (probHab > 0.95){
             at += this.getHabilidad().get(0).getDanyo();
             habilidad = true;
         }
-
+        
         for (int i = 0; i < jugadores.size(); i++) {
             if (jugadores.get(i).estaVivo())
                 jugadoresAux.add(jugadores.get(i));
@@ -52,20 +52,21 @@ public final class Soldado extends Enemigo implements Serializable{
         //Indice aleatorio de los que estan vivos
         indice = rand.nextInt(jugadoresAux.size());
 
-        danyo = at - jugadoresAux.get(indice).getDefensa();
-
-        if (danyo > 0)
-            total = danyo;
+        if(habilidad)
+            danyoInfligido = jugadores.get(indice).getHpActual();
         else
-            total = 1;
+            danyoInfligido = 1;
         
-        danyoInflingido = jugadoresAux.get(indice).getHpActual() - total;
-        if(danyoInflingido < 0)
-            jugadoresAux.get(indice).setHpActual(0);
+        
+        if((jugadores.get(indice).getHpActual() - danyoInfligido)  <= 0)
+            jugadores.get(indice).setHpActual(0);
         else
-            jugadoresAux.get(indice).setHpActual(danyoInflingido);   
+            jugadores.get(indice).setHpActual(danyoInfligido); 
         
-        msg = this.escribirMensaje(habilidad, this.getHabilidad().get(0), jugadoresAux.get(indice), total);
+        
+        jugadores.get(indice).setHpActual(danyoInfligido);
+        
+        msg = this.escribirMensaje(habilidad, this.getHabilidad().get(0), jugadores.get(indice), danyoInfligido);
         return msg;
     }
 }

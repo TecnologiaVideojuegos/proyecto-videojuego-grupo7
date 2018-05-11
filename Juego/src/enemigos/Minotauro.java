@@ -26,7 +26,6 @@ public final class Minotauro extends Enemigo implements Serializable{
         this.setExpAportada(this.getNivel() * 5);
         this.setVelocidad(11);
         this.setHpActual(this.getHp());    
-        //this.setImagen("Imagenes/Monstruos/Bosque/Rata.png");
     }
 
     @Override
