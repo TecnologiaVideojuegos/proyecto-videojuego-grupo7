@@ -140,6 +140,7 @@ public class EstadoCombate extends BasicGameState{
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException 
     {
+        fondo.draw(0, 0, 1366, 768);
         renderEnemigos();
         renderAvatars();
         
@@ -266,6 +267,9 @@ public class EstadoCombate extends BasicGameState{
                 for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
                     if(NewCombate.getEnemigos().get(j).getNombre().equals("Fanatico"))
                         NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Catacumbas/Fanatic.png");
+                    else if(NewCombate.getEnemigos().get(j).getNombre().equals("Artorias")){
+                        NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Catacumbas/corruptedknight.png");
+                    }
                 }
             }
             if(VenganzaBelial.atributoGestion.getMapaActual()==14)//Bandidos Normales
@@ -530,7 +534,7 @@ public class EstadoCombate extends BasicGameState{
             Jugador pj= (Jugador)NewCombate.getOrdenPersonajes().get(IndiceTurno);
             /*EDIT: Cambiar Mensaje Sistema*/
             this.mensajeSistema=(pj.getNombre()+" ha utilizado "+pj.getHabilidades().get(habilidadSeleccionada).getNombre());
-            //Ejecutar habilidad con el pj correcpondiente sobre el Objetivo designado
+            //Ejecutar habilidad con el pj uecpondiente sobre el Objetivo designado
             pj.usarHabilidad(this.habilidadSeleccionada, NewCombate.getEnemigos().get(eleccionJugador));
             //pj.getHabilidades().get(this.habilidadSeleccionada).usarHabilidad(pj, NewCombate.getEnemigos().get(eleccionJugador));
             eleccionJugador=0;
@@ -868,7 +872,6 @@ public class EstadoCombate extends BasicGameState{
             /*EDIT:Imagenes de los personajes*/
             
             
-            fondo.draw(0, 0, 1366, 768);
             /*EDIT END*/
             /*Horacia status update*/
             //if(VenganzaBelial.horacia.estaVivo()){
