@@ -51,7 +51,7 @@ public final class Horacia extends Jugador{
     @Override
     public void setearHabilidades(){
         Habilidad[] habs = new Habilidad[5];
-        habs[0] = new Habilidad("Bendición de Cardinal", 1, 5, 5, "La bendición de Cardinal cura las heridas de un aliado", 0);
+        habs[0] = new Habilidad("Bendición de Cardinal", 1, 5, 6, "La bendición de Cardinal cura las heridas de un aliado", 0);
         habs[1] = new Habilidad("Embestida", 5, 1.5f, 5, "Embestida potente contra un objetivo", 2);
         habs[2] = new Habilidad("Apalear", 10, 1.75f, 7, "Apalea a un objetivo", 2);
         habs[3] = new Habilidad("Ira salvaje", 15, 1.5f, 5, "Habilidad multiobjetivo", 4);
@@ -67,7 +67,7 @@ public final class Horacia extends Jugador{
         this.setHp((this.getHp()+100));
         this.setDefensaBase((this.getDefensaBase()+15));
         this.setDefensa(this.getDefensaBase() + this.getArmadura().getDefensa());
-        this.setAtaqueBase((this.getAtaque()+10));
+        this.setAtaqueBase((this.getAtaqueBase()+10));
         this.setAtaque(this.getAtaqueBase() + this.getArma().getDanyo());
         this.setMp((this.getMp()+20));
     }

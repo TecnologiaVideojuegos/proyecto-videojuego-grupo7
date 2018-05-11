@@ -48,7 +48,7 @@ public final class Mordeim extends Jugador{
     @Override
     public void setearHabilidades(){
         Habilidad[] habs = new Habilidad[5];
-        habs[0] = new Habilidad("Puñalada trapera", 1, 40, 3, "Apuñala al objetivo por la espalda", 2);
+        habs[0] = new Habilidad("Puñalada trapera", 1, 1.3f, 7, "Apuñala al objetivo por la espalda", 2);
         habs[1] = new Habilidad("Saqueo", 5, 30, 7, "(Pasiva) Al finalizar el combate genera más ganancias", 5);//Posible Pasiva
         habs[2] = new Habilidad("Lo tuyo es mio", 10, 1.1f, 6, "Roba vida al enemigo", 3);
         habs[3] = new Habilidad("Pirotecnia", 15, 2, 10, "Lanza fuegos artifiales contra los enemigos", 4);
@@ -63,7 +63,7 @@ public final class Mordeim extends Jugador{
         this.setHp((this.getHp()+60));
         this.setDefensaBase((this.getDefensaBase()+10));
         this.setDefensa(this.getDefensaBase() + this.getArmadura().getDefensa());
-        this.setAtaqueBase((this.getAtaque()+25));
+        this.setAtaqueBase((this.getAtaqueBase()+25));
         this.setAtaque(this.getAtaqueBase() + this.getArma().getDanyo());
         this.setMp((this.getMp()+40));
     }

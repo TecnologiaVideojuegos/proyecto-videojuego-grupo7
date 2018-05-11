@@ -165,7 +165,7 @@ public class EstadoMenuInicio extends BasicGameState {
                     //sbg.enterState(VenganzaBelial.ESCENABOSQUE2);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENABOSQUEPREBOSS);//EDIt
                     //sbg.enterState(VenganzaBelial.ESCENAPUERTO2);//EDIT
-                    sbg.enterState(VenganzaBelial.ESCENAPUERTO1);//EDIT
+                    //sbg.enterState(VenganzaBelial.ESCENAPUERTO1);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENATROYIA1);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENAFANATICO);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENACATACUMBASPREBOSS);//EDIT
@@ -198,9 +198,9 @@ public class EstadoMenuInicio extends BasicGameState {
                     //sbg.enterState(VenganzaBelial.ESTADOCOMBATE);//EDIT
                     //sbg.enterState(VenganzaBelial.ESTADOCOMBATETUT);//EDIT
 //                    sbg.enterState(VenganzaBelial.ESCENATROYIAPOSTBOSS);
-                    sbg.enterState(VenganzaBelial.ESCENAMONTANAPOSTBOSS);
+//                    sbg.enterState(VenganzaBelial.ESCENAMONTANAPOSTBOSS);
 //                    sbg.enterState(VenganzaBelial.ESCENAFINAL);
-//                    sbg.enterState(VenganzaBelial.ESCENABOSQUEPOSTBOSS);//EDIT
+                    sbg.enterState(VenganzaBelial.ESCENABOSQUEPOSTBOSS);//EDIT
                     //sbg.enterState(VenganzaBelial.ESTADOTIENDA);//EDIT
                     //Pueblo MOntana=5
                     
