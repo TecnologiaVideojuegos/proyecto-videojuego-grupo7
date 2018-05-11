@@ -66,7 +66,7 @@ public final class BossBosque extends Enemigo{
                 break;
             case 2:
                 for (int i = 0; i < jugadores.size(); i++) {
-                    jugadores.get(i).setHpActual(jugadores.get(i).getHpActual()-15);
+                    jugadores.get(i).setHpActual(jugadores.get(i).getHpActual()-34);
                 }
                 msg="Yggdrasil continua curandose. La polución del bosque daña a los aliados";
                 break;

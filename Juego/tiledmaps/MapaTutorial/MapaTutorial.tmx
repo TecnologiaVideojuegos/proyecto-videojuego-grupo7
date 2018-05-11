@@ -7,12 +7,12 @@
  <tileset firstgid="689" source="Dungeon_B.tsx"/>
  <tileset firstgid="945" source="Outside_A2.tsx"/>
  <tileset firstgid="1137" source="Behavior2.tsx"/>
- <layer name="suelo" width="48" height="12">
+ <layer name="suelo" width="48" height="12" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAACgtmYGAIHiQ4kJmBYSOJeKDdPOr+wYOHuvsTh7j7tzGTjgfazaPuHzx4qOffUfcPLCan/AQAfCvEbQAJAAA=
   </data>
  </layer>
- <layer name="evento" width="48" height="12">
+ <layer name="evento" width="48" height="12" visible="0">
   <properties>
    <property name="blocked" type="bool" value="true"/>
    <property name="evento" type="bool" value="true"/>
@@ -21,7 +21,7 @@
    H4sIAAAAAAAACmNgGAWjYGgBDaaBtV+JCPvTB9iN9AYlA+0ACsGo+ykD/iMsvY+C4QEAGlBVxAAJAAA=
   </data>
  </layer>
- <layer name="escenas" width="48" height="12">
+ <layer name="escenas" width="48" height="12" visible="0">
   <properties>
    <property name="evento" type="bool" value="true"/>
   </properties>
@@ -34,7 +34,7 @@
    <property name="blocked" type="bool" value="true"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACs3Tt0vDQRTAcZOIuumkDoKbZcpkm0TBsliDZbFjWewanextsmLBvliwzxYUFQkWdHbR/0AnddOvcC6/XOA88jM++PC4l7zL45GzW/zc4g3v+EAcn8cjAYlohxMd6MQ8FrCIJTjo6SJ3owenOEMFKlGFFKTiHBe4xJVkDpVIlvQFUAtEENKQjgxkYhBDGMYItrCNHeyKu0bJYxjHPR7QjBa0Ig/5ht81zh9rU8t2yfyh1MIQjgIUogjFmMYMZjGHQxzhGCfirmXyClbxhGf0og/9HvZsnD/JppZl+4+iFo0YVKMGtajDGtaxgU1c4wa3uIMLe9jHAV7wiglMYsrD/G2a/x/Z/nXDJebXiQHR92jlXfir98n27+uIsKp/15v790X8l/07/rjP26H7fj+RRW82cpD7fY/FvWb2+ef9/jaC6StBKcpQjhBJzeyz7v4j6atHAxrRJOY31sw+6+7/Cz4w6TwACQAA
+   H4sIAAAAAAAACs3TN0tDURTA8ZdE1E0ndRDcLFMm2yQKlsUaLEusWBZ7nextsmLB2BYL9tmCoiLBgs4u+g10Ujf9C9fB5w08L3nGAz8O9yTn5nDItVs0zaF994JXvCGWz+MQjwS0og3t6MAcXJjHgrirk9yFbhzjBGUoRwWSkYJTnOEcF1CJJEmfP7UABCIVaUhHBgYwiCEMYwOb2MK2uGuEPIox3OIOjWhCM3KRp/td/fwxNmPZLpk/hFoowpCPAhSiCFOYxgxmsY8DHOJI3LVIXsIyHvCIHvSiz8Oe9fMn2oxl2f4jqUUhGpWoQjVqsIJVrGEdl7jCNW7gxg52sYcnPGMcE5j0MH+L4v9Htn/VcIv5VaJf9N1beRd+xvtk+/d1hFuNf9eb+/dF/Jf9O/64z9uh+n7fkUlvFrKR83mP5WfN7PPX+/1tBNHnRDFKUIpgSc3ss+r+I+irRR3q0SDm19fMPqvu/wOUtooEAAkAAA==
   </data>
  </layer>
 </map>

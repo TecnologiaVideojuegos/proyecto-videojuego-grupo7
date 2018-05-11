@@ -8,7 +8,7 @@ import org.newdawn.slick.tiled.TiledMap;
 
 public class Musica {
 
-    private Music music;
+    public Music music;
 
     public Musica() throws SlickException {
         //Musica de inicio

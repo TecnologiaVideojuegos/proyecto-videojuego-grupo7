@@ -31,7 +31,7 @@ public class Heroe {
     private static final int ANIMATIONSPEED = 500;
     private static final float SPEED = 0.1f;//0.1f
     private int w, h;
-    private float tasaAparicion=0.001f;//0-1(0-100%)
+    private float tasaAparicion=0.003f;//0-1(0-100%)
     private int offset=6;//Original=-4
     //EDIT
     private float aparicion=1;

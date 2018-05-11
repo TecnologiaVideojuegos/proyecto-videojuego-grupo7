@@ -50,7 +50,7 @@ public class Habilidad implements Serializable{
     public float getDanyo() {
         return danyo;
     }
-    public void setDanyo(int danyo) {
+    public void setDanyo(float danyo) {
         this.danyo = danyo;
     }
     public int getCosteMP() {
@@ -199,7 +199,7 @@ public class Habilidad implements Serializable{
     private void descontarMP(Jugador usuario)
     {
         /*EDIT:bajo pruebas*/
-        usuario.setMpActual(usuario.getMpActual()-this.getCosteMP()*usuario.getNivel());
+        usuario.setMpActual(usuario.getMpActual()-this.getCosteMP());
     }
     
     
