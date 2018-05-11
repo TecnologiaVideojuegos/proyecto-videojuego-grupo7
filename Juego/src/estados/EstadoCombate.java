@@ -140,6 +140,7 @@ public class EstadoCombate extends BasicGameState{
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException 
     {
+        fondo.draw(0, 0, 1366, 768);
         renderEnemigos();
         renderAvatars();
         
@@ -806,6 +807,7 @@ public class EstadoCombate extends BasicGameState{
                 opcionesJugadorTTF.drawString(20, i * 20 + 400, PJ.getHabilidades().get(i).getNombre(), notChosen);
             }
         }
+        this.opcionesJugadorTTF.drawString(50, 540, "Nv: "+PJ.getHabilidades().get(eleccionJugador).getNivel()+"  MP: "+PJ.getHabilidades().get(eleccionJugador).getCosteMP(),new Color(0,0,0));
     }/* private void renderHabilidades()*/
     
     private void renderObjetos()
@@ -816,7 +818,7 @@ public class EstadoCombate extends BasicGameState{
             Consumible consumible=(Consumible)VenganzaBelial.atributoGestion.getInv().getItems().get(i);
             if(eleccionJugador==i)
             {
-               opcionesJugadorTTF.drawString(20,i*20+400,consumible.getNombre()+" "+consumible.getNumero()+"/10");
+               opcionesJugadorTTF.drawString(20,i*20+400,consumible.getNombre()+" "+consumible.getNumero()+"");
             }
             else{
                 opcionesJugadorTTF.drawString(20, i * 20 + 400, consumible.getNombre()+" "+consumible.getNumero()+"/10", notChosen);
@@ -868,7 +870,7 @@ public class EstadoCombate extends BasicGameState{
             /*EDIT:Imagenes de los personajes*/
             
             
-            fondo.draw(0, 0, 1366, 768);
+            
             /*EDIT END*/
             /*Horacia status update*/
             //if(VenganzaBelial.horacia.estaVivo()){
@@ -974,10 +976,7 @@ public class EstadoCombate extends BasicGameState{
             // mensajePantalla.drawString(700, 150, "Atk: "+VenganzaBelial.kibito.getAtaque()+"Def: "+VenganzaBelial.kibito.getDefensa());
             // mensajePantalla.drawString(700, 110, "Exp: "+VenganzaBelial.kibito.getExp()+"/: "+VenganzaBelial.kibito.getExpProxNivel());
             /**/
-            if(NewCombate.getTurno()<NewCombate.getOrdenPersonajes().size())//If de seguridad para coordeinar render y update
-            {
-                mensajePantalla.drawString(10, 360, "Turno de:" + NewCombate.getOrdenPersonajes().get(NewCombate.getTurno()).getNombre(), new Color(0,0,0));
-            }
+            
     }/*private void renderAvatars(Graphics g)*/  
     private float compruebaPorcentajeBarra(float porcentajeBarra)
     {

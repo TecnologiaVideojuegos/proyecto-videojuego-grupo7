@@ -379,7 +379,12 @@ public class EstadoTienda extends BasicGameState {
             }
             opcionesJugadorTTF.drawString(550, i * 50 + 50, ""+mercanciaActual.get(i).getPrecioCompra(),amarillo);
         }
-        this.texto.drawString(800, 100, this.mercanciaActual.get(eleccionJugador).getDescripcion());
+        this.texto.drawString(800, 60, this.mercanciaActual.get(eleccionJugador).getDescripcion());
+        if(mercanciaActual.get(eleccionJugador).getTipoItem()!=0)//Consumible=0/Arma=1//Armadura=2
+        {
+            this.texto.drawString(800, 80, "Nv: "+mercanciaActual.get(eleccionJugador).getRequisitoNivel());
+            this.texto.drawString(800, 100, "Usuario: "+mercanciaActual.get(eleccionJugador).getRequisitoCategoria().get(0));
+        }
         texto.drawString(650, 0, "Tienda>>Comprar");
     }/*private void renderComprando()*/
     
