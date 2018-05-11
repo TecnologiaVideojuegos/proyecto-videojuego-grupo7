@@ -51,11 +51,11 @@ public final class Horacia extends Jugador{
     @Override
     public void setearHabilidades(){
         Habilidad[] habs = new Habilidad[5];
-        habs[0] = new Habilidad("Bendición de Cardinal", 1, 5, 6, "La bendición de Cardinal cura las heridas de un aliado", 0);
-        habs[1] = new Habilidad("Embestida", 5, 1.5f, 5, "Embestida potente contra un objetivo", 2);
-        habs[2] = new Habilidad("Apalear", 10, 1.75f, 7, "Apalea a un objetivo", 2);
-        habs[3] = new Habilidad("Ira salvaje", 15, 1.5f, 5, "Habilidad multiobjetivo", 4);
-        habs[4] = new Habilidad("Torbellino", 20, 2, 7, "Hace un torbellino en torno a todos los objetivos", 4);
+        habs[0] = new Habilidad("Bendición Divina", 1, 5, 6, "La bendición de Cardinal cura las heridas de un aliado", 0);
+        habs[1] = new Habilidad("Embestida", 5, 1.5f, 10, "Embestida potente contra un objetivo", 2);
+        habs[2] = new Habilidad("Apalear", 10, 1.75f, 15, "Apalea a un objetivo", 2);
+        habs[3] = new Habilidad("Ira salvaje", 15, 1.5f, 30, "Habilidad multiobjetivo", 4);
+        habs[4] = new Habilidad("Torbellino", 20, 2, 35, "Hace un torbellino en torno a todos los objetivos", 4);
         
         for (int i = 0; i < habs.length; i++) {
             this.anadirHabilidad(habs[i]);
@@ -71,7 +71,7 @@ public final class Horacia extends Jugador{
         this.setAtaque(this.getAtaqueBase() + this.getArma().getDanyo());
         this.setMp((this.getMp()+20));
         for (int i = 0; i < this.getHabilidades().size(); i++) {
-            this.getHabilidades().get(i).setCosteMP(this.getHabilidades().get(i).getCosteMP()+4); 
+            this.getHabilidades().get(i).setCosteMP(this.getHabilidades().get(i).getCosteMP()+5); 
         }
         
     }

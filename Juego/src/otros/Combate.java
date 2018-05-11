@@ -373,7 +373,7 @@ public final class Combate {
                 break;
             case 12:
                 Bandido ban11=new Bandido(1,6,300,90,80);
-                Bandido banBoss=new Bandido(0,6,4500,350,100);
+                Bandido banBoss=new Bandido(0,6,4500,350,100);//EDIT
                 banBoss.setNombre("Gran Bandido Crow");
                 Bandido ban12=new Bandido(2,6,300,90,40);
                 dinerototal=1400;

@@ -643,8 +643,8 @@ public class EstadoMenu extends BasicGameState{
         this.textoStatus.drawString(800, 100, inven.getItems().get(eleccionJugador).getDescripcion());
         if(inven.getItems().get(eleccionJugador).getTipoItem()!=0)//Consumible=0/Arma=1//Armadura=2
         {
-            this.textoStatus.drawString(800, 120, "Requ. Nivel: "+inven.getItems().get(eleccionJugador).getRequisitoNivel());
-            this.textoStatus.drawString(800, 140, "Usable por: "+inven.getItems().get(eleccionJugador).getRequisitoCategoria().get(0));
+            this.textoStatus.drawString(800, 120, "Nv: "+inven.getItems().get(eleccionJugador).getRequisitoNivel());
+            this.textoStatus.drawString(800, 140, "Usuario: "+inven.getItems().get(eleccionJugador).getRequisitoCategoria().get(0));
         }
         //
         textoStatus.drawString(650, 0, "Inventario");
@@ -715,6 +715,11 @@ public class EstadoMenu extends BasicGameState{
         }
         /*Render Descripcion de Habilidad Bajo Seleccion*/
         this.textoStatus.drawString(800, 100, inven.getItems().get(eleccionJugador).getDescripcion());
+        if(inven.getItems().get(eleccionJugador).getTipoItem()!=0)//Consumible=0/Arma=1//Armadura=2
+        {
+            this.textoStatus.drawString(800, 120, "Nv: "+inven.getItems().get(eleccionJugador).getRequisitoNivel());
+            this.textoStatus.drawString(800, 140, "Usuario: "+inven.getItems().get(eleccionJugador).getRequisitoCategoria().get(0));
+        }
         //EDIT:posible mejora incluyendo cuanto sube o baja el atributo de Ataque y Defensa
         
     }

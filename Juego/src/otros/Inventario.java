@@ -86,7 +86,7 @@ public class Inventario implements Serializable {
         Consumible pocion = (Consumible) items.get(0);
         int curar;
         boolean condicion=false;
-        if(pocion.getNumero()>0){
+        if(pocion.getNumero()>0 && jug.estaVivo()){
             curar = (int)((jug.getHp()*(pocion.getPh()))/100);
             if (jug.getHpActual() + curar > jug.getHp())
                 jug.setHpActual(jug.getHp());
