@@ -87,7 +87,6 @@ public class EstadoMapaJuego extends BasicGameState {
                     break;
                 case 4://Dungeon Catacumbas: ID=4
                     VenganzaBelial.atributoGestion.setEnem(VenganzaBelial.atributoGestion.cargarGrupoEnemigos("BaseDatos/enemigosCatacumba.dat"));
-                   
                     for (int i = 0; i < VenganzaBelial.atributoGestion.getEnem().size(); i++) {
                         for (int j = 0; j < VenganzaBelial.atributoGestion.getEnem().get(i).size(); j++) {
                             if(VenganzaBelial.atributoGestion.getEnem().get(i).get(j).getNombre().equals("Esqueleto"))

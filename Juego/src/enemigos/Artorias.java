@@ -24,7 +24,7 @@ public final class Artorias extends Enemigo {
         habilidades = new ArrayList<>();
         Habilidad hab1 = new Habilidad("Espadazo maldito", 1, danoEspadazo, 0, "Blande su espada con fuerza", 2);
         habilidades.add(hab1);
-        Habilidad hab2 = new Habilidad("Corrupcion", 1, 80, 0, "Maldice a todos los enemigos", 4);
+        Habilidad hab2 = new Habilidad("Corrupcion", 1, 0, 0, "Maldice a todos los enemigos", 4);
         habilidades.add(hab2);
         this.setHabilidad(habilidades);
         this.setOro(200);

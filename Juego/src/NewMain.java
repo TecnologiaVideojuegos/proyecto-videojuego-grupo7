@@ -6,6 +6,8 @@ salidaEscena= new Image("Imagenes/Escenas/EscenaCarreta1/salidaEscena1.png"); --
 
 
 
+import basesdatos.BaseDatosEnemigos;
+import basesdatos.BaseDatosCatacumba;
 import enemigos.Enemigo;
 import estados.VenganzaBelial;
 import items.Arma;
@@ -34,7 +36,7 @@ public class NewMain {
     public static void main(String[] args) throws SlickException {
 
           BaseDatosEnemigos base = new BaseDatosEnemigos();
-//          BaseDatosCatacumba base1 = new BaseDatosCatacumba();
+          BaseDatosCatacumba base1 = new BaseDatosCatacumba();
 //        Gestion gest= new Gestion();
 //          try {
 //                        FileInputStream istreamPar = new FileInputStream("BaseDatos/partida.dat");

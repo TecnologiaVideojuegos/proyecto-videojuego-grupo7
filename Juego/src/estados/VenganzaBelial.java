@@ -1,17 +1,15 @@
 package estados;
 
+
+import basesdatos.BaseDatosCatacumba;
+import basesdatos.BaseDatosEnemigos;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
-import otros.Habilidad;
-import items.Arma;
-import items.Armadura;
-import java.util.ArrayList;
 import otros.EventosNpcs;
 import otros.Gestion;
 /*Pruebas*/
-import personajes.*;
 
 public class VenganzaBelial extends StateBasedGame {
     public static final int ESTADOMENUINICIO = 0;
@@ -187,6 +185,8 @@ public class VenganzaBelial extends StateBasedGame {
         /*ATRIBUTOS DE PRUEBA FIN*/
         controlMusica= new Musica();
         controlMusica.loopMusica();
+        BaseDatosEnemigos base = new BaseDatosEnemigos();
+        BaseDatosCatacumba base1 = new BaseDatosCatacumba();
         AppGameContainer app = new AppGameContainer(new VenganzaBelial());
         app.setDisplayMode(WIDTH, HEIGHT, FULLSCREEN);
         app.start();

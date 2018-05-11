@@ -1,3 +1,5 @@
+package basesdatos;
+
 /*Se han tenido que crear seis ArrayList porque con uno y el metodo clear o remove, no estaba
 dejando mas que guardar la ultima party n veces. No importa porque esta clase solo es para crear 
 partys y no importa mucho que sobrecarge un poco porque se va usar una sola vez antes de entregar

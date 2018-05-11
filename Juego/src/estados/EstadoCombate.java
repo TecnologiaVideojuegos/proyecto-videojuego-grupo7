@@ -730,7 +730,8 @@ public class EstadoCombate extends BasicGameState{
             //Eliminar objeto combate
             if(input.isKeyPressed(Input.KEY_ENTER))
             {
-             NuevoCombate=true;sbg.enterState(VenganzaBelial.ESTADOMENUINICIO); 
+             NuevoCombate=true;
+             sbg.enterState(VenganzaBelial.ESTADOMENUINICIO); 
             }
             //Si se ha perdido el combate recargar datos del ultimo punto de control
         }
@@ -872,7 +873,7 @@ public class EstadoCombate extends BasicGameState{
             {
                 /*Debug prints*/
                 Personaje debugPJ= NewCombate.getEnemigos().get(aux);
-                mensajePantalla.drawString(700, 20*aux, debugPJ.getNombre()+"/LVL: "+debugPJ.getNivel()+"/HP: "+debugPJ.getHpActual()+"|"+debugPJ.getHp());
+                mensajePantalla.drawString(700, 20*aux, debugPJ.getNombre()+"/LVL: "+debugPJ.getNivel()+"/HP: "+debugPJ.getHpActual()+"|"+debugPJ.getHp(),new Color(255,0,0));
                 //NewCombate.getEnemigos().get(aux).getImagen().draw(aux*300+200, 200, 350, 400);
                 //enemigo.draw(aux*200+200, 200, 0.5f);
                 NewCombate.getEnemigos().get(aux).getImagen().draw(aux*200+400, 200, 0.5f);

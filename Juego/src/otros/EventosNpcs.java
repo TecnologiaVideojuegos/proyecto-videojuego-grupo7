@@ -309,7 +309,7 @@ public class EventosNpcs {
                 /*******************************************************************/
             case MAPADUNGEONCATACUMBAS:
                 if(x == 37 && y == 14){
-                    evento = new Evento("Estas catacumbas están inhóspitas","o eso creo....","comprúebalo tu mismo.","","quien sabe",""); 
+                    evento = new Evento("Si me hago la muerta los ","zombies no me atacan...","espero.","","","Morida"); 
                     tipo = 0;    
                 }
                 else if(x == 4 && y == 27){
@@ -327,6 +327,11 @@ public class EventosNpcs {
                 //Healer
                     evento = new Evento("Hola amigo","Voy a curarte para que puedas seguir luchando con","los peligros de Reynos.","","", "Healer");
                     tipo = 2;    
+                }
+                else if(x == 55 && y == 23){
+                    //Healer
+                    evento = new Evento("Te curo, pero acaba ya con","los fanáticos.","","","", "Rigoberta");
+                    tipo = 2;
                 }
                 else if(x==11 && y<33 && y>16){
                     if (controlEventos==4)

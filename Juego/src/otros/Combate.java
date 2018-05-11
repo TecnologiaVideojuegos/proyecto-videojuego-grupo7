@@ -372,10 +372,10 @@ public final class Combate {
                 exptotal=50;
                 break;
             case 12:
-                Bandido ban11=new Bandido(1,6,300,90,80);
+                Bandido ban11=new Bandido(1,6,650,250,100);
                 Bandido banBoss=new Bandido(0,6,4500,350,100);//EDIT
                 banBoss.setNombre("Gran Bandido Crow");
-                Bandido ban12=new Bandido(2,6,300,90,40);
+                Bandido ban12=new Bandido(2,6,650,250,100);
                 dinerototal=1400;
                 exptotal=(int) (80+100*(new Random().nextFloat()));
                 GeneraEnemigos.add(ban11);
@@ -383,9 +383,9 @@ public final class Combate {
                 GeneraEnemigos.add(ban12);
                 break;
             case 13:
-                Fanatico fan=new Fanatico(1,6,300,90,40);
-                Artorias corrup= new Artorias(0,6,5000,350,120);
-                Fanatico fan1=new Fanatico(2,6,300,90,40);
+                Fanatico fan=new Fanatico(1, 8, 400, 190, 40);
+                Artorias corrup= new Artorias(0,6,3900,220,80);
+                Fanatico fan1=new Fanatico(2, 8, 400, 190, 40);
                 dinerototal=240;
                 exptotal=(int) (150+150*(new Random().nextFloat()));
                 GeneraEnemigos.add(fan);
@@ -393,9 +393,9 @@ public final class Combate {
                 GeneraEnemigos.add(fan1);
                 break;
             case 14:
-                Fanatico fan11=new Fanatico(1,6,300,90,40);
-                Caronte muerte= new Caronte(1,6,300,90,40);
-                GranMaestro lider=new GranMaestro(2,6,300,90,40);
+                Fanatico fan11=new Fanatico(1, 11, 700, 260, 50);
+                Caronte muerte= new Caronte(1,6,5000,290,40);
+                GranMaestro lider=new GranMaestro(2,6,2500,280,50);
                 dinerototal=240;
                 exptotal=(int) (150+150*(new Random().nextFloat()));
                 GeneraEnemigos.add(fan11);

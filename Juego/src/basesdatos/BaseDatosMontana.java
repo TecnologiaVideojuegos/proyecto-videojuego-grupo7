@@ -1,3 +1,5 @@
+package basesdatos;
+
 import enemigos.Enemigo;
 import enemigos.MiniGrifo;
 import enemigos.Minotauro;

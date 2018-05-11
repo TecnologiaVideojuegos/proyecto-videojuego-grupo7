@@ -1,3 +1,5 @@
+package basesdatos;
+
 import enemigos.Capitan;
 import enemigos.Enemigo;
 import enemigos.Paladin;

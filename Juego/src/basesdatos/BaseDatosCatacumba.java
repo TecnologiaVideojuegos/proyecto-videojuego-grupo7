@@ -1,3 +1,5 @@
+package basesdatos;
+
 import enemigos.Enemigo;
 import enemigos.Esqueleto;
 import enemigos.Fanatico;
@@ -44,28 +46,31 @@ public final class BaseDatosCatacumba{
         ges.guardarGrupoEnemigos(enem, "BaseDatos/enemigosCatacumba.dat");
     }
     public void enemigosCatacumba(){
-        //int id, int nivel, int hp, int ataque, int defensa
-        esq81 = new Esqueleto(1, 8, 220, 40, 40);
-        esq82 = new Esqueleto(2, 8, 220, 40, 40);
-        esq111 = new Esqueleto(1, 11, 250, 45, 45);
-        esq112 = new Esqueleto(2, 11, 250, 45, 45);
-        esq141 = new Esqueleto(1, 14, 270, 55, 55);
-        esq142 = new Esqueleto(2, 14, 270, 55, 55);
-        zom81 = new Zombie(1, 8, 200, 45, 45);
-        zom82 = new Zombie(2, 8, 200, 45, 45);
-        zom111 = new Zombie(1, 11, 230, 50, 50);
-        zom112 = new Zombie(2, 11, 230, 50, 50);
-        zom141 = new Zombie(1, 14, 270, 60, 60);
-        zom142 = new Zombie(2, 14, 270, 60, 60);
-        fana81 = new Fanatico(1, 8, 200, 60, 60);
-        fana82 = new Fanatico(2, 8, 200, 60, 60);
-        fana111 = new Fanatico(1, 11, 230, 65, 65);
-        fana112 = new Fanatico(2, 11, 230, 65, 65);
-        fana141 = new Fanatico(1, 14, 260, 70, 65);
-        fana142 = new Fanatico(2, 14, 260, 70, 65);
-        mi81 = new Mimico(1, 8, 140, 1, 30);
-        mi111 = new Mimico(1, 11, 170, 1, 40);
-        mi141 = new Mimico(1, 14, 190, 1, 50);
+        //int id, int nivel, int hp, int ataque, int defensa  //Bandido ban12=new Bandido(2,6,650,250,100);
+        esq81 = new Esqueleto(1, 8, 400, 160, 30);
+        esq82 = new Esqueleto(2, 8, 400, 160, 30);
+        esq111 = new Esqueleto(1, 11, 800, 255, 50);
+        esq112 = new Esqueleto(2, 11, 800, 255, 50);
+        esq141 = new Esqueleto(1, 14, 1000, 275, 60);
+        esq142 = new Esqueleto(2, 14, 1000, 275, 60);
+        //
+        zom81 = new Zombie(1, 8, 1000, 170, 40);
+        zom82 = new Zombie(2, 8, 1000, 170, 40);
+        zom111 = new Zombie(1, 11, 1300, 250, 50);
+        zom112 = new Zombie(2, 11, 1300, 250, 50);
+        zom141 = new Zombie(1, 14, 1700, 260, 60);
+        zom142 = new Zombie(2, 14, 1700, 260, 60);
+        //
+        fana81 = new Fanatico(1, 8, 400, 190, 40);
+        fana82 = new Fanatico(2, 8, 400, 190, 40);
+        fana111 = new Fanatico(1, 11, 700, 250, 50);
+        fana112 = new Fanatico(2, 11, 700, 250, 50);
+        fana141 = new Fanatico(1, 14, 900, 260, 60);
+        fana142 = new Fanatico(2, 14, 900, 260, 60);
+        //
+        mi81 = new Mimico(1, 8, 3, 1, 3000);
+        mi111 = new Mimico(1, 11, 4, 1, 3000);
+        mi141 = new Mimico(1, 14, 5, 1, 3200);
     }
     public void initArrays(){
         party = new ArrayList<>();
