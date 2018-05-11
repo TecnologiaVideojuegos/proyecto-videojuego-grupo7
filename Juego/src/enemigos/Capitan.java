@@ -38,10 +38,10 @@ public final class Capitan extends Enemigo{
         if (probHab > 0.85){
             at += this.getHabilidad().get(0).getDanyo();
             msg = msg + " ha usado habilidad " + this.getHabilidad().get(0).getNombre() + 
-                            " contra todos los aliados y ha quitado a ";
+                            " contra todos los aliados ";
         }
         else
-            msg = msg + " ha atacado a todos los aliados y ha quitado a ";
+            msg = msg + " ha atacado a todos los aliados ";
         
         for (int i = 0; i < jugadores.size(); i++) {
             if (jugadores.get(i).estaVivo()){
@@ -55,8 +55,6 @@ public final class Capitan extends Enemigo{
                     jugadores.get(i).setHpActual(0);
                 else
                     jugadores.get(i).setHpActual(danyoInfligido); 
-                msg = msg + jugadores.get(i).getNombre() + 
-                            " " + danyoInfligido + " puntos de vida ";
             }
                 
         }
