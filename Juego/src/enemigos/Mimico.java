@@ -12,7 +12,6 @@ public final class Mimico extends Enemigo implements Serializable{
     
     public Mimico(int id, int nivel, int hp, int ataque, int defensa) {
         super(id, nivel, hp, ataque, defensa); 
-
         inicializarEnemigo();
     }
     
@@ -26,8 +25,7 @@ public final class Mimico extends Enemigo implements Serializable{
         this.setOro(this.getNivel() * 3);
         this.setExpAportada(this.getNivel() * 5);
         this.setVelocidad(12);
-        this.setHpActual(this.getHp());    
-        //this.setImagen("Imagenes/Monstruos/Bosque/Rata.png");
+        this.setHpActual(this.getHp());
     }
 
     @Override
@@ -50,7 +48,6 @@ public final class Mimico extends Enemigo implements Serializable{
                 jugadoresAux.add(jugadores.get(i));
         }
 
-        //Indice aleatorio de los que estan vivos
         indice = rand.nextInt(jugadoresAux.size());
 
         if(habilidad)

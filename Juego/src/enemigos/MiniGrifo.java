@@ -35,9 +35,7 @@ public final class MiniGrifo extends Enemigo{
         float probHab = rand.nextFloat();
         int at = this.getAtaque();
         int danyo, total, danyoInflingido;
-        boolean habilidad = false;
-        //Se supone que hay vivos porque se comprueba donde se llame
-        //Comprobamos si va a hacer habilidad o no
+        boolean habilidad;
         if (probHab > 0.80){
             at += this.getHabilidad().get(0).getDanyo();
             habilidad = true;

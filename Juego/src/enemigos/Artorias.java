@@ -15,7 +15,6 @@ public final class Artorias extends Enemigo {
         super(id, nivel, hp, ataque, defensa);
         inicializarEnemigo();
     }
-    //poner habilidad (?) modificar oro y exp.
 
     @Override
     public void inicializarEnemigo() {
@@ -38,10 +37,9 @@ public final class Artorias extends Enemigo {
     public String estrategiaAtacar(ArrayList<Jugador> jugadores) {
         String msg="";
         Random rand = new Random();
-        float probHab = rand.nextFloat();
         int at = this.getAtaque();
         int danyo, total, danyoInflingido;
-        boolean habilidad = false;
+        boolean habilidad;
         int indice;
         ArrayList<Jugador> jugadoresAux = new ArrayList<>();
 

@@ -12,7 +12,6 @@ public final class Murciegalo extends Enemigo implements Serializable{
     
     public Murciegalo(int id, int nivel, int hp, int ataque, int defensa) {
         super(id, nivel, hp, ataque, defensa); 
-
         inicializarEnemigo();
     }
     
@@ -39,8 +38,6 @@ public final class Murciegalo extends Enemigo implements Serializable{
         int danyo, total, indice, danyoInflingido;
         boolean habilidad = false;
         ArrayList<Jugador> jugadoresAux = new ArrayList<>();
-        //Se supone que hay vivos porque se comprueba donde se llame
-        //Comprobamos si va a hacer habilidad o no
         if (probHab > 0.8){
             at += this.getHabilidad().get(0).getDanyo();
             habilidad = true;
@@ -51,7 +48,6 @@ public final class Murciegalo extends Enemigo implements Serializable{
                 jugadoresAux.add(jugadores.get(i));
         }
 
-        //Indice aleatorio de los que estan vivos
         indice = rand.nextInt(jugadoresAux.size());
         
         danyo = at - jugadoresAux.get(indice).getDefensa();
