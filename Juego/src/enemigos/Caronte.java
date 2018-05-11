@@ -6,11 +6,11 @@ import java.util.Random;
 import otros.Habilidad;
 import personajes.Jugador;
 
-public final class Mimico extends Enemigo implements Serializable{
+public final class Caronte extends Enemigo implements Serializable{
     private ArrayList<Habilidad> habilidades;
     private static final long serialVersionUID = 4L;
     
-    public Mimico(int id, int nivel, int hp, int ataque, int defensa) {
+    public Caronte(int id, int nivel, int hp, int ataque, int defensa) {
         super(id, nivel, hp, ataque, defensa); 
 
         inicializarEnemigo();
@@ -19,9 +19,7 @@ public final class Mimico extends Enemigo implements Serializable{
     @Override
     public void inicializarEnemigo(){
         this.setNombre("Mimico");
-        habilidades = new ArrayList<>();  
-        Habilidad hab = new Habilidad("Mordiscazo", 1, 25, 0, "Mordiscazo mortal", 2);
-        habilidades.add(hab);
+        habilidades = new ArrayList<>();
         this.setHabilidad(habilidades);
         this.setOro(this.getNivel() * 3);
         this.setExpAportada(this.getNivel() * 5);
