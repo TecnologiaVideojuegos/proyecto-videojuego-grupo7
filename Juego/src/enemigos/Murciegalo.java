@@ -54,14 +54,14 @@ public final class Murciegalo extends Enemigo implements Serializable{
         //Indice aleatorio de los que estan vivos
         indice = rand.nextInt(jugadoresAux.size());
         
-        danyo = at - jugadores.get(indice).getDefensa();
+        danyo = at - jugadoresAux.get(indice).getDefensa();
 
         if (danyo > 0)
             total = danyo;
         else
             total = 1;
         
-        danyoInflingido = jugadores.get(indice).getHpActual() - total;
+        danyoInflingido = jugadoresAux.get(indice).getHpActual() - total;
         if(habilidad){
             if((this.getHpActual() + danyoInflingido) >= this.getHp())
                 this.setHpActual(this.getHp());
@@ -70,11 +70,11 @@ public final class Murciegalo extends Enemigo implements Serializable{
         }
             
         if(danyoInflingido < 0)
-            jugadores.get(indice).setHpActual(0);
+            jugadoresAux.get(indice).setHpActual(0);
         else
-            jugadores.get(indice).setHpActual(danyoInflingido);   
+            jugadoresAux.get(indice).setHpActual(danyoInflingido);   
         
-        msg = this.escribirMensaje(habilidad, this.getHabilidad().get(0), jugadores.get(indice), total);
+        msg = this.escribirMensaje(habilidad, this.getHabilidad().get(0), jugadoresAux.get(indice), total);
         return msg;
     }
 }
