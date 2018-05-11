@@ -225,7 +225,7 @@ public class EstadoCombate extends BasicGameState{
                 fondo = new Image("Imagenes/BackBattle/Catacumbas.png");
             else if(VenganzaBelial.atributoGestion.getMapaActual()==6 || VenganzaBelial.atributoGestion.getMapaActual()==15|| VenganzaBelial.atributoGestion.getMapaActual()==16)
                 fondo = new Image("Imagenes/BackBattle/Montana.png");
-            else if(VenganzaBelial.atributoGestion.getMapaActual()==7 || VenganzaBelial.atributoGestion.getMapaActual()==17|| VenganzaBelial.atributoGestion.getMapaActual()==18)
+            else if(VenganzaBelial.atributoGestion.getMapaActual()==7 || VenganzaBelial.atributoGestion.getMapaActual()==17|| VenganzaBelial.atributoGestion.getMapaActual()==18|| VenganzaBelial.atributoGestion.getMapaActual()==19)
                 fondo = new Image("Imagenes/BackBattle/Cardinal.png");
             
             /*Resetea tasa huida*/
@@ -305,22 +305,22 @@ public class EstadoCombate extends BasicGameState{
                         NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Cardinal/Rider.png");
                 }
             }
-//            if(VenganzaBelial.atributoGestion.getMapaActual()==18){ //Archi y General
-//                for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
-//                    if(NewCombate.getEnemigos().get(j).getNombre().equals("Archi"))
-//                        NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Cardinal/ArchiBoss.png");
-//                    if(NewCombate.getEnemigos().get(j).getNombre().equals("General"))
-//                        NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Cardinal/General.png");
-//                }
-//            }
-//            if(VenganzaBelial.atributoGestion.getMapaActual()==19){ //Belial y Hestia
-//                for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
-//                    if(NewCombate.getEnemigos().get(j).getNombre().equals("Belial"))
-//                        NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Cardinal/Belial.png");
-//                    if(NewCombate.getEnemigos().get(j).getNombre().equals("Hestia"))
-//                        NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Cardinal/Hestia.png");
-//                }
-//            }
+            if(VenganzaBelial.atributoGestion.getMapaActual()==18){ //Archi y General
+                for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
+                    if(NewCombate.getEnemigos().get(j).getNombre().equals("Archi"))
+                        NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Cardinal/ArchiBoss.png");
+                    if(NewCombate.getEnemigos().get(j).getNombre().equals("General"))
+                        NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Cardinal/General.png");
+                }
+            }
+            if(VenganzaBelial.atributoGestion.getMapaActual()==19){ //Belial y Hestia
+                for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
+                    if(NewCombate.getEnemigos().get(j).getNombre().equals("Belial"))
+                        NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Cardinal/Belial.png");
+                    if(NewCombate.getEnemigos().get(j).getNombre().equals("Hestia"))
+                        NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Cardinal/Hestia.png");
+                }
+            }
             
             //NewCombate= new Combate(VenganzaBelial.Party, VenganzaBelial.MapaActual);//
             if(NewCombate.GestionaPrimerTurno())
