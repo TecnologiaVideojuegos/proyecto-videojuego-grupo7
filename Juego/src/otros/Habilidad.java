@@ -199,7 +199,7 @@ public class Habilidad implements Serializable{
     private void descontarMP(Jugador usuario)
     {
         /*EDIT:bajo pruebas*/
-        usuario.setMpActual(usuario.getMpActual()-this.getCosteMP()*usuario.getNivel());
+        usuario.setMpActual(usuario.getMpActual()-this.getCosteMP());
     }
     
     

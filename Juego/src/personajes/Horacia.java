@@ -70,6 +70,10 @@ public final class Horacia extends Jugador{
         this.setAtaqueBase((this.getAtaqueBase()+10));
         this.setAtaque(this.getAtaqueBase() + this.getArma().getDanyo());
         this.setMp((this.getMp()+20));
+        for (int i = 0; i < this.getHabilidades().size(); i++) {
+            this.getHabilidades().get(i).setCosteMP(this.getHabilidades().get(i).getCosteMP()+4); 
+        }
+        
     }
     //toString
     @Override

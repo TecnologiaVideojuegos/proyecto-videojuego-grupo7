@@ -353,7 +353,7 @@ public final class Combate {
                 }     
                 break;
             case 10://Boss del Bosque
-                BossBosque ygg= new BossBosque(0, 5, 3300, 80, 30);
+                BossBosque ygg= new BossBosque(0, 5, 3300, 200, 30);
                 GeneraEnemigos.add(ygg);
                 dinerototal=ygg.getOro();
                 exptotal=ygg.getExpAportada();

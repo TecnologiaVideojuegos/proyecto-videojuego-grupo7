@@ -193,7 +193,10 @@ public class EstadoCombate extends BasicGameState{
 //        mensajePantalla.drawString(0, 180, "eleccionJugador "+this.eleccionJugador);
 //        mensajePantalla.drawString(0, 200, "CombateOver "+NewCombate.CombateAcabado());
         for (int i = 0; i < NewCombate.getOrdenPersonajes().size(); i++) {
-            mensajePantalla.drawString(1100, 20*i, " "+NewCombate.getOrdenPersonajes().get(i).getNombre());  
+            if(NewCombate.getTurno()==i)
+                mensajePantalla.drawString(1100, 20*i, " "+NewCombate.getOrdenPersonajes().get(i).getNombre(),new Color(100,255,100)); 
+            else    
+                mensajePantalla.drawString(1100, 20*i, " "+NewCombate.getOrdenPersonajes().get(i).getNombre());  
         }
         mensajePantalla.drawString(0, 80, "Mapa Actual "+VenganzaBelial.atributoGestion.getMapaActual());
     }
@@ -976,8 +979,10 @@ public class EstadoCombate extends BasicGameState{
             porcentajeBarra=0;
         return porcentajeBarra;
     }
-    private void renderMensajeSistema()
+    private void renderMensajeSistema() throws SlickException
     {
+        Image fondoDecision= new Image("Imagenes/Avatar/decisionFondo.png");
+        fondoDecision.draw(0, 0, 1400, 70);
         opcionesJugadorTTF.drawString(10,20, this.mensajeSistema);
     }
     
