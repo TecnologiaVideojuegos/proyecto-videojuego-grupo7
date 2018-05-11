@@ -322,7 +322,7 @@ public class EscenaMontanaMiniBoss2 extends BasicGameState{
                 break;
             case 19:
                 estado=0;
-                VenganzaBelial.atributoGestion.setMapaActual(7);
+                VenganzaBelial.atributoGestion.setMapaActual(6);
                 sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
                 break;
 
