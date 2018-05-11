@@ -353,7 +353,7 @@ public final class Combate {
                 }     
                 break;
             case 10://Boss del Bosque
-                BossBosque ygg= new BossBosque(0, 5, 3300, 200, 30);
+                BossBosque ygg= new BossBosque(0, 5, 3300, 180, 30);
                 GeneraEnemigos.add(ygg);
                 dinerototal=ygg.getOro();
                 exptotal=ygg.getExpAportada();
@@ -362,22 +362,22 @@ public final class Combate {
                 //Exp random entre 100-200
                 break;
             case 11://Bandidos Puerto
-                Bandido ban1=new Bandido(1,6,300,90,40);
-                Bandido ban2= new Bandido(2,6,300,90,40);
-                Bandido ban3= new Bandido(3,6,300,90,40);
+                Bandido ban1=new Bandido(1,6,650,250,100);
+                Bandido ban2= new Bandido(2,6,650,250,100);
+                Bandido ban3= new Bandido(3,6,650,250,100);
                 GeneraEnemigos.add(ban1);
                 GeneraEnemigos.add(ban2);
                 GeneraEnemigos.add(ban3);
-                dinerototal=40;
-                exptotal=70;
+                dinerototal=100;
+                exptotal=50;
                 break;
             case 12:
-                Bandido ban11=new Bandido(1,6,300,90,40);
-                Bandido banBoss=new Bandido(0,6,2000,90,40);
+                Bandido ban11=new Bandido(1,6,300,90,80);
+                Bandido banBoss=new Bandido(0,6,4500,350,100);
                 banBoss.setNombre("Gran Bandido Crow");
                 Bandido ban12=new Bandido(2,6,300,90,40);
-                dinerototal=140;
-                exptotal=(int) (150+150*(new Random().nextFloat()));
+                dinerototal=1400;
+                exptotal=(int) (80+100*(new Random().nextFloat()));
                 GeneraEnemigos.add(ban11);
                 GeneraEnemigos.add(banBoss);
                 GeneraEnemigos.add(ban12);
