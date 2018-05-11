@@ -217,7 +217,7 @@ public class EstadoMenuInicio extends BasicGameState {
                     }  
                     VenganzaBelial.atributoGestion.setMapaActual(4);
                     VenganzaBelial.atributoGestion.setControlEscenas(4);
-                    sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);//EDIt
+                    sbg.enterState(VenganzaBelial.ESCENACATACUMBASPREBOSS);//EDIt
                     break;
                 case PRUEBASANGEL:
                     break;

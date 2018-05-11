@@ -394,13 +394,13 @@ public final class Combate {
                 break;
             case 14:
                 Fanatico fan11=new Fanatico(1,6,300,90,40);
-                //Muerte muerte= new Muerte(1,6,300,90,40);
-                //LiderFanatico fan12=new LiderFanatico(2,6,300,90,40);
+                Caronte muerte= new Caronte(1,6,300,90,40);
+                GranMaestro lider=new GranMaestro(2,6,300,90,40);
                 dinerototal=240;
                 exptotal=(int) (150+150*(new Random().nextFloat()));
                 GeneraEnemigos.add(fan11);
-                //GeneraEnemigos.add(corrup);
-                //GeneraEnemigos.add(fan12);
+                GeneraEnemigos.add(muerte);
+                GeneraEnemigos.add(lider);
                 break;
             case 15:
                 //EDIT

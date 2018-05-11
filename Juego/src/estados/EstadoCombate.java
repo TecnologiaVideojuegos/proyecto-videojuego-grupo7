@@ -278,10 +278,10 @@ public class EstadoCombate extends BasicGameState{
                 for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
                     if(NewCombate.getEnemigos().get(j).getNombre().equals("Fanatico"))
                         NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Catacumbas/Fanatic.png");
-                    if(NewCombate.getEnemigos().get(j).getNombre().equals("Muerte"))
-                        NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Catacumbas/Fanatic.png");
-                    if(NewCombate.getEnemigos().get(j).getNombre().equals("LiderFanatico"))
-                        NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Catacumbas/Fanatic.png");
+                    else if(NewCombate.getEnemigos().get(j).getNombre().equals("Caronte"))
+                        NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Catacumbas/Death.png");
+                    else if(NewCombate.getEnemigos().get(j).getNombre().equals("LiderFanatico"))
+                        NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Catacumbas/Darklord.png");
                 }
             }
             if(VenganzaBelial.atributoGestion.getMapaActual()==15)//Bandidos Normales
@@ -305,6 +305,22 @@ public class EstadoCombate extends BasicGameState{
                         NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Cardinal/Rider.png");
                 }
             }
+//            if(VenganzaBelial.atributoGestion.getMapaActual()==18){
+//                for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
+//                    if(NewCombate.getEnemigos().get(j).getNombre().equals("Archi"))
+//                        NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Cardinal/ArchiBoss.png");
+//                    if(NewCombate.getEnemigos().get(j).getNombre().equals("General"))
+//                        NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Cardinal/General.png");
+//                }
+//            }
+//            if(VenganzaBelial.atributoGestion.getMapaActual()==19){
+//                for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
+//                    if(NewCombate.getEnemigos().get(j).getNombre().equals("Belial"))
+//                        NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Cardinal/Belial.png");
+//                    if(NewCombate.getEnemigos().get(j).getNombre().equals("Hestia"))
+//                        NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Cardinal/Hestia.png");
+//                }
+//            }
             
             //NewCombate= new Combate(VenganzaBelial.Party, VenganzaBelial.MapaActual);//
             if(NewCombate.GestionaPrimerTurno())

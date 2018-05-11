@@ -18,11 +18,14 @@ public final class Caronte extends Enemigo implements Serializable{
     
     @Override
     public void inicializarEnemigo(){
-        this.setNombre("Mimico");
+        Random rand = new Random();
+        this.setNombre("Caronte");
         habilidades = new ArrayList<>();
+        Habilidad hab = new Habilidad("Llamada de Caronte", 1, 25, 0, "Llamada de Caronte", 2);
+        habilidades.add(hab);
         this.setHabilidad(habilidades);
         this.setOro(this.getNivel() * 3);
-        this.setExpAportada(this.getNivel() * 5);
+        this.setExpAportada(100+(int)(rand.nextFloat()*100));
         this.setVelocidad(12);
         this.setHpActual(this.getHp());    
         //this.setImagen("Imagenes/Monstruos/Bosque/Rata.png");
@@ -30,8 +33,7 @@ public final class Caronte extends Enemigo implements Serializable{
 
     @Override
     public String estrategiaAtacar(ArrayList<Jugador> jugadores) {
-        //Ataca aleatorio y quita 1 o lo mata directamente
-        String msg;
+        String msg="";
         Random rand = new Random();
         float probHab = rand.nextFloat();
         int at = this.getAtaque();
@@ -40,7 +42,6 @@ public final class Caronte extends Enemigo implements Serializable{
         ArrayList<Jugador> jugadoresAux = new ArrayList<>();
         
         if (probHab > 0.95){
-            at += this.getHabilidad().get(0).getDanyo();
             habilidad = true;
         }
         
@@ -53,20 +54,17 @@ public final class Caronte extends Enemigo implements Serializable{
         indice = rand.nextInt(jugadoresAux.size());
 
         if(habilidad)
-            danyoInfligido = jugadores.get(indice).getHpActual();
+            danyoInfligido = jugadoresAux.get(indice).getHpActual();
         else
             danyoInfligido = 1;
         
         
-        if((jugadores.get(indice).getHpActual() - danyoInfligido)  <= 0)
-            jugadores.get(indice).setHpActual(0);
+        if((jugadoresAux.get(indice).getHpActual() - danyoInfligido)  <= 0)
+            jugadoresAux.get(indice).setHpActual(0);
         else
-            jugadores.get(indice).setHpActual(danyoInfligido); 
-        
-        
-        jugadores.get(indice).setHpActual(danyoInfligido);
-        
-        msg = this.escribirMensaje(habilidad, this.getHabilidad().get(0), jugadores.get(indice), danyoInfligido);
+            jugadoresAux.get(indice).setHpActual(jugadoresAux.get(indice).getHpActual()-danyoInfligido); 
+                
+        msg = this.escribirMensaje(habilidad, this.getHabilidad().get(0), jugadoresAux.get(indice), danyoInfligido);
         return msg;
     }
 }

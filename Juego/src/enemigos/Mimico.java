@@ -33,7 +33,7 @@ public final class Mimico extends Enemigo implements Serializable{
     @Override
     public String estrategiaAtacar(ArrayList<Jugador> jugadores) {
         //Ataca aleatorio y quita 1 o lo mata directamente
-        String msg;
+        String msg="";
         Random rand = new Random();
         float probHab = rand.nextFloat();
         int at = this.getAtaque();
