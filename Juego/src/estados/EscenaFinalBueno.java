@@ -603,19 +603,19 @@ public class EscenaFinalBueno extends BasicGameState{
                 linea5="GRACIAS POR JUGAR";
                 break;
             case 49:
-                linea5="David: ";
+                linea5="David: Los esqueletos no fue idea mia.";
                 break;
             case 50:
-                linea5="Alberto: ";
+                linea5="Alberto: Se lo dedico a la IA.";
                 break;
             case 51:
-                linea5="Hisam: ";
+                linea5="Hisam: Dedicatoria a mis grandes amigos.";
                 break;
             case 52:
-                linea5="Angel: ";
+                linea5="Angel: La vida hay que tomarsela con humor.";
                 break;
             case 53:
-                linea5="Pablo: ";
+                linea5="Pablo: ...";
                 break;
             case 54:
                 estado=0;
@@ -640,6 +640,6 @@ public class EscenaFinalBueno extends BasicGameState{
     private void renderDialogoCreditos()
     {
         ///////////////////////////////////,"////////////////////////////////////////////////////////"/;
-        texto1.drawString(352, 339,linea5,negro);
+        texto1.drawString(160, 339,linea5,negro);
     }
 }

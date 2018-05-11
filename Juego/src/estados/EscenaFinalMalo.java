@@ -30,7 +30,7 @@ public class EscenaFinalMalo extends BasicGameState{
     private static final int TAMANYOAVATARY = 115;
     //avatarDialogo.draw(30, 610, 115, 125);
     private static final int TILESIZE = 32;
-    private Color negro = new Color (0,0,0);
+    private Color negro = new Color (255,255,255);
     /*Texto*/
     private TrueTypeFont mensajePantalla;
     private Font tipoLetra  =new Font("Verdana", Font.PLAIN, 15);
@@ -39,6 +39,7 @@ public class EscenaFinalMalo extends BasicGameState{
     private String linea3="";
     private String linea4="";
     private String linea5="";
+    private String linea6="";
     /*Control de escena*/
     private Input input;
     private int estado;
@@ -68,8 +69,9 @@ public class EscenaFinalMalo extends BasicGameState{
     private Sound sonidoSelect;
     private Sound sonidoExplosion;
     int time=0;//EDIT
-    private TrueTypeFont texto,texto1;
+    private TrueTypeFont texto,texto1,texto2;
     private Font letraMenu  = new Font("Arial Black", Font.PLAIN, 45); 
+    private Font letraCreditos  = new Font("Arial Black", Font.PLAIN, 30);
     
     public EscenaFinalMalo(int id) {
         this.idEstado=id;
@@ -127,7 +129,8 @@ public class EscenaFinalMalo extends BasicGameState{
         estado=0;
         this.input = gc.getInput();
         mensajePantalla= new TrueTypeFont(tipoLetra, true);
-        texto1= new TrueTypeFont(letraMenu, true);
+        texto1= new TrueTypeFont(letraCreditos, true);
+        texto2= new TrueTypeFont(letraCreditos, true);
         
         /*Posiciones*/
         posicion = new Vector2f(0,300);
@@ -391,22 +394,22 @@ public class EscenaFinalMalo extends BasicGameState{
                 linea4="";
                 break;
             case 24:
-                linea5="GRACIAS POR JUGAR";
+                linea6="GRACIAS POR JUGAR";
                 break;
             case 25:
-                linea5="David: ";
+                linea5="David: Esto es una mierda.";
                 break;
             case 26:
-                linea5="Alberto: ";
+                linea5="Alberto: Murciegalo era una broma.";
                 break;
             case 27:
-                linea5="Hisam: ";
+                linea5="Hisam: Dedicartoria a los hijos de p*ta de mis amigos xD.";
                 break;
             case 28:
-                linea5="Angel: ";
+                linea5="Angel: Me hubiera gustado tener artilugios de mayores.";
                 break;
             case 29:
-                linea5="Pablo: ";
+                linea5="Pablo: ...";
                 break;
             case 30:
                 estado=0;
@@ -431,6 +434,7 @@ public class EscenaFinalMalo extends BasicGameState{
     private void renderDialogoCreditos()
     {
         ///////////////////////////////////,"////////////////////////////////////////////////////////"/;
-        texto1.drawString(352, 339,linea5,negro);
+        texto1.drawString(160, 339,linea5,negro);
+        texto2.drawString(352, 339, linea6,negro);
     }
 }
