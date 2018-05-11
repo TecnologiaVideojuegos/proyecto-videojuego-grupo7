@@ -200,12 +200,24 @@ public class EstadoMenuInicio extends BasicGameState {
 //                    sbg.enterState(VenganzaBelial.ESCENATROYIAPOSTBOSS);
 //                    sbg.enterState(VenganzaBelial.ESCENAMONTANAPOSTBOSS);
 //                    sbg.enterState(VenganzaBelial.ESCENAFINAL);
-                    sbg.enterState(VenganzaBelial.ESCENABOSQUEPOSTBOSS);//EDIT
+//                    sbg.enterState(VenganzaBelial.ESCENABOSQUEPOSTBOSS);//EDIT
                     //sbg.enterState(VenganzaBelial.ESTADOTIENDA);//EDIT
                     //Pueblo MOntana=5
-                    
-//                    VenganzaBelial.eventos.setControlEventos(6);
-//                    sbg.enterState(VenganzaBelial.ESCENADEYOLICAPOSTMONTANA);//EDIt
+                    try {
+                        FileInputStream istreamPar = new FileInputStream("BaseDatos/partida.dat");
+                        ObjectInputStream oisPar = new ObjectInputStream(istreamPar);            
+                        VenganzaBelial.atributoGestion = (Gestion) oisPar.readObject();
+                        istreamPar.close();
+                    } catch (IOException ioe) {
+                        System.out.println("Error de IO: " + ioe.getMessage());
+                    } catch (ClassNotFoundException cnfe) {
+                        System.out.println("Error de clase no encontrada: " + cnfe.getMessage());
+                    } catch (Exception e) {
+                        System.out.println("Error: " + e.getMessage());
+                    }  
+                    VenganzaBelial.atributoGestion.setMapaActual(4);
+                    VenganzaBelial.atributoGestion.setControlEscenas(4);
+                    sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);//EDIt
                     break;
                 case PRUEBASANGEL:
                     break;

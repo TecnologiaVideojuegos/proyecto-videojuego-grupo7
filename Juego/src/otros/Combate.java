@@ -384,12 +384,12 @@ public final class Combate {
                 break;
             case 13:
                 Fanatico fan=new Fanatico(1,6,300,90,40);
-                //Corrupto corrup= new Corrupto(1,6,300,90,40);
+                Artorias corrup= new Artorias(0,6,5000,350,120);
                 Fanatico fan1=new Fanatico(2,6,300,90,40);
                 dinerototal=240;
                 exptotal=(int) (150+150*(new Random().nextFloat()));
                 GeneraEnemigos.add(fan);
-                //GeneraEnemigos.add(corrup);
+                GeneraEnemigos.add(corrup);
                 GeneraEnemigos.add(fan1);
                 break;
             case 14:
