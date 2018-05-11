@@ -198,7 +198,13 @@ public class EstadoCombate extends BasicGameState{
             else    
                 mensajePantalla.drawString(1100, 20*i, " "+NewCombate.getOrdenPersonajes().get(i).getNombre());  
         }
-        mensajePantalla.drawString(0, 80, "Mapa Actual "+VenganzaBelial.atributoGestion.getMapaActual());
+
+        if(this.mensajeSistema.equals("GAME OVER")){
+            Image over= new Image("Imagenes/Fondos/GameOver.png");
+            over.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
+        }
+        
+        
     }
 
     @Override
@@ -703,8 +709,7 @@ public class EstadoCombate extends BasicGameState{
             //Eliminar objeto combate
             if(input.isKeyPressed(Input.KEY_ENTER))
             {
-             NuevoCombate=true;
-              gc.exit();  
+             NuevoCombate=true;sbg.enterState(VenganzaBelial.ESTADOMENUINICIO); 
             }
             //Si se ha perdido el combate recargar datos del ultimo punto de control
         }

@@ -43,7 +43,6 @@ public final class Mimico extends Enemigo implements Serializable{
         ArrayList<Jugador> jugadoresAux = new ArrayList<>();
         
         if (probHab > 0.95){
-            at += this.getHabilidad().get(0).getDanyo();
             habilidad = true;
         }
         
@@ -56,20 +55,17 @@ public final class Mimico extends Enemigo implements Serializable{
         indice = rand.nextInt(jugadoresAux.size());
 
         if(habilidad)
-            danyoInfligido = jugadores.get(indice).getHpActual();
+            danyoInfligido = jugadoresAux.get(indice).getHpActual();
         else
             danyoInfligido = 1;
         
         
-        if((jugadores.get(indice).getHpActual() - danyoInfligido)  <= 0)
-            jugadores.get(indice).setHpActual(0);
+        if((jugadoresAux.get(indice).getHpActual() - danyoInfligido)  <= 0)
+            jugadoresAux.get(indice).setHpActual(0);
         else
-            jugadores.get(indice).setHpActual(danyoInfligido); 
-        
-        
-        jugadores.get(indice).setHpActual(danyoInfligido);
-        
-        msg = this.escribirMensaje(habilidad, this.getHabilidad().get(0), jugadores.get(indice), danyoInfligido);
+            jugadoresAux.get(indice).setHpActual(jugadoresAux.get(indice).getHpActual()-danyoInfligido); 
+                
+        msg = this.escribirMensaje(habilidad, this.getHabilidad().get(0), jugadoresAux.get(indice), danyoInfligido);
         return msg;
     }
 }
