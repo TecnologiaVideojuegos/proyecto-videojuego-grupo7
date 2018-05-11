@@ -262,7 +262,7 @@ public class EstadoCombate extends BasicGameState{
                     
                 }
             }
-            if(VenganzaBelial.atributoGestion.getMapaActual()==13)//Bandidos Normales
+            if(VenganzaBelial.atributoGestion.getMapaActual()==13)//Artorias
             {
                 for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
                     if(NewCombate.getEnemigos().get(j).getNombre().equals("Fanatico"))
@@ -272,7 +272,7 @@ public class EstadoCombate extends BasicGameState{
                     }
                 }
             }
-            if(VenganzaBelial.atributoGestion.getMapaActual()==14)//Bandidos Normales
+            if(VenganzaBelial.atributoGestion.getMapaActual()==14)//Boss Catacumbas
             {
                 VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/FanaticBattle.wav");
                 for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
@@ -284,28 +284,28 @@ public class EstadoCombate extends BasicGameState{
                         NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Catacumbas/Darklord.png");
                 }
             }
-            if(VenganzaBelial.atributoGestion.getMapaActual()==15)//Bandidos Normales
+            if(VenganzaBelial.atributoGestion.getMapaActual()==15)//Belerofonte
             {
                 for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
-                    if(NewCombate.getEnemigos().get(j).getNombre().equals("Bellafonte"))
+                    if(NewCombate.getEnemigos().get(j).getNombre().equals("Belerofonte"))
                         NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Montaña/Pegasus.png");
                 }
             }
-            if(VenganzaBelial.atributoGestion.getMapaActual()==16)//Bandidos Normales
+            if(VenganzaBelial.atributoGestion.getMapaActual()==16)//Fafnir
             {
                 for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
-                    if(NewCombate.getEnemigos().get(j).getNombre().equals("Dragón"))
+                    if(NewCombate.getEnemigos().get(j).getNombre().equals("Fafnir"))
                         NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Montaña/dragon.png");
                 }
             }
-            if(VenganzaBelial.atributoGestion.getMapaActual()==17)//Bandidos Normales
+            if(VenganzaBelial.atributoGestion.getMapaActual()==17)//Jinete Espectral
             {
                 for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
                     if(NewCombate.getEnemigos().get(j).getNombre().equals("Jinete Espectral"))
                         NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Cardinal/Rider.png");
                 }
             }
-//            if(VenganzaBelial.atributoGestion.getMapaActual()==18){
+//            if(VenganzaBelial.atributoGestion.getMapaActual()==18){ //Archi y General
 //                for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
 //                    if(NewCombate.getEnemigos().get(j).getNombre().equals("Archi"))
 //                        NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Cardinal/ArchiBoss.png");
@@ -313,7 +313,7 @@ public class EstadoCombate extends BasicGameState{
 //                        NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Cardinal/General.png");
 //                }
 //            }
-//            if(VenganzaBelial.atributoGestion.getMapaActual()==19){
+//            if(VenganzaBelial.atributoGestion.getMapaActual()==19){ //Belial y Hestia
 //                for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
 //                    if(NewCombate.getEnemigos().get(j).getNombre().equals("Belial"))
 //                        NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Cardinal/Belial.png");

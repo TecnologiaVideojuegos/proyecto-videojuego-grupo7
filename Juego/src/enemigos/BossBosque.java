@@ -57,12 +57,12 @@ public final class BossBosque extends Enemigo{
                         jugadores.get(indiceMayorHp).setHpActual(0);
                     else
                         jugadores.get(indiceMayorHp).setHpActual(danyoInfligido); 
-                    msg = "Yggdrasil ha clavado sus raíces en "+jugadores.get(indiceMayorHp).getNombre()+" causando "+danyo+" de daño.";
+                    msg = "Yggdrasil ha clavado sus raíces en "+jugadores.get(indiceMayorHp).getNombre()+" causando "+total+" de daño.";
                 }
                 break;
             case 1:
-                msg="La energía del bosque alimenta a Yggdrasil recuperando 150 PV";
-                        this.setHpActual(this.getHpActual()+150);
+                msg="La energía del bosque alimenta a Yggdrasil recuperando 300 PV";
+                        this.setHpActual(this.getHpActual()+300);
                 break;
             case 2:
                 for (int i = 0; i < jugadores.size(); i++) {

@@ -1,47 +1,46 @@
 package enemigos;
+
 import java.util.ArrayList;
 import java.util.Random;
 import otros.Habilidad;
 import personajes.Jugador;
 
-public final class GranMaestro extends Enemigo{
+public final class Belerofonte extends Enemigo {
+
     private ArrayList<Habilidad> habilidades;
     private static final long serialVersionUID = 4L;
     
-    
-    public GranMaestro(int id, int nivel, int hp, int ataque, int defensa) {
-        super(id, nivel, hp, ataque, defensa); 
+
+    public Belerofonte(int id, int nivel, int hp, int ataque, int defensa) {
+        super(id, nivel, hp, ataque, defensa);
         inicializarEnemigo();
     }
     //poner habilidad (?) modificar oro y exp.
-    
+
     @Override
-    public void inicializarEnemigo(){
-        int danoEspadazo = (int) (this.getAtaque()*1.3);
+    public void inicializarEnemigo() {
+        int danoEspadazo = (int) (this.getAtaque() * 1.3);
         Random rand = new Random();
-        this.setNombre("LiderFanatico");
+        this.setNombre("Belerofonte");
         habilidades = new ArrayList<>();
-        Habilidad hab1 = new Habilidad("Rabia fanática", 1, danoEspadazo, 0, "Golpea con rabia", 2);
+        Habilidad hab1 = new Habilidad("Estocada Justa", 1, danoEspadazo, 0, "Ataca con su lanza a", 2);
         habilidades.add(hab1);
-        Habilidad hab2 = new Habilidad("Imposición fanática", 1, 200, 0, "Corrompe a todos los enemigos", 4);
+        Habilidad hab2 = new Habilidad("Multiestocada", 1, 600, 0, "Golpea a todos los enemigos", 4);
         habilidades.add(hab2);
         this.setHabilidad(habilidades);
         this.setOro(200);
-        this.setExpAportada(100+(int)(rand.nextFloat()*100));
-        this.setVelocidad(12);
-        this.setHpActual(this.getHp());    
+        this.setExpAportada(100 + (int) (rand.nextFloat() * 100));
+        this.setVelocidad(10);
+        this.setHpActual(this.getHp());
     }
-    
-    //Añadir segunda habilidad
 
     @Override
     public String estrategiaAtacar(ArrayList<Jugador> jugadores) {
         String msg="";
         Random rand = new Random();
-        float probHab = rand.nextFloat();
         int at = this.getAtaque();
         int danyo, total, danyoInflingido;
-        boolean habilidad = false;
+        boolean habilidad;
         int indice;
         ArrayList<Jugador> jugadoresAux = new ArrayList<>();
 

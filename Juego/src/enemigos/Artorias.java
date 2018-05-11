@@ -9,7 +9,7 @@ public final class Artorias extends Enemigo {
 
     private ArrayList<Habilidad> habilidades;
     private static final long serialVersionUID = 4L;
-    private int danoEspadazo = (int) (Artorias.super.getAtaque() * 1.3);
+    
 
     public Artorias(int id, int nivel, int hp, int ataque, int defensa) {
         super(id, nivel, hp, ataque, defensa);
@@ -19,6 +19,7 @@ public final class Artorias extends Enemigo {
 
     @Override
     public void inicializarEnemigo() {
+        int danoEspadazo = (int) (this.getAtaque() * 1.3);
         Random rand = new Random();
         this.setNombre("Artorias");
         habilidades = new ArrayList<>();
