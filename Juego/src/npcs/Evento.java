@@ -17,10 +17,10 @@ public class Evento extends NPC{
     public Evento(String linea1, String linea2, String linea3, String linea4, String linea5, String nombre) {
         super(nombre,linea1);
         this.linea1 = "Hola soy " + this.getNombre();
-        this.linea2 = linea2;
-        this.linea3 = linea3;
-        this.linea4 = linea4;
-        this.linea5 = linea5;
+        this.linea2 = linea1;
+        this.linea3 = linea2;
+        this.linea4 = linea3;
+        this.linea5 = linea4;
 //        this.historia = historia;
         //ordenaLineas();
     }

@@ -299,9 +299,9 @@ public final class Combate {
                 exptotal=15;
                 break;
             case 1://Bosque
-                if (nivel <= 1)
+                if (nivel < 3)
                     ini = 0;
-                else if (nivel <= 3)
+                else if (nivel < 5)
                     ini = 6;
                 else
                     ini = 12;
@@ -319,9 +319,9 @@ public final class Combate {
 //                //No existe, enemigos por evento
 //                break;
             case 4:
-                if (nivel <= 8)
+                if (nivel < 11)
                     ini = 0;
-                else if (nivel <= 11)
+                else if (nivel < 14)
                     ini = 6;
                 else
                     ini = 12;
@@ -336,9 +336,9 @@ public final class Combate {
                 }     
                 break;
             case 6:
-                if (nivel <= 16)
+                if (nivel < 18)
                     ini = 0;
-                else if (nivel <= 18)
+                else if (nivel < 20)
                     ini = 6;
                 else
                     ini = 12;
@@ -353,7 +353,7 @@ public final class Combate {
                 }     
                 break;
             case 10://Boss del Bosque
-                BossBosque ygg= new BossBosque(0, 5, 3300, 80, 30);
+                BossBosque ygg= new BossBosque(0, 5, 3300, 200, 30);
                 GeneraEnemigos.add(ygg);
                 dinerototal=ygg.getOro();
                 exptotal=ygg.getExpAportada();

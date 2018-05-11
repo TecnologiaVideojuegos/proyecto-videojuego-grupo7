@@ -60,33 +60,35 @@ public final class BaseDatosEnemigos{
         ges.guardarGrupoEnemigos(enem, "BaseDatos/enemigosBosque.dat");
     }
     public void enemigosBosque() throws SlickException{
-        rat11 = new Rata(1, 1, 100, 50, 30);
-        rat12 = new Rata(2, 1, 100, 50, 30);
-        rat13 = new Rata(3, 1, 100, 50, 30);
-        rat31 = new Rata(1, 3, 150, 60, 40);
-        rat32 = new Rata(2, 3, 150, 60, 40);
-        rat33 = new Rata(3, 3, 150, 60, 40);
-        rat51 = new Rata(1, 5, 200, 70, 50);
-        rat52 = new Rata(2, 5, 200, 70, 50);
-        rat53 = new Rata(3, 5, 200, 70, 50);
+        rat11 = new Rata(1, 1, 80, 55, 30);
+        rat12 = new Rata(2, 1, 80, 55, 30);
+        rat13 = new Rata(3, 1, 80, 55, 30);
+        rat31 = new Rata(1, 3, 120, 80, 60);
+        rat32 = new Rata(2, 3, 120, 80, 60);
+        rat33 = new Rata(3, 3, 120, 80, 60);
+        rat51 = new Rata(1, 5, 150, 95, 80);
+        rat52 = new Rata(2, 5, 150, 95, 80);
+        rat53 = new Rata(3, 5, 150, 95, 80);
+        ////////////////
         gob11 = new Goblin(1, 1, 110, 55, 40);
         gob12 = new Goblin(2, 1, 110, 55, 40);
         gob13 = new Goblin(3, 1, 110, 55, 40);
-        gob31 = new Goblin(1, 3, 150, 65, 50);
-        gob32 = new Goblin(2, 3, 150, 65, 50);
-        gob33 = new Goblin(3, 3, 150, 65, 50);
-        gob51 = new Goblin(1, 5, 200, 75, 60);
-        gob52 = new Goblin(2, 5, 200, 75, 60);
-        gob53 = new Goblin(3, 5, 200, 75, 60);
-        sp11 = new Spider(1, 1, 80, 45, 20);
-        sp12 = new Spider(2, 1, 80, 45, 20);
-        sp13 = new Spider(3, 1, 80, 45, 20);
-        sp31 = new Spider(1, 3, 100, 55, 30);
-        sp32 = new Spider(2, 3, 100, 55, 30);
-        sp33 = new Spider(3, 3, 100, 55, 30);
-        sp51 = new Spider(1, 5, 120, 70, 40);
-        sp52 = new Spider(2, 5, 120, 70, 40);
-        sp53 = new Spider(3, 5, 120, 70, 40);
+        gob31 = new Goblin(1, 3, 150, 85, 70);
+        gob32 = new Goblin(2, 3, 150, 85, 70);
+        gob33 = new Goblin(3, 3, 150, 85, 70);
+        gob51 = new Goblin(1, 5, 200, 95, 90);
+        gob52 = new Goblin(2, 5, 200, 95, 90);
+        gob53 = new Goblin(3, 5, 200, 95, 90);
+        
+        sp11 = new Spider(1, 1, 80, 45, 30);
+        sp12 = new Spider(2, 1, 80, 45, 30);
+        sp13 = new Spider(3, 1, 80, 45, 30);
+        sp31 = new Spider(1, 3, 100, 70, 40);
+        sp32 = new Spider(2, 3, 100, 70, 40);
+        sp33 = new Spider(3, 3, 100, 70, 40);
+        sp51 = new Spider(1, 5, 120, 85, 50);
+        sp52 = new Spider(2, 5, 120, 85, 50);
+        sp53 = new Spider(3, 5, 120, 85, 50);
     }
     public void initArrays(){
         party = new ArrayList<>();

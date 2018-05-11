@@ -3,7 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
+            <file>file:/C:/Users/David/Desktop/proyecto-videojuego-grupo7/Juego/src/estados/EscenaInicio.java</file>
+            <file>file:/C:/Users/David/Desktop/proyecto-videojuego-grupo7/Juego/src/estados/EstadoMenuInicio.java</file>
+            <file>file:/C:/Users/David/Desktop/proyecto-videojuego-grupo7/Juego/src/estados/EstadoCombate.java</file>
+=======
             <file>file:/C:/Users/Angel/Desktop/proyecto-videojuego-grupo7/Juego/src/otros/EventosNpcs.java</file>
+>>>>>>> 4a1466b14fef05a9e940695b4efab63f8571be57
         </group>
     </open-files>
 </project-private>
