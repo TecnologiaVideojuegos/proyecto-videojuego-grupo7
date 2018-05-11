@@ -5,15 +5,23 @@ import items.Armadura;
 import items.Consumible;
 import items.Item;
 import java.awt.Font;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import otros.Gestion;
 import otros.Habilidad;
 import otros.Inventario;
 import personajes.Jugador;
@@ -50,11 +58,15 @@ public class EstadoMenu extends BasicGameState{
     private Font letraMenu;
     private TrueTypeFont opcionesJugadorTTF,textoStatus;
     private int eleccionJugador, idEstado;
-    private Color notChosen = new Color(153, 204, 255);
+   private Color notChosen = new Color(153, 204, 255);
+    //private Color notChosen = new Color(0, 0, 0);//EDIT
     private Color amarillo = new Color(255, 255, 0);
     /*Sonido*/
     private Sound sonidoSelect, sonidoError;
-
+    /*Fondos*/
+    private Image fondoMenu;//,fondoInventory,fondoPersonaje,fondoPJ;
+    private Image fondoHab,fondoObj,fondoArm;
+    
     public EstadoMenu(int id) {
         idEstado = id;
     }
@@ -87,26 +99,37 @@ public class EstadoMenu extends BasicGameState{
         /*cARGAR sONIDO*/
         sonidoSelect=new Sound("Musica/Efectos/select.wav");
         sonidoError=new Sound("Musica/Efectos/error.wav");
-        
+//        fondoMenu=new Image("Imagenes/Fondos/Inventory.png");
+//        fondoInventory=new Image("Imagenes/Fondos/Book.png");
+//        fondoPersonaje=new Image("Imagenes/Fondos/Gates.png");
+//        fondoPJ = new Image("Imagenes/Fondos/Fountain.png");
+//        fondoHab = new Image("Imagenes/Fondos/Crystal.png");
+//        fondoObj = new Image("Imagenes/Fondos/Plain.png");
+//        fondoArm = new Image("Imagenes/Fondos/Sword.png");
+        fondoMenu=new Image("Imagenes/Fondos/fondoMenu.png");
         
     }/*init*/
 
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException 
     {
+        fondoMenu.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
         switch(estado)
         {
             case MENUBASE:
                 renderOpcionesJugador();
                 break;
             case SELPERSONAJE:
+//                fondoPersonaje.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
                 renderSelPersonaje();
                 break;
             case MENUPJ:
+//                fondoPJ.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
                 renderMenuPJ();
                 renderStatusPJ();
                 break;
             case MENUINVENTARIO:
+//                fondoInventory.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
                 renderInventario();
                 break;
             case GUARDANDO:
@@ -116,16 +139,20 @@ public class EstadoMenu extends BasicGameState{
                 renderCargando();
                 break;
             case CAMBIARARMA:
+//                fondoArm.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
                 //renderInventario();
                 renderCambioEquipo();
                 break;
             case CAMBIARARMADURA:
+//                fondoArm.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
                 renderCambioEquipo();
                 break;
             case SELHABILIDAD:
+//                fondoHab.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
                 renderHabilidades();
                 break;
             case SELOBJETIVO:
+//                fondoObj.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
                 renderSelPersonaje();
                 break;
         }/*switch*/
@@ -159,7 +186,7 @@ public class EstadoMenu extends BasicGameState{
                 break;
             case CARGANDO:
                 OpcionControl(2);
-                cargando();
+                cargando(sbg);
                 break;
             case CAMBIARARMA:
                 OpcionControl(VenganzaBelial.atributoGestion.getInv().getItems().size());
@@ -430,6 +457,22 @@ public class EstadoMenu extends BasicGameState{
            if(eleccionJugador==0)
            {
                //EDIT:Guardar Partida
+                    try{
+                        File file = new File("BaseDatos/partida.dat");
+                        file.delete();
+                        VenganzaBelial.atributoGestion.setEnem(null);
+                        FileOutputStream ostreamPar = new FileOutputStream("BaseDatos/partida.dat");
+                        ObjectOutputStream oosPar = new ObjectOutputStream(ostreamPar);
+                        oosPar.writeObject(VenganzaBelial.atributoGestion);
+                        ostreamPar.close();
+                    } catch (IOException ioe) {
+                    System.out.println("Error de IO: " + ioe.getMessage());
+                    } catch (Exception e) {
+                        System.out.println("Error: " + e.getMessage());
+                    }
+                    VenganzaBelial.atributoGestion.setRecargaEnemigos(true);
+                    estado=MENUBASE;
+                    eleccionJugador=0;
            }
            if(eleccionJugador==1)
            {
@@ -439,13 +482,26 @@ public class EstadoMenu extends BasicGameState{
        }
     }/*private void guardando()*/
     
-    private void cargando()
+    private void cargando(StateBasedGame sbg)
     {
         if(input.isKeyPressed(Input.KEY_ENTER))
        { 
            if(eleccionJugador==0)
            {
                //EDIT:Cargar Partida
+               try {
+                        FileInputStream istreamPar = new FileInputStream("BaseDatos/partida.dat");
+                        ObjectInputStream oisPar = new ObjectInputStream(istreamPar);            
+                        VenganzaBelial.atributoGestion = (Gestion) oisPar.readObject();
+                        istreamPar.close();
+                    } catch (IOException ioe) {
+                        System.out.println("Error de IO: " + ioe.getMessage());
+                    } catch (ClassNotFoundException cnfe) {
+                        System.out.println("Error de clase no encontrada: " + cnfe.getMessage());
+                    } catch (Exception e) {
+                        System.out.println("Error: " + e.getMessage());
+                    } 
+               sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
            }
            if(eleccionJugador==1)
            {
@@ -465,15 +521,18 @@ public class EstadoMenu extends BasicGameState{
         }
     }
     
-    private void renderSelPersonaje()
+    private void renderSelPersonaje() throws SlickException
     {
         int offsetX=1000;
         int offsetY=50;
         String nombre= "";
+        Image fondo;
         for(int i=0; i<3;i++)
         {
            nombre=VenganzaBelial.atributoGestion.getJugs().get(i).getNombre();
            if (eleccionJugador == i) {
+                fondo = new Image("Imagenes/Fondos/" + nombre +".png");
+                fondo.draw(500, 0);
                 opcionesJugadorTTF.drawString(100, i * 50 + 200,nombre );
             } else {
                 opcionesJugadorTTF.drawString(100, i * 50 + 200, nombre, notChosen);
@@ -580,8 +639,13 @@ public class EstadoMenu extends BasicGameState{
             else
                 opcionesJugadorTTF.drawString(100,i*50+100,"---");
         }
-        /*Render Descripcion de Habilidad Bajo Seleccion*/
+        /*Render Descripcion de Objeto Bajo Seleccion*/
         this.textoStatus.drawString(800, 100, inven.getItems().get(eleccionJugador).getDescripcion());
+        if(inven.getItems().get(eleccionJugador).getTipoItem()!=0)//Consumible=0/Arma=1//Armadura=2
+        {
+            this.textoStatus.drawString(800, 120, "Requ. Nivel: "+inven.getItems().get(eleccionJugador).getRequisitoNivel());
+            this.textoStatus.drawString(800, 140, "Usable por: "+inven.getItems().get(eleccionJugador).getRequisitoCategoria().get(0));
+        }
         //
         textoStatus.drawString(650, 0, "Inventario");
         textoStatus.drawString(100, 50, "Dinero: "+VenganzaBelial.atributoGestion.getInv().getDinero(), amarillo);
@@ -594,12 +658,12 @@ public class EstadoMenu extends BasicGameState{
         if(eleccionJugador==0)
             opcionesJugadorTTF.drawString(560,350,"SÍ");
         else
-          opcionesJugadorTTF.drawString(560,350,"SÍ", notChosen);
+          opcionesJugadorTTF.drawString(560,350,"SÍ", new Color(153, 204, 255));
         
         if(eleccionJugador==1)
             opcionesJugadorTTF.drawString(560,380,"NO");
         else
-          opcionesJugadorTTF.drawString(560,380,"NO", notChosen);
+          opcionesJugadorTTF.drawString(560,380,"NO", new Color(153, 204, 255));
     }
     private void renderCargando()
     {
@@ -608,12 +672,12 @@ public class EstadoMenu extends BasicGameState{
         if(eleccionJugador==0)
             opcionesJugadorTTF.drawString(560,350,"SÍ");
         else
-          opcionesJugadorTTF.drawString(560,350,"SÍ", notChosen);
+          opcionesJugadorTTF.drawString(560,350,"SÍ", new Color(153, 204, 255));
         
         if(eleccionJugador==1)
             opcionesJugadorTTF.drawString(560,380,"NO");
         else
-          opcionesJugadorTTF.drawString(560,380,"NO", notChosen);
+          opcionesJugadorTTF.drawString(560,380,"NO", new Color(153, 204, 255));
     }
     
     

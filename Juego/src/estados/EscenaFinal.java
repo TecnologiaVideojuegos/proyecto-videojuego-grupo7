@@ -203,6 +203,7 @@ public class EscenaFinal extends BasicGameState{
         avatarBelial = new Image("Imagenes/Personajes/Belial.png");
         avatarDialogo = avatarH;
         sonidoSelect=new Sound("Musica/Efectos/select.wav");
+        sonidoExplosion=new Sound("Musica/Efectos/Explosion5.wav");
         
         texto= new TrueTypeFont(letraMenu, true);
     }
@@ -273,6 +274,7 @@ public class EscenaFinal extends BasicGameState{
                 if(posicion.x<=(-128)){
                     estado++;
                 }
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Archi.wav");
                 break;
             case 1:
                 hor=horS;
@@ -369,13 +371,13 @@ public class EscenaFinal extends BasicGameState{
                 linea3="";
                 linea4="";
                 break;
-                
             case 12:
                 hestia=hestiaD;
                 posicionH.x+=0.1f*i;
                 if(posicionH.x>=320){
                     estado++;
                 }
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/FanaticBattle.wav");
                 break;
             case 13:
                 hestia=hestiaUp;
@@ -437,6 +439,10 @@ public class EscenaFinal extends BasicGameState{
                 break;
             case 20://Temporizacion de pantalla en blanco
                 time+=i;
+                if(!sonidoExplosion.playing())
+                {
+                    sonidoExplosion.play();
+                }
                 if(time/1000>3)//3 segundos de ejecución
                 {
                     estado++;
@@ -540,6 +546,7 @@ public class EscenaFinal extends BasicGameState{
                 if(posicionBelial.y>=384){
                     estado++;
                 }
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Belial.wav");
                 break;
             case 31:
                 belial=belialE;
@@ -965,6 +972,12 @@ public class EscenaFinal extends BasicGameState{
             case 77:
                 normalEnter=false;
                 tomaDecision();
+                if(eleccionBuena){
+                    VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Archi.wav");
+                }
+                else{
+                    VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/FanaticBattle.wav");
+                }
                 break;
             case 78:
                 normalEnter=true;
@@ -1105,16 +1118,18 @@ public class EscenaFinal extends BasicGameState{
         }
     }
     
-    private void renderDecisionJugador()
+    private void renderDecisionJugador() throws SlickException
     {
         Font letra = new Font("Verdana", Font.ROMAN_BASELINE, 25);
         TrueTypeFont opcionesJugadorTTF = new TrueTypeFont(letra, true);
+        Image fondoDecision= new Image("Imagenes/Avatar/decisionFondo.png");
+        fondoDecision.draw(-50, 380, 450, 150);
         for (int i = 0; i < 2; i++) 
         {
             if (eleccionJugador == i) {
                 opcionesJugadorTTF.drawString(10, i * 20 + 400, opciones[i]);
             } else {
-                opcionesJugadorTTF.drawString(10, i * 20 + 400, opciones[i], new Color(211,84,0));
+                opcionesJugadorTTF.drawString(10, i * 20 + 400, opciones[i], new Color(153, 204, 255));
             }
         }
     }/*private void renderOpcionesJugador()*/

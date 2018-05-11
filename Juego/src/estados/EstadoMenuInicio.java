@@ -2,6 +2,7 @@
 package estados;
 
 import java.awt.Font;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -119,16 +120,18 @@ public class EstadoMenuInicio extends BasicGameState {
                     VenganzaBelial.atributoGestion.setInv(inv);
                     VenganzaBelial.atributoGestion.setJugs(jugadores);
                     VenganzaBelial.atributoGestion.setEnem(VenganzaBelial.atributoGestion.cargarGrupoEnemigos("BaseDatos/enemigosBosque.dat"));
-                    try{
-                        FileOutputStream ostreamPar = new FileOutputStream("BaseDatos/partida.dat");
-                        ObjectOutputStream oosPar = new ObjectOutputStream(ostreamPar);
-                        oosPar.writeObject(VenganzaBelial.atributoGestion);
-                        ostreamPar.close();
-                    } catch (IOException ioe) {
-                    System.out.println("Error de IO: " + ioe.getMessage());
-                    } catch (Exception e) {
-                        System.out.println("Error: " + e.getMessage());
-                    }
+//                    try{
+//                        File file = new File("BaseDatos/partida.dat");
+//                        file.delete();
+//                        FileOutputStream ostreamPar = new FileOutputStream("BaseDatos/partida.dat");
+//                        ObjectOutputStream oosPar = new ObjectOutputStream(ostreamPar);
+//                        oosPar.writeObject(VenganzaBelial.atributoGestion);
+//                        ostreamPar.close();
+//                    } catch (IOException ioe) {
+//                    System.out.println("Error de IO: " + ioe.getMessage());
+//                    } catch (Exception e) {
+//                        System.out.println("Error: " + e.getMessage());
+//                    }
                     sbg.enterState(VenganzaBelial.ESTADOESCENAPROTOTIPO);
                     break;
                 case CARGAR:
@@ -144,6 +147,7 @@ public class EstadoMenuInicio extends BasicGameState {
                     } catch (Exception e) {
                         System.out.println("Error: " + e.getMessage());
                     }  
+                    VenganzaBelial.controlMusica.cambiaMusicaMapa(VenganzaBelial.atributoGestion.getMapaActual());
                     sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
                     //heropos = fileio.loadSave();
                     //sbg.enterState(VenganzaBelial.ESTADOESCENAPROTOTIPO);//EDIT
@@ -161,7 +165,7 @@ public class EstadoMenuInicio extends BasicGameState {
                     //sbg.enterState(VenganzaBelial.ESCENABOSQUE2);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENABOSQUEPREBOSS);//EDIt
                     //sbg.enterState(VenganzaBelial.ESCENAPUERTO2);//EDIT
-                    //sbg.enterState(VenganzaBelial.ESCENAPUERTO1);//EDIT
+                    sbg.enterState(VenganzaBelial.ESCENAPUERTO1);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENATROYIA1);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENAFANATICO);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENACATACUMBASPREBOSS);//EDIT
@@ -185,7 +189,7 @@ public class EstadoMenuInicio extends BasicGameState {
                     //sbg.enterState(VenganzaBelial.ESCENACARDINALOPCIONAL);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENAFINAL);//EDIT
                     //sbg.enterState(VenganzaBelial.ESCENAFINALBUENO);//EDIT
-                    sbg.enterState(VenganzaBelial.ESCENAFINALMALO);//EDIT
+                    //sbg.enterState(VenganzaBelial.ESCENAFINALMALO);//EDIT
 
                     break;
                 case PRUEBASDAVID:
@@ -193,12 +197,15 @@ public class EstadoMenuInicio extends BasicGameState {
                     //sbg.enterState(VenganzaBelial.ESTADOMENU);//EDIT
                     //sbg.enterState(VenganzaBelial.ESTADOCOMBATE);//EDIT
                     //sbg.enterState(VenganzaBelial.ESTADOCOMBATETUT);//EDIT
-                    //sbg.enterState(VenganzaBelial.ESCENABOSQUEPOSTBOSS);//EDIT
+//                    sbg.enterState(VenganzaBelial.ESCENATROYIAPOSTBOSS);
+                    sbg.enterState(VenganzaBelial.ESCENAMONTANAPOSTBOSS);
+//                    sbg.enterState(VenganzaBelial.ESCENAFINAL);
+//                    sbg.enterState(VenganzaBelial.ESCENABOSQUEPOSTBOSS);//EDIT
                     //sbg.enterState(VenganzaBelial.ESTADOTIENDA);//EDIT
                     //Pueblo MOntana=5
                     
-                    VenganzaBelial.eventos.setControlEventos(6);
-                    sbg.enterState(VenganzaBelial.ESCENADEYOLICAPOSTMONTANA);//EDIt
+//                    VenganzaBelial.eventos.setControlEventos(6);
+//                    sbg.enterState(VenganzaBelial.ESCENADEYOLICAPOSTMONTANA);//EDIt
                     break;
                 case PRUEBASANGEL:
                     break;

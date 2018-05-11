@@ -185,7 +185,7 @@ public class EscenaInicio extends BasicGameState{
             case 0:
                     
                 avatarDialogo=this.avatarE;
-                linea5 = "El mundo de nuestros protegonistas se llama Reynos.";
+                linea5 = "El mundo de nuestros protagonistas se llama Reynos.";
                 linea6 = "Hace muchos años había un demonio, Belial, que engaño";
                 linea7 = "a la mitad de la población con otorgarles lo que";
                 linea8 = "quisieran a cambio de abrir las puertas del Infierno.";

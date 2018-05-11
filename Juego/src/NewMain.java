@@ -7,8 +7,12 @@ salidaEscena= new Image("Imagenes/Escenas/EscenaCarreta1/salidaEscena1.png"); --
 
 
 import enemigos.Enemigo;
+import estados.VenganzaBelial;
 import items.Arma;
 import items.Armadura;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import otros.Habilidad;
 import otros.Inventario;
 import personajes.Horacia;
@@ -29,8 +33,23 @@ public class NewMain {
     
     public static void main(String[] args) throws SlickException {
 
-          BaseDatosEnemigos base = new BaseDatosEnemigos();
-          BaseDatosCatacumba base1 = new BaseDatosCatacumba();
+//          BaseDatosEnemigos base = new BaseDatosEnemigos();
+//          BaseDatosCatacumba base1 = new BaseDatosCatacumba();
+        Gestion gest= new Gestion();
+          try {
+                        FileInputStream istreamPar = new FileInputStream("BaseDatos/partida.dat");
+                        ObjectInputStream oisPar = new ObjectInputStream(istreamPar);            
+                        gest= (Gestion) oisPar.readObject();
+                        istreamPar.close();
+                    } catch (IOException ioe) {
+                        System.out.println("Error de IO: " + ioe.getMessage());
+                    } catch (ClassNotFoundException cnfe) {
+                        System.out.println("Error de clase no encontrada: " + cnfe.getMessage());
+                    } catch (Exception e) {
+                        System.out.println("Error: " + e.getMessage());
+                    }
+          int a;
+          a=0;
 //        Gestion ges= new Gestion();
 //        ArrayList<ArrayList<Enemigo>> enem;
 //        enem= ges.cargarGrupoEnemigos();

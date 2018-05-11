@@ -2,9 +2,6 @@ package estados;
 
 import enemigos.Enemigo;
 import static estados.VenganzaBelial.ESTADOMENUINICIO;
-import static estados.VenganzaBelial.hori;
-import static estados.VenganzaBelial.kibi;
-import static estados.VenganzaBelial.mordi;
 import items.Consumible;
 import java.awt.Font;
 import java.util.ArrayList;
@@ -87,7 +84,7 @@ public class EstadoCombate extends BasicGameState{
     //
     private boolean flagHuida=false;
     private float tasaHuida=0.4f;
-
+    private Image marcoOpciones;
     
     public EstadoCombate(int id) {
         idEstado = id;
@@ -100,6 +97,7 @@ public class EstadoCombate extends BasicGameState{
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException 
     {
+        marcoOpciones= new Image("Imagenes/Avatar/marcoOpciones.png");
         /*ost*/
         OST= new Music("Musica/Efectos/Sword4.wav");
         sonidoAtaque= new Sound("Musica/Efectos/Sword4.wav");
@@ -149,25 +147,32 @@ public class EstadoCombate extends BasicGameState{
             
         {
             case OPCIONESBASE:
+                marcoOpciones.draw(0, 385, 280, 220);
                 renderOpcionesJugador();
                 break;
             case SELHABILIDAD:
+                marcoOpciones.draw(0, 385, 280, 220);
                 renderHabilidades();
                 break;
             case SELOBJETIVO :
+                marcoOpciones.draw(0, 385, 280, 220);
                 renderSelObjetivo();
                 break;
             case ATACANDO:
+                marcoOpciones.draw(0, 385, 280, 220);
                 renderSelObjetivo();
                 //this.animacion.draw(750, 200, 200, 200);
                 break;
             case SELCONSUMIBLE:
+                marcoOpciones.draw(0, 385, 280, 220);
                 renderObjetos();
                 break;
             case SELALIADO:
+                marcoOpciones.draw(0, 385, 280, 220);
                 renderSelAliados();
                 break;
             case FINTURNO:
+                this.renderSkill();
                 renderMensajeSistema();
                 break;
             case FINCOMBATE:
@@ -177,7 +182,7 @@ public class EstadoCombate extends BasicGameState{
         //Animaciones combate
         this.renderAtaqueAliado();
         this.renderAtaqueEnemigo();
-        this.renderSkill();
+//        this.renderSkill();
         
         //Debug Prints
 //        mensajePantalla.drawString(0, 80, "Turno "+NewCombate.getTurno());
@@ -187,9 +192,9 @@ public class EstadoCombate extends BasicGameState{
 //        mensajePantalla.drawString(0, 160, "Estado "+this.Estado);
 //        mensajePantalla.drawString(0, 180, "eleccionJugador "+this.eleccionJugador);
 //        mensajePantalla.drawString(0, 200, "CombateOver "+NewCombate.CombateAcabado());
-//        for (int i = 0; i < NewCombate.getOrdenPersonajes().size(); i++) {
-//            mensajePantalla.drawString(1100, 20*i, " "+NewCombate.getOrdenPersonajes().get(i).getNombre());  
-//        }
+        for (int i = 0; i < NewCombate.getOrdenPersonajes().size(); i++) {
+            mensajePantalla.drawString(1100, 20*i, " "+NewCombate.getOrdenPersonajes().get(i).getNombre());  
+        }
         mensajePantalla.drawString(0, 80, "Mapa Actual "+VenganzaBelial.atributoGestion.getMapaActual());
     }
 
@@ -745,8 +750,8 @@ public class EstadoCombate extends BasicGameState{
                 sbg.enterState(VenganzaBelial.ESCENAMONTANAPOSTBOSS);
                 break;
             case 17:
-                VenganzaBelial.atributoGestion.setMapaActual(7);
-                sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
+                //VenganzaBelial.atributoGestion.setMapaActual(7);
+                sbg.enterState(VenganzaBelial.ESCENACARDINALMINIBOSS2);
                 break;
             case 18:
                 break;
@@ -764,11 +769,19 @@ public class EstadoCombate extends BasicGameState{
         for (int i = 0; i < NUMOPCIONESBASE; i++) 
         {
             if (eleccionJugador == i) {
-                opcionesJugadorTTF.drawString(10, i * 20 + 400, opciones[i]);
+                opcionesJugadorTTF.drawString(20, i * 20 + 400, opciones[i]);
             } else {
-                opcionesJugadorTTF.drawString(10, i * 20 + 400, opciones[i], notChosen);
+                opcionesJugadorTTF.drawString(20, i * 20 + 400, opciones[i], notChosen);
             }
         }
+//        for (int i = 0; i < NUMOPCIONESBASE; i++) 
+//        {
+//            if (eleccionJugador == i) {
+//                opcionesJugadorTTF.drawString(10, i * 20 + 400, opciones[i]);
+//            } else {
+//                opcionesJugadorTTF.drawString(10, i * 20 + 400, opciones[i], notChosen);
+//            }
+//        }
     }/*private void renderOpcionesJugador()*/
     
     private void renderHabilidades()
@@ -778,10 +791,10 @@ public class EstadoCombate extends BasicGameState{
         {
             if(eleccionJugador==i)
             {
-               opcionesJugadorTTF.drawString(10,i*20+400,PJ.getHabilidades().get(i).getNombre());
+               opcionesJugadorTTF.drawString(20,i*20+400,PJ.getHabilidades().get(i).getNombre());
             }
             else{
-                opcionesJugadorTTF.drawString(10, i * 20 + 400, PJ.getHabilidades().get(i).getNombre(), notChosen);
+                opcionesJugadorTTF.drawString(20, i * 20 + 400, PJ.getHabilidades().get(i).getNombre(), notChosen);
             }
         }
     }/* private void renderHabilidades()*/
@@ -794,10 +807,10 @@ public class EstadoCombate extends BasicGameState{
             Consumible consumible=(Consumible)VenganzaBelial.atributoGestion.getInv().getItems().get(i);
             if(eleccionJugador==i)
             {
-               opcionesJugadorTTF.drawString(10,i*20+400,consumible.getNombre()+" "+consumible.getNumero()+"/10");
+               opcionesJugadorTTF.drawString(20,i*20+400,consumible.getNombre()+" "+consumible.getNumero()+"/10");
             }
             else{
-                opcionesJugadorTTF.drawString(10, i * 20 + 400, consumible.getNombre()+" "+consumible.getNumero()+"/10", notChosen);
+                opcionesJugadorTTF.drawString(20, i * 20 + 400, consumible.getNombre()+" "+consumible.getNumero()+"/10", notChosen);
             }
         }
     }
@@ -805,16 +818,16 @@ public class EstadoCombate extends BasicGameState{
     private void renderSelAliados()
     {
         
-        opcionesJugadorTTF.drawString(10,20+400, VenganzaBelial.atributoGestion.getJugs().get(this.eleccionJugador).getNombre());
+        opcionesJugadorTTF.drawString(20,20+400, VenganzaBelial.atributoGestion.getJugs().get(this.eleccionJugador).getNombre());
     }/*private void renderSelAliados()*/
     
     private void renderSelObjetivo()
     {
         Enemigo enem= (Enemigo)NewCombate.getEnemigos().get(this.eleccionJugador);
         if(enem.getId()!=0)
-            opcionesJugadorTTF.drawString(10,20+400, enem.getNombre()+" "+enem.getId());
+            opcionesJugadorTTF.drawString(20,20+400, enem.getNombre()+" "+enem.getId());
         else 
-            opcionesJugadorTTF.drawString(10,20+400, enem.getNombre());
+            opcionesJugadorTTF.drawString(20,20+400, enem.getNombre());
     }/*private void renderSelObjetivo()*/
     
     private void renderEnemigos() throws SlickException
@@ -832,7 +845,7 @@ public class EstadoCombate extends BasicGameState{
                 mensajePantalla.drawString(700, 20*aux, debugPJ.getNombre()+"/LVL: "+debugPJ.getNivel()+"/HP: "+debugPJ.getHpActual()+"|"+debugPJ.getHp());
                 //NewCombate.getEnemigos().get(aux).getImagen().draw(aux*300+200, 200, 350, 400);
                 //enemigo.draw(aux*200+200, 200, 0.5f);
-                NewCombate.getEnemigos().get(aux).getImagen().draw(aux*200+200, 200, 0.5f);
+                NewCombate.getEnemigos().get(aux).getImagen().draw(aux*200+400, 200, 0.5f);
             }
         }
     }/*private void renderEnemigos() throws SlickException*/
@@ -954,7 +967,7 @@ public class EstadoCombate extends BasicGameState{
             /**/
             if(NewCombate.getTurno()<NewCombate.getOrdenPersonajes().size())//If de seguridad para coordeinar render y update
             {
-                mensajePantalla.drawString(10, 560, "Turno de:" + NewCombate.getOrdenPersonajes().get(NewCombate.getTurno()).getNombre());
+                mensajePantalla.drawString(10, 360, "Turno de:" + NewCombate.getOrdenPersonajes().get(NewCombate.getTurno()).getNombre(), new Color(0,0,0));
             }
     }/*private void renderAvatars(Graphics g)*/  
     private float compruebaPorcentajeBarra(float porcentajeBarra)

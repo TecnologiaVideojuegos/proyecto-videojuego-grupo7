@@ -8,6 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import org.newdawn.slick.geom.Vector2f;
 import personajes.Jugador;
 
 public class Gestion implements Serializable{
@@ -16,6 +17,9 @@ public class Gestion implements Serializable{
     private Inventario inv = new Inventario();
     private int mapaActual;
     private int controlEscenas;
+//    private float posX;
+//    private float posY;
+    private boolean recargaEnemigos=false;
     
     private static final long serialVersionUID = 10L;
     
@@ -139,4 +143,25 @@ public class Gestion implements Serializable{
         }
         return enemigos;
     }
+
+    
+//    public void setPosicionHeroe(Vector2f posicionHeroe) {
+//        this.posX=posicionHeroe.x;
+//        this.posY=posicionHeroe.y;
+//    }
+//
+//    public Vector2f getPosicionHeroe() {
+//        return new Vector2f(this.posX,this.posY);
+//    }
+
+    public boolean isRecargaEnemigos() {
+        return recargaEnemigos;
+    }
+
+    public void setRecargaEnemigos(boolean recargaEnemigos) {
+        this.recargaEnemigos = recargaEnemigos;
+    }
+    
+    
+    
 }
