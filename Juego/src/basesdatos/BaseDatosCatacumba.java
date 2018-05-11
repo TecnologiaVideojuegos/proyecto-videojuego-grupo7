@@ -51,8 +51,8 @@ public final class BaseDatosCatacumba{
         esq82 = new Esqueleto(2, 8, 400, 160, 30);
         esq111 = new Esqueleto(1, 11, 800, 255, 50);
         esq112 = new Esqueleto(2, 11, 800, 255, 50);
-        esq141 = new Esqueleto(1, 14, 1000, 275, 60);
-        esq142 = new Esqueleto(2, 14, 1000, 275, 60);
+        esq141 = new Esqueleto(1, 14, 1000, 265, 60);
+        esq142 = new Esqueleto(2, 14, 1000, 265, 60);
         //
         zom81 = new Zombie(1, 8, 1000, 170, 40);
         zom82 = new Zombie(2, 8, 1000, 170, 40);

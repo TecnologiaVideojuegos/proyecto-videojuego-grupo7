@@ -19,9 +19,9 @@ public final class Fafnir extends Enemigo {
     public void inicializarEnemigo() {
         this.setNombre("Fafnir");
         habilidades = new ArrayList<>();
-        Habilidad hab1 = new Habilidad("Llamarada", 1, 500, 0, "Fuego de dragón que quita vida a todo el grupo", 4);
+        Habilidad hab1 = new Habilidad("Llamarada", 1, 160, 0, "Fuego de dragón que quita vida a todo el grupo", 4);
         habilidades.add(hab1);
-        Habilidad hab2 = new Habilidad("Cuchillada", 1, 400, 0, "Corte de dragón que quita vida a todo el grupo", 4);
+        Habilidad hab2 = new Habilidad("Cuchillada", 1, 140, 0, "Corte de dragón que quita vida a todo el grupo", 4);
         habilidades.add(hab2);
         this.setHabilidad(habilidades);
         this.setOro(this.getNivel() * 3);

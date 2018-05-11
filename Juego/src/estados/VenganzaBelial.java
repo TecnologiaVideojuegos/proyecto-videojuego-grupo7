@@ -3,6 +3,7 @@ package estados;
 
 import basesdatos.BaseDatosCatacumba;
 import basesdatos.BaseDatosEnemigos;
+import basesdatos.BaseDatosMontana;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
@@ -187,6 +188,7 @@ public class VenganzaBelial extends StateBasedGame {
         controlMusica.loopMusica();
         BaseDatosEnemigos base = new BaseDatosEnemigos();
         BaseDatosCatacumba base1 = new BaseDatosCatacumba();
+        BaseDatosMontana base2 = new BaseDatosMontana();
         AppGameContainer app = new AppGameContainer(new VenganzaBelial());
         app.setDisplayMode(WIDTH, HEIGHT, FULLSCREEN);
         app.start();

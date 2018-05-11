@@ -25,7 +25,7 @@ public final class Belerofonte extends Enemigo {
         habilidades = new ArrayList<>();
         Habilidad hab1 = new Habilidad("Estocada Justa", 1, danoEspadazo, 0, "Ataca con su lanza a", 2);
         habilidades.add(hab1);
-        Habilidad hab2 = new Habilidad("Multiestocada", 1, 600, 0, "Golpea a todos los enemigos", 4);
+        Habilidad hab2 = new Habilidad("Multiestocada", 1, 100, 0, "Golpea a todos los enemigos", 4);
         habilidades.add(hab2);
         this.setHabilidad(habilidades);
         this.setOro(200);

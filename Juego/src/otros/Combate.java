@@ -336,9 +336,9 @@ public final class Combate {
                 }     
                 break;
             case 6:
-                if (nivel < 18)
+                if (nivel < 16)
                     ini = 0;
-                else if (nivel < 20)
+                else if (nivel < 18)
                     ini = 6;
                 else
                     ini = 12;
@@ -404,40 +404,32 @@ public final class Combate {
                 break;
             case 15:
                 //EDIT
-                Fanatico fan151=new Fanatico(1,6,300,90,40);
-                fan151.setNombre("Bellafonte");
-//                Pegaso peg=new Pegaso(1,6,300,90,40);
+                Belerofonte bela= new Belerofonte(0,16,4000,280,180);
                 dinerototal=240;
                 exptotal=(int) (150+150*(new Random().nextFloat()));
-                GeneraEnemigos.add(fan151);
+                GeneraEnemigos.add(bela);
                 break;
             case 16:
                 //EDIT
-                Fanatico fan161=new Fanatico(1,6,300,90,40);
-                fan161.setNombre("Dragón");
-//                Pegaso peg=new Pegaso(1,6,300,90,40);
-                dinerototal=240;
-                exptotal=(int) (150+150*(new Random().nextFloat()));
-                GeneraEnemigos.add(fan161);
+                Fafnir fani=new Fafnir(1,6,50000,380,200);
+                dinerototal=1440;
+                exptotal=(int) (900+150*(new Random().nextFloat()));
+                GeneraEnemigos.add(fani);
                 break;
             case 17:
-                Fanatico fan171=new Fanatico(1,23,15000,450,160);
-                fan171.setNombre("Jinete Espectral");
-//                Pegaso peg=new Pegaso(1,6,300,90,40);
-                dinerototal=240;
-                exptotal=(int) (150+150*(new Random().nextFloat()));
-                GeneraEnemigos.add(fan171);
+                Jinete jin=new Jinete(1,23,15000,450,160);
+                dinerototal=2400;
+                exptotal=(int) (1000+150*(new Random().nextFloat()));
+                GeneraEnemigos.add(jin);
                 break;
             case 18:
                 Archi Archi = new Archi(1,25,20000,400,200);
-                Archi.setNombre("Archi");
                 dinerototal=10000;
                 exptotal=(int) (150+150*(new Random().nextFloat()));
                 GeneraEnemigos.add(Archi);
                 break;
             case 19:
                 Belial Belial = new Belial(1,25,20000,100,100);
-                Belial.setNombre("Belial");
                 dinerototal=10000;
                 exptotal=(int) (150+150*(new Random().nextFloat()));
                 GeneraEnemigos.add(Belial);

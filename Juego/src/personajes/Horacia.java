@@ -65,7 +65,10 @@ public final class Horacia extends Jugador{
     @Override
     public void subirNivelEstadisticas(){
         this.setHp((this.getHp()+100));
-        this.setDefensaBase((this.getDefensaBase()+15));
+        if(this.getNivel()<18)
+            this.setDefensaBase((this.getDefensaBase()+15));
+        else
+            this.setDefensaBase((this.getDefensaBase()+2));
         this.setDefensa(this.getDefensaBase() + this.getArmadura().getDefensa());
         this.setAtaqueBase((this.getAtaqueBase()+10));
         this.setAtaque(this.getAtaqueBase() + this.getArma().getDanyo());

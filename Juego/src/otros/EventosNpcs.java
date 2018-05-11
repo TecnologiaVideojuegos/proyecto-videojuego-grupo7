@@ -362,7 +362,7 @@ public class EventosNpcs {
                     ArrayList<String> requisitos3 = new ArrayList<>();
                     requisitos1.add("Horacia");
                     Arma arma2 = new Arma(90, 3, "Hacha de luz", "Tu primer arma para mayores", requisitos1, 15, 151, 75);
-                    Armadura armadura2 = new Armadura(90, "Armadura de malla", "Una armadura de verdad para un juego de verdad", requisitos1, 15, 152, 75);
+                    Armadura armadura2 = new Armadura(80, "Armadura de malla", "Una armadura de verdad para un juego de verdad", requisitos1, 15, 152, 75);
                     //
                     requisitos2.add("Mordeim");
                     Arma arma3 = new Arma(90, 3, "Puñal metalSlime", "El nombre esta bien", requisitos2, 15, 153, 75);

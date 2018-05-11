@@ -133,7 +133,10 @@ public class Habilidad implements Serializable{
         {
           Recupera=(int)(DanyoCausado*0.2f);
           objetivo.setHpActual(objetivo.getHpActual()- DanyoCausado);
-          usuario.setHpActual(usuario.getHpActual()+Recupera);
+          if((usuario.getHpActual()+Recupera)>usuario.getHp())
+               usuario.setHpActual(usuario.getHp());
+          else
+            usuario.setHpActual(usuario.getHpActual()+Recupera);
         }
         else
         {
@@ -141,7 +144,10 @@ public class Habilidad implements Serializable{
            objetivo.setHpActual(objetivo.getHpActual()- 1);
            Recupera=1;
            objetivo.setHpActual(objetivo.getHpActual()- 1);
-           usuario.setHpActual(usuario.getHpActual()+Recupera);
+           if((usuario.getHpActual()+Recupera)>usuario.getHp())
+               usuario.setHpActual(usuario.getHp());
+            else
+                usuario.setHpActual(usuario.getHpActual()+Recupera);
         }
     }/* public void tipoDrenar(Jugador usuario,Personaje Objetivo)*/
     

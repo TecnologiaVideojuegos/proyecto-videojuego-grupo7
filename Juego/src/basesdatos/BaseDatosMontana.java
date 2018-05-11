@@ -46,33 +46,36 @@ public final class BaseDatosMontana{
     }
     public void enemigosCatacumba(){
         //int id, int nivel, int hp, int ataque, int defensa
-        slime161 = new Slime(1, 16, 300, 50, 50);
-        slime162 = new Slime(2, 16, 300, 50, 50);
-        slime181 = new Slime(1, 18, 320, 55, 55);
-        slime182 = new Slime(2, 18, 320, 55, 55);
-        slime201 = new Slime(1, 20, 340, 60, 60);
-        slime202 = new Slime(2, 20, 340, 60, 60);
-        mur161 = new Murciegalo(1, 16, 320, 55, 55);
-        mur162 = new Murciegalo(2, 16, 320, 55, 55);
-        mur181 = new Murciegalo(1, 18, 330, 60, 60);
-        mur182 = new Murciegalo(2, 18, 330, 60, 60);
-        mur201 = new Murciegalo(1, 20, 370, 70, 70);
-        mur202 = new Murciegalo(2, 20, 370, 70, 70);
-        mini161 = new MiniGrifo(1, 16, 280, 45, 55);
-        mini162 = new MiniGrifo(2, 16, 280, 45, 55);
-        mini163 = new MiniGrifo(3, 16, 280, 45, 55);
-        mini181 = new MiniGrifo(1, 18, 310, 50, 65);
-        mini182 = new MiniGrifo(2, 18, 310, 50, 65);
-        mini183 = new MiniGrifo(3, 18, 310, 50, 65);
-        mini201 = new MiniGrifo(1, 20, 340, 60, 75);
-        mini202 = new MiniGrifo(2, 20, 340, 60, 75);
-        mini203 = new MiniGrifo(3, 20, 340, 60, 75);
-        mi161 = new Minotauro(1, 16, 400, 70, 50);
-        mi162 = new Minotauro(2, 16, 400, 70, 50);
-        mi181 = new Minotauro(1, 18, 420, 75, 55);
-        mi182 = new Minotauro(2, 18, 420, 75, 55);
-        mi201 = new Minotauro(1, 20, 450, 85, 65);
-        mi202 = new Minotauro(2, 20, 450, 85, 65);
+        slime161 = new Slime(1, 16, 1000, 260, 50);
+        slime162 = new Slime(2, 16, 1000, 260, 50);
+        slime181 = new Slime(1, 18, 1500, 325, 55);
+        slime182 = new Slime(2, 18, 1500, 325, 55);
+        slime201 = new Slime(1, 20, 1700, 360, 60);
+        slime202 = new Slime(2, 20, 1700, 360, 60);
+        //
+        mur161 = new Murciegalo(1, 16, 800, 255, 50);
+        mur162 = new Murciegalo(2, 16, 800, 255, 50);
+        mur181 = new Murciegalo(1, 18, 1200, 320, 50);
+        mur182 = new Murciegalo(2, 18, 1200, 320, 50);
+        mur201 = new Murciegalo(1, 20, 1400, 360, 50);
+        mur202 = new Murciegalo(2, 20, 1400, 360, 50);
+        
+        mini161 = new MiniGrifo(1, 16, 1000, 250, 55);
+        mini162 = new MiniGrifo(2, 16, 1000, 250, 55);
+        mini163 = new MiniGrifo(3, 16, 1000, 250, 55);
+        mini181 = new MiniGrifo(1, 18, 1400, 330, 65);
+        mini182 = new MiniGrifo(2, 18, 1400, 330, 65);
+        mini183 = new MiniGrifo(3, 18, 1400, 330, 65);
+        mini201 = new MiniGrifo(1, 20, 1600, 360, 75);
+        mini202 = new MiniGrifo(2, 20, 1600, 360, 75);
+        mini203 = new MiniGrifo(3, 20, 1600, 360, 75);
+        //
+        mi161 = new Minotauro(1, 16, 2000, 250, 45);
+        mi162 = new Minotauro(2, 16, 2000, 250, 45);
+        mi181 = new Minotauro(1, 18, 2420, 325, 50);
+        mi182 = new Minotauro(2, 18, 2420, 325, 50);
+        mi201 = new Minotauro(1, 20, 2750, 355, 55);
+        mi202 = new Minotauro(2, 20, 2750, 355, 55);
     }
     public void initArrays(){
         party = new ArrayList<>();

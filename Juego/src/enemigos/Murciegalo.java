@@ -63,7 +63,7 @@ public final class Murciegalo extends Enemigo implements Serializable{
         
         danyoInflingido = jugadoresAux.get(indice).getHpActual() - total;
         if(habilidad){
-            if((this.getHpActual() + danyoInflingido) >= this.getHp())
+            if((this.getHpActual() + total) >= this.getHp())
                 this.setHpActual(this.getHp());
             else
                 this.setHpActual(danyoInflingido);

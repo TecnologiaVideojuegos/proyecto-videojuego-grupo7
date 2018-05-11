@@ -50,7 +50,7 @@ public final class Kibito extends Jugador{
         Habilidad[] habs = new Habilidad[5];
         habs[0] = new Habilidad("Bola fuego", 1, 3, 8, "Bola de fuego contra todos los objetivos", 4);
         habs[1] = new Habilidad("Milagro sanitario", 5, 30, 15, "Cura a un aliado", 0);
-        habs[2] = new Habilidad("Lanza de rayos", 10, 7, 30, "Rayo poderoso contra objetivo", 2);
+        habs[2] = new Habilidad("Lanza de rayos", 10, 4, 30, "Rayo poderoso contra objetivo", 2);
         habs[3] = new Habilidad("Levantate gandul", 15, 300, 45, "Resucita un aliado", 1);
         habs[4] = new Habilidad("O. Arcano", 20, 5, 100, "Proporciona un buen golpe a un objetivo", 2);
         for (int i = 0; i < habs.length; i++) {
