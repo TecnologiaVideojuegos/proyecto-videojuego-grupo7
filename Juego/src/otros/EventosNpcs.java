@@ -128,6 +128,8 @@ public class EventosNpcs {
                 }
                 //Evento con algo de historia opcional pa rellenar zona mapa opcional
                 else if(x == 81 && y == 38){
+                    evento = new Evento("Parece estar muerto","Malditas setas alucinógenas","","",""
+                    , "Setillo");
                     tipo = 0;
                 }
                 //Vendedor
@@ -215,11 +217,11 @@ public class EventosNpcs {
                     tipo = 1;
                 }
                 else if (x==11 && y==1) {
-                    evento = new Evento("Vaya dia de deposicion","Me acaban de suspender programación avanzada, ","y no se si cortarme las venas o dejarmelas largas...","","", "Rosendo");
+                    evento = new Evento("Vaya dia de mierda","Me acaban de suspender programación avanzada, ","y no se si cortarme las venas o dejarmelas largas...","","", "Rosendo");
                     tipo = 0;
                 }
                 else if (x==19 && y==12) {
-                    evento = new Evento("Lo que faltaba","Ademas de hacerse con el barco del alcalde no nos dejan salir a pescar","","",""
+                    evento = new Evento("Lo que faltaba","Ademas de hacerse con el barco del alcalde no nos","dejan salir a pescar","",""
                     , "Masto");
                     tipo = 0;
                 }
