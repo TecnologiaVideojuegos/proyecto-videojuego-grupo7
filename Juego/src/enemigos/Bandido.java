@@ -40,38 +40,38 @@ public final class Bandido extends Enemigo implements Serializable{
         int at = this.getAtaque();
         int danyo, total, danyoInflingido;
         boolean habilidad = false;
-        int mayorDefensa = 0, indiceMayorDefensa = 0;
+        int indice;
+        ArrayList<Jugador> jugadoresAux= new ArrayList<>();
         //Se supone que hay vivos porque se comprueba donde se llame
         //Comprobamos si va a hacer habilidad o no
         if (probHab > 0.7){
             at += this.getHabilidad().get(0).getDanyo();
             habilidad = true;
         }
-        
         for (int i = 0; i < jugadores.size(); i++) {
-            if (jugadores.get(i).estaVivo()){
-                if (jugadores.get(i).getDefensa() > mayorDefensa){
-                    mayorDefensa = jugadores.get(i).getDefensa();
-                    indiceMayorDefensa = i;
-                }
-            }
+            if (jugadores.get(i).estaVivo())
+                jugadoresAux.add(jugadores.get(i));
         }
+
+        //Indice aleatorio de los que estan vivos
+        indice = rand.nextInt(jugadoresAux.size());
         
-        danyo = at - jugadores.get(indiceMayorDefensa).getDefensa();
+        
+        danyo = at - jugadoresAux.get(indice).getDefensa();
 
         if (danyo > 0)
             total = danyo;
         else
             total = 1;
 
-        danyoInflingido = jugadores.get(indiceMayorDefensa).getHpActual() - total;
+        danyoInflingido = jugadoresAux.get(indice).getHpActual() - total;
         if(danyoInflingido < 0)
-            jugadores.get(indiceMayorDefensa).setHpActual(0);
+            jugadoresAux.get(indice).setHpActual(0);
         else
-            jugadores.get(indiceMayorDefensa).setHpActual(danyoInflingido);   
+            jugadoresAux.get(indice).setHpActual(danyoInflingido);   
         //Se ha hecho funciÃ³n para que todos los tipos de enemigos la tengan
         //y no tengamos que estar metiendo el mismo codigo varias veces
-        msg = this.escribirMensaje(habilidad, this.getHabilidad().get(0), jugadores.get(indiceMayorDefensa), total);
+        msg = this.escribirMensaje(habilidad, this.getHabilidad().get(0), jugadoresAux.get(indice), total);
         return msg;  
     }
 }
