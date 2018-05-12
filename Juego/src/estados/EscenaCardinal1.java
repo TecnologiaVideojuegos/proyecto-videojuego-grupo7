@@ -149,7 +149,6 @@ public class EscenaCardinal1 extends BasicGameState{
         switch (estado)
         {
             case 0:
-                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Cardinal.wav");
                 posicion.x+=0.1f*i;
                 if(posicion.x>=128){
                     estado++;
@@ -206,9 +205,10 @@ public class EscenaCardinal1 extends BasicGameState{
                 linea4="";
                 break;
             case 7:
-                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/BattleOst.wav");
+                //Combate contra un soldado, un paladín y un capitán
                 estado=0;
-                sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);//EDIT:
+                VenganzaBelial.atributoGestion.setMapaActual(21);
+                sbg.enterState(VenganzaBelial.ESTADOCOMBATE);
                 break;
             
         }

@@ -215,9 +215,9 @@ public class EstadoMenuInicio extends BasicGameState {
                     } catch (Exception e) {
                         System.out.println("Error: " + e.getMessage());
                     }  
-                    VenganzaBelial.atributoGestion.setMapaActual(19);
+                    VenganzaBelial.atributoGestion.setMapaActual(20);
                     VenganzaBelial.atributoGestion.setControlEscenas(7);
-                    sbg.enterState(VenganzaBelial.ESCENAFINAL);//EDIt
+                    sbg.enterState(VenganzaBelial.ESCENADEYOLICAPOSTMONTANA);//EDIt
                     break;
                 case PRUEBASANGEL:
                     break;

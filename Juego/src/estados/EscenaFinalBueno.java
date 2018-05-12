@@ -615,7 +615,7 @@ public class EscenaFinalBueno extends BasicGameState{
                 linea5="Angel: La vida hay que tomarsela con humor.";
                 break;
             case 53:
-                linea5="Pablo: ...";
+                linea5="Pablo: ";
                 break;
             case 54:
                 estado=0;

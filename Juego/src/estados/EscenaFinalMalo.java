@@ -398,18 +398,19 @@ public class EscenaFinalMalo extends BasicGameState{
                 break;
             case 25:
                 linea5="David: Esto es una mierda.";
+                linea6="";
                 break;
             case 26:
                 linea5="Alberto: Murciegalo era una broma.";
                 break;
             case 27:
-                linea5="Hisam: Dedicartoria a los hijos de p*ta de mis amigos xD.";
+                linea5="Hisam: Ojalá hacer un juego de verdad.";
                 break;
             case 28:
                 linea5="Angel: Me hubiera gustado tener artilugios de mayores.";
                 break;
             case 29:
-                linea5="Pablo: ...";
+                linea5="Pablo: ";
                 break;
             case 30:
                 estado=0;
@@ -435,6 +436,6 @@ public class EscenaFinalMalo extends BasicGameState{
     {
         ///////////////////////////////////,"////////////////////////////////////////////////////////"/;
         texto1.drawString(160, 339,linea5,negro);
-        texto2.drawString(352, 339, linea6,negro);
+        texto2.drawString(400, 339, linea6,negro);
     }
 }

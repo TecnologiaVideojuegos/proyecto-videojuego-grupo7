@@ -215,10 +215,10 @@ public class EscenaCardinal2 extends BasicGameState{
                 linea4="";
                 break;
             case 7:
-                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/BattleOst.wav");
+                //Combate contra dos paladines y un capitán
                 estado=0;
-                VenganzaBelial.atributoGestion.setMapaActual(7);
-                sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);//EDIT:
+                VenganzaBelial.atributoGestion.setMapaActual(22);
+                sbg.enterState(VenganzaBelial.ESTADOCOMBATE);
                 break;
             
         }

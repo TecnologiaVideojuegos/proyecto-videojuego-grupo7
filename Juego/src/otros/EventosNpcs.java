@@ -469,7 +469,7 @@ public class EventosNpcs {
                     tipo = 2;
                 }
                 else if(x==18 && y>7 && y<14){
-                    if (controlEventos==6)
+                    if (controlEventos==7)
                     {
                         controlEventos++;
                         VenganzaBelial.atributoGestion.setControlEscenas(controlEventos);
@@ -480,7 +480,7 @@ public class EventosNpcs {
                         tipo=10;
                 }
                 else if(x==53 && y>21 && y<25){
-                    if (controlEventos==7)
+                    if (controlEventos==8)
                     {
                         controlEventos++;
                         VenganzaBelial.atributoGestion.setControlEscenas(controlEventos);
@@ -492,7 +492,7 @@ public class EventosNpcs {
                 }
                 
                 else if(y==42 && x>0 && x<4){
-                    if (controlEventos==8)
+                    if (controlEventos==9)
                     {
                         controlEventos++;
                         VenganzaBelial.atributoGestion.setControlEscenas(controlEventos);
