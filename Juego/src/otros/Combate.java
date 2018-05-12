@@ -440,16 +440,16 @@ public final class Combate {
                 GeneraEnemigos.add(jin);
                 break;
             case 18:
-                Archi Archi = new Archi(1,25,20000,400,200);
-                General General = new General(1,25,25000,300,200);
+                Archi Archi = new Archi(1,25,20000,460,180);
+                General General = new General(1,25,18000,400,150);
                 dinerototal=10000;
                 exptotal=(int) (150+150*(new Random().nextFloat()));
                 GeneraEnemigos.add(Archi);
                 GeneraEnemigos.add(General);
                 break;
             case 19:
-                Belial Belial = new Belial(1,25,20000,500,200);
-                Hestia Hestia = new Hestia(1,25,17000,300,150);
+                Belial Belial = new Belial(1,25,20000,500,180);
+                Hestia Hestia = new Hestia(1,25,17000,420,150);
                 dinerototal=10000;
                 exptotal=(int) (150+150*(new Random().nextFloat()));
                 GeneraEnemigos.add(Belial);

@@ -53,8 +53,8 @@ public final class Horacia extends Jugador{
         Habilidad[] habs = new Habilidad[5];
         habs[0] = new Habilidad("Bendición Divina", 1, 5, 6, "La bendición de Cardinal cura las heridas de un aliado", 0);
         habs[1] = new Habilidad("Embestida", 5, 1.5f, 10, "Embestida potente contra un objetivo", 2);
-        habs[2] = new Habilidad("Apalear", 10, 1.75f, 15, "Apalea a un objetivo", 2);
-        habs[3] = new Habilidad("Ira salvaje", 15, 1.5f, 30, "Habilidad multiobjetivo", 4);
+        habs[2] = new Habilidad("Apalear", 10, 1.75f, 15, "Ponle la zancadilla y apaliza al enemigo en el suelo", 2);
+        habs[3] = new Habilidad("Ira salvaje", 15, 1.5f, 30, "Si das golpes con los ojos cerrado entre los enemigos alguno dará.", 4);
         habs[4] = new Habilidad("Torbellino", 20, 2, 35, "Hace un torbellino en torno a todos los objetivos", 4);
         
         for (int i = 0; i < habs.length; i++) {

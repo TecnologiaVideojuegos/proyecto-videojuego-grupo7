@@ -52,7 +52,7 @@ public final class Kibito extends Jugador{
         habs[1] = new Habilidad("Milagro sanitario", 5, 30, 15, "Cura a un aliado", 0);
         habs[2] = new Habilidad("Lanza de rayos", 10, 4, 30, "Rayo poderoso contra objetivo", 2);
         habs[3] = new Habilidad("Levantate gandul", 15, 300, 45, "Resucita un aliado", 1);
-        habs[4] = new Habilidad("O. Arcano", 20, 5, 100, "Proporciona un buen golpe a un objetivo", 2);
+        habs[4] = new Habilidad("O. Arcano", 20, 5.5f, 80, "Desata toda tu magia en un golpe", 2);
         for (int i = 0; i < habs.length; i++) {
             this.anadirHabilidad(habs[i]);
         }
@@ -68,7 +68,7 @@ public final class Kibito extends Jugador{
         this.setAtaque(this.getAtaqueBase() + this.getArma().getDanyo());
         this.setMp((this.getMp()+80));
         for (int i = 0; i < this.getHabilidades().size(); i++) {
-            this.getHabilidades().get(i).setCosteMP(this.getHabilidades().get(i).getCosteMP()+8); 
+            this.getHabilidades().get(i).setCosteMP(this.getHabilidades().get(i).getCosteMP()+7); 
         }
     }
     //toString

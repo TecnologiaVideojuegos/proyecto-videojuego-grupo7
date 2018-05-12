@@ -50,9 +50,9 @@ public final class Mordeim extends Jugador{
         Habilidad[] habs = new Habilidad[5];
         habs[0] = new Habilidad("Puñalada trapera", 1, 1.3f, 8, "Apuñala al objetivo por la espalda", 2);
         habs[1] = new Habilidad("Saqueo", 5, 30, 0, "(Pasiva) Al finalizar el combate genera más ganancias", 5);//Posible Pasiva
-        habs[2] = new Habilidad("Lo tuyo es mio", 10, 1.1f, 8, "Roba vida al enemigo", 3);
+        habs[2] = new Habilidad("Lo tuyo es mio", 10, 1.1f, 8, "Golpea y roba vida al enemigo", 3);
         habs[3] = new Habilidad("Pirotecnia", 15, 2, 10, "Lanza fuegos artifiales contra los enemigos", 4);
-        habs[4] = new Habilidad("Asesinato", 20, 5, 10, "Golpe crítico a tu enemigo", 2);
+        habs[4] = new Habilidad("Asesinato", 20, 3, 20, "Si este ataque no los mata nada lo hará", 2);
         for (int i = 0; i < habs.length; i++) {
             this.anadirHabilidad(habs[i]);
         }
