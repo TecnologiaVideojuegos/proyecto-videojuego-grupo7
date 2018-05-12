@@ -441,19 +441,19 @@ public final class Combate {
                 break;
             case 18:
                 Archi Archi = new Archi(1,25,20000,400,200);
-//                General General = new General(1,25,25000,300,200);
+                General General = new General(1,25,25000,300,200);
                 dinerototal=10000;
                 exptotal=(int) (150+150*(new Random().nextFloat()));
                 GeneraEnemigos.add(Archi);
-//                GeneraEnemigos.add(General);
+                GeneraEnemigos.add(General);
                 break;
             case 19:
                 Belial Belial = new Belial(1,25,20000,500,200);
-//                Hestia Hestia = new Hestia(1,25,17000,300,200);
+                Hestia Hestia = new Hestia(1,25,17000,300,150);
                 dinerototal=10000;
                 exptotal=(int) (150+150*(new Random().nextFloat()));
                 GeneraEnemigos.add(Belial);
-//                GeneraEnemigos.add(Hestia);
+                GeneraEnemigos.add(Hestia);
                 break;
             case 20://EDIT
                 Capitan cap=new Capitan(1, 21, 2500, 350, 60);
