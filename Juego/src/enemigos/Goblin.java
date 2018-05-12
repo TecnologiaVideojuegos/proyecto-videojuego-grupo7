@@ -19,16 +19,14 @@ public final class Goblin extends Enemigo implements Serializable{
     @Override
     public void inicializarEnemigo() throws SlickException{
         this.setNombre("Goblin");
-        habilidades = new ArrayList<>(); 
-        //(String nombre, int nivel, int danyo, int costeMP, String descripcion, int tipo)
+        habilidades = new ArrayList<>();
         Habilidad hab = new Habilidad("Espadazo", 1, 1.2f, 0, "Ataque fuerte con su espada", 2);
         habilidades.add(hab);
         this.setHabilidad(habilidades);
         this.setOro(this.getNivel() * 5);
         this.setExpAportada(this.getNivel() * 6);
         this.setVelocidad(9);
-        this.setHpActual(this.getHp());    
-        //this.setImagen("Imagenes/Monstruos/Bosque/Goblin.png");
+        this.setHpActual(this.getHp());
     }
 
     @Override
@@ -42,8 +40,7 @@ public final class Goblin extends Enemigo implements Serializable{
         int danyo, total, danyoInflingido;
         boolean habilidad = false;
         int mayorDefensa = 0, indiceMayorDefensa = 0;
-        //Se supone que hay vivos porque se comprueba donde se llame
-        //Comprobamos si va a hacer habilidad o no
+        
         if (probHab > 0.7){
             at += this.getHabilidad().get(0).getDanyo();
             habilidad = true;
@@ -69,9 +66,8 @@ public final class Goblin extends Enemigo implements Serializable{
         if(danyoInflingido < 0)
             jugadores.get(indiceMayorDefensa).setHpActual(0);
         else
-            jugadores.get(indiceMayorDefensa).setHpActual(danyoInflingido);   
-        //Se ha hecho funciÃ³n para que todos los tipos de enemigos la tengan
-        //y no tengamos que estar metiendo el mismo codigo varias veces
+            jugadores.get(indiceMayorDefensa).setHpActual(danyoInflingido); 
+        
         msg = this.escribirMensaje(habilidad, this.getHabilidad().get(0), jugadores.get(indiceMayorDefensa), total);
         return msg;  
     }

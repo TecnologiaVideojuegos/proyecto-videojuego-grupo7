@@ -22,7 +22,7 @@ public final class Capitan extends Enemigo{
         this.setHabilidad(habilidades);
         this.setOro(this.getNivel() * 3);
         this.setExpAportada(this.getNivel() * 5);
-        this.setVelocidad(11);
+        this.setVelocidad(14);
         this.setHpActual(this.getHp());    
     }
 

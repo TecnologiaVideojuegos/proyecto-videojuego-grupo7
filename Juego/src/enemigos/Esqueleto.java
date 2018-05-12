@@ -22,7 +22,7 @@ public final class Esqueleto extends Enemigo{
         this.setHabilidad(habilidades);
         this.setOro(this.getNivel() * 3);
         this.setExpAportada(this.getNivel() * 5);
-        this.setVelocidad(11);
+        this.setVelocidad(12);
         this.setHpActual(this.getHp());    
     }
 

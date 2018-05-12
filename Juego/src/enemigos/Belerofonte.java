@@ -15,7 +15,6 @@ public final class Belerofonte extends Enemigo {
         super(id, nivel, hp, ataque, defensa);
         inicializarEnemigo();
     }
-    //poner habilidad (?) modificar oro y exp.
 
     @Override
     public void inicializarEnemigo() {

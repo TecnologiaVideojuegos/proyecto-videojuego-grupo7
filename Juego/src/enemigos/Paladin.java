@@ -38,8 +38,7 @@ public final class Paladin extends Enemigo implements Serializable{
         int danyo, total, danyoInflingido;
         boolean habilidad = false;
         int mayorDefensa = 0, indiceMayorDefensa = 0;
-        //Se supone que hay vivos porque se comprueba donde se llame
-        //Comprobamos si va a hacer habilidad o no
+        
         if (probHab > 0.7){
             at += this.getHabilidad().get(0).getDanyo();
             habilidad = true;
@@ -66,8 +65,7 @@ public final class Paladin extends Enemigo implements Serializable{
             jugadores.get(indiceMayorDefensa).setHpActual(0);
         else
             jugadores.get(indiceMayorDefensa).setHpActual(danyoInflingido);   
-        //Se ha hecho funciÃƒÂ³n para que todos los tipos de enemigos la tengan
-        //y no tengamos que estar metiendo el mismo codigo varias veces
+        
         msg = this.escribirMensaje(habilidad, this.getHabilidad().get(0), jugadores.get(indiceMayorDefensa), total);
         return msg;  
     }

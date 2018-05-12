@@ -225,8 +225,12 @@ public class EstadoCombate extends BasicGameState{
                 fondo = new Image("Imagenes/BackBattle/Catacumbas.png");
             else if(VenganzaBelial.atributoGestion.getMapaActual()==6 || VenganzaBelial.atributoGestion.getMapaActual()==15|| VenganzaBelial.atributoGestion.getMapaActual()==16)
                 fondo = new Image("Imagenes/BackBattle/Montana.png");
-            else if(VenganzaBelial.atributoGestion.getMapaActual()==7 || VenganzaBelial.atributoGestion.getMapaActual()==17|| VenganzaBelial.atributoGestion.getMapaActual()==18|| VenganzaBelial.atributoGestion.getMapaActual()==19)
+            else if(VenganzaBelial.atributoGestion.getMapaActual()==7 || VenganzaBelial.atributoGestion.getMapaActual()==21 || VenganzaBelial.atributoGestion.getMapaActual()==22 || VenganzaBelial.atributoGestion.getMapaActual()==17)
                 fondo = new Image("Imagenes/BackBattle/Cardinal.png");
+            else if(VenganzaBelial.atributoGestion.getMapaActual()==20)
+                fondo = new Image("Imagenes/BackBattle/Town.png");//EDIT
+            else if(VenganzaBelial.atributoGestion.getMapaActual()==18|| VenganzaBelial.atributoGestion.getMapaActual()==19)
+                fondo = new Image("Imagenes/BackBattle/FinalBattle.png");
             
             /*Resetea tasa huida*/
             this.tasaHuida=0.8f;
@@ -264,6 +268,8 @@ public class EstadoCombate extends BasicGameState{
             }
             if(VenganzaBelial.atributoGestion.getMapaActual()==13)//Artorias
             {
+                this.tasaHuida=0;
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/FanaticBattle.wav");
                 for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
                     if(NewCombate.getEnemigos().get(j).getNombre().equals("Fanatico"))
                         NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Catacumbas/Fanatic.png");
@@ -274,6 +280,7 @@ public class EstadoCombate extends BasicGameState{
             }
             if(VenganzaBelial.atributoGestion.getMapaActual()==14)//Boss Catacumbas
             {
+                this.tasaHuida=0;
                 VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/FanaticBattle.wav");
                 for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
                     if(NewCombate.getEnemigos().get(j).getNombre().equals("Fanatico"))
@@ -286,6 +293,7 @@ public class EstadoCombate extends BasicGameState{
             }
             if(VenganzaBelial.atributoGestion.getMapaActual()==15)//Belerofonte
             {
+                this.tasaHuida=0;
                 for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
                     if(NewCombate.getEnemigos().get(j).getNombre().equals("Belerofonte"))
                         NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Montaña/Pegasus.png");
@@ -293,6 +301,8 @@ public class EstadoCombate extends BasicGameState{
             }
             if(VenganzaBelial.atributoGestion.getMapaActual()==16)//Fafnir
             {
+                this.tasaHuida=0;
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/DragonTheme.wav");
                 for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
                     if(NewCombate.getEnemigos().get(j).getNombre().equals("Fafnir"))
                         NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Montaña/dragon.png");
@@ -300,12 +310,16 @@ public class EstadoCombate extends BasicGameState{
             }
             if(VenganzaBelial.atributoGestion.getMapaActual()==17)//Jinete Espectral
             {
+                this.tasaHuida=0;
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/JineteEspectralBattle.wav");
                 for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
                     if(NewCombate.getEnemigos().get(j).getNombre().equals("Jinete Espectral"))
                         NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Cardinal/Rider.png");
                 }
             }
             if(VenganzaBelial.atributoGestion.getMapaActual()==18){ //Archi y General
+                this.tasaHuida=0;
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/ArchiBattle.wav");
                 for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
                     if(NewCombate.getEnemigos().get(j).getNombre().equals("Archi"))
                         NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Cardinal/ArchiBoss.png");
@@ -314,11 +328,51 @@ public class EstadoCombate extends BasicGameState{
                 }
             }
             if(VenganzaBelial.atributoGestion.getMapaActual()==19){ //Belial y Hestia
+                this.tasaHuida=0;
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/BelialBattle.wav");
                 for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
                     if(NewCombate.getEnemigos().get(j).getNombre().equals("Belial"))
                         NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Cardinal/Belial.png");
                     if(NewCombate.getEnemigos().get(j).getNombre().equals("Hestia"))
                         NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Cardinal/Hestia.png");
+                }
+            }
+            if(VenganzaBelial.atributoGestion.getMapaActual()==20)//Combate Ciudad
+            {
+                this.tasaHuida=0;
+                for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
+                    if(NewCombate.getEnemigos().get(j).getNombre().equals("Capitan"))
+                        NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Cardinal/Capitan.png");
+                    if(NewCombate.getEnemigos().get(j).getNombre().equals("Soldado"))
+                        NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Cardinal/Soldado.png"); 
+                    this.tasaHuida=0;
+                    
+                }
+            }
+            if(VenganzaBelial.atributoGestion.getMapaActual()==21)//Combate Cardinal1
+            {
+                this.tasaHuida=0;
+                for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
+                    if(NewCombate.getEnemigos().get(j).getNombre().equals("Capitan"))
+                        NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Cardinal/Capitan.png");
+                    if(NewCombate.getEnemigos().get(j).getNombre().equals("Soldado"))
+                        NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Cardinal/Soldado.png"); 
+                    if(NewCombate.getEnemigos().get(j).getNombre().equals("Paladin"))
+                        NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Cardinal/Paladin.png"); 
+                    this.tasaHuida=0;
+                    
+                }
+            }
+            if(VenganzaBelial.atributoGestion.getMapaActual()==22)//Combate Cardinal2
+            {
+                this.tasaHuida=0;
+                for (int j = 0; j < NewCombate.getEnemigos().size(); j++) {
+                    if(NewCombate.getEnemigos().get(j).getNombre().equals("Capitan"))
+                        NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Cardinal/Capitan.png");
+                    if(NewCombate.getEnemigos().get(j).getNombre().equals("Paladin"))
+                        NewCombate.getEnemigos().get(j).setImagen("Imagenes/Monstruos/Cardinal/Paladin.png"); 
+                    this.tasaHuida=0;
+                    
                 }
             }
             
@@ -783,12 +837,21 @@ public class EstadoCombate extends BasicGameState{
                 //VenganzaBelial.atributoGestion.setMapaActual(7);
                 sbg.enterState(VenganzaBelial.ESCENACARDINALMINIBOSS2);
                 break;
-            case 18:
+            case 18://Tras derrotar a Archi y General
                 sbg.enterState(VenganzaBelial.ESCENAFINALMALO);
                 break;
-            case 19:
+            case 19://Tras derrotar a Belial y Hestia
                 sbg.enterState(VenganzaBelial.ESCENAFINALBUENO);
                 break;
+            case 20:
+                VenganzaBelial.atributoGestion.setMapaActual(7);
+                sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
+            case 21:
+                VenganzaBelial.atributoGestion.setMapaActual(7);
+                sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
+            case 22:
+                VenganzaBelial.atributoGestion.setMapaActual(7);
+                sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
             default:
                 VenganzaBelial.controlMusica.cambiaMusicaMapa(VenganzaBelial.atributoGestion.getMapaActual());
                 sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);     

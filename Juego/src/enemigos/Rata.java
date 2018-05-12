@@ -3,7 +3,6 @@ package enemigos;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
-import org.newdawn.slick.SlickException;
 import otros.Habilidad;
 import personajes.Jugador;
 
@@ -27,8 +26,7 @@ public final class Rata extends Enemigo implements Serializable{
         this.setOro(this.getNivel() * 3);
         this.setExpAportada(this.getNivel() * 5);
         this.setVelocidad(12);
-        this.setHpActual(this.getHp());    
-        //this.setImagen("Imagenes/Monstruos/Bosque/Rata.png");
+        this.setHpActual(this.getHp());
     }
 
     @Override

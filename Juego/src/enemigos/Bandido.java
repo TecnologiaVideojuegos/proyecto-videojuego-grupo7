@@ -3,7 +3,6 @@ package enemigos;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
-import org.newdawn.slick.SlickException;
 import otros.Habilidad;
 import personajes.Jugador;
 
@@ -27,7 +26,6 @@ public final class Bandido extends Enemigo implements Serializable{
         this.setExpAportada(this.getNivel() * 6);
         this.setVelocidad(9);
         this.setHpActual(this.getHp());    
-        //this.setImagen("Imagenes/Monstruos/Bosque/Goblin.png");
     }
 
     @Override
@@ -53,7 +51,6 @@ public final class Bandido extends Enemigo implements Serializable{
                 jugadoresAux.add(jugadores.get(i));
         }
 
-        //Indice aleatorio de los que estan vivos
         indice = rand.nextInt(jugadoresAux.size());
         
         
@@ -69,8 +66,7 @@ public final class Bandido extends Enemigo implements Serializable{
             jugadoresAux.get(indice).setHpActual(0);
         else
             jugadoresAux.get(indice).setHpActual(danyoInflingido);   
-        //Se ha hecho funciÃ³n para que todos los tipos de enemigos la tengan
-        //y no tengamos que estar metiendo el mismo codigo varias veces
+        
         msg = this.escribirMensaje(habilidad, this.getHabilidad().get(0), jugadoresAux.get(indice), total);
         return msg;  
     }

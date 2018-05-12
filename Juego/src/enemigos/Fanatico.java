@@ -12,7 +12,6 @@ public final class Fanatico extends Enemigo implements Serializable{
     
     public Fanatico(int id, int nivel, int hp, int ataque, int defensa) {
         super(id, nivel, hp, ataque, defensa); 
-
         inicializarEnemigo();
     }
     
@@ -25,9 +24,8 @@ public final class Fanatico extends Enemigo implements Serializable{
         this.setHabilidad(habilidades);
         this.setOro(this.getNivel() * 3);
         this.setExpAportada(this.getNivel() * 5);
-        this.setVelocidad(12);
+        this.setVelocidad(10);
         this.setHpActual(this.getHp());    
-        //this.setImagen("Imagenes/Monstruos/Bosque/Rata.png");
     }
 
     @Override

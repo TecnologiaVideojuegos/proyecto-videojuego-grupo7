@@ -15,7 +15,6 @@ public final class Archi extends Enemigo {
         super(id, nivel, hp, ataque, defensa);
         inicializarEnemigo();
     }
-    //poner habilidad (?) modificar oro y exp.
 
     @Override
     public void inicializarEnemigo() {
@@ -38,12 +37,12 @@ public final class Archi extends Enemigo {
 
     @Override
     public String estrategiaAtacar(ArrayList<Jugador> jugadores) {
-        String msg = "";
+        String msg;
         Random rand = new Random();
         int at = this.getAtaque();
         int danyo, total, danyoInflingido;
         boolean habilidad;
-        int indice, tipoAtaq = 2, curar = 0;
+        int indice, tipoAtaq = 2, curar;
         ArrayList<Jugador> jugadoresAux = new ArrayList<>();
 
         for (int i = 0; i < jugadores.size(); i++) {

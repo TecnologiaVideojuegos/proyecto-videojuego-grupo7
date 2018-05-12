@@ -12,7 +12,6 @@ public final class Caronte extends Enemigo implements Serializable{
     
     public Caronte(int id, int nivel, int hp, int ataque, int defensa) {
         super(id, nivel, hp, ataque, defensa); 
-
         inicializarEnemigo();
     }
     
@@ -28,7 +27,6 @@ public final class Caronte extends Enemigo implements Serializable{
         this.setExpAportada(100+(int)(rand.nextFloat()*100));
         this.setVelocidad(12);
         this.setHpActual(this.getHp());    
-        //this.setImagen("Imagenes/Monstruos/Bosque/Rata.png");
     }
 
     @Override
@@ -50,7 +48,6 @@ public final class Caronte extends Enemigo implements Serializable{
                 jugadoresAux.add(jugadores.get(i));
         }
 
-        //Indice aleatorio de los que estan vivos
         indice = rand.nextInt(jugadoresAux.size());
 
         if(habilidad)

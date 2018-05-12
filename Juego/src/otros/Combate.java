@@ -411,8 +411,8 @@ public final class Combate {
                 break;
             case 14:
                 Fanatico fan11=new Fanatico(1, 11, 700, 260, 50);
-                Caronte muerte= new Caronte(1,6,5000,290,40);
-                GranMaestro lider=new GranMaestro(2,6,2500,280,50);
+                Caronte muerte= new Caronte(1,11,5000,290,40);
+                GranMaestro lider=new GranMaestro(2,11,2500,280,50);
                 dinerototal=240;
                 exptotal=(int) (150+150*(new Random().nextFloat()));
                 GeneraEnemigos.add(fan11);
@@ -441,15 +441,49 @@ public final class Combate {
                 break;
             case 18:
                 Archi Archi = new Archi(1,25,20000,400,200);
+//                General General = new General(1,25,25000,300,200);
                 dinerototal=10000;
                 exptotal=(int) (150+150*(new Random().nextFloat()));
                 GeneraEnemigos.add(Archi);
+//                GeneraEnemigos.add(General);
                 break;
             case 19:
-                Belial Belial = new Belial(1,25,20000,100,100);
+                Belial Belial = new Belial(1,25,20000,500,200);
+//                Hestia Hestia = new Hestia(1,25,17000,300,200);
                 dinerototal=10000;
                 exptotal=(int) (150+150*(new Random().nextFloat()));
                 GeneraEnemigos.add(Belial);
+//                GeneraEnemigos.add(Hestia);
+                break;
+            case 20://EDIT
+                Capitan cap=new Capitan(1, 21, 2500, 350, 60);
+                Soldado sol1= new Soldado(1, 21, 1500, 350, 60);
+                Soldado sol2= new Soldado(2, 21, 1500, 350, 60);
+                GeneraEnemigos.add(cap);
+                GeneraEnemigos.add(sol1);
+                GeneraEnemigos.add(sol2);
+                dinerototal=1000;
+                exptotal=100;
+                break;
+            case 21://EDIT
+                Capitan cap1=new Capitan(1, 21, 2500, 350, 60);
+                Soldado sol3= new Soldado(1, 21, 1500, 350, 60);
+                Paladin pal1= new Paladin(1, 21, 1500, 400, 70);
+                GeneraEnemigos.add(cap1);
+                GeneraEnemigos.add(sol3);
+                GeneraEnemigos.add(pal1);
+                dinerototal=1000;
+                exptotal=100;
+                break;
+            case 22://EDIT
+                Capitan cap2=new Capitan(1, 21, 2500, 350, 60);
+                Paladin pal2= new Paladin(1, 21, 1500, 400, 70);
+                Paladin pal3= new Paladin(2, 21, 1500, 400, 700);
+                GeneraEnemigos.add(cap2);
+                GeneraEnemigos.add(pal2);
+                GeneraEnemigos.add(pal3);
+                dinerototal=1000;
+                exptotal=100;
                 break;
         }/*switch (Mapa)*/
         this.setOroCombate(dinerototal);

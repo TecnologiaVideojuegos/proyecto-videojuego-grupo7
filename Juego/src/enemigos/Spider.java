@@ -26,8 +26,7 @@ public final class Spider extends Enemigo implements Serializable{
         this.setOro(this.getNivel() * 4);
         this.setExpAportada(this.getNivel() * 4);
         this.setVelocidad(8);
-        this.setHpActual(this.getHp());    
-        //this.setImagen("Imagenes/Monstruos/Bosque/Spider.png");
+        this.setHpActual(this.getHp());
     }
 
     @Override

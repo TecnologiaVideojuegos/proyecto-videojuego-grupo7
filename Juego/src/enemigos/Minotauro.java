@@ -11,7 +11,6 @@ public final class Minotauro extends Enemigo implements Serializable{
     
     public Minotauro(int id, int nivel, int hp, int ataque, int defensa) {
         super(id, nivel, hp, ataque, defensa); 
-
         inicializarEnemigo();
     }
     
