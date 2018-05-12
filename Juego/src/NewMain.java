@@ -6,6 +6,7 @@ salidaEscena= new Image("Imagenes/Escenas/EscenaCarreta1/salidaEscena1.png"); --
 
 
 
+import basesdatos.BaseDatosCardinal;
 import basesdatos.BaseDatosEnemigos;
 import basesdatos.BaseDatosCatacumba;
 import enemigos.Enemigo;
@@ -35,9 +36,27 @@ public class NewMain {
     
     public static void main(String[] args) throws SlickException {
 
-          BaseDatosEnemigos base = new BaseDatosEnemigos();
-          BaseDatosCatacumba base1 = new BaseDatosCatacumba();
-//        Gestion gest= new Gestion();
+//          BaseDatosEnemigos base = new BaseDatosEnemigos();
+//          BaseDatosCatacumba base1 = new BaseDatosCatacumba();
+          BaseDatosCardinal base3 = new BaseDatosCardinal();
+        Gestion gest= new Gestion();
+        gest.setEnem(gest.cargarGrupoEnemigos("BaseDatos/enemigosCardinal.dat"));
+        int a;
+        int b;
+        b=gest.getEnem().size();
+        for (int i = 0; i < gest.getEnem().size(); i++) {
+                        for (int j = 0; j < gest.getEnem().get(i).size(); j++) {
+                            System.out.println("Index J: "+j+" Index I: "+i);
+                            if(gest.getEnem().get(i).get(j).getNombre().equals("Soldado"))
+                                a=0;//VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Montaña/Slime1.png");
+                            else if(gest.getEnem().get(i).get(j).getNombre().equals("Capitan"))
+                                a=1;//VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Montaña/Griffin.png");
+                            else if(gest.getEnem().get(i).get(j).getNombre().equals("Paladin"))
+                                a=2;//VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Montaña/Minotaur.png");
+                        }
+                    }
+        
+        a=3;
 //          try {
 //                        FileInputStream istreamPar = new FileInputStream("BaseDatos/partida.dat");
 //                        ObjectInputStream oisPar = new ObjectInputStream(istreamPar);            

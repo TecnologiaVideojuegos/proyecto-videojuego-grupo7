@@ -114,6 +114,19 @@ public class EstadoMapaJuego extends BasicGameState {
                                 VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Montaña/Imp.png");
                         }
                     } 
+                case 7:
+                    VenganzaBelial.atributoGestion.setEnem(VenganzaBelial.atributoGestion.cargarGrupoEnemigos("BaseDatos/enemigosCardinal.dat"));
+                    for (int i = 0; i < VenganzaBelial.atributoGestion.getEnem().size(); i++) {
+                        for (int j = 0; j < VenganzaBelial.atributoGestion.getEnem().get(i).size(); j++) {
+                            if(VenganzaBelial.atributoGestion.getEnem().get(i).get(j).getNombre().equals("Soldado"))
+                                VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Cardinal/Soldado.png");
+                            else if(VenganzaBelial.atributoGestion.getEnem().get(i).get(j).getNombre().equals("Capitan"))
+                                VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Cardinal/Capitan.png");
+                            else if(VenganzaBelial.atributoGestion.getEnem().get(i).get(j).getNombre().equals("Paladin"))
+                                VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Cardinal/Paladin.png");
+                        }
+                    }
+                    break;
             }
             VenganzaBelial.atributoGestion.setRecargaEnemigos(false);
         }
@@ -187,9 +200,19 @@ public class EstadoMapaJuego extends BasicGameState {
                     }   
                     break;
                 case 7: //
-                    VenganzaBelial.atributoGestion.setEnem(VenganzaBelial.atributoGestion.cargarGrupoEnemigos("BaseDatos/enemigosMontana.dat"));
+                    VenganzaBelial.atributoGestion.setEnem(VenganzaBelial.atributoGestion.cargarGrupoEnemigos("BaseDatos/enemigosCardinal.dat"));
                     map = new TiledMap("tiledmaps/Cardinal.tmx");
                     this.player.setpos(new Vector2f(2*this.tileWidth,3*this.tileHeight));
+                    for (int i = 0; i < VenganzaBelial.atributoGestion.getEnem().size(); i++) {
+                        for (int j = 0; j < VenganzaBelial.atributoGestion.getEnem().get(i).size(); j++) {
+                            if(VenganzaBelial.atributoGestion.getEnem().get(i).get(j).getNombre().equals("Soldado"))
+                                VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Cardinal/Soldado.png");
+                            else if(VenganzaBelial.atributoGestion.getEnem().get(i).get(j).getNombre().equals("Capitan"))
+                                VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Cardinal/Capitan.png");
+                            else if(VenganzaBelial.atributoGestion.getEnem().get(i).get(j).getNombre().equals("Paladin"))
+                                VenganzaBelial.atributoGestion.getEnem().get(i).get(j).setImagen("Imagenes/Monstruos/Cardinal/Paladin.png");
+                        }
+                    }     
                     break;
             }
             mapWidth = map.getWidth() * map.getTileWidth();

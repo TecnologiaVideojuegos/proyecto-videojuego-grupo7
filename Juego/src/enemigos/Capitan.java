@@ -49,7 +49,7 @@ public final class Capitan extends Enemigo{
                 if (danyo > 0)
                     total = danyo;
                 else
-                    total = 1;
+                    total = 30;//Edit especial para horacia
                 danyoInfligido = jugadores.get(i).getHpActual() - total;
                 if(danyoInfligido < 0)
                     jugadores.get(i).setHpActual(0);

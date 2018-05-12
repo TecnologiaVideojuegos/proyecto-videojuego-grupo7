@@ -352,6 +352,23 @@ public final class Combate {
                     dinerototal+=enemaux.getOro();
                 }     
                 break;
+            case 7:
+                if (nivel < 21)
+                    ini = 0;
+                else if (nivel < 23)
+                    ini = 6;
+                else
+                    ini = 12;
+                 ArrayEnemigosUsado = ini + fin;
+                 regeneraEnemigos();
+                 
+                for (int i = 0; i < VenganzaBelial.atributoGestion.getEnem().get(ArrayEnemigosUsado).size(); i++) {
+                    GeneraEnemigos.add((Personaje)VenganzaBelial.atributoGestion.getEnem().get(ArrayEnemigosUsado).get(i));
+                    Enemigo enemaux=(Enemigo)GeneraEnemigos.get(i);
+                    exptotal+=enemaux.getExpAportada();
+                    dinerototal+=enemaux.getOro();
+                }     
+                break;
             case 10://Boss del Bosque
                 BossBosque ygg= new BossBosque(0, 5, 3300, 180, 30);
                 GeneraEnemigos.add(ygg);
@@ -411,13 +428,13 @@ public final class Combate {
                 break;
             case 16:
                 //EDIT
-                Fafnir fani=new Fafnir(1,6,50000,380,200);
+                Fafnir fani=new Fafnir(1,6,30000,380,200);
                 dinerototal=1440;
                 exptotal=(int) (900+150*(new Random().nextFloat()));
                 GeneraEnemigos.add(fani);
                 break;
             case 17:
-                Jinete jin=new Jinete(1,23,15000,450,160);
+                Jinete jin=new Jinete(1,23,36000,460,150);
                 dinerototal=2400;
                 exptotal=(int) (1000+150*(new Random().nextFloat()));
                 GeneraEnemigos.add(jin);

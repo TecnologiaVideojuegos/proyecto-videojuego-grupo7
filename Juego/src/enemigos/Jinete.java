@@ -25,7 +25,7 @@ public final class Jinete extends Enemigo {
         habilidades = new ArrayList<>();
         Habilidad hab1 = new Habilidad("Tajo de Cardinal", 1, danoEspadazo, 0, "Ataca con su lanza a un aliado", 2);
         habilidades.add(hab1);
-        Habilidad hab2 = new Habilidad("Fuego de Wyvern", 1, 800, 0, "Calcina a todos los enemigos", 4);
+        Habilidad hab2 = new Habilidad("Fuego de Wyvern", 1, 50, 0, "Calcina a todos los enemigos", 4);
         habilidades.add(hab2);
         Habilidad hab3 = new Habilidad("Furia de Wyvern", 1, danoFuego, 0, "Quema a un aliado", 2);
         habilidades.add(hab3);
@@ -78,7 +78,7 @@ public final class Jinete extends Enemigo {
                 if (danyo > 0) {
                     total = danyo;
                 } else {
-                    total = 1;
+                    total = 50;
                 }
                 danyoInflingido = jugadoresAux.get(i).getHpActual() - total;
                 if (danyoInflingido < 0) {

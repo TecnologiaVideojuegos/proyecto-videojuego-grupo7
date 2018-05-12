@@ -1,6 +1,7 @@
 package estados;
 
 
+import basesdatos.BaseDatosCardinal;
 import basesdatos.BaseDatosCatacumba;
 import basesdatos.BaseDatosEnemigos;
 import basesdatos.BaseDatosMontana;
@@ -189,6 +190,7 @@ public class VenganzaBelial extends StateBasedGame {
         BaseDatosEnemigos base = new BaseDatosEnemigos();
         BaseDatosCatacumba base1 = new BaseDatosCatacumba();
         BaseDatosMontana base2 = new BaseDatosMontana();
+        BaseDatosCardinal base3 = new BaseDatosCardinal();
         AppGameContainer app = new AppGameContainer(new VenganzaBelial());
         app.setDisplayMode(WIDTH, HEIGHT, FULLSCREEN);
         app.start();

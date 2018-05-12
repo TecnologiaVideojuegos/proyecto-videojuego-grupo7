@@ -42,27 +42,29 @@ public final class BaseDatosCardinal{
     }
     public void enemigosCatacumba(){
         //int id, int nivel, int hp, int ataque, int defensa
-        s211 = new Soldado(1, 21, 400, 60, 60);
-        s212 = new Soldado(2, 21, 400, 60, 60);
-        s213 = new Soldado(3, 21, 400, 60, 60);
-        s231 = new Soldado(1, 23, 440, 65, 65);
-        s232 = new Soldado(2, 23, 440, 65, 65);
-        s233 = new Soldado(3, 23, 440, 65, 65);
-        s251 = new Soldado(1, 25, 500, 75, 75);
-        s252 = new Soldado(2, 25, 500, 75, 75);
-        s253 = new Soldado(3, 25, 500, 75, 75);
-        p211 = new Paladin(1, 21, 500, 50, 70);
-        p212 = new Paladin(2, 21, 500, 50, 70);
-        p213 = new Paladin(3, 21, 500, 50, 70);
-        p231 = new Paladin(1, 23, 530, 55, 80);
-        p232 = new Paladin(2, 23, 530, 55, 80);
-        p233 = new Paladin(3, 23, 530, 55, 80);
-        p251 = new Paladin(1, 25, 580, 60, 90);
-        p252 = new Paladin(2, 25, 580, 60, 90);
-        p253 = new Paladin(3, 25, 580, 60, 90);
-        c211 = new Capitan(1, 21, 450, 70, 50);
-        c211 = new Capitan(1, 23, 480, 75, 55);
-        c211 = new Capitan(1, 25, 521, 80, 65);
+        s211 = new Soldado(1, 21, 1500, 350, 60);
+        s212 = new Soldado(2, 21, 1500, 350, 60);
+        s213 = new Soldado(3, 21, 1500, 350, 60);
+        s231 = new Soldado(1, 23, 1800, 390, 65);
+        s232 = new Soldado(2, 23, 1800, 390, 65);
+        s233 = new Soldado(3, 23, 1800, 390, 65);
+        s251 = new Soldado(1, 25, 2000, 430, 70);
+        s252 = new Soldado(2, 25, 2000, 430, 70);
+        s253 = new Soldado(3, 25, 2000, 430, 70);
+        //
+        p211 = new Paladin(1, 21, 1500, 400, 70);
+        p212 = new Paladin(2, 21, 1500, 400, 70);
+        p213 = new Paladin(3, 21, 1500, 400, 70);
+        p231 = new Paladin(1, 23, 1830, 450, 80);
+        p232 = new Paladin(2, 23, 1830, 450, 80);
+        p233 = new Paladin(3, 23, 1830, 450, 80);
+        p251 = new Paladin(1, 25, 2080, 480, 90);
+        p252 = new Paladin(2, 25, 2080, 480, 90);
+        p253 = new Paladin(3, 25, 2080, 480, 90);
+        //
+        c211 = new Capitan(1, 21, 2500, 350, 60);
+        c231 = new Capitan(1, 23, 2700, 380, 70);
+        c251 = new Capitan(1, 25, 2900, 420, 80);
     }
     public void initArrays(){
         party = new ArrayList<>();

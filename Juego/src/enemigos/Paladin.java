@@ -59,7 +59,7 @@ public final class Paladin extends Enemigo implements Serializable{
         if (danyo > 0)
             total = danyo;
         else
-            total = 1;
+            total = 25;//Edit especial para hacer daño a horacia
 
         danyoInflingido = jugadores.get(indiceMayorDefensa).getHpActual() - total;
         if(danyoInflingido < 0)

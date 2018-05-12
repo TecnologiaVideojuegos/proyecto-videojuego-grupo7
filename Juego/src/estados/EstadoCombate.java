@@ -83,7 +83,7 @@ public class EstadoCombate extends BasicGameState{
     
     //
     private boolean flagHuida=false;
-    private float tasaHuida=0.4f;
+    private float tasaHuida=0.8f;
     private Image marcoOpciones;
     
     public EstadoCombate(int id) {
@@ -229,7 +229,7 @@ public class EstadoCombate extends BasicGameState{
                 fondo = new Image("Imagenes/BackBattle/Cardinal.png");
             
             /*Resetea tasa huida*/
-            this.tasaHuida=0.35f;
+            this.tasaHuida=0.8f;
             /*Genera Nuevo Combate*/
             ArrayList<Personaje> party= new ArrayList<Personaje>();
             party.add(VenganzaBelial.atributoGestion.getJugs().get(0));
@@ -784,8 +784,10 @@ public class EstadoCombate extends BasicGameState{
                 sbg.enterState(VenganzaBelial.ESCENACARDINALMINIBOSS2);
                 break;
             case 18:
+                sbg.enterState(VenganzaBelial.ESCENAFINALMALO);
                 break;
             case 19:
+                sbg.enterState(VenganzaBelial.ESCENAFINALBUENO);
                 break;
             default:
                 VenganzaBelial.controlMusica.cambiaMusicaMapa(VenganzaBelial.atributoGestion.getMapaActual());

@@ -57,7 +57,7 @@ public final class Soldado extends Enemigo implements Serializable{
         if (danyo > 0)
             total = danyo;
         else
-            total = 1;
+            total = 15;//Valor minimo especial para que hagan daño a Horacia. Editor:David
         
         danyoInflingido = jugadoresAux.get(indice).getHpActual() - total;
         if(danyoInflingido < 0)

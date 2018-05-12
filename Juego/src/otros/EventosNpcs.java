@@ -173,7 +173,7 @@ public class EventosNpcs {
                 }
                 //EDIT:Pruebas
                 else if(x==3 && y==6){
-                    evento = new Evento("No soy parte del la historia colega","Aqui estoy para las pruebas de los programadores","recuerda eliminarme despues","","", "Tripi"); 
+                    evento = new Evento("No soy parte del la historia colega","fui el primer NPC de pruebas y","se olvidaron de borrarme.","","", "Tripi"); 
                     tipo = 0;
                 }
                 break;
@@ -309,7 +309,7 @@ public class EventosNpcs {
                 /*******************************************************************/
             case MAPADUNGEONCATACUMBAS:
                 if(x == 37 && y == 14){
-                    evento = new Evento("Si me hago la muerta los ","zombies no me atacan...","espero.","","","Morida"); 
+                    evento = new Evento("Si me hago el muerto los ","zombies no me atacan...","espero.","","","Moriundo"); 
                     tipo = 0;    
                 }
                 else if(x == 4 && y == 27){
@@ -468,6 +468,32 @@ public class EventosNpcs {
                 if (x==7 && y==3) {
                     evento = new Evento("Hola amigo","Voy a curarte para que puedas seguir luchando con","los peligros de Reynos.","","", "Healer");
                     tipo = 2;
+                }
+                else if(x == 2 && y == 29){
+                //Healer
+                    evento = new Evento("¿Te acuerdas de mi?","Toma esto, es hierba curativa,","veo que la necesitas mas que yo.","","", "Tripi");
+                    tipo = 2;    
+                }
+                else if(x == 38 && y == 52){
+                //Healer
+                    evento = new Evento("No me pagan lo suficiente y","me da mazo pereza moverme, asi que","os curo, pero decid que no me habeis visto.","","", "Accedia");
+                    tipo = 2;    
+                }
+                else if (x==30 && y==52) {
+                    items = new ArrayList<>();
+                    requisitoCategoria = new ArrayList<>();
+                    requisitoCategoria.add("Mordeim");
+                    Consumible pocionVida = new Consumible(33, 0, 10, "PocionVida", "Pocion que sirve para curar tu vida",
+                        requisitoCategoria, 1, 50, 20);
+                    Consumible pocionMana = new Consumible(0, 33, 10, "PocionMana", "Pocion que sirve para restaurar tu mana",
+                        requisitoCategoria, 1, 55, 20);
+                    Consumible pocionRes = new Consumible(50, 0, 10, "PocionResucitar", "Pocion que sirve para resucitar un jugador",
+                        requisitoCategoria, 1, 200, 80);
+                    items.add(pocionVida);
+                    items.add(pocionMana);
+                    items.add(pocionRes);
+                    vendedor = new Vendedor(items, "Luis", "que tal");
+                    tipo = 1;
                 }
                 else if(x==18 && y>7 && y<14){
                     if (controlEventos==6)
