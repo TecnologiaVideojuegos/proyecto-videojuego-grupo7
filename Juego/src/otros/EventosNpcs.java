@@ -80,7 +80,7 @@ public class EventosNpcs {
                 }
                 else if(x == 29 & y ==3){
                     //Healer
-                    evento = new Evento("Hola amigo","Voy a curarte para que puedas seguir luchando con","los peligros de Reynos.","","", "Healer");
+                    evento = new Evento("Voy a curarte para que puedas seguir luchando con","los peligros de Reynos.","","","", "Healer");
                     tipo = 2;
                 }
                 else if(x== 22 & y ==4){
@@ -144,7 +144,7 @@ public class EventosNpcs {
                 }
                 //Healer
                 else if(x == 56 && y == 53){
-                    evento = new Evento("Hola amigo","Voy a curarte para que puedas seguir luchando con","los peligros de Reynos.","","", "Healer");
+                    evento = new Evento("Voy a curarte para que puedas seguir luchando con","los peligros de Reynos.","","","", "Healer");
                     tipo = 2;
                 }
                 else if(x==45 && y>9 && y<19){
@@ -179,7 +179,7 @@ public class EventosNpcs {
                 //************************************************************
             case MAPAPUERTO:
                 if (x==8 && y==17) {
-                    evento = new Evento("Hola amigo","Voy a curarte para que puedas seguir luchando con","los peligros de Reynos.","","", "Healer");
+                    evento = new Evento("Voy a curarte para que puedas seguir luchando con","los peligros de Reynos.","","","", "Healer");
                     tipo = 2;
                 }
                 else if (x==2 && y==19) {
@@ -225,8 +225,8 @@ public class EventosNpcs {
                     tipo = 0;
                 }
                 else if (x==34 && y==21) {
-                    evento = new Evento("Snif...","Puedes enfrentarte al lider de los bandidos directamente,",
-                            "pero agradecería que les dieras una paliza a los abusones","que le acompañan.","", "Tolino");
+                    evento = new Evento("Snif...","Puedes enfrentarte al lider de los bandidos",
+                            "directamente, pero agradecería que les dieras una","paliza a los abusones que le acompañan.","", "Tolino");
                     tipo = 0;
                 }
                 else if (x==43 && y==18) {
@@ -286,7 +286,7 @@ public class EventosNpcs {
                 }
                 else if(x == 18 && y == 22){
                     //Healer
-                    evento = new Evento("Hola amigo","Voy a curarte para que puedas seguir luchando con","los peligros de Reynos.","","", "Healer");
+                    evento = new Evento("Voy a curarte para que puedas seguir luchando con","los peligros de Reynos.","","","", "Healer");
                     tipo = 2;
                 }
                 else if(x==9 && y>=15 && y<=22){
@@ -324,7 +324,7 @@ public class EventosNpcs {
                 }
                 else if(x == 20 && y == 23){
                 //Healer
-                    evento = new Evento("Hola amigo","Voy a curarte para que puedas seguir luchando con","los peligros de Reynos.","","", "Healer");
+                    evento = new Evento("Voy a curarte para que puedas seguir luchando con","los peligros de Reynos.","","","", "Healer");
                     tipo = 2;    
                 }
                 else if(x == 55 && y == 23){
@@ -351,7 +351,7 @@ public class EventosNpcs {
             /**********************************************************************/
             case MAPACIUDADMONTANA:
                 if (x==8 && y==10) {
-                    evento = new Evento("Hola amigo","Voy a curarte para que puedas seguir luchando con","los peligros de Reynos.","","", "Healer");
+                    evento = new Evento("Voy a curarte para que puedas seguir luchando con","los peligros de Reynos.","","","", "Healer");
                     tipo = 2;
                 }
                 else if (x==13 && y==16) {
@@ -401,7 +401,7 @@ public class EventosNpcs {
                     tipo = 0;
                 }
                 else if (x==23 && y==20) {
-                    evento = new Evento("Hola, soy un cartel","Creo que es obvio pero... a lo mejor si sigues el","camino pasas al siguiente mapa","",""
+                    evento = new Evento("Creo que es obvio pero... a lo mejor si sigues el","camino pasas al siguiente mapa.","","",""
                     , "Cartel");
                     tipo = 0;
                 }
@@ -415,15 +415,15 @@ public class EventosNpcs {
                 //***********************************************************
             case MAPADUNGEONMONTANA:
                 if (x==4 && y==6) {
-                    evento = new Evento("Hola amigo","Voy a curarte para que puedas seguir luchando con","los peligros de Reynos.","","", "Healer");
+                    evento = new Evento("Voy a curarte para que puedas seguir luchando con","los peligros de Reynos.","","","", "Healer");
                     tipo = 2;
                 }
                 else if (x==34 && y==30) {
-                    evento = new Evento("Hola amigo","Voy a curarte para que puedas seguir luchando con","los peligros de Reynos.","","", "Healer");
+                    evento = new Evento("Voy a curarte para que puedas seguir luchando con","los peligros de Reynos.","","","", "Healer");
                     tipo = 2;
                 }
                 else if (x==64 && y==6) {
-                    evento = new Evento("Hola amigo","Voy a curarte para que puedas seguir luchando con","los peligros de Reynos.","","", "Healer");
+                    evento = new Evento("Voy a curarte para que puedas seguir luchando con","los peligros de Reynos.","","","", "Healer");
                     tipo = 2;
                 }
                 else if (x==40 && y==5) {
@@ -437,7 +437,7 @@ public class EventosNpcs {
                     tipo = 1;
                 }
                 else if (x==39 && y==42) {
-                    evento = new Evento("Ttttt....","Tenía que haberme puesto una rebequita como me dijo mi madre","","",""
+                    evento = new Evento("Ttttt....","Tenía que haberme puesto una rebequita ","como me dijo mi madre","",""
                     , "Congelio");
                     tipo = 0;
                 }
@@ -465,7 +465,7 @@ public class EventosNpcs {
                 break;
             case MAPACARDINAL:
                 if (x==7 && y==3) {
-                    evento = new Evento("Hola amigo","Voy a curarte para que puedas seguir luchando con","los peligros de Reynos.","","", "Healer");
+                    evento = new Evento("Voy a curarte para que puedas seguir luchando con","los peligros de Reynos.","","","", "Healer");
                     tipo = 2;
                 }
                 else if(x == 2 && y == 29){

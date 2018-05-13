@@ -217,6 +217,7 @@ public class EscenaTroyiaPostBoss extends BasicGameState{
         switch (estado)
         {
             case 0:
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Catacumbas.wav");
                 avatarDialogo=this.avatarH;
                 //////="////////////////////////////////////////////////////////";
                 linea1="Uffff, estos tíos eran duros de roer.";
@@ -427,6 +428,7 @@ public class EscenaTroyiaPostBoss extends BasicGameState{
                 }
                 break;
             case 24:
+                VenganzaBelial.controlMusica.pararMusica();
                 estado=0;
                 sbg.enterState(VenganzaBelial.ESCENAARCHI1);//EDIT:
                 break;

@@ -194,6 +194,7 @@ public class EscenaFinalMalo extends BasicGameState{
         switch (estado)
         {
             case 0:
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Belial.wav");
                 time+=i;
                 //ost.loop(1, 0.05f);
                 if(time/1000>2)//3 segundos de ejecución
@@ -414,7 +415,7 @@ public class EscenaFinalMalo extends BasicGameState{
                 break;
             case 30:
                 estado=0;
-//                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Music_City.wav");//EDIT
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Intro_EscenaInicio.wav");//EDIT
                 sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);
                 break;
 

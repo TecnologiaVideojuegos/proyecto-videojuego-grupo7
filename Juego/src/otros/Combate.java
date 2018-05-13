@@ -426,8 +426,7 @@ public final class Combate {
                 GeneraEnemigos.add(bela);
                 break;
             case 16:
-                //
-                Fafnir fani=new Fafnir(1,6,30000,380,200);
+                Fafnir fani=new Fafnir(1,20,30000,380,200);
                 dinerototal=1440;
                 exptotal=(int) (900+150*(new Random().nextFloat()));
                 GeneraEnemigos.add(fani);

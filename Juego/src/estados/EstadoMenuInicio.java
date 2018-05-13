@@ -92,7 +92,7 @@ public class EstadoMenuInicio extends BasicGameState {
         if (input.isKeyPressed(Input.KEY_ENTER)) {
             switch (eleccionJugador) {
                 case EMPEZAR:
-                    VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Intro_EscenaInicio.wav");
+//                    VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Intro_EscenaInicio.wav");
                     ArrayList<Jugador> jugadores = new ArrayList<>();
                     Inventario inv = new Inventario();
                     Horacia horacia = new Horacia(inv);
