@@ -199,6 +199,7 @@ public class EscenaTroyiaPostBoss2 extends BasicGameState{
         switch (estado)
         {
             case 0:
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Catacumbas.wav");
                 posicion.x-=0.1f*i;
                 if(posicion.x<=(-160)){
                     estado++;

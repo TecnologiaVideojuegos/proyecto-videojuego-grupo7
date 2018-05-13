@@ -271,6 +271,7 @@ public class EscenaCarreta extends BasicGameState{
                 if(!sonidoExplosion.playing())
                 {
                     sonidoExplosion.play();
+                    estado++;
                 }
                 break;
             case 14:
@@ -310,6 +311,7 @@ public class EscenaCarreta extends BasicGameState{
                 if(!sonidoExplosion.playing())
                 {
                     sonidoExplosion.play();
+                    estado++;
                 }
                 time=0;
                 break;

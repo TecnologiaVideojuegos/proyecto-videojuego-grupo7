@@ -213,7 +213,7 @@ public class EscenaInicio extends BasicGameState{
                 break;
             //Primera escena introducción
             case 4:
-                VenganzaBelial.controlMusica.pararMusica();
+//                VenganzaBelial.controlMusica.pararMusica();
                 reproducirExclamacion2=true;
                 avatarDialogo=this.avatarHestia;
                 //////="////////////////////////////////////////////////////////";

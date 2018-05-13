@@ -39,6 +39,7 @@ public class EscenaFinalBueno extends BasicGameState{
     private String linea3="";
     private String linea4="";
     private String linea5="";
+    private String linea6="";
     /*Control de escena*/
     private Input input;
     private int estado;
@@ -68,8 +69,9 @@ public class EscenaFinalBueno extends BasicGameState{
     private Sound sonidoSelect;
     private Sound sonidoExplosion;
     int time=0;//EDIT
-    private TrueTypeFont texto,texto1;
+    private TrueTypeFont texto,texto1,texto2;
     private Font letraMenu  = new Font("Arial Black", Font.PLAIN, 45); 
+    private Font letraCreditos  = new Font("Arial Black", Font.PLAIN, 30);
     
     public EscenaFinalBueno(int id) {
         this.idEstado=id;
@@ -125,7 +127,8 @@ public class EscenaFinalBueno extends BasicGameState{
         estado=0;
         this.input = gc.getInput();
         mensajePantalla= new TrueTypeFont(tipoLetra, true);
-        texto1= new TrueTypeFont(letraMenu, true);
+        texto1= new TrueTypeFont(letraCreditos, true);
+        texto2= new TrueTypeFont(letraCreditos, true);
         
         /*Posiciones*/
         posicion = new Vector2f(0,300);
@@ -198,6 +201,7 @@ public class EscenaFinalBueno extends BasicGameState{
         switch (estado)
         {
             case 0:
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Archi.wav");
                 time+=i;
                 //ost.loop(1, 0.05f);
                 if(time/1000>2)//3 segundos de ejecución
@@ -600,10 +604,11 @@ public class EscenaFinalBueno extends BasicGameState{
                 linea4="";
                 break;
             case 48:
-                linea5="GRACIAS POR JUGAR";
+                linea6="GRACIAS POR JUGAR";
                 break;
             case 49:
                 linea5="David: Los esqueletos no fue idea mia.";
+                linea6="";
                 break;
             case 50:
                 linea5="Alberto: Se lo dedico a la IA.";
@@ -619,7 +624,7 @@ public class EscenaFinalBueno extends BasicGameState{
                 break;
             case 54:
                 estado=0;
-//                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Music_City.wav");//EDIT
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Intro_EscenaInicio.wav");
                 sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);
                 break;
 
@@ -641,5 +646,6 @@ public class EscenaFinalBueno extends BasicGameState{
     {
         ///////////////////////////////////,"////////////////////////////////////////////////////////"/;
         texto1.drawString(160, 339,linea5,negro);
+        texto2.drawString(400, 339, linea6,negro);
     }
 }

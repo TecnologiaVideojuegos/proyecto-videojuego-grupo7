@@ -314,6 +314,7 @@ public class EscenaFanatico extends BasicGameState{
                 linea4="";
                 break;
             case 16:
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Catacumbas.wav");
                 estado=0;
                 VenganzaBelial.atributoGestion.setMapaActual(4);
                 sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);

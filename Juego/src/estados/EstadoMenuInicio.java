@@ -105,7 +105,7 @@ public class EstadoMenuInicio extends BasicGameState {
         if (input.isKeyPressed(Input.KEY_ENTER)) {
             switch (eleccionJugador) {
                 case EMPEZAR:
-                    VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Intro_EscenaInicio.wav");
+//                    VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Intro_EscenaInicio.wav");
                     ArrayList<Jugador> jugadores = new ArrayList<>();
                     Inventario inv = new Inventario();
                     Horacia horacia = new Horacia(inv);
@@ -215,9 +215,9 @@ public class EstadoMenuInicio extends BasicGameState {
                     } catch (Exception e) {
                         System.out.println("Error: " + e.getMessage());
                     }  
-//                    VenganzaBelial.atributoGestion.setMapaActual(18);
+                    VenganzaBelial.atributoGestion.setMapaActual(17);
 //                    VenganzaBelial.atributoGestion.setControlEscenas(7);
-                    sbg.enterState(VenganzaBelial.ESCENAFINAL);//EDIt
+                    sbg.enterState(VenganzaBelial.ESTADOCOMBATE);//EDIt
                     break;
                 case PRUEBASANGEL:
                     break;

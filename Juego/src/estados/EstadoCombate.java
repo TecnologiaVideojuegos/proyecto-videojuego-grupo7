@@ -84,7 +84,7 @@ public class EstadoCombate extends BasicGameState{
     //
     private boolean flagHuida=false;
     private float tasaHuida=0.8f;
-    private Image marcoOpciones;
+    private Image marcoOpciones,marcoOrden;
     
     public EstadoCombate(int id) {
         idEstado = id;
@@ -98,6 +98,7 @@ public class EstadoCombate extends BasicGameState{
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException 
     {
         marcoOpciones= new Image("Imagenes/Avatar/marcoOpciones.png");
+        marcoOrden= new Image("Imagenes/Avatar/marcoOrden.png");
         /*ost*/
         OST= new Music("Musica/Efectos/Sword4.wav");
         sonidoAtaque= new Sound("Musica/Efectos/Sword4.wav");
@@ -1046,6 +1047,7 @@ public class EstadoCombate extends BasicGameState{
             //Marco Avatar Complaeto
             marco.draw(0,605,920,15);
             marcoL.draw(900, 613, 20, 160);
+            marcoOrden.draw(1050, 0, 200, 100);
             /*EDIT:Debug prints*/
             //mensajePantalla.drawString(700, 10, "LVL "+VenganzaBelial.horacia.getNivel());
             //mensajePantalla.drawString(700, 30, "Atk: "+VenganzaBelial.horacia.getAtaque()+"Def: "+VenganzaBelial.horacia.getDefensa());

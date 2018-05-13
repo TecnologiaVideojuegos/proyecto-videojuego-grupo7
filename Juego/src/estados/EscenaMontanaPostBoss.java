@@ -174,6 +174,7 @@ public class EscenaMontanaPostBoss extends BasicGameState{
         switch (estado)
         {
             case 0:
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Montana.wav");
                 avatarDialogo=this.avatarH;
                 //////="////////////////////////////////////////////////////////";
                 linea1="¿Ya está muerto el bicharraco?";

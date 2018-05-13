@@ -163,6 +163,7 @@ public class EscenaMontanaMiniBoss2 extends BasicGameState{
         switch (estado)
         {
             case 0:
+                VenganzaBelial.controlMusica.cambiarMusica("Musica/BSO/Montana.wav");
                 avatarDialogo=this.avatarH;
                 //////="////////////////////////////////////////////////////////";
                 linea1="Uffff, se nota que Belerofonte es el líder";
