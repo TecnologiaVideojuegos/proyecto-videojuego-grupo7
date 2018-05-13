@@ -33,11 +33,11 @@ public class Heroe {
     private int w, h;
     private float tasaAparicion=0.003f;//0-1(0-100%)
     private int offset=6;//Original=-4
-    //EDIT
+    //
     private float aparicion=1;
 
     
-    //EDIT
+    //
     public Heroe(float x, float y) throws SlickException {
         Image[] animationUp = {new Image("Imagenes/HeroeMundo/her20.png"), new Image("Imagenes/HeroeMundo/her22.png")};
         Image[] animationDown = {new Image("Imagenes/HeroeMundo/her00.png"), new Image("Imagenes/HeroeMundo/her02.png")};
@@ -64,7 +64,7 @@ public class Heroe {
         movementRight = new Animation(animationRight, ANIMATIONSPEED);
 
         hero = stillDown;
-        //EDIT
+        //
         ventanaDialogo= new Image("Imagenes/Avatar/bocadillo2.png");
     }
 
@@ -119,23 +119,13 @@ public class Heroe {
                     break;
             }
         }/*else*/
-        //EDIT:Pruebas
         ApareceEnemigo( gc,  sbg,  delta,  gps,  input);
         ApareceEvento( gc,  sbg,  delta,  gps,  input);
-//        VenganzaBelial.atributoGestion.setPosicionHeroe(this.pos);
     }
 
     public void render() {
-        //EDIT:Debug Param
-//        TrueTypeFont textoDebug;
-//        java.awt.Font letra  =new java.awt.Font("Verdana", java.awt.Font.PLAIN, 12); 
-//        textoDebug= new TrueTypeFont(letra,true);
-////        textoDebug.drawString(500, 30, "Tasa: "+this.aparicion);
-//        textoDebug.drawString(pos.x, pos.y, "Size: "+ VenganzaBelial.atributoGestion.getEnem().get(0).size());
-        //
         hero.draw(pos.x, pos.y);
-        renderEvento();
-        
+        renderEvento();   
     }
 
     public float getX() {
@@ -162,7 +152,6 @@ public class Heroe {
         this.rectangle = rectangle;
     }
     
-    //EDIT:Comprobando funcion de enemigos
     private void ApareceEnemigo(GameContainer gc, StateBasedGame sbg, int delta, EstadoMapaJuego gps, Input input)
     {
         Random rand=new Random();
@@ -194,7 +183,7 @@ public class Heroe {
     
     private void ApareceEvento(GameContainer gc, StateBasedGame sbg, int delta, EstadoMapaJuego gps, Input input) throws SlickException
     {
-        //EDIT: Llamada a clase eventos, ajustar colision
+        //: Llamada a clase eventos, ajustar colision
         int tipo;
         int posicion[] = {0,0};
         boolean evento = false;

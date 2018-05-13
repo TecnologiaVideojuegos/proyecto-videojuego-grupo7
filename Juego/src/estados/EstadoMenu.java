@@ -99,13 +99,6 @@ public class EstadoMenu extends BasicGameState{
         /*cARGAR sONIDO*/
         sonidoSelect=new Sound("Musica/Efectos/select.wav");
         sonidoError=new Sound("Musica/Efectos/error.wav");
-//        fondoMenu=new Image("Imagenes/Fondos/Inventory.png");
-//        fondoInventory=new Image("Imagenes/Fondos/Book.png");
-//        fondoPersonaje=new Image("Imagenes/Fondos/Gates.png");
-//        fondoPJ = new Image("Imagenes/Fondos/Fountain.png");
-//        fondoHab = new Image("Imagenes/Fondos/Crystal.png");
-//        fondoObj = new Image("Imagenes/Fondos/Plain.png");
-//        fondoArm = new Image("Imagenes/Fondos/Sword.png");
         fondoMenu=new Image("Imagenes/Fondos/fondoMenu.png");
         
     }/*init*/
@@ -120,16 +113,13 @@ public class EstadoMenu extends BasicGameState{
                 renderOpcionesJugador();
                 break;
             case SELPERSONAJE:
-//                fondoPersonaje.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
                 renderSelPersonaje();
                 break;
             case MENUPJ:
-//                fondoPJ.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
                 renderMenuPJ();
                 renderStatusPJ();
                 break;
             case MENUINVENTARIO:
-//                fondoInventory.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
                 renderInventario();
                 break;
             case GUARDANDO:
@@ -139,20 +129,15 @@ public class EstadoMenu extends BasicGameState{
                 renderCargando();
                 break;
             case CAMBIARARMA:
-//                fondoArm.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
-                //renderInventario();
                 renderCambioEquipo();
                 break;
             case CAMBIARARMADURA:
-//                fondoArm.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
                 renderCambioEquipo();
                 break;
             case SELHABILIDAD:
-//                fondoHab.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
                 renderHabilidades();
                 break;
             case SELOBJETIVO:
-//                fondoObj.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
                 renderSelPersonaje();
                 break;
         }/*switch*/
@@ -353,9 +338,8 @@ public class EstadoMenu extends BasicGameState{
                         estado=SELOBJETIVO;
                     }
                     else{
-                        //EDIT:Posible mensaje de sistema informando de que no se puede usar la habilidad
+                        // no se puede usar la habilidad
                         sonidoError.play(1,0.3f);
-                        //this.mensajeSistema="Imposible utilizar esta habilidad en esta situación";
                     }
                     break;
                 case MENUINVENTARIO:
@@ -416,7 +400,7 @@ public class EstadoMenu extends BasicGameState{
     {
        if(input.isKeyPressed(Input.KEY_ENTER))
         { 
-          //EDIT//Comprobar que el item seleccionado sea un arma y cumpla los requisitos
+          //Comprobar que el item seleccionado sea un arma y cumpla los requisitos
             Item item=VenganzaBelial.atributoGestion.getInv().getItems().get(eleccionJugador);
             if(item.getTipoItem()==1)
             {
@@ -435,7 +419,7 @@ public class EstadoMenu extends BasicGameState{
     {
        if(input.isKeyPressed(Input.KEY_ENTER))
         { 
-          //EDIT//Comprobar que el item seleccionado sea un arma y cumpla los requisitos
+          ////Comprobar que el item seleccionado sea un arma y cumpla los requisitos
             Item item=VenganzaBelial.atributoGestion.getInv().getItems().get(eleccionJugador);
             if(item.getTipoItem()==2)
             {
@@ -456,7 +440,7 @@ public class EstadoMenu extends BasicGameState{
        { 
            if(eleccionJugador==0)
            {
-               //EDIT:Guardar Partida
+               //:Guardar Partida
                     try{
                         File file = new File("BaseDatos/partida.dat");
                         file.delete();
@@ -488,7 +472,7 @@ public class EstadoMenu extends BasicGameState{
        { 
            if(eleccionJugador==0)
            {
-               //EDIT:Cargar Partida
+               //:Cargar Partida
                try {
                         FileInputStream istreamPar = new FileInputStream("BaseDatos/partida.dat");
                         ObjectInputStream oisPar = new ObjectInputStream(istreamPar);            
@@ -681,7 +665,6 @@ public class EstadoMenu extends BasicGameState{
     }
     
     
-    //EDIT
     private void renderCambioEquipo()
     {
         Jugador pj= VenganzaBelial.atributoGestion.getJugs().get(this.personajeElegido);
@@ -720,7 +703,7 @@ public class EstadoMenu extends BasicGameState{
             this.textoStatus.drawString(800, 120, "Nv: "+inven.getItems().get(eleccionJugador).getRequisitoNivel());
             this.textoStatus.drawString(800, 140, "Usuario: "+inven.getItems().get(eleccionJugador).getRequisitoCategoria().get(0));
         }
-        //EDIT:posible mejora incluyendo cuanto sube o baja el atributo de Ataque y Defensa
+        
         
     }
 

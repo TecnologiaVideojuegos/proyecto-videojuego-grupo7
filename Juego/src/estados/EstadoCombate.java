@@ -194,13 +194,14 @@ public class EstadoCombate extends BasicGameState{
 //        mensajePantalla.drawString(0, 160, "Estado "+this.Estado);
 //        mensajePantalla.drawString(0, 180, "eleccionJugador "+this.eleccionJugador);
 //        mensajePantalla.drawString(0, 200, "CombateOver "+NewCombate.CombateAcabado());
-        for (int i = 0; i < NewCombate.getOrdenPersonajes().size(); i++) {
-            if(NewCombate.getTurno()==i)
-                mensajePantalla.drawString(1100, 20*i, " "+NewCombate.getOrdenPersonajes().get(i).getNombre(),new Color(100,255,100)); 
-            else    
-                mensajePantalla.drawString(1100, 20*i, " "+NewCombate.getOrdenPersonajes().get(i).getNombre());  
-        }
+//        for (int i = 0; i < NewCombate.getOrdenPersonajes().size(); i++) {
+//            if(NewCombate.getTurno()==i)
+//                mensajePantalla.drawString(1100, 20*i, " "+NewCombate.getOrdenPersonajes().get(i).getNombre(),new Color(100,255,100)); 
+//            else    
+//                mensajePantalla.drawString(1100, 20*i, " "+NewCombate.getOrdenPersonajes().get(i).getNombre());  
+//        }
 
+        //GAME OVER SCREEN
         if(this.mensajeSistema.equals("GAME OVER")){
             Image over= new Image("Imagenes/Fondos/GameOver.png");
             over.draw(0, 0, VenganzaBelial.WIDTH, VenganzaBelial.HEIGHT);
@@ -937,8 +938,8 @@ public class EstadoCombate extends BasicGameState{
             if(NewCombate.getEnemigos().get(aux).estaVivo())
             {
                 /*Debug prints*/
-                Personaje debugPJ= NewCombate.getEnemigos().get(aux);
-                mensajePantalla.drawString(700, 20*aux, debugPJ.getNombre()+"/LVL: "+debugPJ.getNivel()+"/HP: "+debugPJ.getHpActual()+"|"+debugPJ.getHp(),new Color(255,0,0));
+                //Personaje debugPJ= NewCombate.getEnemigos().get(aux);
+                //mensajePantalla.drawString(700, 20*aux, debugPJ.getNombre()+"/LVL: "+debugPJ.getNivel()+"/HP: "+debugPJ.getHpActual()+"|"+debugPJ.getHp(),new Color(255,0,0));
                 //NewCombate.getEnemigos().get(aux).getImagen().draw(aux*300+200, 200, 350, 400);
                 //enemigo.draw(aux*200+200, 200, 0.5f);
                 NewCombate.getEnemigos().get(aux).getImagen().draw(aux*200+400, 200, 0.5f);

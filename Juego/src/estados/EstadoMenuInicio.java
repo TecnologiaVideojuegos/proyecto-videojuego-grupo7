@@ -26,24 +26,17 @@ import personajes.Kibito;
 import personajes.Mordeim;
 
 public class EstadoMenuInicio extends BasicGameState {
-    private static final int NUMOPCIONES = 8;//EDIT:Deben ser 3
+    private static final int NUMOPCIONES = 3;//EDIT:Deben ser 3
     private static final int EMPEZAR = 0;
     private static final int CARGAR = 1;
     private static final int SALIR = 2;
-    /*EDIT:Eliminar pruebas*/
-    private static final int PRUEBASALBERT0=3;
-    private static final int PRUEBASHISAM=4;
-    private static final int PRUEBASDAVID=5;
-    private static final int PRUEBASANGEL=6;
-    private static final int PRUEBASPABLO=7;
-    /*EDIT END*/
+
     private Image fondo;
     private String[] opciones = new String[NUMOPCIONES];
     private Font letraMenu, letraEquipo, letraTitulo;
     private TrueTypeFont opcionesJugadorTTF, equipoTTF, tituloTTF;
     private int eleccionJugador, idEstado;
     private Color notChosen = new Color(211,84,0);//EDIT
-    //private Color notChosen = new Color(153, 204, 255);
     private static final String titulo = "La Venganza de Belial";
     private static final String[] equipo = {"David Ibañez (Jefe Proyecto)", "Alberto Murillo", 
         "Angel Oroquieta", "Hisam Moreno", "Pablo Contreras"};
@@ -69,12 +62,6 @@ public class EstadoMenuInicio extends BasicGameState {
         opciones[0] = "Empezar una nueva partida";
         opciones[1] = "Cargar partida";
         opciones[2] = "Salir";
-        /*EDIT*/
-        opciones[3] = "Pruebas de Alberto";
-        opciones[4] = "Pruebas de Hisam";
-        opciones[5] = "Pruebas de David";
-        opciones[6] = "Pruebas de Angel";
-        opciones[7] = "Pruebas de Pablo";
     }
 
     @Override
@@ -120,18 +107,6 @@ public class EstadoMenuInicio extends BasicGameState {
                     VenganzaBelial.atributoGestion.setInv(inv);
                     VenganzaBelial.atributoGestion.setJugs(jugadores);
                     VenganzaBelial.atributoGestion.setEnem(VenganzaBelial.atributoGestion.cargarGrupoEnemigos("BaseDatos/enemigosBosque.dat"));
-//                    try{
-//                        File file = new File("BaseDatos/partida.dat");
-//                        file.delete();
-//                        FileOutputStream ostreamPar = new FileOutputStream("BaseDatos/partida.dat");
-//                        ObjectOutputStream oosPar = new ObjectOutputStream(ostreamPar);
-//                        oosPar.writeObject(VenganzaBelial.atributoGestion);
-//                        ostreamPar.close();
-//                    } catch (IOException ioe) {
-//                    System.out.println("Error de IO: " + ioe.getMessage());
-//                    } catch (Exception e) {
-//                        System.out.println("Error: " + e.getMessage());
-//                    }
                     sbg.enterState(VenganzaBelial.ESTADOESCENAPROTOTIPO);
                     break;
                 case CARGAR:
@@ -149,82 +124,10 @@ public class EstadoMenuInicio extends BasicGameState {
                     }  
                     VenganzaBelial.controlMusica.cambiaMusicaMapa(VenganzaBelial.atributoGestion.getMapaActual());
                     sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO);
-                    //heropos = fileio.loadSave();
-                    //sbg.enterState(VenganzaBelial.ESTADOESCENAPROTOTIPO);//EDIT
-                    //((GamePlayState)sbg.getState(IceAdventure.GAMEPLAYSTATE)).setHeroPosition(heropos);
-                    //sbg.enterState(IceAdventure.GAMEPLAYSTATE);
                     break;
                 case SALIR:
                     gc.exit();
                     break;
-                case PRUEBASALBERT0:
-                    sbg.enterState(VenganzaBelial.ESTADOMAPAJUEGO); //EDIT
-                    break;
-                case PRUEBASHISAM:
-                    //sbg.enterState(VenganzaBelial.ESTADOESCENAPROTOTIPO);//EDIT 
-                    //sbg.enterState(VenganzaBelial.ESCENABOSQUE2);//EDIT
-                    //sbg.enterState(VenganzaBelial.ESCENABOSQUEPREBOSS);//EDIt
-                    //sbg.enterState(VenganzaBelial.ESCENAPUERTO2);//EDIT
-                    //sbg.enterState(VenganzaBelial.ESCENAPUERTO1);//EDIT
-                    //sbg.enterState(VenganzaBelial.ESCENATROYIA1);//EDIT
-                    //sbg.enterState(VenganzaBelial.ESCENAFANATICO);//EDIT
-                    //sbg.enterState(VenganzaBelial.ESCENACATACUMBASPREBOSS);//EDIT
-                    //sbg.enterState(VenganzaBelial.ESCENATROYIA2);//EDIT
-                    //sbg.enterState(VenganzaBelial.ESCENACATACUMBAS1);//EDIT//Sonido de la armadura un po irritante Xd
-                    //sbg.enterState(VenganzaBelial.ESCENAMONTANABOSS);//EDIT
-                    //sbg.enterState(VenganzaBelial.ESCENADEYOLICA);//EDIT
-                    //sbg.enterState(VenganzaBelial.ESCENATROYIAPOSTBOSS);//EDIT
-                    //sbg.enterState(VenganzaBelial.ESCENAARCHI1);//EDIT
-                    //sbg.enterState(VenganzaBelial.ESCENATROYIAPOSTBOSS2);//EDIT
-                    //sbg.enterState(VenganzaBelial.ESCENAMONTANAMINIBOSS);//EDIT
-                    //sbg.enterState(VenganzaBelial.ESCENAMONTANAMINIBOSS2);//EDIT
-                    //sbg.enterState(VenganzaBelial.ESCENAARCHI2);//EDIT
-                    //sbg.enterState(VenganzaBelial.ESCENAPUEBLOMONTANA);//EDIT
-                    //sbg.enterState(VenganzaBelial.ESCENAMONTANAPOSTBOSS);//EDIT
-                    //sbg.enterState(VenganzaBelial.ESCENADEYOLICAPOSTMONTANA);//EDIT
-                    //sbg.enterState(VenganzaBelial.ESCENACARDINAL1);//EDIT
-                    //sbg.enterState(VenganzaBelial.ESCENACARDINAL2);//EDIT
-                    //sbg.enterState(VenganzaBelial.ESCENACARDINALMINIBOSS1);//EDIT
-                    //sbg.enterState(VenganzaBelial.ESCENACARDINALMINIBOSS2);//EDIT
-                    //sbg.enterState(VenganzaBelial.ESCENACARDINALOPCIONAL);//EDIT
-                    //sbg.enterState(VenganzaBelial.ESCENAFINAL);//EDIT
-                    //sbg.enterState(VenganzaBelial.ESCENAFINALBUENO);//EDIT
-                    sbg.enterState(VenganzaBelial.ESCENAFINALMALO);//EDIT
-
-                    break;
-                case PRUEBASDAVID:
-                    //sbg.enterState(VenganzaBelial.ESCENACARRETA);//EDIT
-                    //sbg.enterState(VenganzaBelial.ESTADOMENU);//EDIT
-                    //sbg.enterState(VenganzaBelial.ESTADOCOMBATE);//EDIT
-                    //sbg.enterState(VenganzaBelial.ESTADOCOMBATETUT);//EDIT
-//                    sbg.enterState(VenganzaBelial.ESCENATROYIAPOSTBOSS);
-//                    sbg.enterState(VenganzaBelial.ESCENAMONTANAPOSTBOSS);
-//                    sbg.enterState(VenganzaBelial.ESCENAFINAL);
-//                    sbg.enterState(VenganzaBelial.ESCENABOSQUEPOSTBOSS);//EDIT
-                    //sbg.enterState(VenganzaBelial.ESTADOTIENDA);//EDIT
-                    //Pueblo MOntana=5
-                    try {
-                        FileInputStream istreamPar = new FileInputStream("BaseDatos/partida.dat");
-                        ObjectInputStream oisPar = new ObjectInputStream(istreamPar);            
-                        VenganzaBelial.atributoGestion = (Gestion) oisPar.readObject();
-                        istreamPar.close();
-                    } catch (IOException ioe) {
-                        System.out.println("Error de IO: " + ioe.getMessage());
-                    } catch (ClassNotFoundException cnfe) {
-                        System.out.println("Error de clase no encontrada: " + cnfe.getMessage());
-                    } catch (Exception e) {
-                        System.out.println("Error: " + e.getMessage());
-                    }  
-//                    VenganzaBelial.atributoGestion.setMapaActual(18);
-//                    VenganzaBelial.atributoGestion.setControlEscenas(7);
-                    sbg.enterState(VenganzaBelial.ESCENAFINAL);//EDIt
-                    break;
-                case PRUEBASANGEL:
-                    break;
-                case PRUEBASPABLO:
-                    //sbg.enterState(VenganzaBelial.ESCENATUTORIAL);
-                    break;
-                    
             }
         }
     }

@@ -43,9 +43,6 @@ public class EstadoTienda extends BasicGameState {
     /*Sonido*/
     private Sound sonidoSelect, sonidoError;
     //EDIT:Vndedores
-    private Vendedor ven1;
-    private Vendedor ven2;
-    private Vendedor ven3;
     //EDIT:Inventarios
     private ArrayList<Item> mercanciaActual;
     private ArrayList<Item> mercancia1;
@@ -204,7 +201,6 @@ public class EstadoTienda extends BasicGameState {
                     VenganzaBelial.atributoGestion.getInv().setDinero(dineroRestante);
                     //Eliminamos el obejeto de mercancias
                     this.mercanciaActual.remove(objeto);
-                    //EDIT: hacer algo para eliminar de la base de datos de mercancias.
                 }
                 else
                 {
@@ -275,7 +271,7 @@ public class EstadoTienda extends BasicGameState {
         {
             if(VenganzaBelial.atributoGestion.getInv().getItems().get(eleccionJugador).getTipoItem()!=0)
             {
-                //EDIT: Comprobar
+                //: Comprobar
                 nuevoDinero=VenganzaBelial.atributoGestion.getInv().getDinero()+VenganzaBelial.atributoGestion.getInv().getItems().get(eleccionJugador).getPrecioVenta();
                 VenganzaBelial.atributoGestion.getInv().setDinero(nuevoDinero);
                 VenganzaBelial.atributoGestion.getInv().borrarItem(VenganzaBelial.atributoGestion.getInv().getItems().get(eleccionJugador));
@@ -318,9 +314,6 @@ public class EstadoTienda extends BasicGameState {
     
     private void iniciaMercancia()
     {
-        //EDIT:Posible base de datos
-        //(int danyo,  critico,  nombre,  descripcion, requisitoCategoria,  requisitoNivel,  precioCompra,  precioVenta)
-        //
         mercancia1= new ArrayList<>();
         for (int i = 0; i < VenganzaBelial.eventos.getVendedor().getItems().size(); i++) {
             mercancia1.add(VenganzaBelial.eventos.getVendedor().getItems().get(i));
@@ -330,19 +323,6 @@ public class EstadoTienda extends BasicGameState {
     
     private void eligeMercancia()
     {    
-        //EDIT: mirar bien el switch
-//        switch(VenganzaBelial.MapaActual)
-//        {
-//            case 0:
-//                mercanciaActual= mercancia1;
-//                break;
-//            case 1:
-//                mercanciaActual= mercancia1;
-//                //for (int i = 0; i < mercancia1.size(); i++) {
-//                //    mercanciaActual.add(mercancia1.get(i));
-//                //}
-//                break;      
-//        }
         mercanciaActual= mercancia1;
     }/*private void eligeMercancia()*/
     

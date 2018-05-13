@@ -58,20 +58,11 @@ public class VenganzaBelial extends StateBasedGame {
     public static final int WIDTH = 1366;
     public static final int HEIGHT = 768;
     public static final boolean FULLSCREEN = false;
-    /*EDIT:Atributos de pruebas*/
-    public static Gestion atributoGestion = new Gestion();//EDIT:Importante comprobar esta inicializacion
-//    public static ArrayList<String> St = new ArrayList<String>();
-//    public static Arma arma = new Arma(5, 0, "Arma1","Descripcion" , St, 1, 1, 1);
-//    public static Armadura armadura = new Armadura(5, "Armadura1", "Descripcion", St, 1, 1, 1);
-//    public static ArrayList<Habilidad> habilidades= new ArrayList<Habilidad>();
-//    public static Horacia horacia = new Horacia(atributoGestion.getInv());
-//    public static Mordeim mordeim = new Mordeim(atributoGestion.getInv());
-//    public static Kibito kibito= new Kibito(atributoGestion.getInv());
-    
+
+    public static Gestion atributoGestion = new Gestion();//
     
     public static EventosNpcs eventos = new EventosNpcs();
     public static Musica controlMusica;
-    //public static int MapaActual=0;//Cambiar a gestion
     
     /*Atributos de pruebas END*/
     public VenganzaBelial() {
@@ -167,58 +158,17 @@ public class VenganzaBelial extends StateBasedGame {
     }
 
     public static void main(String[] args) throws SlickException {
-        /*ATRIBUTOS DE PRUEBA*/
-        //horacia.setPJ(true);
-        //mordeim.setPJ(true);
-        //kibito.setPJ(true);
-        /*Party mediante Gestion*/
-//        atributoGestion.getJugs().add(horacia);
-//        atributoGestion.getJugs().add(mordeim);
-//        atributoGestion.getJugs().add(kibito);
-//        /*Inventario de Gestion*/
-//        atributoGestion.getInv().addItem(arma);
-//        atributoGestion.getInv().addItem(armadura);
-//        atributoGestion.setEnem(atributoGestion.cargarGrupoEnemigos("BaseDatos/enemigosBosque.dat"));
-        //Combate com = new Combate(VenganzaBelial.Party, VenganzaBelial.MapaActual);
-        //Edit: Pruebas de Cambio de armas/armadura con requisitos
-//        ArrayList<String> requisitos =new ArrayList<String>();
-//        requisitos.add("Mordeim");
-//        arma.setRequisitoCategoria(requisitos);
-        /*ATRIBUTOS DE PRUEBA FIN*/
+        /*Se inicia atributo de control de musica*/
         controlMusica= new Musica();
         controlMusica.loopMusica();
+        /*Se rehacen las bases de datos de enemigos por si hubiera problemas*/
         BaseDatosEnemigos base = new BaseDatosEnemigos();
         BaseDatosCatacumba base1 = new BaseDatosCatacumba();
         BaseDatosMontana base2 = new BaseDatosMontana();
         BaseDatosCardinal base3 = new BaseDatosCardinal();
+        /*Inicia juego*/
         AppGameContainer app = new AppGameContainer(new VenganzaBelial());
         app.setDisplayMode(WIDTH, HEIGHT, FULLSCREEN);
         app.start();
     }
 }
-
-/*EDIT: Mensaje para Alberto: Habilidades y Armas a implmentar:
-Horacia:
-    Habilidades:
-        -Embestida(Uniobjetivo)
-        -Apalea(Uniobjetivo)
-        -Ira salvaje(Multiobjetivo Random.> De 2-4 ataques random hacia los enemigos)
-        -Torbellino(Multiobjetivo a todos)
-    Armas en orden de nivel: Garrote/Espada de bronce/Maza de Hierro/Hacha de Luz/ Espada de diamante/Espadón Matademonios
-Kibito:
-    Habilidades:
-        -Bola de fuego(Multiobjetivo)
-        -"Milagro sanitario" (Cura uniobjetivo)
-        -Lanza de rayos(Uniobjetivo)
-        -"Levantate gandul"(Resurrección uniobjetivo)
-        -O. Arcano (Uniobjetivo)
-    Armas:Palo/Vara de olivo/Bastón del Abuelo1/Bastón del Arcangel/"Sin definir"/Bastón del mago herrante
-Mordiem:
-    Habilidades:
-        -Puñalada trapera(Uniobjetivo)
-        -Saqueo(Aumenta el drop rate O consigue un item al azar,la que mas te guste)
-        -"Lo tuyo es mio"(Robavida uniobjetivo)
-        -Pirotecnia(Multiobjetivo)
-        -Asesinato
-    Armas:Lapiz,Navaja,Cuchillo jamonero, Puñal metalSlime, "Dardo", "Sin definir"
-    */

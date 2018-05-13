@@ -3,7 +3,6 @@ package otros;
 import enemigos.*;
 import personajes.Personaje;
 import java.util.ArrayList;
-/*EDIT: Eliminar Import VenganzaBelial*/
 import estados.VenganzaBelial;
 import items.Item;
 import java.util.Random;
@@ -20,7 +19,7 @@ public final class Combate {
     private int Turno;
     private int expCombate;
     private int oroCombate;
-    /*EDIT: posible conversion de dropItem a ArrayList*/
+    /*posible conversion de dropItem a ArrayList*/
     private Item dropItem;
     private int ArrayEnemigosUsado;
     //Constructor
@@ -39,7 +38,7 @@ public final class Combate {
             participantes.add(Enemigos.get(aux));
         }/*for*/
         EnemigosRestantes=Enemigos.size();
-        AliadosRestantes=Party.size();//EDIT: Posible cambio en funcion de si estan vivos
+        AliadosRestantes=Party.size();
         nParticipantes=participantes.size();//Indica los participantes iniciales
         OrdenaTurnos(participantes);//Reordenamos a los participantes en funcion de iniciativa
         Turno=0;//Indice para guiar los turnos y saber a quien le toca jugar
@@ -91,7 +90,7 @@ public final class Combate {
         /*Calculo de daño*/
         Random rand=new Random();
         int danyoCausado;
-        float critico=rand.nextFloat()*100;//EDIT
+        float critico=rand.nextFloat()*100;//
         if(critico<jug.getHabCritico())
         {
             danyoCausado=Atacante.getAtaque()*2-Defensor.getDefensa();
@@ -137,7 +136,7 @@ public final class Combate {
     
     public void GestionaResurrecion(Personaje jugadorResucitado)
     {  
-        /*EDIT:Bajor pruebas de funcionamiento*/
+        /*:Bajor pruebas de funcionamiento*/
         this.AliadosRestantes++;
         this.ordenPersonajes.add(jugadorResucitado);
         this.nParticipantes=ordenPersonajes.size();
@@ -161,7 +160,7 @@ public final class Combate {
        {
            Turno=0;
        }/*if(Turno>this.nParticipantes)*/
-       /*EDIT:Comprobar si el siguiente turno pertenece a un jugador o es automatico*/
+       /*:Comprobar si el siguiente turno pertenece a un jugador o es automatico*/
        if(ordenPersonajes.get(Turno).isPJ())
        {
            return true;
@@ -390,7 +389,7 @@ public final class Combate {
                 break;
             case 12:
                 Bandido ban11=new Bandido(1,6,650,250,100);
-                Bandido banBoss=new Bandido(0,6,4500,350,100);//EDIT
+                Bandido banBoss=new Bandido(0,6,4500,350,100);//
                 banBoss.setNombre("Gran Bandido Crow");
                 Bandido ban12=new Bandido(2,6,650,250,100);
                 dinerototal=1400;
@@ -427,7 +426,7 @@ public final class Combate {
                 GeneraEnemigos.add(bela);
                 break;
             case 16:
-                //EDIT
+                //
                 Fafnir fani=new Fafnir(1,6,30000,380,200);
                 dinerototal=1440;
                 exptotal=(int) (900+150*(new Random().nextFloat()));
@@ -455,7 +454,7 @@ public final class Combate {
                 GeneraEnemigos.add(Belial);
                 GeneraEnemigos.add(Hestia);
                 break;
-            case 20://EDIT
+            case 20://
                 Capitan cap=new Capitan(1, 21, 2500, 350, 60);
                 Soldado sol1= new Soldado(1, 21, 1500, 350, 60);
                 Soldado sol2= new Soldado(2, 21, 1500, 350, 60);
@@ -465,7 +464,7 @@ public final class Combate {
                 dinerototal=1000;
                 exptotal=100;
                 break;
-            case 21://EDIT
+            case 21://
                 Capitan cap1=new Capitan(1, 21, 2500, 350, 60);
                 Soldado sol3= new Soldado(1, 21, 1500, 350, 60);
                 Paladin pal1= new Paladin(1, 21, 1500, 400, 70);
@@ -475,7 +474,7 @@ public final class Combate {
                 dinerototal=1000;
                 exptotal=100;
                 break;
-            case 22://EDIT
+            case 22://
                 Capitan cap2=new Capitan(1, 21, 2500, 350, 60);
                 Paladin pal2= new Paladin(1, 21, 1500, 400, 70);
                 Paladin pal3= new Paladin(2, 21, 1500, 400, 700);

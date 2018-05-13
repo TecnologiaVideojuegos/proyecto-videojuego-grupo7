@@ -397,7 +397,7 @@ public class EscenaFinalMalo extends BasicGameState{
                 linea6="GRACIAS POR JUGAR";
                 break;
             case 25:
-                linea5="David: Esto es una mierda.";
+                linea5="David: Tripi si fue idea mía";
                 linea6="";
                 break;
             case 26:

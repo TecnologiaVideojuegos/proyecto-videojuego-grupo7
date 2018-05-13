@@ -159,9 +159,9 @@ public class EstadoCombateTutorial extends BasicGameState{
             }    
         }/*else*/
         
-        for (int i = 0; i < NewCombate.getOrdenPersonajes().size(); i++) {
-            mensajePantalla.drawString(1200, 600+20*i, " "+NewCombate.getOrdenPersonajes().get(i).getNombre());  
-        }
+//        for (int i = 0; i < NewCombate.getOrdenPersonajes().size(); i++) {
+//            mensajePantalla.drawString(1200, 600+20*i, " "+NewCombate.getOrdenPersonajes().get(i).getNombre());  
+//        }
     }
 
     @Override
@@ -638,8 +638,8 @@ public class EstadoCombateTutorial extends BasicGameState{
             if(NewCombate.getEnemigos().get(aux).estaVivo())
             {
                 /*Debug prints*/
-                Personaje debugPJ= NewCombate.getEnemigos().get(aux);
-                mensajePantalla.drawString(700, 20*aux, debugPJ.getNombre()+"/LVL: "+debugPJ.getNivel()+"/HP: "+debugPJ.getHpActual()+"|"+debugPJ.getHp());
+//                Personaje debugPJ= NewCombate.getEnemigos().get(aux);
+//                mensajePantalla.drawString(700, 20*aux, debugPJ.getNombre()+"/LVL: "+debugPJ.getNivel()+"/HP: "+debugPJ.getHpActual()+"|"+debugPJ.getHp());
                 //NewCombate.getEnemigos().get(aux).getImagen().draw(aux*300+200, 200, 350, 400);
                 //enemigo.draw(aux*200+200, 200, 0.5f);
                 NewCombate.getEnemigos().get(aux).getImagen().draw(aux*200+200, 200, 0.5f);
@@ -741,11 +741,12 @@ public class EstadoCombateTutorial extends BasicGameState{
             //Marco Avatar Complaeto
             marco.draw(0,605,920,15);
             marcoL.draw(900, 613, 20, 160);
-            if(NewCombate.getTurno()<NewCombate.getOrdenPersonajes().size())//If de seguridad para coordeinar render y update
-            {
-                mensajePantalla.drawString(10, 560, "Turno de:" + NewCombate.getOrdenPersonajes().get(NewCombate.getTurno()).getNombre());
-            }
+//            if(NewCombate.getTurno()<NewCombate.getOrdenPersonajes().size())//If de seguridad para coordeinar render y update
+//            {
+//                mensajePantalla.drawString(10, 560, "Turno de:" + NewCombate.getOrdenPersonajes().get(NewCombate.getTurno()).getNombre());
+//            }
     }/*private void renderAvatars(Graphics g)*/  
+    
     private float compruebaPorcentajeBarra(float porcentajeBarra)
     {
         if(porcentajeBarra<0)

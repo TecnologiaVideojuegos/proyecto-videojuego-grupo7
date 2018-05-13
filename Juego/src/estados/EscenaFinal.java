@@ -251,8 +251,8 @@ public class EscenaFinal extends BasicGameState{
         if(estado==77){
             renderDecisionJugador();
         }
-        texto.drawString(1000, 0, "" + estado);
-        texto.drawString(1000, 100, "EleccionBuena" + eleccionBuena);
+//        texto.drawString(1000, 0, "" + estado);
+//        texto.drawString(1000, 100, "EleccionBuena" + eleccionBuena);
         
     }
     @Override
