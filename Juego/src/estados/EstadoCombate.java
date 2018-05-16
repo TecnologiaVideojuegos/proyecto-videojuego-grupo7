@@ -123,7 +123,7 @@ public class EstadoCombate extends BasicGameState{
         avatarVivo=new Image("Imagenes/Avatar/fondoVivo.png");
         avatarMuerto=new Image("Imagenes/Avatar/fondoMuerto.png");
         avatarSeleccionado=new Image("Imagenes/Avatar/fondoSeleccion.png");
-        /*EDIT:Test*/
+
         Avatar1 =  new Image("Imagenes/Personajes/HoraciaA.png");
         Avatar2 =  new Image("Imagenes/Personajes/MordeimA.png");
         Avatar3 =  new Image("Imagenes/Personajes/KibitoA.png");
@@ -385,11 +385,8 @@ public class EstadoCombate extends BasicGameState{
             else{
                 Estado=TURNOENEMIGO;
             }
-            /*EDIT: Mirar donde añadir imagenes al los enemigos*/
-            //switch Case 
-            //EDIT END
+
             NuevoCombate = false;
-            //OST.loop(1, 0.1f);
         }
         else
         {
@@ -442,7 +439,6 @@ public class EstadoCombate extends BasicGameState{
                     break;
                 case FINCOMBATE:
                     FinCombate(gc,sbg);
-                    //sbg.enterState(VenganzaBelial.ESTADOMENUINICIO);//EDIT:Eliminar
                     OST.stop();
                     break;
             }
@@ -513,7 +509,6 @@ public class EstadoCombate extends BasicGameState{
                     Estado=HUYENDO;
                     break;
             }/*switch (eleccionJugador) */
-            /*EDIT: elecciónJugador=0?*/
             eleccionJugador=0;//Resetea el indice de seleccion de opciones para el nuevo estado*/
         }/*if (input.isKeyPressed(Input.KEY_ENTER))*/
     }/*private void OpcionBase()*/
@@ -521,7 +516,6 @@ public class EstadoCombate extends BasicGameState{
     private void Atacando()
     {
         int IndiceTurno;
-        /*EDIT: elecciónJugador=0?*/
         if(input.isKeyPressed(Input.KEY_ENTER))
         {   
             IndiceTurno=NewCombate.getTurno();
@@ -540,7 +534,7 @@ public class EstadoCombate extends BasicGameState{
         }/**/       
     }/*private void Atacando()*/
     
-    private void selHabilidades()/*EDIT: Bajo Pruebas*/
+    private void selHabilidades()
     {
         int tipo;
         int IndiceTurno=NewCombate.getTurno();
@@ -639,7 +633,7 @@ public class EstadoCombate extends BasicGameState{
                         Estado=FINTURNO;
                     }
                     else{
-                        //EDIT:Posible mensaje de sistema informando de que no se puede usar la habilidad
+                        
                         sonidoError.play(1,0.3f);
                         this.mensajeSistema="Imposible utilizar esta habilidad en esta situación";
                     }
@@ -651,7 +645,7 @@ public class EstadoCombate extends BasicGameState{
                         case 0:
                             if(pj.getInventario().usarPocionVida((Jugador)VenganzaBelial.atributoGestion.getJugs().get(eleccionJugador))){
                                 this.mensajeSistema=("Utilizada "+pj.getInventario().getItems().get(consumibleSeleccionado).getNombre());
-                                estadoAnterior=SELALIADO;//EDIT:Buscar forma optima de cambiar de estado
+                                estadoAnterior=SELALIADO;
                                 eleccionJugador=0;
                                 Estado=FINTURNO;
                             }
@@ -662,7 +656,7 @@ public class EstadoCombate extends BasicGameState{
                         case 1:
                             if(pj.getInventario().usarPocionMana((Jugador)VenganzaBelial.atributoGestion.getJugs().get(eleccionJugador))){
                                 this.mensajeSistema=("Utilizada "+pj.getInventario().getItems().get(consumibleSeleccionado).getNombre());
-                                estadoAnterior=SELALIADO;//EDIT:Buscar forma optima de cambiar de estado
+                                estadoAnterior=SELALIADO;
                                 eleccionJugador=0;
                                 Estado=FINTURNO;
                             }
@@ -674,7 +668,7 @@ public class EstadoCombate extends BasicGameState{
                             if(pj.getInventario().usarPocionRes((Jugador)VenganzaBelial.atributoGestion.getJugs().get(eleccionJugador))){
                                 this.mensajeSistema=("Utilizada "+pj.getInventario().getItems().get(consumibleSeleccionado).getNombre());
                                 NewCombate.GestionaResurrecion(VenganzaBelial.atributoGestion.getJugs().get(eleccionJugador));
-                                estadoAnterior=SELALIADO;//EDIT:Buscar forma optima de cambiar de estado
+                                estadoAnterior=SELALIADO;
                                 eleccionJugador=0;
                                 Estado=FINTURNO;
                             }
@@ -773,16 +767,13 @@ public class EstadoCombate extends BasicGameState{
                     VenganzaBelial.atributoGestion.getInv().setDinero(VenganzaBelial.atributoGestion.getInv().getDinero()+NewCombate.getOroCombate()*2);
                 //Reactiva Flag para la proxima vez que se genera un combate
                 NuevoCombate=true;
-                //EDIT:ELIMINAR OBJETO COMBATE O VACIAR
                 retornoAlMapa(sbg);
                 //gc.exit();  
             }/*if(input.isKeyPressed(Input.KEY_ENTER))*/
         }/*if(NewCombate.CombateGanado())*/
         else
         {
-            /*EDIT:cambiar mensaje de GAME OVER*/
             this.mensajeSistema="GAME OVER";
-            //Eliminar objeto combate
             if(input.isKeyPressed(Input.KEY_ENTER))
             {
              NuevoCombate=true;
@@ -795,7 +786,6 @@ public class EstadoCombate extends BasicGameState{
     
     private void retornoAlMapa(StateBasedGame sbg) throws SlickException//Origen sera de un id de donde proviene el combate(mapax o eventox)
     {
-        //Edit, Comprobar casos especiales como Bosses
         switch(VenganzaBelial.atributoGestion.getMapaActual()){
             case 0:
 //                VenganzaBelial.MapaActual=1;//MapaBosque
@@ -900,7 +890,6 @@ public class EstadoCombate extends BasicGameState{
     {
         for (int i=0;i<NCONSUMIBLES;i++)
         {
-            //EDIT: Ruta de Inventario
             Consumible consumible=(Consumible)VenganzaBelial.atributoGestion.getInv().getItems().get(i);
             if(eleccionJugador==i)
             {
@@ -951,11 +940,7 @@ public class EstadoCombate extends BasicGameState{
     {
          /*Update Grafico*/
         float porcentajeBarra=1;//Auxuliar de calculo
-        /*Imagenes del fondo*/
-            
-            /*EDIT:Imagenes de los personajes*/
-            
-            /*EDIT END*/
+
             /*Horacia status update*/
             //if(VenganzaBelial.horacia.estaVivo()){
             if(VenganzaBelial.atributoGestion.getJugs().get(0).estaVivo()){

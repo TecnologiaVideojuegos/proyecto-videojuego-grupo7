@@ -59,7 +59,6 @@ public class EstadoMenu extends BasicGameState{
     private TrueTypeFont opcionesJugadorTTF,textoStatus;
     private int eleccionJugador, idEstado;
    private Color notChosen = new Color(153, 204, 255);
-    //private Color notChosen = new Color(0, 0, 0);//EDIT
     private Color amarillo = new Color(255, 255, 0);
     /*Sonido*/
     private Sound sonidoSelect, sonidoError;
@@ -295,7 +294,7 @@ public class EstadoMenu extends BasicGameState{
         }
     }/*private void menuPJ()*/
     
-     private void selHabilidades()/*EDIT: Bajo Pruebas*/
+     private void selHabilidades()
     {
         int tipo;
         Jugador pj= VenganzaBelial.atributoGestion.getJugs().get(this.personajeElegido);

@@ -20,7 +20,7 @@ public final class Goblin extends Enemigo implements Serializable{
     public void inicializarEnemigo() throws SlickException{
         this.setNombre("Goblin");
         habilidades = new ArrayList<>();
-        Habilidad hab = new Habilidad("Espadazo", 1, 1.2f, 0, "Ataque fuerte con su espada", 2);
+        Habilidad hab = new Habilidad("Espadazo", 1, 20f, 0, "Ataque fuerte con su espada", 2);
         habilidades.add(hab);
         this.setHabilidad(habilidades);
         this.setOro(this.getNivel() * 5);

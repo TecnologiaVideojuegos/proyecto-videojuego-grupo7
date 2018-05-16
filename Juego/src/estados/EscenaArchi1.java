@@ -118,8 +118,6 @@ public class EscenaArchi1 extends BasicGameState{
     @Override
     //Muestra por pantalla
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException { 
-        
-            //EDIT:Rener Mordeim
             
             if(estado>=0 && estado<=20){
                 fondo.draw(esquinaXMapa,esquinaYMapa);
@@ -235,7 +233,7 @@ public class EscenaArchi1 extends BasicGameState{
                 reproducirExclamacion=false;
                 avatarDialogo=this.avatarH;
                 //////="////////////////////////////////////////////////////////";
-                linea1="Ahi Dios, ¿qué es lo que han hecho esta vez?";
+                linea1="Ay Dios, ¿qué es lo que han hecho esta vez?";
                 linea2="";
                 linea3="";
                 linea4="";
@@ -269,7 +267,7 @@ public class EscenaArchi1 extends BasicGameState{
             case 12:
                 avatarDialogo=this.avatarH;
                 //////="////////////////////////////////////////////////////////";
-                linea1="Creo que lo mejor será detener lo que quiera que esten";
+                linea1="Creo que lo mejor será detener lo que quiera que estén";
                 linea2="haciendo con los sellos, ya que sabemos el peligro";
                 linea3="que conllevaría si Belial llega a nuestro mundo.";
                 linea4="";
@@ -332,7 +330,7 @@ public class EscenaArchi1 extends BasicGameState{
                 break;
             case 20:
                 estado=0;
-                sbg.enterState(VenganzaBelial.ESCENATROYIAPOSTBOSS2);//EDIT:
+                sbg.enterState(VenganzaBelial.ESCENATROYIAPOSTBOSS2);//:
                 break;
             
         }

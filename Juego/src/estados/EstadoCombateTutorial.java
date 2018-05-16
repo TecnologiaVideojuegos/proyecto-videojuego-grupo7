@@ -339,7 +339,7 @@ public class EstadoCombateTutorial extends BasicGameState{
              
     }/*private void Atacando()*/
     
-    private void selHabilidades()/*EDIT: Bajo Pruebas*/
+    private void selHabilidades()
     {
         int tipo;
         int IndiceTurno=NewCombate.getTurno();
@@ -433,7 +433,7 @@ public class EstadoCombateTutorial extends BasicGameState{
                         Estado=FINTURNO;
                     }
                     else{
-                        //EDIT:Posible mensaje de sistema informando de que no se puede usar la habilidad
+                        
                         sonidoError.play(1,0.3f);
                         this.mensajeSistema="Imposible utilizar esta habilidad en esta situación";
                     }
@@ -445,7 +445,7 @@ public class EstadoCombateTutorial extends BasicGameState{
                         case 0:
                             if(pj.getInventario().usarPocionVida((Jugador)VenganzaBelial.atributoGestion.getJugs().get(eleccionJugador))){
                                 this.mensajeSistema=("Utilizada "+pj.getInventario().getItems().get(consumibleSeleccionado).getNombre());
-                                estadoAnterior=SELALIADO;//EDIT:Buscar forma optima de cambiar de estado
+                                estadoAnterior=SELALIADO;
                                 Estado=FINTURNO;
                             }
                             else{
@@ -455,7 +455,7 @@ public class EstadoCombateTutorial extends BasicGameState{
                         case 1:
                             if(pj.getInventario().usarPocionMana((Jugador)VenganzaBelial.atributoGestion.getJugs().get(eleccionJugador))){
                                 this.mensajeSistema=("Utilizada "+pj.getInventario().getItems().get(consumibleSeleccionado).getNombre());
-                                estadoAnterior=SELALIADO;//EDIT:Buscar forma optima de cambiar de estado
+                                estadoAnterior=SELALIADO;
                                 Estado=FINTURNO;
                             }
                             else{
@@ -466,7 +466,7 @@ public class EstadoCombateTutorial extends BasicGameState{
                             if(pj.getInventario().usarPocionRes((Jugador)VenganzaBelial.atributoGestion.getJugs().get(eleccionJugador))){
                                 this.mensajeSistema=("Utilizada "+pj.getInventario().getItems().get(consumibleSeleccionado).getNombre());
                                 NewCombate.GestionaResurrecion(VenganzaBelial.atributoGestion.getJugs().get(eleccionJugador));
-                                estadoAnterior=SELALIADO;//EDIT:Buscar forma optima de cambiar de estado
+                                estadoAnterior=SELALIADO;
                                 Estado=FINTURNO;
                             }
                             else{
@@ -563,7 +563,6 @@ public class EstadoCombateTutorial extends BasicGameState{
         }/*if(NewCombate.CombateGanado())*/
         else
         {
-            /*EDIT:cambiar mensaje de GAME OVER*/
             this.mensajeSistema="GAME OVER";
             //Eliminar objeto combate
             if(input.isKeyPressed(Input.KEY_ENTER))

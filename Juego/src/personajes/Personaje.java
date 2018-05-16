@@ -15,7 +15,6 @@ public class Personaje implements Serializable{ //Hacer abstracta por metodo com
     private int velocidad;
     private Image imagen ;
     
-    //EDIT: Flag de pruebas combate
     private boolean PJ;    
     public boolean isPJ() {
         return PJ;
@@ -23,7 +22,6 @@ public class Personaje implements Serializable{ //Hacer abstracta por metodo com
     public void setPJ(boolean PJ) {
         this.PJ = PJ;
     }
-    //EDIT END
     private static final long serialVersionUID = 3L;
     
     //Constructor

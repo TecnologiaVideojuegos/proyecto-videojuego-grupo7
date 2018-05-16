@@ -172,7 +172,7 @@ public class EventosNpcs {
                 }
                 //EDIT:Pruebas
                 else if(x==3 && y==6){
-                    evento = new Evento("No soy parte del la historia colega","fui el primer NPC de pruebas y","se olvidaron de borrarme.","","", "Tripi"); 
+                    evento = new Evento("No soy parte del la historia colega","fuí el primer NPC funcional,","asique no me borraron.","","", "Tripi"); 
                     tipo = 0;
                 }
                 break;

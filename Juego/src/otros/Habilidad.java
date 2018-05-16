@@ -74,7 +74,6 @@ public class Habilidad implements Serializable{
         this.tipoHabilidad = tipoHabilidad;
     }
     
-    /*EDIT: METODOS BAJO PRUEBAS*/
             
     public boolean usarHabilidad(Jugador usuario, Personaje objetivo)
     {
@@ -204,7 +203,6 @@ public class Habilidad implements Serializable{
     
     private void descontarMP(Jugador usuario)
     {
-        /*EDIT:bajo pruebas*/
         usuario.setMpActual(usuario.getMpActual()-this.getCosteMP());
     }
     

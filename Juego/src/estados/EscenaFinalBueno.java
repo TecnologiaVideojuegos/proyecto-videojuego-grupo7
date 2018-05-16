@@ -607,19 +607,24 @@ public class EscenaFinalBueno extends BasicGameState{
                 linea6="GRACIAS POR JUGAR";
                 break;
             case 49:
-                linea5="David: Los esqueletos no fueron idea mia.";
+                linea5="David:Si te ha gustado mis horas de trabajo han merecido la pena. ";
+                linea6="";
                 break;
             case 50:
                 linea5="Alberto: Se lo dedico a la IA.";
+                linea6="";
                 break;
             case 51:
                 linea5="Hisam: Dedicatoria a mis grandes amigos.";
+                linea6="";
                 break;
             case 52:
                 linea5="Angel: La vida hay que tomarsela con humor.";
+                linea6="";
                 break;
             case 53:
                 linea5="Pablo: ";
+                linea6="";
                 break;
             case 54:
                 estado=0;

@@ -398,20 +398,24 @@ public class EscenaFinalMalo extends BasicGameState{
                 linea6="GRACIAS POR JUGAR";
                 break;
             case 25:
-                linea5="David: Tripi si fue idea mía";
+                linea5="David: Premio a mejor interpretación de NPC para Tripi.";
                 linea6="";
                 break;
             case 26:
                 linea5="Alberto: Murciegalo era una broma.";
+                linea6="";
                 break;
             case 27:
                 linea5="Hisam: Ojalá hacer un juego de verdad.";
+                linea6="";
                 break;
             case 28:
-                linea5="Angel: Me hubiera gustado tener artilugios de mayores.";
+                linea5="Angel:";
+                linea6="";
                 break;
             case 29:
                 linea5="Pablo: ";
+                linea6="";
                 break;
             case 30:
                 estado=0;

@@ -108,7 +108,6 @@ public class EscenaBosque1 extends BasicGameState{
         avatarK =  new Image("Imagenes/Personajes/KibitoA.png");
         avatarDialogo = avatarH;
         sonidoSelect=new Sound("Musica/Efectos/select.wav");
-        //EDIT//ost= new Music("Musica/BSO/caminoMoria.wav");
         /**/
         
     }
@@ -127,7 +126,6 @@ public class EscenaBosque1 extends BasicGameState{
             
             if(estado>1)
                 renderDialogo();
-        //editmensajePantalla.drawString(800, 30,"ESTADO= "+estado );
     }
 
     @Override

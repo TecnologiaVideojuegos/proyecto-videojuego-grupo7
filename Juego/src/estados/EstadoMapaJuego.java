@@ -43,7 +43,6 @@ public class EstadoMapaJuego extends BasicGameState {
 
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-        //EDIT: Hacer un Switch de carga de mapa en funcion del alguun indicador
         mapaCargado=0;
         //map = new TiledMap("tiledmaps/mapaBosque.tmx");
         map = new TiledMap("tiledmaps/MapaTutorial/MapaTutorial.tmx");
